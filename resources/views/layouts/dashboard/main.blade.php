@@ -20,6 +20,8 @@
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
+    <link rel="stylesheet" href="{{asset('assets/css/main.css')}}">
+
     <style>
         * {
             margin: 0;
@@ -31,8 +33,26 @@
 <body>
     <div id="app">
         <main>
-            @yield('stylesheets')
-            @yield('content')
+            {{-- @include('layouts.dashboard.sidebar')
+            @include('layouts.top') --}}
+
+            {{-- @yield('stylesheets')
+            @yield('content') --}}
+
+            <div class="main">
+                <div class="sidebar-container">
+                    @include('layouts.dashboard.sidebar')
+                </div>
+
+                <div class="content-pane">
+                    <div class="topbar-container">
+                        @include('layouts.dashboard.topbar')
+                    </div>
+                    <div class="main-content">
+                        <h1>Main Content</h1>
+                    </div>
+                </div>
+            </div>
         </main>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

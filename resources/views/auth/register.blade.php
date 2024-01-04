@@ -2,7 +2,7 @@
 
 @section('stylesheets')
 <link rel="stylesheet" href="{{ asset('assets/css/register.css') }}">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/css/intlTelInput.css">
 @endsection
 
 @section('content')
@@ -14,12 +14,13 @@
         </div>
         <div class="section-2">
             <form onsubmit="finish()">
-                <div id="stepper">
+                <div class="stepper" id="stepper">
                     <div class="step" id="step1" style="display: block;">
                         <div class="type-selection">
                             <div class="text">How are you planning to raise funds?</div>
                             <div class="form-container">
-                                <div class="form-item-1 active" onclick="eventHandler('form-item-2', 'form-item-1')">
+                                <div class="form-item-1 active"
+                                    onclick="eventHandler('form-item-2', 'form-item-1', 'non-profit')">
                                     <div class="left">
                                         <div class="icon"></div>
                                     </div>
@@ -37,7 +38,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-item-2" onclick="eventHandler('form-item-1', 'form-item-2')">
+                                <div class="form-item-2" onclick="eventHandler('form-item-1', 'form-item-2', 'other')">
                                     <div class="left">
                                         <div class="icon"></div>
                                     </div>
@@ -73,10 +74,11 @@
                                 <div class="form-group">
                                     <div class="form-control">
                                         <label for="country">Country</label>
-                                        {{-- <select class="selectpicker countrypicker" data-flag="true"></select> --}}
+                                        <select name="country" id="country">
+                                            <option value="">United States</option>
+                                        </select>
                                     </div>
                                 </div>
-
                                 <div class="form-group">
                                     <div class="form-control">
                                         <label for="firstName">First Name</label>
@@ -87,7 +89,6 @@
                                         <input type="text" id="lastName" placeholder="Last Name" required>
                                     </div>
                                 </div>
-
                                 <div class="form-group">
                                     <div class="form-control">
                                         <label for="email">Email</label>
@@ -99,6 +100,79 @@
                                         <label for="password">Password</label>
                                         <input type="password" id="password" placeholder="Create your password"
                                             required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="organization-information-form">
+                            <div class="heading">Organization Information</div>
+                            <div class="form-container">
+                                <div class="form-group">
+                                    <div class="form-control">
+                                        <label for="organizationName">Organization Name *</label>
+                                        <input type="text" id="organizationName" placeholder="Enter organization name"
+                                            required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-control">
+                                        <label for="firstName">First Name *</label>
+                                        <input type="text" id="firstName" name="firstName" placeholder="First Name"
+                                            required>
+                                    </div>
+                                    <div class="form-control">
+                                        <label for="lastName">Last Name *</label>
+                                        <input type="text" id="lastName" name="lastName" placeholder="Last Name"
+                                            required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-control">
+                                        <label for="phoneNumber">Phone Number *</label>
+                                        <input type="tel" name="phoneNumber" id="phoneNumber">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-control">
+                                        <label for="organizationType">Organization Type *</label>
+                                        <select name="organizationType" id="organizationType">
+                                            <option value="">United States</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-control">
+                                        <label for="organizationDescription">Organization Description *</label>
+                                        <textarea name="organizationDescription" id="organizationDescription" cols="30"
+                                            rows="5" placeholder="Description..."></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-control">
+                                        <label for="organizationWebsite">Organization Website</label>
+                                        <input type="text" name="organizationWebsite" id="organizationWebsite"
+                                            placeholder="Last Name">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-control">
+                                        <label for="email">Email *</label>
+                                        <input type="email" id="email" placeholder="Your email address" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-control">
+                                        <label for="password">Password *</label>
+                                        <input type="password" id="password" placeholder="Create your password"
+                                            required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-control">
+                                        <label for="aboutUs">How did you hear about us?</label>
+                                        <select name="aboutUs" id="aboutUs">
+                                            <option value="">United States</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -145,25 +219,22 @@
     </div>
 </div>
 
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
-
-<!-- (Optional) Latest compiled and minified JavaScript translation files -->
-{{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/i18n/defaults-*.min.js"></script> --}}
-
+<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
 <script>
-    function eventHandler(item1, item2) {
-        document.querySelector(`.${item1}`).classList.remove('active');
-        document.querySelector(`.${item2}`).classList.add('active');
-      }
+    const input = document.querySelector("#phoneNumber");
+  window.intlTelInput(input, {
+    utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js",
+  });
 </script>
 
 <script>
     let currentStep = 1;
+    const dashes = document.querySelectorAll(".dash");
     
     function nextStep() {
       document.getElementById(`step${currentStep}`).style.display = 'none';
       currentStep++;
+      dashes[currentStep - 1].classList.add('active')
       document.getElementById(`step${currentStep}`).style.display = 'block';
   
       if (currentStep === 2) {
@@ -176,6 +247,10 @@
     function prevStep() {
       document.getElementById(`step${currentStep}`).style.display = 'none';
       currentStep--;
+      dashes.forEach(element => {
+        element.classList.remove('active')
+      });
+      dashes[currentStep - 1].classList.add('active')
       document.getElementById(`step${currentStep}`).style.display = 'block';
   
       if (currentStep === 1) {
@@ -187,6 +262,24 @@
   
     function finish() {
       alert('Finish Action');
+    }
+
+    let type = 'non-profit';
+    document.querySelector('.personal-info-form').hidden = false;
+    document.querySelector('.organization-information-form').hidden = true;
+
+    function eventHandler(item1, item2, fundType) {
+        if (fundType === 'non-profit') {
+            type = fundType
+            document.querySelector('.personal-info-form').hidden = false;
+            document.querySelector('.organization-information-form').hidden = true;
+        }else if (fundType === 'other') {
+            type = fundType
+            document.querySelector('.personal-info-form').hidden = true;
+            document.querySelector('.organization-information-form').hidden = false;
+        }
+        document.querySelector(`.${item1}`).classList.remove('active');
+        document.querySelector(`.${item2}`).classList.add('active');
     }
 </script>
 @endsection

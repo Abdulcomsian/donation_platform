@@ -12,7 +12,7 @@
                 <div class="heading">
                     Sign In
                 </div>
-                <form class="sign-in-form-container">
+                <form class="sign-in-form-container" action="{{ route('login') }}">
                     <div class="form-control">
                         <label for="email">Email</label>
                         <input type="email" id="email" placeholder="Your email address" required>
@@ -30,7 +30,7 @@
         </div>
         <div class="section-2">
             <div class="text-1">
-                Already have an account?
+                Create an account
             </div>
             <div class="text-2">
                 <a href="">Sign Up</a>
