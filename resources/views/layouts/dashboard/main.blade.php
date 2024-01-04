@@ -49,6 +49,7 @@
                         @include('layouts.dashboard.topbar')
                     </div>
                     <div class="main-content">
+                        @yield('stylesheets')
                         @yield('content')
                     </div>
                 </div>
