@@ -18,8 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/main', function () {
-    return view('layouts.dashboard.main');
+Route::get('/donors', function () {
+    return view('donors.index');
 });
 
 Auth::routes();
