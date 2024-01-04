@@ -22,6 +22,10 @@ Route::get('/donors', function () {
     return view('donors.index');
 });
 
+Route::get('/donations', function () {
+    return view('donations.index');
+});
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
