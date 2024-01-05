@@ -34,149 +34,19 @@
   align-items: center;
   gap: 2rem;
 }
-.register .section-left .section-2 .type-selection .text {
-  margin-top: 5rem;
-  color: #000;
-  font-family: Poppins;
-  font-size: 26px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-  letter-spacing: 0.52px;
+.register .section-left .section-2 form {
+  width: 100%;
 }
-.register .section-left .section-2 .type-selection .form-container {
-  margin-top: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-}
-.register .section-left .section-2 .type-selection .form-container .form-item-1 {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 1rem;
-  border-radius: 15px;
-  border: 1px solid #E5E5E5;
-  padding: 1rem;
-  width: 458px;
-  cursor: pointer;
-}
-.register .section-left .section-2 .type-selection .form-container .form-item-1 .left .icon {
-  width: 66px;
-  height: 66px;
-  background-image: url(../images/icon.png);
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-}
-.register .section-left .section-2 .type-selection .form-container .form-item-1 .right .item .heading-1 {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-.register .section-left .section-2 .type-selection .form-container .form-item-1 .right .item .heading-1 .label {
-  color: #000;
-  font-family: Poppins;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  letter-spacing: 0.4px;
-}
-.register .section-left .section-2 .type-selection .form-container .form-item-1 .right .item .heading-1 .select-none {
-  width: 22px;
-  height: 22px;
-  border: 1px solid #E5E5E5;
-  border-radius: 50px;
-}
-.register .section-left .section-2 .type-selection .form-container .form-item-1 .right .item .heading-1 .select-fill {
-  display: none;
-}
-.register .section-left .section-2 .type-selection .form-container .form-item-1 .right .item .heading-2 {
-  color: #000;
-  font-family: Poppins;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 300;
-  line-height: normal;
-  letter-spacing: 0.32px;
-}
-.register .section-left .section-2 .type-selection .form-container .form-item-2 {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 1rem;
-  border-radius: 15px;
-  border: 1px solid #E5E5E5;
-  padding: 1rem;
-  width: 458px;
-  cursor: pointer;
-}
-.register .section-left .section-2 .type-selection .form-container .form-item-2 .left .icon {
-  width: 66px;
-  height: 66px;
-  background-image: url(../images/icon\ \(1\).png);
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-}
-.register .section-left .section-2 .type-selection .form-container .form-item-2 .right .item .heading-1 {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-.register .section-left .section-2 .type-selection .form-container .form-item-2 .right .item .heading-1 .label {
-  color: #000;
-  font-family: Poppins;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  letter-spacing: 0.4px;
-}
-.register .section-left .section-2 .type-selection .form-container .form-item-2 .right .item .heading-1 .select-none {
-  width: 22px;
-  height: 22px;
-  border: 1px solid #E5E5E5;
-  border-radius: 50px;
-}
-.register .section-left .section-2 .type-selection .form-container .form-item-2 .right .item .heading-1 .select-fill {
-  display: none;
-}
-.register .section-left .section-2 .type-selection .form-container .form-item-2 .right .item .heading-2 {
-  color: #000;
-  font-family: Poppins;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 300;
-  line-height: normal;
-  letter-spacing: 0.32px;
-}
-.register .section-left .section-2 .type-selection .form-container .active {
-  border: 1px solid #5BC17F;
-  background-color: rgba(91, 193, 127, 0.05);
-}
-.register .section-left .section-2 .type-selection .form-container .active .right .item .heading-1 .select-none {
-  display: none;
-}
-.register .section-left .section-2 .type-selection .form-container .active .right .item .heading-1 .select-fill {
-  width: 22px;
-  height: 22px;
-  background-color: #5BC17F;
-  border-radius: 50px;
+.register .section-left .section-2 form .stepper {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.register .section-left .section-2 .type-selection .form-container .active .right .item .heading-1 .select-fill img {
-  width: 13.384px;
-  height: 9.815px;
+.register .section-left .section-2 form .stepper .step {
+  width: 100%;
 }
-.register .section-left .section-2 .personal-info-form {
-  margin-top: 3rem;
-}
-.register .section-left .section-2 .personal-info-form .heading {
+.register .section-left .section-2 form .stepper .step .type-selection .text {
+  margin-top: 5rem;
   color: #000;
   font-family: Poppins;
   font-size: 26px;
@@ -186,19 +56,38 @@
   letter-spacing: 0.52px;
   text-align: center;
 }
-.register .section-left .section-2 .personal-info-form .info-form-container .form-group {
-  display: flex;
-  flex-direction: row;
-  gap: 0.5rem;
-}
-.register .section-left .section-2 .personal-info-form .info-form-container .form-group .form-control {
+.register .section-left .section-2 form .stepper .step .type-selection .form-container {
+  margin-top: 2rem;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  border: none;
-  margin-bottom: 0.5rem;
+  align-items: center;
+  gap: 1rem;
 }
-.register .section-left .section-2 .personal-info-form .info-form-container .form-group .form-control label {
+.register .section-left .section-2 form .stepper .step .type-selection .form-container .form-item-1 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  border-radius: 15px;
+  border: 1px solid #E5E5E5;
+  padding: 1rem;
+  width: 458px;
+  cursor: pointer;
+}
+.register .section-left .section-2 form .stepper .step .type-selection .form-container .form-item-1 .left .icon {
+  width: 66px;
+  height: 66px;
+  background-image: url(../images/icon.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+.register .section-left .section-2 form .stepper .step .type-selection .form-container .form-item-1 .right .item .heading-1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.register .section-left .section-2 form .stepper .step .type-selection .form-container .form-item-1 .right .item .heading-1 .label {
   color: #000;
   font-family: Poppins;
   font-size: 20px;
@@ -207,15 +96,142 @@
   line-height: normal;
   letter-spacing: 0.4px;
 }
-.register .section-left .section-2 .personal-info-form .info-form-container .form-group .form-control input[type=text],
-.register .section-left .section-2 .personal-info-form .info-form-container .form-group .form-control input[type=email],
-.register .section-left .section-2 .personal-info-form .info-form-container .form-group .form-control input[type=password] {
+.register .section-left .section-2 form .stepper .step .type-selection .form-container .form-item-1 .right .item .heading-1 .select-none {
+  width: 22px;
+  height: 22px;
+  border: 1px solid #E5E5E5;
+  border-radius: 50px;
+}
+.register .section-left .section-2 form .stepper .step .type-selection .form-container .form-item-1 .right .item .heading-1 .select-fill {
+  display: none;
+}
+.register .section-left .section-2 form .stepper .step .type-selection .form-container .form-item-1 .right .item .heading-2 {
+  color: #000;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.register .section-left .section-2 form .stepper .step .type-selection .form-container .form-item-2 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  border-radius: 15px;
+  border: 1px solid #E5E5E5;
+  padding: 1rem;
+  width: 458px;
+  cursor: pointer;
+}
+.register .section-left .section-2 form .stepper .step .type-selection .form-container .form-item-2 .left .icon {
+  width: 66px;
+  height: 66px;
+  background-image: url(../images/icon\ \(1\).png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+.register .section-left .section-2 form .stepper .step .type-selection .form-container .form-item-2 .right .item .heading-1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.register .section-left .section-2 form .stepper .step .type-selection .form-container .form-item-2 .right .item .heading-1 .label {
+  color: #000;
+  font-family: Poppins;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.4px;
+}
+.register .section-left .section-2 form .stepper .step .type-selection .form-container .form-item-2 .right .item .heading-1 .select-none {
+  width: 22px;
+  height: 22px;
+  border: 1px solid #E5E5E5;
+  border-radius: 50px;
+}
+.register .section-left .section-2 form .stepper .step .type-selection .form-container .form-item-2 .right .item .heading-1 .select-fill {
+  display: none;
+}
+.register .section-left .section-2 form .stepper .step .type-selection .form-container .form-item-2 .right .item .heading-2 {
+  color: #000;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.register .section-left .section-2 form .stepper .step .type-selection .form-container .active {
+  border: 1px solid #5BC17F;
+  background-color: rgba(91, 193, 127, 0.05);
+}
+.register .section-left .section-2 form .stepper .step .type-selection .form-container .active .right .item .heading-1 .select-none {
+  display: none;
+}
+.register .section-left .section-2 form .stepper .step .type-selection .form-container .active .right .item .heading-1 .select-fill {
+  width: 22px;
+  height: 22px;
+  background-color: #5BC17F;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.register .section-left .section-2 form .stepper .step .type-selection .form-container .active .right .item .heading-1 .select-fill img {
+  width: 13.384px;
+  height: 9.815px;
+}
+.register .section-left .section-2 form .stepper .step .personal-info-form {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.register .section-left .section-2 form .stepper .step .personal-info-form .heading {
+  color: #000;
+  font-family: Poppins;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0.52px;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.register .section-left .section-2 form .stepper .step .personal-info-form .info-form-container .form-group {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+.register .section-left .section-2 form .stepper .step .personal-info-form .info-form-container .form-group .form-control {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border: none;
+  margin-bottom: 0.5rem;
+}
+.register .section-left .section-2 form .stepper .step .personal-info-form .info-form-container .form-group .form-control label {
+  color: #000;
+  font-family: Poppins;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.4px;
+}
+.register .section-left .section-2 form .stepper .step .personal-info-form .info-form-container .form-group .form-control input[type=text],
+.register .section-left .section-2 form .stepper .step .personal-info-form .info-form-container .form-group .form-control input[type=email],
+.register .section-left .section-2 form .stepper .step .personal-info-form .info-form-container .form-group .form-control input[type=password] {
   margin-top: 10px;
   border-radius: 15px;
   border: 1px solid #E5E5E5;
   padding: 1rem;
 }
-.register .section-left .section-2 .personal-info-form .info-form-container .form-group .form-control input[type=text]::-moz-placeholder, .register .section-left .section-2 .personal-info-form .info-form-container .form-group .form-control input[type=email]::-moz-placeholder, .register .section-left .section-2 .personal-info-form .info-form-container .form-group .form-control input[type=password]::-moz-placeholder {
+.register .section-left .section-2 form .stepper .step .personal-info-form .info-form-container .form-group .form-control input[type=text]::-moz-placeholder, .register .section-left .section-2 form .stepper .step .personal-info-form .info-form-container .form-group .form-control input[type=email]::-moz-placeholder, .register .section-left .section-2 form .stepper .step .personal-info-form .info-form-container .form-group .form-control input[type=password]::-moz-placeholder {
   color: rgba(64, 64, 64, 0.6);
   font-family: Poppins;
   font-size: 16px;
@@ -224,9 +240,9 @@
   line-height: normal;
   letter-spacing: 0.32px;
 }
-.register .section-left .section-2 .personal-info-form .info-form-container .form-group .form-control input[type=text]::placeholder,
-.register .section-left .section-2 .personal-info-form .info-form-container .form-group .form-control input[type=email]::placeholder,
-.register .section-left .section-2 .personal-info-form .info-form-container .form-group .form-control input[type=password]::placeholder {
+.register .section-left .section-2 form .stepper .step .personal-info-form .info-form-container .form-group .form-control input[type=text]::placeholder,
+.register .section-left .section-2 form .stepper .step .personal-info-form .info-form-container .form-group .form-control input[type=email]::placeholder,
+.register .section-left .section-2 form .stepper .step .personal-info-form .info-form-container .form-group .form-control input[type=password]::placeholder {
   color: rgba(64, 64, 64, 0.6);
   font-family: Poppins;
   font-size: 16px;
@@ -234,10 +250,151 @@
   font-weight: 400;
   line-height: normal;
   letter-spacing: 0.32px;
+}
+.register .section-left .section-2 form .stepper .step .personal-info-form .info-form-container .form-group .form-control select {
+  margin-top: 10px;
+  border-radius: 15px;
+  border: 1px solid #E5E5E5;
+  padding: 1rem;
+  color: #000;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.register .section-left .section-2 form .stepper .step .organization-information-form {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 35rem;
+  overflow: auto;
+}
+.register .section-left .section-2 form .stepper .step .organization-information-form .heading {
+  color: #000;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0.52px;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.register .section-left .section-2 form .stepper .step .organization-information-form .form-container .form-group {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+.register .section-left .section-2 form .stepper .step .organization-information-form .form-container .form-group .form-control {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border: none;
+  margin-bottom: 0.5rem;
+}
+.register .section-left .section-2 form .stepper .step .organization-information-form .form-container .form-group .form-control label {
+  color: #000;
+  font-family: Poppins;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.4px;
+}
+.register .section-left .section-2 form .stepper .step .organization-information-form .form-container .form-group .form-control input[type=text],
+.register .section-left .section-2 form .stepper .step .organization-information-form .form-container .form-group .form-control input[type=email],
+.register .section-left .section-2 form .stepper .step .organization-information-form .form-container .form-group .form-control input[type=password] {
+  margin-top: 10px;
+  border-radius: 15px;
+  border: 1px solid #E5E5E5;
+  padding: 1rem;
+}
+.register .section-left .section-2 form .stepper .step .organization-information-form .form-container .form-group .form-control input[type=text]::-moz-placeholder, .register .section-left .section-2 form .stepper .step .organization-information-form .form-container .form-group .form-control input[type=email]::-moz-placeholder, .register .section-left .section-2 form .stepper .step .organization-information-form .form-container .form-group .form-control input[type=password]::-moz-placeholder {
+  color: rgba(64, 64, 64, 0.6);
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.register .section-left .section-2 form .stepper .step .organization-information-form .form-container .form-group .form-control input[type=text]::placeholder,
+.register .section-left .section-2 form .stepper .step .organization-information-form .form-container .form-group .form-control input[type=email]::placeholder,
+.register .section-left .section-2 form .stepper .step .organization-information-form .form-container .form-group .form-control input[type=password]::placeholder {
+  color: rgba(64, 64, 64, 0.6);
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.register .section-left .section-2 form .stepper .step .organization-information-form .form-container .form-group .form-control input[type=tel] {
+  width: 100%;
+  /* margin-top: 2.5rem; */
+  border-radius: 15px;
+  border: 1px solid #E5E5E5;
+  margin-top: 10px;
+  height: 65.932px;
+}
+.register .section-left .section-2 form .stepper .step .organization-information-form .form-container .form-group .form-control .iti__flag-container {
+  display: flex;
+  align-items: center;
+}
+.register .section-left .section-2 form .stepper .step .organization-information-form .form-container .form-group .form-control .iti__selected-flag {
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  padding: 0 15px 0 30px;
+  width: 100%;
+  height: 40px;
+  border-right: 1px solid #E5E5E5;
+}
+.register .section-left .section-2 form .stepper .step .organization-information-form .form-container .form-group .form-control .iti--allow-dropdown input[type=tel] {
+  padding-left: 88px;
+}
+.register .section-left .section-2 form .stepper .step .organization-information-form .form-container .form-group .form-control select {
+  margin-top: 10px;
+  border-radius: 15px;
+  border: 1px solid #E5E5E5;
+  padding: 1rem;
+  color: #000;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.register .section-left .section-2 form .stepper .step .organization-information-form .form-container .form-group .form-control textarea {
+  margin-top: 10px;
+  padding: 1rem;
+  border-radius: 15px;
+  border: 1px solid #E5E5E5;
+  color: rgba(64, 64, 64, 0.6);
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.register .section-left .section-2 form .stepper .step .organization-information-form::-webkit-scrollbar {
+  display: none;
+}
+.register .section-left .section-2 form .stepper .step .organization-information-form {
+  scrollbar-width: none;
+  scrollbar-color: transparent transparent;
+}
+.register .section-left .section-2 form .stepper .step .organization-information-form {
+  -ms-overflow-style: none;
 }
 .register .section-left .section-2 .button-container {
-  width: 100%;
-  margin-top: 2.5rem;
+  padding: 0 30%;
+  margin-top: 2rem;
   display: flex;
   justify-content: end;
   gap: 1rem;
