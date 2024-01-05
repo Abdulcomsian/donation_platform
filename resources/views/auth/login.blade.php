@@ -34,13 +34,13 @@
                     </div>
                 </form>
             </div>
-            <div class="section-2">
-                <div class="text-1">
-                    Already have an account?
-                </div>
-                <div class="text-2">
-                    <a href="{{route('register')}}">Sign Up</a>
-                </div>
+        </div>
+        <div class="section-2">
+            <div class="text-1">
+                Create an account
+            </div>
+            <div class="text-2">
+                <a href="{{route('register')}}">Sign Up</a>
             </div>
         </div>
     </div>

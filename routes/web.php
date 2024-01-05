@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{ HomeController };
+use App\Http\Controllers\{ HomeController , DonationController , CampaignController };
 
 /*
 |--------------------------------------------------------------------------
@@ -15,10 +15,18 @@ use App\Http\Controllers\{ HomeController };
 |
 */
 
+Auth::routes();
+
 Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Route::group(['middleware' => ['auth']] , function(){
+    Route::get('/donors' , [DonationController::class , 'donors'])->name('donors');
+    Route::get('/donations' , [DonationController::class , 'donations'])->name('donations');
+    Route::get('/campaigns' , [CampaignController::class , 'campaign'])->name('campaigns');
+});
+
+
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
