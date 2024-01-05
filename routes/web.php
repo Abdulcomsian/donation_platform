@@ -26,9 +26,9 @@ Route::get('/donations', function () {
     return view('donations.index');
 })->name('donations.index');
 
-Route::get('/compaigns', function () {
-    return view('compaigns.index');
-})->name('compaigns.index');
+Route::get('/campaigns', function () {
+    return view('campaigns.index');
+})->name('campaigns.index');
 
 Auth::routes();
 

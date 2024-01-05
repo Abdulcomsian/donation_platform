@@ -38,4 +38,165 @@
             }
         }
     }
+
+    .data-cards {
+        .row {
+            .col-md-4 {
+                .card {
+                    // width: 331.322px;
+                    // height: 317.556px;
+                    padding: 1.5rem 1.5rem 1rem 1.5rem;
+
+                    border-radius: 8px;
+                    border: 1px solid #DDDFE5;
+
+                    .top {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: flex-start;
+                        gap: 0.1rem;
+                        // padding-top: 0.5rem;
+
+                        .heading {
+                            color: #0D161A;
+                            font-family: Poppins;
+                            font-size: 20px;
+                            font-style: normal;
+                            font-weight: 500;
+                            line-height: 24px;
+                            letter-spacing: 0.1px;
+                        }
+
+                        .info {
+                            display: flex;
+                            flex-direction: row;
+                            align-items: center;
+                            gap: 1rem;
+
+                            .days-ago {
+                                display: flex;
+                                flex-direction: row;
+                                align-items: center;
+                                gap: 0.2rem;
+
+                                .icon {
+                                    width: 14px;
+                                    height: 14px;
+
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                }
+
+                                .text {
+                                    color: #CBCBCB;
+                                    font-family: Nunito;
+                                    font-size: 12px;
+                                    font-style: normal;
+                                    font-weight: 600;
+                                    line-height: 24px;
+                                    letter-spacing: 0.06px;
+                                }
+                            }
+
+                            .amount {
+                                display: flex;
+                                flex-direction: row;
+                                align-items: center;
+
+                                .icon {
+                                    width: 14px;
+                                    height: 14px;
+
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                }
+
+                                .text {
+                                    color: #CBCBCB;
+                                    font-family: Nunito;
+                                    font-size: 12px;
+                                    font-style: normal;
+                                    font-weight: 600;
+                                    line-height: 24px;
+                                    letter-spacing: 0.06px;
+                                }
+                            }
+                        }
+                    }
+
+                    .middle {
+                        width: 100%;
+                        height: 100%;
+
+                        margin: 1.5rem 0rem 0.8rem 0rem;
+
+                        img {
+                            width: 100%;
+                            height: 163px;
+
+                            object-fit: cover;
+                        }
+                    }
+
+                    .bottom {
+                        .progress-container {
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: flex-start;
+                            // gap: 0.5rem;
+
+                            .progress-bar-element {
+                                progress {
+                                    width: 100%;
+                                    height: 5.433px;
+                                    border-radius: 30px;
+                                    border: none;
+                                    appearance: none;
+                                    -webkit-appearance: none;
+                                }
+
+                                /* For WebKit (Chrome, Safari) */
+                                progress::-webkit-progress-bar {
+                                    background-color: #F7F7F7;
+                                    border-radius: 30px;
+                                    /* Change the fill color for WebKit browsers */
+                                }
+
+                                progress::-webkit-progress-value {
+                                    background-color: #5BC17F;
+                                    border-radius: 30px;
+                                    /* Change the fill color for WebKit browsers */
+                                }
+
+                                /* For Firefox */
+                                progress::-moz-progress-bar {
+                                    background-color: #5BC17F;
+                                    border-radius: 30px;
+                                    /* Change the fill color for Firefox */
+                                }
+
+                                /* For Microsoft Edge */
+                                progress::-ms-fill {
+                                    background-color: #5BC17F;
+                                    /* Change the fill color for Microsoft Edge */
+                                }
+                            }
+
+                            .text {
+                                color: #5BC17F;
+                                font-family: Nunito;
+                                font-size: 14px;
+                                font-style: normal;
+                                font-weight: 600;
+                                line-height: 24px;
+                                letter-spacing: 0.07px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

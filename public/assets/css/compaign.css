@@ -30,4 +30,131 @@
   line-height: 24px;
   outline: none;
   border: none;
+}
+.compaigns .data-cards .row .col-md-4 .card {
+  padding: 1.5rem 1.5rem 1rem 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #DDDFE5;
+}
+.compaigns .data-cards .row .col-md-4 .card .top {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0.1rem;
+}
+.compaigns .data-cards .row .col-md-4 .card .top .heading {
+  color: #0D161A;
+  font-family: Poppins;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0.1px;
+}
+.compaigns .data-cards .row .col-md-4 .card .top .info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+.compaigns .data-cards .row .col-md-4 .card .top .info .days-ago {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.2rem;
+}
+.compaigns .data-cards .row .col-md-4 .card .top .info .days-ago .icon {
+  width: 14px;
+  height: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.compaigns .data-cards .row .col-md-4 .card .top .info .days-ago .text {
+  color: #CBCBCB;
+  font-family: Nunito;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0.06px;
+}
+.compaigns .data-cards .row .col-md-4 .card .top .info .amount {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.compaigns .data-cards .row .col-md-4 .card .top .info .amount .icon {
+  width: 14px;
+  height: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.compaigns .data-cards .row .col-md-4 .card .top .info .amount .text {
+  color: #CBCBCB;
+  font-family: Nunito;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0.06px;
+}
+.compaigns .data-cards .row .col-md-4 .card .middle {
+  width: 100%;
+  height: 100%;
+  margin: 1.5rem 0rem 0.8rem 0rem;
+}
+.compaigns .data-cards .row .col-md-4 .card .middle img {
+  width: 100%;
+  height: 163px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.compaigns .data-cards .row .col-md-4 .card .bottom .progress-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.compaigns .data-cards .row .col-md-4 .card .bottom .progress-container .progress-bar-element {
+  /* For WebKit (Chrome, Safari) */
+  /* For Firefox */
+  /* For Microsoft Edge */
+}
+.compaigns .data-cards .row .col-md-4 .card .bottom .progress-container .progress-bar-element progress {
+  width: 100%;
+  height: 5.433px;
+  border-radius: 30px;
+  border: none;
+  -moz-appearance: none;
+       appearance: none;
+  -webkit-appearance: none;
+}
+.compaigns .data-cards .row .col-md-4 .card .bottom .progress-container .progress-bar-element progress::-webkit-progress-bar {
+  background-color: #F7F7F7;
+  border-radius: 30px;
+  /* Change the fill color for WebKit browsers */
+}
+.compaigns .data-cards .row .col-md-4 .card .bottom .progress-container .progress-bar-element progress::-webkit-progress-value {
+  background-color: #5BC17F;
+  border-radius: 30px;
+  /* Change the fill color for WebKit browsers */
+}
+.compaigns .data-cards .row .col-md-4 .card .bottom .progress-container .progress-bar-element progress::-moz-progress-bar {
+  background-color: #5BC17F;
+  border-radius: 30px;
+  /* Change the fill color for Firefox */
+}
+.compaigns .data-cards .row .col-md-4 .card .bottom .progress-container .progress-bar-element progress::-ms-fill {
+  background-color: #5BC17F;
+  /* Change the fill color for Microsoft Edge */
+}
+.compaigns .data-cards .row .col-md-4 .card .bottom .progress-container .text {
+  color: #5BC17F;
+  font-family: Nunito;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0.07px;
 }/*# sourceMappingURL=compaign.css.map */
