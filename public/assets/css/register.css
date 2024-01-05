@@ -6,13 +6,14 @@
   width: 100%;
   display: flex;
   flex-direction: row;
+  justify-content: center;
 }
 .register .section-left {
   width: 60%;
   position: relative;
 }
 .register .section-left .section-1 {
-  margin-top: 15%;
+  margin-top: 20px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -236,7 +237,7 @@
 }
 .register .section-left .section-2 .button-container {
   width: 100%;
-  margin-top: 2rem;
+  margin-top: 2.5rem;
   display: flex;
   justify-content: end;
   gap: 1rem;
@@ -280,7 +281,6 @@
   box-shadow: none;
 }
 .register .section-left .section-3 {
-  position: absolute;
   bottom: 0;
   width: 100%;
   display: flex;

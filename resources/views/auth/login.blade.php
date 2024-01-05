@@ -12,14 +12,21 @@
                 <div class="heading">
                     Sign In
                 </div>
-                <form class="sign-in-form-container">
+                <form class="sign-in-form-container" action="{{route('login')}}" method="POST">
+                    @csrf
                     <div class="form-control">
                         <label for="email">Email</label>
-                        <input type="email" id="email" placeholder="Your email address" required>
+                        <input type="email" id="email" name="email" placeholder="Your email address" required>
+                        @error('email')
+                            <p><strong class="text-danger">{{$message}}</strong></p>
+                        @enderror
                     </div>
                     <div class="form-control">
                         <label for="password">Password</label>
-                        <input type="password" id="password" placeholder="Create your password" required>
+                        <input type="password" id="password" name="password" placeholder="Create your password" required>
+                        @error('password')
+                            <p><strong class="text-danger">{{$message}}</strong></p>
+                        @enderror
                     </div>
 
                     <div class="button-container">
@@ -27,13 +34,13 @@
                     </div>
                 </form>
             </div>
-        </div>
-        <div class="section-2">
-            <div class="text-1">
-                Already have an account?
-            </div>
-            <div class="text-2">
-                <a href="">Sign Up</a>
+            <div class="section-2">
+                <div class="text-1">
+                    Already have an account?
+                </div>
+                <div class="text-2">
+                    <a href="{{route('register')}}">Sign Up</a>
+                </div>
             </div>
         </div>
     </div>
