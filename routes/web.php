@@ -20,11 +20,11 @@ Route::get('/', function () {
 
 Route::get('/donors', function () {
     return view('donors.index');
-});
+})->name('donors.index');
 
 Route::get('/donations', function () {
     return view('donations.index');
-});
+})->name('donations.index');
 
 Auth::routes();
 

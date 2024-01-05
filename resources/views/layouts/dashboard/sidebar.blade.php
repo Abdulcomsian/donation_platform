@@ -8,7 +8,7 @@
             </div>
             <div class="menu-items">
                 <ul class="menu">
-                    <li class="menu-item active">
+                    <li class="menu-item {{Request::is('dashboard') ? 'active' : ''}}">
                         <div class="active-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="8" height="23" viewBox="0 0 8 23"
                                 fill="none">
@@ -30,7 +30,7 @@
                             <span>Dashboard</span>
                         </a>
                     </li>
-                    <li class="menu-item">
+                    <li class="menu-item {{Request::is('donors') ? 'active' : ''}}">
                         <div class="active-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="8" height="23" viewBox="0 0 8 23"
                                 fill="none">
@@ -39,7 +39,7 @@
                                     fill="#5BC17F" />
                             </svg>
                         </div>
-                        <a class="nav-link" href="">
+                        <a class="nav-link" href="{{route('donors.index')}}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="21" viewBox="0 0 22 21"
                                 fill="none">
                                 <path class="fill"
@@ -52,7 +52,7 @@
                             <span>Donors</span>
                         </a>
                     </li>
-                    <li class="menu-item">
+                    <li class="menu-item {{Request::is('donations') ? 'active' : ''}}">
                         <div class="active-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="8" height="23" viewBox="0 0 8 23"
                                 fill="none">
@@ -61,7 +61,7 @@
                                     fill="#5BC17F" />
                             </svg>
                         </div>
-                        <a class="nav-link" href="">
+                        <a class="nav-link" href="{{route('donations.index')}}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22"
                                 fill="none">
                                 <mask id="path-1-outside-1_230_2133" maskUnits="userSpaceOnUse" x="2.14429" y="2.78589"
@@ -80,7 +80,7 @@
                             <span>Donations</span>
                         </a>
                     </li>
-                    <li class="menu-item">
+                    <li class="menu-item {{Request::is('campaigns') ? 'active' : ''}}">
                         <div class="active-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="8" height="23" viewBox="0 0 8 23"
                                 fill="none">
@@ -99,7 +99,7 @@
                             <span>Campaigns</span>
                         </a>
                     </li>
-                    <li class="menu-item">
+                    <li class="menu-item {{Request::is('fundraisers') ? 'active' : ''}}">
                         <div class="active-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="8" height="23" viewBox="0 0 8 23"
                                 fill="none">
@@ -118,7 +118,7 @@
                             <span>Fundraisers</span>
                         </a>
                     </li>
-                    <li class="menu-item">
+                    <li class="menu-item {{Request::is('membership') ? 'active' : ''}}">
                         <div class="active-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="8" height="23" viewBox="0 0 8 23"
                                 fill="none">
@@ -161,7 +161,7 @@
                             <span>Membership</span>
                         </a>
                     </li>
-                    <li class="menu-item">
+                    <li class="menu-item {{Request::is('events') ? 'active' : ''}}">
                         <div class="active-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="8" height="23" viewBox="0 0 8 23"
                                 fill="none">
@@ -219,7 +219,7 @@
                             </li>
                         </ul>
                     </div>
-                    <li class="menu-item">
+                    <li class="menu-item {{Request::is('settings') ? 'active' : ''}}">
                         <div class="active-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="8" height="23" viewBox="0 0 8 23"
                                 fill="none">
