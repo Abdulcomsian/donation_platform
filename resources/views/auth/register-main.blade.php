@@ -1,10 +1,11 @@
 @extends('layouts.app')
 
 @section('stylesheets')
-<link rel="stylesheet" href="{{ asset('assets/css/register.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/css/register-main.css') }}">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
-<link rel="stylesheet" href="{{asset('assets/css/phone.css')}}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"/>
 <script src="{{asset('assets/js/iconify.min.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
 <style>
     select {
         height: 52px;
@@ -15,7 +16,7 @@
     }
 
     .organization-container{
-        height: 500px;
+        height: 380px;
         overflow-y: scroll;
     }
 
@@ -35,6 +36,24 @@
     {
         background-color: #5BC17F;
     }
+
+    .iti.iti--allow-dropdown {
+        width: 97%;
+        padding: 0px 5px;
+        margin-left: 8px;
+        border-radius: 14px;
+    }
+
+    .iti__selected-flag {
+        border-right: 1px solid #cfcccc;
+    }
+
+    input#phone {
+    width: 100%!important;
+    height: 57px;
+    border: 1px solid #cfcccc;
+}
+
     @keyframes rotate {
             0% {
                 transform: rotate(0deg);
@@ -57,7 +76,7 @@
             <div class="dash active"></div>
             <div class="dash"></div>
         </div>
-
+        <input type="hidden" name="type" value="1">
         <div class="register" id="type-select-section">
             <div class="section-left">
                 <div class="section-2">
@@ -180,7 +199,6 @@
             </form>
 
             <form class="d-none register-form" method="post" id="organizer-form">
-                <input type="hidden" name="type" value="1">
                         <div class="personal-info-form">
                             <div class="heading">
                                 Organization Information
@@ -204,24 +222,10 @@
                                         <input type="text" id="org-lastName" name="last_name" placeholder="Last Name" required>
                                     </div>
                                 </div>
-
                                 <div class="form-group">
-                                    <div class="select-box">
-                                        <div class="selected-option">
-                                            <div>
-                                                <span class="iconify" data-icon="flag:gb-4x3"></span>
-                                                <strong>+44</strong>
-                                            </div>
-                                            <input type="organization_phone" name="organization_phone" placeholder="Phone Number" value="+44">
-                                        </div>
-                                        <div class="options">
-                                            <input type="text" class="search-box" placeholder="Search Country Name">
-                                            <ol>
-                                            </ol>
-                                        </div>
-                                    </div>
-                                    
+                                    <input id="phone" type="tel" name="organization_phone" required/>
                                 </div>
+                                
 
                                 <div class="form-group">
                                     <div class="form-control">
@@ -407,5 +411,11 @@
     
 </script>
 
-<script src="{{asset('assets/js/phone-script.js')}}"></script>
+<script>
+    const phoneInputField = document.querySelector("#phone");
+    const phoneInput = window.intlTelInput(phoneInputField, {
+      utilsScript:
+        "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+    });
+  </script>
 @endsection
