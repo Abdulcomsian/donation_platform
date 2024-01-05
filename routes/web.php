@@ -30,6 +30,10 @@ Route::get('/campaigns', function () {
     return view('campaigns.index');
 })->name('campaigns.index');
 
+Route::get('/campaigns/create-compaign', function () {
+    return view('campaigns.create');
+})->name('campaigns.create');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

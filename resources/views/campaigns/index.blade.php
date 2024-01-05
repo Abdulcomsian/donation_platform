@@ -20,7 +20,7 @@
     <div class="header">
         <div class="heading">Campaigns</div>
         <div class="create-comapaign">
-            <button>Create Compaign</button>
+            <a href="{{ route('campaigns.create') }}">Create Compaign</a>
         </div>
     </div>
 
