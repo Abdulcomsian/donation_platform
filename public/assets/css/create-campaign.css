@@ -1,0 +1,97 @@
+.create-campaign {
+  height: 100%;
+  width: 100%;
+}
+.create-campaign .header {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0.2rem;
+}
+.create-campaign .header .heading {
+  color: #000;
+  font-family: Poppins;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 166.5%;
+}
+.create-campaign .header .route .pathway {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  color: #999;
+  font-family: Open Sans;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.create-campaign .header .route .pathway .back {
+  color: #999;
+  text-decoration: none;
+}
+.create-campaign .header .route .pathway .active {
+  color: #5BC17F;
+  text-decoration: none;
+}
+.create-campaign .form-container .row .form-control {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border: none;
+  margin-top: 1rem;
+}
+.create-campaign .form-container .row .form-control label {
+  color: #000;
+  font-family: Open Sans;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.create-campaign .form-container .row .form-control input[type=text] {
+  padding: 1rem;
+  border-radius: 15px;
+  border: 1px solid #E5E5E5;
+  outline: none;
+  color: rgba(64, 64, 64, 0.6);
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.create-campaign .form-container .row .form-control input[type=text]::-moz-placeholder {
+  color: rgba(64, 64, 64, 0.6);
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.create-campaign .form-container .row .form-control input[type=text]::placeholder {
+  color: rgba(64, 64, 64, 0.6);
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.create-campaign .form-container .row .form-control select {
+  padding: 1rem;
+  border-radius: 15px;
+  border: 1px solid #E5E5E5;
+  outline: none;
+  color: rgba(64, 64, 64, 0.6);
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}/*# sourceMappingURL=create-campaign.css.map */
