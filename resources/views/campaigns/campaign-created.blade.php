@@ -20,6 +20,55 @@
 
 @section('content')
 <div class="campaign-created">
-<h1>Campaign Created</h1>
+    <div class="success">
+        <div class="success-icon">
+            <img src="{{ asset('assets/images/Group.png') }}" alt="">
+        </div>
+        <div class="success-text">Your campaign has successfully created</div>
+    </div>
+
+    <div class="url-container">
+        <div class="heading">Share Your Campaign URL</div>
+        <div class="url">
+            <a href="" id="textToCopy">https://donation.donation.com/name/campaign/donation</a>
+        </div>
+        <div class="action-container">
+            <button class="copy" onclick="copyText()"><img src="{{ asset('assets/images/copy-outline.png') }}" alt="">
+                Copy Link</button>
+            <a class="view" href=""><img src="{{ asset('assets/images/eye-outline.png') }}" alt=""> View Page</a>
+        </div>
+    </div>
+
+    <div class="share-actions">
+        <a class="edit" href=""><img src="{{ asset('assets/images/bxs_edit.png') }}" alt="">Edit</a>
+        <a class="share" href=""><img src="{{ asset('assets/images/share-social-outline.png') }}" alt="">Share</a>
+    </div>
 </div>
+
+<script>
+    function copyText() {
+      // Get the text to copy
+      var textToCopy = document.getElementById("textToCopy").innerText;
+
+      // Create a temporary textarea element
+      var tempTextArea = document.createElement("textarea");
+      tempTextArea.value = textToCopy;
+
+      // Append the textarea to the body
+      document.body.appendChild(tempTextArea);
+
+      // Select the text in the textarea
+      tempTextArea.select();
+      tempTextArea.setSelectionRange(0, 99999); // For mobile devices
+
+      // Copy the text to the clipboard
+      document.execCommand("copy");
+
+      // Remove the temporary textarea
+      document.body.removeChild(tempTextArea);
+
+      // Optionally, provide feedback to the user
+      alert("Text copied to clipboard: " + textToCopy);
+    }
+</script>
 @endsection
