@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\{UserController, HomeController, DonationController, CampaignController};
 
 /*
 |--------------------------------------------------------------------------
@@ -14,30 +15,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Auth::routes();
+
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/donors', function () {
-    return view('donors.index');
-})->name('donors.index');
+Route::group(['middleware' => ['auth', 'preventBackHistory']], function () {
+    Route::get('/logout-user', [UserController::class, 'logoutUser'])->name('logout.user');
+    Route::get('/donors', [DonationController::class, 'donors'])->name('donors');
+    Route::get('/donations', [DonationController::class, 'donations'])->name('donations');
+    Route::group(['prefix' => 'campaigns'], function () {
+        Route::get('/', [CampaignController::class, 'campaign'])->name('campaigns');
+        Route::get('/create-campaign', [CampaignController::class, 'getCampaignForm'])->name('campaign.create.form');
+        Route::get('/campaign-created', [CampaignController::class, 'campaignCreated'])->name('campaign.created');
+    });
+});
 
-Route::get('/donations', function () {
-    return view('donations.index');
-})->name('donations.index');
 
-Route::get('/campaigns', function () {
-    return view('campaigns.index');
-})->name('campaigns.index');
-
-Route::get('/campaigns/create-campaign', function () {
-    return view('campaigns.create');
-})->name('campaigns.create');
-
-Route::get('/campaigns/campaign-created', function () {
-    return view('campaigns.campaign-created');
-})->name('campaigns.campaign-created');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'home'])->name('home');

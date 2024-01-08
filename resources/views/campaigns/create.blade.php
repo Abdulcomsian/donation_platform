@@ -26,9 +26,9 @@
         </div>
         <div class="route">
             <div class="pathway">
-                <a class="back" href="{{ route('campaigns.index') }}">Campaign</a>
+                <a class="back" href="{{ route('campaigns') }}">Campaign</a>
                 <div>/</div>
-                <a class="active" href="{{ route('campaigns.create') }}">Create Campaign</a>
+                <a class="active" href="{{ route('campaign.create.form') }}">Create Campaign</a>
             </div>
         </div>
     </div>
@@ -122,8 +122,8 @@
             </div>
 
             <div class="button-container">
-                <a href="{{ route('campaigns.campaign-created') }}" type="submit" class="save">Save</a>
-                <a href="{{ route('campaigns.campaign-created') }}" type="submit" class="publish">Publish Campaign</a>
+                <a href="{{ route('campaign.created') }}" type="submit" class="save">Save</a>
+                <a href="{{ route('campaign.created') }}" type="submit" class="publish">Publish Campaign</a>
             </div>
         </form>
     </div>

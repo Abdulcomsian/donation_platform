@@ -1,8 +1,72 @@
 @extends('layouts.app')
 
 @section('stylesheets')
-<link rel="stylesheet" href="{{ asset('assets/css/register.css') }}">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/css/intlTelInput.css">
+<link rel="stylesheet" href="{{ asset('assets/css/register-main.css') }}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"/>
+<script src="{{asset('assets/js/iconify.min.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+<style>
+    select {
+        height: 52px;
+        border-radius: 10px;
+        padding: 0px 10px;
+        color: #7b7777;
+        border: 1px solid #7b7777;
+    }
+
+    .organization-container{
+        height: 380px;
+        overflow-y: scroll;
+    }
+
+    .organization-container::-webkit-scrollbar-track
+    {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        background-color: #F5F5F5;
+    }
+
+    .organization-container::-webkit-scrollbar
+    {
+        width: 6px;
+        background-color: #F5F5F5;
+    }
+
+    .organization-container::-webkit-scrollbar-thumb
+    {
+        background-color: #5BC17F;
+    }
+
+    .iti.iti--allow-dropdown {
+        width: 97%;
+        padding: 0px 5px;
+        margin-left: 8px;
+        border-radius: 14px;
+    }
+
+    .iti__selected-flag {
+        border-right: 1px solid #cfcccc;
+    }
+
+    input#phone {
+    width: 100%!important;
+    height: 57px;
+    border: 1px solid #cfcccc;
+}
+
+    @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .rotate-icon {
+            animation: rotate 2s linear infinite; /* Adjust the duration and timing function as needed */
+        }
+</style>
 @endsection
 
 @section('content')
@@ -12,44 +76,42 @@
             <div class="dash active"></div>
             <div class="dash"></div>
         </div>
-        <div class="section-2">
-            <form onsubmit="finish()">
-                <div class="stepper" id="stepper">
-                    <div class="step" id="step1" style="display: block;">
-                        <div class="type-selection">
-                            <div class="text">How are you planning to raise funds?</div>
-                            <div class="form-container">
-                                <div class="form-item-1 active"
-                                    onclick="eventHandler('form-item-2', 'form-item-1', 'non-profit')">
-                                    <div class="left">
-                                        <div class="icon"></div>
-                                    </div>
-                                    <div class="right">
-                                        <div class="item">
-                                            <div class="heading-1">
-                                                <div class="label">Non Profit Organization</div>
-                                                <div class="select-none"></div>
-                                                <div class="select-fill">
-                                                    <img src="{{ asset('assets/images/Vector.png')}}" alt="">
-                                                </div>
+        <input type="hidden" name="type" value="1">
+        <div class="register" id="type-select-section">
+            <div class="section-left">
+                <div class="section-2">
+                    <div class="type-selection">
+                        <div class="text">How are you planning to raise funds?</div>
+                        <div class="form-container">
+                            <div class="form-item-1 active" onclick="eventHandler('form-item-2', 'form-item-1')">
+                                <div class="left">
+                                    <div class="icon"></div>
+                                </div>
+                                <div class="right">
+                                    <div class="item">
+                                        <div class="heading-1">
+                                            <div class="label">Non Profit Organization</div>
+                                            <div class="select-none"></div>
+                                            <div class="select-fill">
+                                                <img src="{{ asset('assets/images/Vector.png')}}" alt="">
                                             </div>
                                         </div>
                                         <div class="heading-2">Lorem ipsum dolor sit amet consectet
                                             pellentesque non duis elit.</div>
                                     </div>
                                 </div>
-                                <div class="form-item-2" onclick="eventHandler('form-item-1', 'form-item-2', 'other')">
-                                    <div class="left">
-                                        <div class="icon"></div>
-                                    </div>
-                                    <div class="right">
-                                        <div class="item">
-                                            <div class="heading-1">
-                                                <div class="label">Other Fundraisers</div>
-                                                <div class="select-none"></div>
-                                                <div class="select-fill">
-                                                    <img src="{{ asset('assets/images/Vector.png')}}" alt="">
-                                                </div>
+                            </div>
+                            <div class="form-item-2" onclick="eventHandler('form-item-1', 'form-item-2')">
+                                <div class="left">
+                                    <div class="icon"></div>
+                                </div>
+                                <div class="right">
+                                    <div class="item">
+                                        <div class="heading-1">
+                                            <div class="label">Other Fundraisers</div>
+                                            <div class="select-none"></div>
+                                            <div class="select-fill">
+                                                <img src="{{ asset('assets/images/Vector.png')}}" alt="">
                                             </div>
                                         </div>
                                         <div class="heading-2">Lorem ipsum dolor sit amet consectet
@@ -87,11 +149,15 @@
                                 <div class="form-group">
                                     <div class="form-control">
                                         <label for="country">Country</label>
-                                        <select name="country" id="country">
-                                            <option value="">United States</option>
+                                        <select class="form-select" name="country" data-flag="true">
+                                            <option value="" disabled selected>Choose Country</option>
+                                            @foreach($countries as $country)
+                                                <option value="{{$country->id}}">{{$country->name}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
+
                                 <div class="form-group">
                                     <div class="form-control">
                                         <label for="firstName">First Name</label>
@@ -102,6 +168,7 @@
                                         <input type="text" id="lastName" name="last_name"  placeholder="Last Name" required>
                                     </div>
                                 </div>
+
                                 <div class="form-group">
                                     <div class="form-control">
                                         <label for="email">Email</label>
@@ -124,79 +191,6 @@
 
                             </div>
                         </div>
-                        <div class="organization-information-form">
-                            <div class="heading">Organization Information</div>
-                            <div class="form-container">
-                                <div class="form-group">
-                                    <div class="form-control">
-                                        <label for="organizationName">Organization Name *</label>
-                                        <input type="text" id="organizationName" placeholder="Enter organization name"
-                                            required>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="form-control">
-                                        <label for="firstName">First Name *</label>
-                                        <input type="text" id="firstName" name="firstName" placeholder="First Name"
-                                            required>
-                                    </div>
-                                    <div class="form-control">
-                                        <label for="lastName">Last Name *</label>
-                                        <input type="text" id="lastName" name="lastName" placeholder="Last Name"
-                                            required>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="form-control">
-                                        <label for="phoneNumber">Phone Number *</label>
-                                        <input type="tel" name="phoneNumber" id="phoneNumber">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="form-control">
-                                        <label for="organizationType">Organization Type *</label>
-                                        <select name="organizationType" id="organizationType">
-                                            <option value="">United States</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="form-control">
-                                        <label for="organizationDescription">Organization Description *</label>
-                                        <textarea name="organizationDescription" id="organizationDescription" cols="30"
-                                            rows="5" placeholder="Description..."></textarea>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="form-control">
-                                        <label for="organizationWebsite">Organization Website</label>
-                                        <input type="text" name="organizationWebsite" id="organizationWebsite"
-                                            placeholder="Last Name">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="form-control">
-                                        <label for="email">Email *</label>
-                                        <input type="email" id="email" placeholder="Your email address" required>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="form-control">
-                                        <label for="password">Password *</label>
-                                        <input type="password" id="password" placeholder="Create your password"
-                                            required>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="form-control">
-                                        <label for="aboutUs">How did you hear about us?</label>
-                                        <select name="aboutUs" id="aboutUs">
-                                            <option value="">United States</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <div class="button-container">
                             <button type="button" class="button-prev" id="prevButton" onclick="prevStep()">Go
                                 Back</button>
@@ -205,7 +199,6 @@
             </form>
 
             <form class="d-none register-form" method="post" id="organizer-form">
-                <input type="hidden" name="type" value="1">
                         <div class="personal-info-form">
                             <div class="heading">
                                 Organization Information
@@ -229,24 +222,10 @@
                                         <input type="text" id="org-lastName" name="last_name" placeholder="Last Name" required>
                                     </div>
                                 </div>
-
                                 <div class="form-group">
-                                    <div class="select-box">
-                                        <div class="selected-option">
-                                            <div>
-                                                <span class="iconify" data-icon="flag:gb-4x3"></span>
-                                                <strong>+44</strong>
-                                            </div>
-                                            <input type="organization_phone" name="organization_phone" placeholder="Phone Number" value="+44">
-                                        </div>
-                                        <div class="options">
-                                            <input type="text" class="search-box" placeholder="Search Country Name">
-                                            <ol>
-                                            </ol>
-                                        </div>
-                                    </div>
-                                    
+                                    <input id="phone" type="tel" name="organization_phone" required/>
                                 </div>
+                                
 
                                 <div class="form-group">
                                     <div class="form-control">
@@ -357,13 +336,22 @@
     </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+
+<!-- (Optional) Latest compiled and minified JavaScript translation files -->
+{{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/i18n/defaults-*.min.js"></script> --}}
+
+
+@endsection
+
+@section('script')
 <script>
-    const input = document.querySelector("#phoneNumber");
-  window.intlTelInput(input, {
-    utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js",
-  });
-</script>
+    function eventHandler(item1, item2) {
+        document.querySelector(`.${item1}`).classList.remove('active');
+        document.querySelector(`.${item2}`).classList.add('active');
+        updateType(item1 , item2)
+      }
 
     function updateType(item1 , item2){
         if(item1 == 'form-item-2'){
@@ -374,35 +362,20 @@
     }
 
     let currentStep = 1;
-    const dashes = document.querySelectorAll(".dash");
-    
     function nextStep() {
-      document.getElementById(`step${currentStep}`).style.display = 'none';
-      currentStep++;
-      dashes[currentStep - 1].classList.add('active')
-      document.getElementById(`step${currentStep}`).style.display = 'block';
-  
-      if (currentStep === 2) {
-        document.getElementById('prevButton').style.display = 'block';
-        document.getElementById('continueButton').style.display = 'none';
-        document.getElementById('finishButton').style.display = 'block';
-      }
+        let type =document.querySelector('input[name="type"]').value;
+        document.querySelectorAll(".dash")[0].classList.add("active")
+        document.querySelectorAll(".dash")[1].classList.add("active")
+        document.querySelector('input[name="type"]').value == '{{AppConst::NON_PROFIT_ORGANIZATION}}' ? document.querySelector("#organizer-form").classList.remove("d-none") : document.querySelector("#fundraiser-form").classList.remove("d-none");
+        document.querySelector('#type-select-section').classList.add("d-none"); 
     }
   
     function prevStep() {
-      document.getElementById(`step${currentStep}`).style.display = 'none';
-      currentStep--;
-      dashes.forEach(element => {
-        element.classList.remove('active')
-      });
-      dashes[currentStep - 1].classList.add('active')
-      document.getElementById(`step${currentStep}`).style.display = 'block';
-  
-      if (currentStep === 1) {
-        document.getElementById('prevButton').style.display = 'none';
-        document.getElementById('continueButton').style.display = 'block';
-        document.getElementById('finishButton').style.display = 'none';
-      }
+        document.querySelectorAll(".dash")[1].classList.remove("active")
+        document.querySelectorAll(".dash")[0].classList.add("active")
+        document.querySelector('#type-select-section').classList.remove("d-none"); 
+        document.querySelector("#organizer-form").classList.add("d-none")
+        document.querySelector("#fundraiser-form").classList.add("d-none")
     }
 
 
@@ -435,28 +408,14 @@
         })
     })
   
-    function finish() {
-      alert('Finish Action');
-    }
-
-    let type = 'non-profit';
-    document.querySelector('.personal-info-form').hidden = false;
-    document.querySelector('.organization-information-form').hidden = true;
-
-    function eventHandler(item1, item2, fundType) {
-        if (fundType === 'non-profit') {
-            type = fundType
-            document.querySelector('.personal-info-form').hidden = false;
-            document.querySelector('.organization-information-form').hidden = true;
-        }else if (fundType === 'other') {
-            type = fundType
-            document.querySelector('.personal-info-form').hidden = true;
-            document.querySelector('.organization-information-form').hidden = false;
-        }
-        document.querySelector(`.${item1}`).classList.remove('active');
-        document.querySelector(`.${item2}`).classList.add('active');
-    }
+    
 </script>
 
-<script src="{{asset('assets/js/phone-script.js')}}"></script>
+<script>
+    const phoneInputField = document.querySelector("#phone");
+    const phoneInput = window.intlTelInput(phoneInputField, {
+      utilsScript:
+        "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+    });
+  </script>
 @endsection
