@@ -24,9 +24,16 @@ Route::get('/', function () {
 Route::group(['middleware' => ['auth']] , function(){
     Route::get('/donors' , [DonationController::class , 'donors'])->name('donors');
     Route::get('/donations' , [DonationController::class , 'donations'])->name('donations');
-    Route::get('/campaigns' , [CampaignController::class , 'campaign'])->name('campaigns');
+    Route::group(['prefix' => 'campaigns'] , function(){
+        Route::get('/' , [CampaignController::class , 'campaign'])->name('campaigns');
+        Route::get('/create-campaign' , [CampaignController::class , 'getCampaignForm'])->name('campaign.create.form');
+    });
 });
 
+
+// Route::get('/campaigns/create-compaign', function () {
+//     return view('campaigns.create');
+// })->name('campaigns.create');
 
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
