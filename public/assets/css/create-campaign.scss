@@ -1,0 +1,119 @@
+.create-campaign {
+    height: 100%;
+    width: 100%;
+
+    .header {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 0.2rem;
+
+        .heading {
+            color: #000;
+            font-family: Poppins;
+            font-size: 26px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 166.5%;
+        }
+
+        .route {
+            .pathway {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 0.5rem;
+
+                color: #999;
+
+                font-family: Open Sans;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+
+                .back {
+                    color: #999;
+
+                    text-decoration: none;
+                }
+
+                .active {
+                    color: #5BC17F;
+
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+
+    .form-container {
+        .row {
+            .form-control {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+
+                border: none;
+
+                margin-top: 1rem;
+
+                label {
+                    color: #000;
+                    font-family: Open Sans;
+                    font-size: 18px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: normal;
+                }
+
+                input[type='text'] {
+                    padding: 1rem;
+
+                    border-radius: 15px;
+                    border: 1px solid #E5E5E5;
+
+                    outline: none;
+
+                    color: rgba(64, 64, 64, 0.60);
+
+                    font-family: Poppins;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: normal;
+                    letter-spacing: 0.32px;
+                }
+
+                input[type='text']::placeholder {
+                    color: rgba(64, 64, 64, 0.60);
+
+                    font-family: Poppins;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: normal;
+                    letter-spacing: 0.32px;
+                }
+
+                select {
+                    padding: 1rem;
+
+                    border-radius: 15px;
+                    border: 1px solid #E5E5E5;
+
+                    outline: none;
+
+                    color: rgba(64, 64, 64, 0.60);
+
+                    font-family: Poppins;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: normal;
+                    letter-spacing: 0.32px;
+                }
+            }
+        }
+    }
+}

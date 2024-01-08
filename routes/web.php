@@ -30,7 +30,7 @@ Route::get('/campaigns', function () {
     return view('campaigns.index');
 })->name('campaigns.index');
 
-Route::get('/campaigns/create-compaign', function () {
+Route::get('/campaigns/create-campaign', function () {
     return view('campaigns.create');
 })->name('campaigns.create');
 
