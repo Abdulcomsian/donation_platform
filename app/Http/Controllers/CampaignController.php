@@ -9,4 +9,9 @@ class CampaignController extends Controller
     public function campaign(){
         return view('campaigns.index');
     }
+
+    public function getCampaignForm(){
+        return view('campaigns.create');
+    }
+    
 }
