@@ -34,6 +34,10 @@ Route::get('/campaigns/create-campaign', function () {
     return view('campaigns.create');
 })->name('campaigns.create');
 
+Route::get('/campaigns/campaign-created', function () {
+    return view('campaigns.campaign-created');
+})->name('campaigns.campaign-created');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

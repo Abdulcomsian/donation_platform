@@ -1,6 +1,8 @@
 .create-campaign {
   height: 100%;
   width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 .create-campaign .header {
   display: flex;
@@ -51,7 +53,8 @@
   font-weight: 400;
   line-height: normal;
 }
-.create-campaign .form-container .row .form-control input[type=text] {
+.create-campaign .form-container .row .form-control input[type=text],
+.create-campaign .form-container .row .form-control input[type=datetime-local] {
   padding: 1rem;
   border-radius: 15px;
   border: 1px solid #E5E5E5;
@@ -64,7 +67,7 @@
   line-height: normal;
   letter-spacing: 0.32px;
 }
-.create-campaign .form-container .row .form-control input[type=text]::-moz-placeholder {
+.create-campaign .form-container .row .form-control input[type=text]::-moz-placeholder, .create-campaign .form-container .row .form-control input[type=datetime-local]::-moz-placeholder {
   color: rgba(64, 64, 64, 0.6);
   font-family: Poppins;
   font-size: 16px;
@@ -73,7 +76,8 @@
   line-height: normal;
   letter-spacing: 0.32px;
 }
-.create-campaign .form-container .row .form-control input[type=text]::placeholder {
+.create-campaign .form-container .row .form-control input[type=text]::placeholder,
+.create-campaign .form-container .row .form-control input[type=datetime-local]::placeholder {
   color: rgba(64, 64, 64, 0.6);
   font-family: Poppins;
   font-size: 16px;
@@ -81,6 +85,21 @@
   font-weight: 400;
   line-height: normal;
   letter-spacing: 0.32px;
+}
+.create-campaign .form-container .row .form-control textarea {
+  border-radius: 15px;
+  border: 1px solid #E5E5E5;
+  color: rgba(64, 64, 64, 0.6);
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+  padding: 1rem;
+  resize: none;
+  outline: none;
+  height: 133.83px;
 }
 .create-campaign .form-container .row .form-control select {
   padding: 1rem;
@@ -94,4 +113,198 @@
   font-weight: 400;
   line-height: normal;
   letter-spacing: 0.32px;
+}
+.create-campaign .form-container .row .form-control .image-upload {
+  height: 133.83px;
+  border-radius: 15px;
+  border: 1px solid #E5E5E5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.create-campaign .form-container .row .form-control .image-upload button {
+  width: 124px;
+  height: 36px;
+  border-radius: 8px;
+  background-color: #5BC17F;
+  color: var(--White-Full, #FFF);
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.create-campaign .form-container .row .form-control .image-upload .label {
+  color: rgba(64, 64, 64, 0.6);
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.28px;
+}
+.create-campaign .form-container .row .form-control .image-upload .info {
+  color: #CBCBCB;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.28px;
+}
+.create-campaign .form-container .row .form-control .currenct-input {
+  position: relative;
+  height: 65.932px;
+}
+.create-campaign .form-container .row .form-control .currenct-input span {
+  position: absolute;
+  left: 0.9em;
+  top: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+  color: #949494;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.create-campaign .form-container .row .form-control .currenct-input .right span {
+  left: initial;
+  right: 0.9em;
+}
+.create-campaign .form-container .row .form-control .currenct-input input[type=number] {
+  -moz-appearance: textfield;
+  -webkit-appearance: textfield;
+          appearance: textfield;
+  border: 1px solid #E5E5E5;
+  border-radius: 15px;
+  padding: 1rem 2rem;
+  outline: none;
+  width: 100%;
+  height: 100%;
+  color: #949494;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.create-campaign .form-container .row .form-control .currenct-input input[type=number]::-moz-placeholder {
+  color: #949494;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.create-campaign .form-container .row .form-control .currenct-input input[type=number]::placeholder {
+  color: #949494;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.create-campaign .form-container .row .form-control .currenct-input input[type=number]:invalid {
+  border-color: orangered;
+  color: crimson;
+}
+.create-campaign .form-container .row .form-control .currenct-input .right input[type=number] {
+  padding-inline: 0.9em 2em;
+}
+.create-campaign .form-container .row .form-control .currenct-input input[type=number]::-webkit-outer-spin-button,
+.create-campaign .form-container .row .form-control .currenct-input input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.create-campaign .form-container .row .form-control .toggler-label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.create-campaign .form-container .row .form-control .toggler-label .toggler input[type=checkbox] {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+  display: none;
+}
+.create-campaign .form-container .row .form-control .toggler-label .toggler label {
+  cursor: pointer;
+  text-indent: -9999px;
+  width: 48px;
+  height: 24px;
+  background: grey;
+  display: block;
+  border-radius: 100px;
+  position: relative;
+}
+.create-campaign .form-container .row .form-control .toggler-label .toggler label:after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 2px;
+  width: 18px;
+  height: 18px;
+  background: #fff;
+  border-radius: 90px;
+  transition: 0.3s;
+}
+.create-campaign .form-container .row .form-control .toggler-label .toggler input:checked + label {
+  background: #5BC17F;
+}
+.create-campaign .form-container .row .form-control .toggler-label .toggler input:checked + label:after {
+  left: calc(100% - 2px);
+  transform: translateX(-100%);
+}
+.create-campaign .form-container .row .form-control .toggler-label .toggler label:active:after {
+  width: 20px;
+}
+.create-campaign .form-container .button-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-right: 10%;
+}
+.create-campaign .form-container .button-container .save {
+  padding: 12px 16px;
+  background-color: transparent;
+  border-radius: 8px;
+  border: none;
+  color: #5BC17F;
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  text-decoration: none;
+}
+.create-campaign .form-container .button-container .publish {
+  padding: 12px 16px;
+  background-color: #5BC17F;
+  border-radius: 8px;
+  border: none;
+  color: var(--White-Full, #FFF);
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  text-decoration: none;
 }/*# sourceMappingURL=create-campaign.css.map */
