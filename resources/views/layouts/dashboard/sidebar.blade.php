@@ -161,7 +161,7 @@
                             <span>Membership</span>
                         </a>
                     </li>
-                    <li class="menu-item {{Request::is('events') ? 'active' : ''}}">
+                    <li class="menu-item {{Request::is('events') || Request::is('events/*') ? 'active' : ''}}">
                         <div class="active-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="8" height="23" viewBox="0 0 8 23"
                                 fill="none">
