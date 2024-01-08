@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{ HomeController , DonationController , CampaignController };
+use App\Http\Controllers\{ UserController , HomeController , DonationController , CampaignController };
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +21,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['middleware' => ['auth']] , function(){
+Route::group(['middleware' => ['auth' , 'preventBackHistory']] , function(){
+    Route::get('/logout-user' , [UserController::class , 'logoutUser'])->name('logout.user');
     Route::get('/donors' , [DonationController::class , 'donors'])->name('donors');
     Route::get('/donations' , [DonationController::class , 'donations'])->name('donations');
     Route::group(['prefix' => 'campaigns'] , function(){
