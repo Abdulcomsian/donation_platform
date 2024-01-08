@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{UserController, HomeController, DonationController, CampaignController};
+use App\Http\Controllers\{UserController, HomeController, DonationController, CampaignController, EventsController};
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +29,10 @@ Route::group(['middleware' => ['auth', 'preventBackHistory']], function () {
         Route::get('/', [CampaignController::class, 'campaign'])->name('campaigns');
         Route::get('/create-campaign', [CampaignController::class, 'getCampaignForm'])->name('campaign.create.form');
         Route::get('/campaign-created', [CampaignController::class, 'campaignCreated'])->name('campaign.created');
+    });
+
+    Route::group(['prefix' => 'events'], function () {
+        Route::get("/", [EventsController::class, 'event'])->name('events');
     });
 });
 

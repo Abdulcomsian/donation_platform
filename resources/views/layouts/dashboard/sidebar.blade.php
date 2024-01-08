@@ -170,7 +170,7 @@
                                     fill="#5BC17F" />
                             </svg>
                         </div>
-                        <a class="nav-link" href="">
+                        <a class="nav-link" href="{{ route('events') }}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22"
                                 fill="none">
                                 <path class="fill" fill-rule="evenodd" clip-rule="evenodd"
