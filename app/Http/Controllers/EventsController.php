@@ -10,4 +10,9 @@ class EventsController extends Controller
     {
         return view('events.index');
     }
+
+    public function getEventForm()
+    {
+        return view('events.create');
+    }
 }

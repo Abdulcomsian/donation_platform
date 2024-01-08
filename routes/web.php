@@ -33,6 +33,7 @@ Route::group(['middleware' => ['auth', 'preventBackHistory']], function () {
 
     Route::group(['prefix' => 'events'], function () {
         Route::get("/", [EventsController::class, 'event'])->name('events');
+        Route::get("/create-event", [EventsController::class, 'getEventForm'])->name('event.create.form');
     });
 });
 
