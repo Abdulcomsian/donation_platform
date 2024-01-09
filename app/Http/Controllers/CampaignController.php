@@ -19,7 +19,8 @@ class CampaignController extends Controller
         return view('campaigns.index');
     }
 
-    public function getCampaignForm(){
+    public function getCampaignForm()
+    {
         return view('campaigns.create');
     }
 

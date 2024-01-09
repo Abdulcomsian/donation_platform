@@ -1,7 +1,8 @@
 .donors {
   height: 100%;
   width: 100%;
-  padding-left: 1rem;
+  overflow-y: auto;
+  padding: 1rem 1rem 1rem 2rem;
 }
 .donors .heading {
   color: #000;

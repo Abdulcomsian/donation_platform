@@ -80,7 +80,7 @@
                             <span>Donations</span>
                         </a>
                     </li>
-                    <li class="menu-item {{Request::is('campaigns/*') ? 'active' : ''}}">
+                    <li class="menu-item {{Request::is('campaigns') || Request::is('campaigns/*') ? 'active' : ''}}">
                         <div class="active-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="8" height="23" viewBox="0 0 8 23"
                                 fill="none">
@@ -161,7 +161,7 @@
                             <span>Membership</span>
                         </a>
                     </li>
-                    <li class="menu-item {{Request::is('events') ? 'active' : ''}}">
+                    <li class="menu-item {{Request::is('events') || Request::is('events/*') ? 'active' : ''}}">
                         <div class="active-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="8" height="23" viewBox="0 0 8 23"
                                 fill="none">
@@ -170,7 +170,7 @@
                                     fill="#5BC17F" />
                             </svg>
                         </div>
-                        <a class="nav-link" href="">
+                        <a class="nav-link" href="{{ route('events') }}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22"
                                 fill="none">
                                 <path class="fill" fill-rule="evenodd" clip-rule="evenodd"

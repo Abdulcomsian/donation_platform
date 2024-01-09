@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{ UserController , HomeController , DonationController , CampaignController };
+use App\Http\Controllers\{UserController, HomeController, DonationController, CampaignController, EventsController};
 
 /*
 |--------------------------------------------------------------------------
@@ -21,20 +21,21 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['middleware' => ['auth' , 'preventBackHistory']] , function(){
-    Route::get('/logout-user' , [UserController::class , 'logoutUser'])->name('logout.user');
-    Route::get('/donors' , [DonationController::class , 'donors'])->name('donors');
-    Route::get('/donations' , [DonationController::class , 'donations'])->name('donations');
-    Route::group(['prefix' => 'campaigns'] , function(){
-        Route::get('/' , [CampaignController::class , 'campaign'])->name('campaigns');
-        Route::get('/create-campaign' , [CampaignController::class , 'getCampaignForm'])->name('campaign.create.form');
+Route::group(['middleware' => ['auth', 'preventBackHistory']], function () {
+    Route::get('/logout-user', [UserController::class, 'logoutUser'])->name('logout.user');
+    Route::get('/donors', [DonationController::class, 'donors'])->name('donors');
+    Route::get('/donations', [DonationController::class, 'donations'])->name('donations');
+    Route::group(['prefix' => 'campaigns'], function () {
+        Route::get('/', [CampaignController::class, 'campaign'])->name('campaigns');
+        Route::get('/create-campaign', [CampaignController::class, 'getCampaignForm'])->name('campaign.create.form');
+        Route::get('/campaign-created', [CampaignController::class, 'campaignCreated'])->name('campaign.created');
+    });
+
+    Route::group(['prefix' => 'events'], function () {
+        Route::get("/", [EventsController::class, 'event'])->name('events');
+        Route::get("/create-event", [EventsController::class, 'getEventForm'])->name('event.create.form');
     });
 });
 
 
-// Route::get('/campaigns/create-compaign', function () {
-//     return view('campaigns.create');
-// })->name('campaigns.create');
-
-
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'home'])->name('home');
