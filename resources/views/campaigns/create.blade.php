@@ -26,7 +26,7 @@
         </div>
         <div class="route">
             <div class="pathway">
-                <a class="back" href="{{ route('campaigns') }}">Campaign</a>
+                <a class="back" href="{{ route('campaigns') }}">Campaigns</a>
                 <div>/</div>
                 <a class="active" href="{{ route('campaign.create.form') }}">Create Campaign</a>
             </div>
