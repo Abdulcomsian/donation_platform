@@ -160,11 +160,11 @@
   line-height: normal;
   letter-spacing: 0.28px;
 }
-.create-campaign .form-container .row .form-control .currenct-input {
+.create-campaign .form-container .row .form-control .currency-input {
   position: relative;
   height: 65.932px;
 }
-.create-campaign .form-container .row .form-control .currenct-input span {
+.create-campaign .form-container .row .form-control .currency-input span {
   position: absolute;
   left: 0.9em;
   top: 0;
@@ -179,11 +179,11 @@
   font-weight: 400;
   line-height: normal;
 }
-.create-campaign .form-container .row .form-control .currenct-input .right span {
+.create-campaign .form-container .row .form-control .currency-input .right span {
   left: initial;
   right: 0.9em;
 }
-.create-campaign .form-container .row .form-control .currenct-input input[type=number] {
+.create-campaign .form-container .row .form-control .currency-input input[type=number] {
   -moz-appearance: textfield;
   -webkit-appearance: textfield;
           appearance: textfield;
@@ -200,7 +200,7 @@
   font-weight: 400;
   line-height: normal;
 }
-.create-campaign .form-container .row .form-control .currenct-input input[type=number]::-moz-placeholder {
+.create-campaign .form-container .row .form-control .currency-input input[type=number]::-moz-placeholder {
   color: #949494;
   font-family: Poppins;
   font-size: 16px;
@@ -208,7 +208,7 @@
   font-weight: 400;
   line-height: normal;
 }
-.create-campaign .form-container .row .form-control .currenct-input input[type=number]::placeholder {
+.create-campaign .form-container .row .form-control .currency-input input[type=number]::placeholder {
   color: #949494;
   font-family: Poppins;
   font-size: 16px;
@@ -216,15 +216,15 @@
   font-weight: 400;
   line-height: normal;
 }
-.create-campaign .form-container .row .form-control .currenct-input input[type=number]:invalid {
+.create-campaign .form-container .row .form-control .currency-input input[type=number]:invalid {
   border-color: orangered;
   color: crimson;
 }
-.create-campaign .form-container .row .form-control .currenct-input .right input[type=number] {
+.create-campaign .form-container .row .form-control .currency-input .right input[type=number] {
   padding-inline: 0.9em 2em;
 }
-.create-campaign .form-container .row .form-control .currenct-input input[type=number]::-webkit-outer-spin-button,
-.create-campaign .form-container .row .form-control .currenct-input input[type=number]::-webkit-inner-spin-button {
+.create-campaign .form-container .row .form-control .currency-input input[type=number]::-webkit-outer-spin-button,
+.create-campaign .form-container .row .form-control .currency-input input[type=number]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }

@@ -97,7 +97,7 @@
                                 <input type="checkbox" id="switch" /><label for="switch">Toggle</label>
                             </div>
                         </div>
-                        <div class="currenct-input">
+                        <div class="currency-input">
                             <span>$</span>
                             <input type="number" step="0.01" inputmode="decimal" min="0" placeholder="0">
                         </div>
