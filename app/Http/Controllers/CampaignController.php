@@ -16,7 +16,8 @@ class CampaignController extends Controller
     }
 
     public function campaign(){
-        return view('campaigns.index');
+        $campaigns = $this->campaignHandler->getCampaignList();
+        return view('campaigns.index')->with(['campaigns' => $campaigns]);
     }
 
     public function getCampaignForm()

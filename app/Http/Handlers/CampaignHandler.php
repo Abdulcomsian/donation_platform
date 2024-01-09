@@ -18,7 +18,7 @@ class CampaignHandler{
         $filename =  strtotime(now()).str_replace(" ", "-" ,$file->getClientOriginalName());
         $file->move(public_path('uploads') , $filename);
 
-        $campaign->file = $filename;
+        $campaign->image = $filename;
 
         if($request->campaign_goal){
             $campaign->amount = $request->amount;
@@ -32,7 +32,8 @@ class CampaignHandler{
     }
 
     public function getCampaignList(){
-
+        $campaigns = Campaign::where('user_id' , auth()->user()->id)->paginate(10);
+        return $campaigns;
     }
 
 }

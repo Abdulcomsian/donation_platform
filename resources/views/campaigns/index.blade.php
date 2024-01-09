@@ -26,6 +26,7 @@
 
     <div class="data-cards">
         <div class="row">
+            @foreach($campaigns as $campaign)
             <div class="col-md-4">
                 <div class="card">
                     <div class="top">
@@ -68,7 +69,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            @endforeach
+            {{-- <div class="col-md-4">
                 <div class="card">
                     <div class="top">
                         <div class="heading">Donation For Education</div>
@@ -151,6 +153,14 @@
                         </div>
                     </div>
                 </div>
+            </div> --}}
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12 d-flex justify-content-center">
+                {!! $campaigns->links() !!}
             </div>
         </div>
     </div>
