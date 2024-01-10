@@ -41,7 +41,7 @@
 .create-campaign .form-container .row .form-control {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 1rem;
   border: none;
   margin-top: 1rem;
 }
@@ -113,6 +113,7 @@
   font-weight: 400;
   line-height: normal;
   letter-spacing: 0.32px;
+  background-color: #FFF;
 }
 .create-campaign .form-container .row .form-control .image-upload {
   height: 133.83px;
@@ -179,10 +180,6 @@
   font-weight: 400;
   line-height: normal;
 }
-.create-campaign .form-container .row .form-control .currency-input .right span {
-  left: initial;
-  right: 0.9em;
-}
 .create-campaign .form-container .row .form-control .currency-input input[type=number] {
   -moz-appearance: textfield;
   -webkit-appearance: textfield;
@@ -220,12 +217,11 @@
   border-color: orangered;
   color: crimson;
 }
-.create-campaign .form-container .row .form-control .currency-input .right input[type=number] {
-  padding-inline: 0.9em 2em;
-}
 .create-campaign .form-container .row .form-control .currency-input input[type=number]::-webkit-outer-spin-button,
 .create-campaign .form-container .row .form-control .currency-input input[type=number]::-webkit-inner-spin-button {
   -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
   margin: 0;
 }
 .create-campaign .form-container .row .form-control .toggler-label {
