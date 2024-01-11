@@ -1,4 +1,3 @@
-<!doctype html>
 <html lang="en">
 
 <head>
@@ -22,28 +21,23 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <script src="{{ asset('js/app.js') }}" defer></script>
 
-    <link rel="stylesheet" href="{{asset('assets/css/main.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/public-events-index.css')}}">
 </head>
 
 <body>
-    <div id="app">
-        <main>
-            <div class="main">
-                <div class="sidebar-container">
-                    @include('layouts.dashboard.sidebar')
-                </div>
-
-                <div class="content-pane">
-                    <div class="topbar-container">
-                        @include('layouts.dashboard.topbar')
-                    </div>
-                    <div class="main-content">
-                        @yield('stylesheets')
-                        @yield('content')
+    <div class="main">
+        <div class="topbar-container">
+            <div class="topbar">
+                <div class="container">
+                    <div class="logo">
+                        <img src="{{ asset('assets/images/Group 2.png') }}" alt="">
                     </div>
                 </div>
             </div>
-        </main>
+        </div>
+        <div class="main-content">
+            @yield('content')
+        </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
