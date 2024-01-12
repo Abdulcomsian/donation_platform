@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&display=swap');
 
 .donate-now-card {
     .card {
@@ -10,14 +12,371 @@
         border: none;
         padding: 1rem 2rem;
 
-        .heading {
-            color: #000;
-            font-family: Poppins;
-            font-size: 26px;
-            font-style: normal;
-            font-weight: 600;
-            line-height: normal;
-            text-transform: capitalize;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .card-top {
+            .heading {
+                color: #000;
+                font-family: Poppins;
+                font-size: 26px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: normal;
+                text-transform: capitalize;
+            }
+
+            .form-container {
+                form {
+                    .campaign-item {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 1rem;
+
+                        margin-top: 2rem;
+
+                        label {
+                            color: #000;
+                            font-family: Poppins;
+                            font-size: 18px;
+                            font-style: normal;
+                            font-weight: 400;
+                            line-height: normal;
+                            text-transform: capitalize;
+                        }
+
+                        input[type='text'] {
+                            padding: 1rem;
+
+                            height: 65.932px;
+
+                            border-radius: 15px;
+                            border: 1px solid #E5E5E5;
+                            outline: none;
+
+                            color: #000;
+                            font-family: Poppins;
+                            font-size: 16px;
+                            font-style: normal;
+                            font-weight: 400;
+                            line-height: normal;
+                            letter-spacing: 0.32px;
+                        }
+
+                        input[type='text']::placeholder {
+                            color: #000;
+                            font-family: Poppins;
+                            font-size: 16px;
+                            font-style: normal;
+                            font-weight: 400;
+                            line-height: normal;
+                            letter-spacing: 0.32px;
+                        }
+                    }
+
+                    .amount-item {
+                        margin-top: 2rem;
+
+                        display: flex;
+                        flex-direction: column;
+                        gap: 1.5rem;
+
+                        label {
+                            color: #000;
+                            font-family: Poppins;
+                            font-size: 18px;
+                            font-style: normal;
+                            font-weight: 400;
+                            line-height: normal;
+                        }
+
+                        .static-amount {
+                            .item {
+                                border-radius: 15px;
+                                border: 1px solid #E5E5E5;
+
+                                padding: 21px 33px;
+
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+
+                                color: #404040;
+                                font-family: Poppins;
+                                font-size: 18px;
+                                font-style: normal;
+                                font-weight: 400;
+                                line-height: normal;
+                                letter-spacing: 0.36px;
+                            }
+                        }
+
+                        .currency-input {
+                            position: relative;
+                            height: 65.932px;
+
+                            span {
+                                position: absolute;
+                                left: .9em;
+                                top: 0;
+                                height: 100%;
+                                display: flex;
+                                align-items: center;
+                                pointer-events: none;
+
+                                color: #949494;
+                                font-family: Poppins;
+                                font-size: 16px;
+                                font-style: normal;
+                                font-weight: 400;
+                                line-height: normal;
+                            }
+
+                            input[type='number'] {
+                                -moz-appearance: textfield;
+                                appearance: textfield;
+
+                                border: 1px solid #E5E5E5;
+                                border-radius: 15px;
+
+                                padding: 1rem 2rem;
+
+                                outline: none;
+
+                                width: 100%;
+                                height: 100%;
+
+                                color: #949494;
+                                font-family: Poppins;
+                                font-size: 16px;
+                                font-style: normal;
+                                font-weight: 400;
+                                line-height: normal;
+                            }
+
+                            input[type='number']::placeholder {
+                                color: #949494;
+                                font-family: Poppins;
+                                font-size: 16px;
+                                font-style: normal;
+                                font-weight: 400;
+                                line-height: normal;
+                            }
+
+                            input[type='number']:invalid {
+                                border-color: orangered;
+                                color: crimson;
+                            }
+
+                            input[type='number']::-webkit-outer-spin-button,
+                            input[type='number']::-webkit-inner-spin-button {
+                                -webkit-appearance: none;
+                                -moz-appearance: none;
+                                appearance: none;
+                                margin: 0;
+                            }
+                        }
+                    }
+
+                    .frequency-item {
+                        margin-top: 2rem;
+
+                        display: flex;
+                        flex-direction: column;
+                        gap: 1rem;
+
+                        label {
+                            color: #000;
+                            font-family: Poppins;
+                            font-size: 18px;
+                            font-style: normal;
+                            font-weight: 400;
+                            line-height: normal;
+                            text-transform: capitalize;
+                        }
+
+                        .frequency-types {
+                            .type {
+                                position: relative;
+
+                                height: 53px;
+
+                                border-radius: 8px;
+                                border: 1px solid #E5E5E5;
+
+                                cursor: pointer;
+
+                                .text {
+                                    position: absolute;
+                                    top: 0;
+                                    left: 0;
+                                    right: 0;
+                                    bottom: 0;
+                                    z-index: 1;
+
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+
+                                    color: rgba(64, 64, 64, 0.60);
+                                    text-align: center;
+                                    font-family: Poppins;
+                                    font-size: 18px;
+                                    font-style: normal;
+                                    font-weight: 400;
+                                    line-height: normal;
+                                    text-transform: capitalize;
+                                }
+
+                                .active {
+                                    display: none;
+                                }
+                            }
+
+                            .active {
+                                display: block;
+
+                                border: 1px solid #5BC17F;
+                                background: rgba(91, 193, 127, 0.10);
+
+                                .icon {
+                                    position: absolute;
+                                    top: 50%;
+                                    right: 15px;
+                                    transform: translateY(-50%);
+
+                                    z-index: 2;
+
+                                    width: 22px;
+                                    height: 22px;
+                                    background-color: #5BC17F;
+                                    border-radius: 50px;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+
+                                    img {
+                                        width: 13.384px;
+                                        height: 9.815px;
+                                    }
+                                }
+                            }
+                        }
+
+
+                    }
+
+                    .donate-btn {
+                        margin-top: 2rem;
+
+                        button {
+                            border: none;
+                            outline: none;
+
+                            height: 65px;
+                            width: 100%;
+
+                            border-radius: 8px;
+                            background-color: #5BC17F;
+
+                            color: var(--White-Full, #FFF);
+                            text-align: center;
+                            font-feature-settings: 'clig' off, 'liga' off;
+                            font-family: Poppins;
+                            font-size: 20px;
+                            font-style: normal;
+                            font-weight: 600;
+                            line-height: 24px;
+                        }
+                    }
+
+                    .progress-container {
+                        width: 100%;
+
+                        display: flex;
+                        flex-direction: column;
+                        gap: 0.5rem;
+
+                        margin-top: 1.5rem;
+
+                        .progress-bar-element {
+                            progress {
+                                width: 100%;
+                                height: 9.142px;
+                                border-radius: 30px;
+                                border: none;
+                                appearance: none;
+                                -webkit-appearance: none;
+                            }
+
+                            /* For WebKit (Chrome, Safari) */
+                            progress::-webkit-progress-bar {
+                                background-color: #F7F7F7;
+                                border-radius: 30px;
+                                /* Change the fill color for WebKit browsers */
+                            }
+
+                            progress::-webkit-progress-value {
+                                background-color: #5BC17F;
+                                border-radius: 30px;
+                                /* Change the fill color for WebKit browsers */
+                            }
+
+                            /* For Firefox */
+                            progress::-moz-progress-bar {
+                                background-color: #5BC17F;
+                                border-radius: 30px;
+                                /* Change the fill color for Firefox */
+                            }
+
+                            /* For Microsoft Edge */
+                            progress::-ms-fill {
+                                background-color: #5BC17F;
+                                /* Change the fill color for Microsoft Edge */
+                            }
+                        }
+
+                        .text {
+                            text-align: end;
+
+                            color: #949494;
+                            font-family: Nunito;
+                            font-size: 16px;
+                            font-style: normal;
+                            font-weight: 600;
+                            line-height: 24px;
+                            letter-spacing: 0.08px;
+                        }
+                    }
+                }
+            }
+        }
+
+        .card-bottom {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+
+            .text1 {
+                color: #000;
+                font-family: Inter;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+            }
+
+            .text2 {
+                color: #5BC17F;
+                font-family: Inter;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: normal;
+            }
         }
     }
 }
