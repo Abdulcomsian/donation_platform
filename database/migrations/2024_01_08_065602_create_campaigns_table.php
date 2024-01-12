@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('excerpt');
             $table->longText('description');
             $table->longText('image')->nullable();
-            $table->enum('frequency' , ['monthly' , 'quarterly' , 'annually']);
             $table->enum('recurring' , ['disable' , 'optional' , 'required']);
             $table->boolean('campaign_goal');
             $table->double('amount' , 6 , 2)->nullable();
