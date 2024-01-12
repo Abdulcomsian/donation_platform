@@ -23,7 +23,7 @@
 <div class="create-campaign">
     <div class="header">
         <div class="heading">
-            Create Campaign
+            Edit Campaign
         </div>
         <div class="route">
             <div class="pathway">
@@ -40,13 +40,13 @@
                 <div class="col-md-5">
                     <div class="form-control">
                         <label for="title">Campaign Title</label>
-                        <input type="text" name="title" id="title" placeholder="Campaign Name">
+                        <input type="text" name="title" id="title" value="{{$campaign->title}}" placeholder="Campaign Name">
                     </div>
                 </div>
                 <div class="col-md-5">
                     <div class="form-control">
                         <label for="">Excerpt</label>
-                        <input type="text" name="excerpt" id="title" >
+                        <input type="text" name="excerpt" id="title" value="{{$campaign->excerpt}}">
                     </div>
                 </div>
             </div>
@@ -55,7 +55,7 @@
                 <div class="col-md-5">
                     <div class="form-control">
                         <label for="descrition">Description</label>
-                        <textarea name="description" id="description" placeholder="Descrition..."></textarea>
+                        <textarea name="description" id="description" placeholder="Descrition...">{{$campaign->description}}</textarea>
                     </div>
                 </div>
                 <div class="col-md-5">
@@ -148,7 +148,21 @@
         file.click();
   
     }
-    $('#frequency').select2();
+    $(document).ready(function(){
+        setFrequency();
+
+
+        function setFrequency(){
+            $('#frequency').select2();
+            @php
+                $frequency = $campaign->frequency->pluck('type')->toArray();
+            @endphp
+
+            $('#frequency').val({{$frequency}}).trigger('change');
+    
+        }
+    })
+    
     
         // $('#frequency').multiselect();
 

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "268cea626a1a007f144afd45ec916c28",
+    "content-hash": "33e4f47246623c6c8950db3581a74ee2",
     "packages": [
         {
             "name": "brick/math",
@@ -1047,16 +1047,16 @@
         },
         {
             "name": "laravel/cashier",
-            "version": "v15.0.0",
+            "version": "v15.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/cashier-stripe.git",
-                "reference": "d6047a96a21d6a95b9f9c138c0d8d6fe54e45f89"
+                "reference": "d03e1e268cc3ed130ddf845fdc5607230b9c968a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/cashier-stripe/zipball/d6047a96a21d6a95b9f9c138c0d8d6fe54e45f89",
-                "reference": "d6047a96a21d6a95b9f9c138c0d8d6fe54e45f89",
+                "url": "https://api.github.com/repos/laravel/cashier-stripe/zipball/d03e1e268cc3ed130ddf845fdc5607230b9c968a",
+                "reference": "d03e1e268cc3ed130ddf845fdc5607230b9c968a",
                 "shasum": ""
             },
             "require": {
@@ -1130,7 +1130,7 @@
                 "issues": "https://github.com/laravel/cashier/issues",
                 "source": "https://github.com/laravel/cashier"
             },
-            "time": "2023-12-22T14:33:24+00:00"
+            "time": "2024-01-09T17:21:33+00:00"
         },
         {
             "name": "laravel/framework",
@@ -8537,5 +8537,5 @@
         "php": "^8.1"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.3.0"
 }

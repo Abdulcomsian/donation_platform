@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Campaign;
+use App\Models\{Campaign , CampaignFrequency, User};
 use Faker\Factory as Faker;
 
 class CampaignSeeder extends Seeder
@@ -17,7 +17,7 @@ class CampaignSeeder extends Seeder
         $faker = Faker::create();
 
             $campaignList = [];
-            $userId = 1;
+            $userId = User::orderBy('id' , 'asc')->first()->id;
 
             for($i =0 ; $i <= 20 ; $i++){
 
@@ -26,7 +26,6 @@ class CampaignSeeder extends Seeder
                     'title' => $faker->name,
                     'excerpt' => $faker->text(100),
                     'description' => $faker->text(200),
-                    'frequency' => $faker->randomElement(['monthly' , 'quarterly' , 'annually']),
                     'recurring'=> $faker->randomElement(['disable' , 'optional' , 'required']),
                     'image' => 'Screenshot_5.png',
                     'date' => $faker->date()
@@ -52,11 +51,14 @@ class CampaignSeeder extends Seeder
                     $campaign = array_merge($campaign , $campaign2);
                 }
 
-                $campaignList[] = $campaign;
+               $campaignId = Campaign::insertGetId($campaign);
+
+               CampaignFrequency::create([
+                                        'campaign_id' => $campaignId,
+                                        'type' => $faker->randomElement(['monthly' , 'quarterly' , 'annually']),
+                                    ]);
 
             }
-
-            Campaign::insert($campaignList);
 
         }
         

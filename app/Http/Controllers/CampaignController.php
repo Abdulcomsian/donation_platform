@@ -25,25 +25,36 @@ class CampaignController extends Controller
         return view('campaigns.create');
     }
 
+    public function editCampaignForm(Request $request)
+    {
+        $campaign = $this->campaignHandler->getCampaignWithId($request->id);
+        return view('campaigns.edit')->with(['campaign' => $campaign]);
+    }
+
+    public function campaignCreated(Request $request)
+    {
+        return view('campaigns.campaign-created'); 
+    }
+
     public function createCampaign(Request $request){
 
+        
         $validator = Validator::make($request->all() , [
                         'title' => 'required|string',
                         'excerpt' => 'required|string',
                         'description' => 'required|string',
-                        'file' => 'file|nullable|mimes:jpeg,png,jpg,PNG,JPEG,JPG',
+                        'file' => 'file|required|mimes:jpeg,png,jpg,PNG,JPEG,JPG',
                         'frequency' => 'required|string',
                         'recurring' => 'required|string',
-                        'campaign_goal' => 'required|boolean',
-                        'amount' => [Rule::requiredIf($request->campaing_goal == 1) , 'numeric'],
-                        'fee_recovery' => Rule::requiredIf($request->campaing_goal == 1),
+                        'campaign_goal' => 'nullable|boolean',
+                        'amount' => [Rule::requiredIf($request->campaign_goal == 1)],
+                        'fee_recovery' => Rule::requiredIf($request->campaign_goal == 1),
                         'date' => 'required|date'
                     ]);
-
         if($validator->fails()){
-            return response()->json(['status' => false , 'msg' => 'Something Went Wrong' , 'error' => $validator->getMessageBag()]);
+            return response()->json(['status' => false , 'msg' => 'Something Went Wrong' , 'error' => implode( ",", $validator->messages()->all())]);
         }
-
+                    
         try{
 
             $response = $this->campaignHandler->createCampaign($request);
