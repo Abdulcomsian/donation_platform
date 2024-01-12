@@ -40,6 +40,7 @@ Route::group(['middleware' => ['auth', 'preventBackHistory']], function () {
 Route::group(['prefix' => 'public'], function () {
     Route::get('/events', [EventsController::class, 'getPublicEvents'])->name('publicEvents');
     Route::get('/events/{id}', [EventsController::class, 'getEventDetail'])->name('eventDetail');
+    Route::get('/donate-now', [DonationController::class, "donateNow"])->name('donateNow');
 });
 
 

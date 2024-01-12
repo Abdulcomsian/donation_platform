@@ -1,0 +1,160 @@
+@import url("https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+.donate-noe-layout .rectangle {
+  position: relative;
+  height: 400px;
+  padding: 4;
+  background-color: #5BC17F;
+}
+.donate-noe-layout .rectangle .top .logo {
+  margin-top: 25px;
+}
+.donate-noe-layout .rectangle .donate-now-container {
+  display: flex;
+  gap: 4.2rem;
+  height: 842.068px;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, 0px);
+}
+.donate-noe-layout .rectangle .donate-now-container .left {
+  width: 50%;
+}
+.donate-noe-layout .rectangle .donate-now-container .left .title {
+  margin-top: 2rem;
+  color: #FFF;
+  font-family: Poppins;
+  font-size: 44px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  text-transform: capitalize;
+}
+.donate-noe-layout .rectangle .donate-now-container .left .description {
+  margin-top: 1rem;
+  color: #FFF;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 36px;
+}
+.donate-noe-layout .rectangle .donate-now-container .left .icon {
+  margin-top: 7rem;
+}
+.donate-noe-layout .rectangle .donate-now-container .left .icon img {
+  width: 536.399px;
+  height: 526.62px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.donate-noe-layout .rectangle .donate-now-container .right {
+  width: 50%;
+}
+.donate-noe-layout .rectangle .donate-now-container .right .title {
+  margin-top: 2rem;
+  color: #FFF;
+  font-family: Poppins;
+  font-size: 44px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  text-transform: capitalize;
+}
+.donate-noe-layout .rectangle .donate-now-container .right .date {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+}
+.donate-noe-layout .rectangle .donate-now-container .right .date .icon img {
+  width: 18px;
+  height: 18px;
+}
+.donate-noe-layout .rectangle .donate-now-container .right .date .text {
+  color: #FFF;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0.08px;
+}
+.donate-noe-layout .rectangle .donate-now-container .right .venue {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+.donate-noe-layout .rectangle .donate-now-container .right .venue .icon img {
+  width: 18px;
+  height: 18px;
+}
+.donate-noe-layout .rectangle .donate-now-container .right .venue .text {
+  color: #FFF;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0.08px;
+}
+.donate-noe-layout .rectangle .donate-now-container .right .buy-btn {
+  margin-top: 2rem;
+}
+.donate-noe-layout .rectangle .donate-now-container .right .buy-btn button {
+  width: 241px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  border: none;
+  background: #FFF;
+  color: #000;
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+}
+.donate-noe-layout .rectangle .donate-now-container .right .details {
+  margin-top: 1rem;
+}
+.donate-noe-layout .rectangle .donate-now-container .right .details p {
+  margin: 0;
+  padding: 0;
+  color: #000;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px;
+  letter-spacing: 0.09px;
+  white-space: pre-line;
+}
+.donate-noe-layout .rectangle .donate-now-container .right .organizer {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+}
+.donate-noe-layout .rectangle .donate-now-container .right .organizer .heading {
+  color: #000;
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+}
+.donate-noe-layout .rectangle .donate-now-container .right .organizer .name {
+  color: #000;
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}/*# sourceMappingURL=donate-now-layout.css.map */

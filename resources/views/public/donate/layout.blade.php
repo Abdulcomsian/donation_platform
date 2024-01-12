@@ -21,12 +21,34 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <script src="{{ asset('js/app.js') }}" defer></script>
 
-    <link rel="stylesheet" href="{{asset('assets/css/public-events-detail.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/donate-now-layout.css')}}">
 </head>
 
 <body>
-    <div class="main">
-        @yield('content')
+    <div class="donate-noe-layout">
+        <div class="container-fluid rectangle">
+            <div class="container top">
+                <div class="logo">
+                    <img src="{{ asset('assets/images/Group 2 (1).png') }}" alt="">
+                </div>
+            </div>
+
+            <div class="container donate-now-container">
+                <div class="left">
+                    <div class="title">Donation For Orphans</div>
+                    <div class="description">
+                        Lorem ipsum dolor sit amet consectetur. At fermentum augue tempor felis nisi.
+                    </div>
+                    <div class="icon">
+                        <img src="{{ asset('assets/images/26d0ba0efd3df0807e2e00c7265e76df.jpeg') }}" alt="">
+                    </div>
+                </div>
+                <div class="right">
+                    @yield('stylesheet')
+                    @yield('content')
+                </div>
+            </div>
+        </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
