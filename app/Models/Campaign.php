@@ -11,7 +11,7 @@ class Campaign extends Model
     use HasFactory;
     protected $table = 'campaigns';
     protected $primaryKey = 'id';
-    protected $fillable = ['user_id', 'title' , 'excerpt' , 'description' , 'image' , 'recurring' , 'campaign_goal' , 'amount' , 'fee_recovery' , 'date', 'image'];
+    protected $fillable = ['user_id', 'title' , 'excerpt' , 'description' , 'image' , 'recurring' , 'campaign_goal' , 'amount' , 'fee_recovery' , 'date', 'image' , 'status'];
 
     public function donations(){
         return $this->hasMany(Donation::class , 'campaign_id' , 'id');

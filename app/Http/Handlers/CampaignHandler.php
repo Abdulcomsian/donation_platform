@@ -15,8 +15,8 @@ class CampaignHandler{
         $campaign->description = $request->description;
         $campaign->recurring = $request->recurring;
         $campaign->user_id = auth()->user()->id;
-        $campaign->campaign_goal = isset($campaign->campaign_goal) ? $campaign->campaign_goal : 0;
-
+        $campaign->campaign_goal = isset($request->campaign_goal) ? $request->campaign_goal : 0;
+    
         $file = $request->file('file');
         $filename =  strtotime(now()).str_replace(" ", "-" ,$file->getClientOriginalName());
         $file->move(public_path('assets/uploads') , $filename);
@@ -46,7 +46,7 @@ class CampaignHandler{
     public function getCampaignWithId($id){
         return  Campaign::with('frequency')->where('id' , $id)->first(); 
     }
-    
+
     public function getCampaignList(){
         $campaigns = null;
         if(auth()->user()->type != \AppConst::ADMIN){

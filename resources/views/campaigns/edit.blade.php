@@ -36,6 +36,7 @@
 
     <div class="form-container">
         <form method="post" class="campaign-form">
+            <input type="hidden" name="campaign_id" value="{{$campaign->id}}">
             <div class="row">
                 <div class="col-md-5">
                     <div class="form-control">
@@ -86,8 +87,8 @@
                 <div class="col-md-5">
                     <div class="form-control">
                         <label for="title">Recurring</label>
-                        <select name="recurring" id="">
-                            <option value="" disabled selected>Select Recurring</option>
+                        <select name="recurring" id="" value="{{$campaign->recurring}}">
+                            <option value="" disabled >Select Recurring</option>
                             <option value="disable">Disable</option>
                             <option value="optional">Optional</option>
                             <option value="required">Required</option>
@@ -102,19 +103,19 @@
                         <div class="toggler-label">
                             <label for="">Campaign Goal</label>
                             <div class="toggler">
-                                <input type="checkbox" class="campaign-goal-toggle" name="campaign_goal" id="switch" value="1"/><label for="switch">Toggle</label>
+                                <input type="checkbox" class="campaign-goal-toggle" name="campaign_goal" id="switch" @if($campaign->campaign_goal) checked @endif value="1"/><label for="switch">Toggle</label>
                             </div>
                         </div>
-                        <div class="currency-input campaign-goal d-none">
+                        <div class="currency-input campaign-goal @if($campaign->campaign_goal == 0) d-none @endif"">
                             <span>$</span>
-                            <input type="number" step="0.01" inputmode="decimal" name="amount"  min="0" placeholder="0">
+                            <input type="number" step="0.01" inputmode="decimal" name="amount" value="{{$campaign->amount}}" min="0" placeholder="0">
                         </div>
                     </div>
                 </div>
                 <div class="col-md-5">
-                    <div class="form-control campaign-goal d-none">
+                    <div class="form-control campaign-goal @if($campaign->campaign_goal == 0) d-none @endif">
                         <label for="feeRecovery">Fee Recovery</label>
-                        <select name="fee_recovery" id="feeRecovery">
+                        <select name="fee_recovery" id="feeRecovery" value="{{$campaign->fee_recovery}}">
                             <option value="">Select Fee Recovery</option>
                             <option value="disable">Disable</option>
                             <option value="optional">Optional</option>
@@ -123,11 +124,11 @@
                     </div>
                 </div>
             </div>
-
+            
             <div class="row">
                 <div class="col-md-5">
                     <div class="form-control">
-                        <input type="datetime-local" id="date" name="date">
+                        <input type="datetime-local" id="date" name="date" value="{{$campaign->date}}">
                     </div>
                 </div>
             </div>
@@ -154,12 +155,8 @@
 
         function setFrequency(){
             $('#frequency').select2();
-            @php
-                $frequency = $campaign->frequency->pluck('type')->toArray();
-            @endphp
-
-            $('#frequency').val({{$frequency}}).trigger('change');
-    
+            let frequency = '{{implode("," , $campaign->frequency->pluck('type')->toArray())}}'.split(",");
+            $('#frequency').val(frequency).trigger('change');
         }
     })
     

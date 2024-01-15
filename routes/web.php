@@ -28,6 +28,7 @@ Route::group(['middleware' => ['preventBackHistory' , 'auth']], function () {
         Route::get('/create-campaign', [CampaignController::class, 'getCampaignForm'])->name('campaign.create.form');
         Route::post('create-campaign' , [CampaignController::class , 'createCampaign'])->name('create.campaign');
         Route::get('/edit-campaign/{id}', [CampaignController::class, 'editCampaignForm'])->name('campaign.edit.form');
+        Route::post('/edit-campaign' , [CampaignController::class , 'editCampaign'])->name('edit.campaign');
         Route::get('/campaign-created', [CampaignController::class, 'campaignCreated'])->name('campaign.created');
     });
 
