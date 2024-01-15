@@ -22,7 +22,8 @@ return new class extends Migration
             $table->boolean('campaign_goal');
             $table->double('amount' , 6 , 2)->nullable();
             $table->enum('fee_recovery' , ['disable' , 'optional' , 'required'])->nullable();
-            $table->date('date');
+            $table->dateTime('date');
+            $table->integer('status')->default(1);
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
             $table->softDeletes();
