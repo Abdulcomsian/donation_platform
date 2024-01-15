@@ -17,7 +17,7 @@
                                     fill="#5BC17F" />
                             </svg>
                         </div>
-                        <a class="nav-link" href="">
+                        <a class="nav-link" href="{{ route('dashboard') }}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="23" height="19" viewBox="0 0 23 19"
                                 fill="none">
                                 <path class="stroke"

@@ -3,4 +3,680 @@
   width: 100%;
   overflow-y: auto;
   padding: 1rem;
+}
+.dashboard .header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.dashboard .header .left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 25px;
+}
+.dashboard .header .left .upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 76.828px;
+  height: 76.828px;
+  border-radius: 4px;
+  border: 1px solid #D9D9D9;
+  background: rgba(217, 217, 217, 0.2);
+}
+.dashboard .header .left .upload .text {
+  color: #949494;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: -0.24px;
+  text-align: center;
+}
+.dashboard .header .left .heading {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.dashboard .header .left .heading .welcome {
+  color: #000;
+  font-family: Poppins;
+  font-size: 34px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 42px;
+  letter-spacing: -0.68px;
+}
+.dashboard .header .left .heading .org-name {
+  color: #000;
+  font-family: Poppins;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: -0.4px;
+}
+.dashboard .header .right a {
+  padding: 12px 16px;
+  border-radius: 8px;
+  background-color: #5BC17F;
+  color: var(--White-Full, #FFF);
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  outline: none;
+  border: none;
+  text-decoration: none;
+}
+.dashboard .dashboard-counter {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3.4rem;
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
+}
+.dashboard .dashboard-counter .left .stripe-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 50px 150px;
+  border-radius: 4px;
+  border: 0.5px solid #5BC17F;
+  background-color: rgba(91, 193, 127, 0.05);
+  margin-bottom: 1.5rem;
+}
+.dashboard .dashboard-counter .left .stripe-container .heading {
+  color: #000;
+  font-family: Poppins;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+.dashboard .dashboard-counter .left .stripe-container .description {
+  color: #000;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 25px;
+  text-align: center;
+}
+.dashboard .dashboard-counter .left .stripe-container .btn-container {
+  margin-top: 15px;
+}
+.dashboard .dashboard-counter .left .stripe-container .btn-container a {
+  padding: 12px 16px;
+  text-decoration: none;
+  border-radius: 8px;
+  background-color: #5BC17F;
+  color: var(--White-Full, #FFF);
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  display: inline-block;
+}
+.dashboard .dashboard-counter .left .campaign-container .header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.dashboard .dashboard-counter .left .campaign-container .header .heading {
+  color: #000;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.dashboard .dashboard-counter .left .campaign-container .header .link a {
+  color: #1293EC;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.14px;
+  text-decoration: none;
+  background-color: transparent;
+  padding: 0;
+}
+.dashboard .dashboard-counter .left .campaign-container .campaigns {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 1rem;
+}
+.dashboard .dashboard-counter .left .campaign-container .campaigns .campaign .card {
+  padding: 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 15px;
+  border-radius: 4px;
+  border: 1px solid #E7E8F2;
+  background: #FFF;
+}
+.dashboard .dashboard-counter .left .campaign-container .campaigns .campaign .card .left img {
+  border-radius: 12px;
+  width: 94.28px;
+  height: 94.28px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.dashboard .dashboard-counter .left .campaign-container .campaigns .campaign .card .right {
+  width: 100%;
+}
+.dashboard .dashboard-counter .left .campaign-container .campaigns .campaign .card .right .heading {
+  color: #000;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.dashboard .dashboard-counter .left .campaign-container .campaigns .campaign .card .right .amount {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 5px;
+}
+.dashboard .dashboard-counter .left .campaign-container .campaigns .campaign .card .right .amount .collected {
+  color: #5BC17F;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.dashboard .dashboard-counter .left .campaign-container .campaigns .campaign .card .right .amount .total {
+  color: #969696;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.dashboard .dashboard-counter .left .campaign-container .campaigns .campaign .card .right .progress-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.dashboard .dashboard-counter .left .campaign-container .campaigns .campaign .card .right .progress-container .progress-bar-element {
+  /* For WebKit (Chrome, Safari) */
+  /* For Firefox */
+  /* For Microsoft Edge */
+}
+.dashboard .dashboard-counter .left .campaign-container .campaigns .campaign .card .right .progress-container .progress-bar-element progress {
+  width: 100%;
+  height: 7px;
+  border-radius: 30px;
+  border: none;
+  -moz-appearance: none;
+       appearance: none;
+  -webkit-appearance: none;
+}
+.dashboard .dashboard-counter .left .campaign-container .campaigns .campaign .card .right .progress-container .progress-bar-element progress::-webkit-progress-bar {
+  background-color: #F7F7F7;
+  border-radius: 30px;
+  /* Change the fill color for WebKit browsers */
+}
+.dashboard .dashboard-counter .left .campaign-container .campaigns .campaign .card .right .progress-container .progress-bar-element progress::-webkit-progress-value {
+  background-color: #5BC17F;
+  border-radius: 30px;
+  /* Change the fill color for WebKit browsers */
+}
+.dashboard .dashboard-counter .left .campaign-container .campaigns .campaign .card .right .progress-container .progress-bar-element progress::-moz-progress-bar {
+  background-color: #5BC17F;
+  border-radius: 30px;
+  /* Change the fill color for Firefox */
+}
+.dashboard .dashboard-counter .left .campaign-container .campaigns .campaign .card .right .progress-container .progress-bar-element progress::-ms-fill {
+  background-color: #5BC17F;
+  /* Change the fill color for Microsoft Edge */
+}
+.dashboard .dashboard-counter .left .campaign-container .campaigns .campaign .card .right .progress-container .text {
+  color: var(--Medium-Dark, #646464);
+  font-family: Ubuntu;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-align: end;
+}
+.dashboard .dashboard-counter .right .card {
+  border-radius: 4px;
+  border: 1px solid #E7E8F2;
+  background: #FFF;
+  padding: 25px 40px;
+  height: 100%;
+}
+.dashboard .dashboard-counter .right .card .total-funraised-amount {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+  margin-bottom: 25px;
+}
+.dashboard .dashboard-counter .right .card .total-funraised-amount .left .icon {
+  width: 53px;
+  height: 53px;
+  border-radius: 50px;
+  background-color: rgba(255, 221, 103, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dashboard .dashboard-counter .right .card .total-funraised-amount .left .icon img {
+  width: 35px;
+  height: 35px;
+}
+.dashboard .dashboard-counter .right .card .total-funraised-amount .right {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 2px;
+}
+.dashboard .dashboard-counter .right .card .total-funraised-amount .right .heading {
+  color: #000;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.dashboard .dashboard-counter .right .card .total-funraised-amount .right .amount {
+  color: #000;
+  font-family: Poppins;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+.dashboard .dashboard-counter .right .card .divider {
+  border-bottom: 1px solid #E7E8F2;
+}
+.dashboard .dashboard-counter .right .card .new-membership {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+.dashboard .dashboard-counter .right .card .new-membership .left .icon {
+  width: 53px;
+  height: 53px;
+  border-radius: 50px;
+  background-color: rgba(252, 159, 73, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dashboard .dashboard-counter .right .card .new-membership .left .icon img {
+  width: 31px;
+  height: 30px;
+}
+.dashboard .dashboard-counter .right .card .new-membership .right {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 2px;
+}
+.dashboard .dashboard-counter .right .card .new-membership .right .heading {
+  color: #000;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.dashboard .dashboard-counter .right .card .new-membership .right .amount {
+  color: #000;
+  font-family: Poppins;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+.dashboard .dashboard-counter .right .card .active-recurring-plans {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+.dashboard .dashboard-counter .right .card .active-recurring-plans .left .icon {
+  width: 53px;
+  height: 53px;
+  border-radius: 50px;
+  background-color: rgba(151, 71, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dashboard .dashboard-counter .right .card .active-recurring-plans .left .icon img {
+  width: 24px;
+  height: 24px;
+}
+.dashboard .dashboard-counter .right .card .active-recurring-plans .right {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 2px;
+}
+.dashboard .dashboard-counter .right .card .active-recurring-plans .right .heading {
+  color: #000;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.dashboard .dashboard-counter .right .card .active-recurring-plans .right .amount {
+  color: #000;
+  font-family: Poppins;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+.dashboard .dashboard-counter .right .card .total-donations {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+.dashboard .dashboard-counter .right .card .total-donations .left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+}
+.dashboard .dashboard-counter .right .card .total-donations .left .left-icon .icon {
+  width: 53px;
+  height: 53px;
+  border-radius: 50px;
+  background-color: rgba(91, 193, 127, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dashboard .dashboard-counter .right .card .total-donations .left .left-icon .icon img {
+  width: 32px;
+  height: 32px;
+}
+.dashboard .dashboard-counter .right .card .total-donations .left .right-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 2px;
+}
+.dashboard .dashboard-counter .right .card .total-donations .left .right-text .top {
+  color: #000;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.dashboard .dashboard-counter .right .card .total-donations .left .right-text .bottom {
+  color: #000;
+  font-family: Poppins;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+.dashboard .dashboard-counter .right .card .total-donations .right a {
+  text-decoration: none;
+}
+.dashboard .dashboard-counter .right .card .total-ticket-sold {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+.dashboard .dashboard-counter .right .card .total-ticket-sold .left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+}
+.dashboard .dashboard-counter .right .card .total-ticket-sold .left .left-icon .icon {
+  width: 53px;
+  height: 53px;
+  border-radius: 50px;
+  background-color: rgba(114, 113, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dashboard .dashboard-counter .right .card .total-ticket-sold .left .left-icon .icon img {
+  width: 27.233px;
+  height: 27.825px;
+}
+.dashboard .dashboard-counter .right .card .total-ticket-sold .left .right-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 2px;
+}
+.dashboard .dashboard-counter .right .card .total-ticket-sold .left .right-text .top {
+  color: #000;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.dashboard .dashboard-counter .right .card .total-ticket-sold .left .right-text .bottom {
+  color: #000;
+  font-family: Poppins;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+.dashboard .dashboard-counter .right .card .total-ticket-sold .right a {
+  text-decoration: none;
+}
+.dashboard .latest-donors .header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.dashboard .latest-donors .header .left {
+  color: #000;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.dashboard .latest-donors .header .right a {
+  text-decoration: none;
+  color: #1293EC;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.14px;
+  padding: 0;
+  background-color: transparent;
+}
+.dashboard .latest-donors .data-table {
+  margin-top: 1.5rem;
+}
+.dashboard .latest-donors .data-table table {
+  width: 100%;
+}
+.dashboard .latest-donors .data-table table thead {
+  position: static;
+}
+.dashboard .latest-donors .data-table table thead tr th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  padding: 1rem 2rem;
+  background-color: rgba(221, 223, 229, 0.15);
+  color: #000;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.dashboard .latest-donors .data-table table tbody tr {
+  border-bottom: 1px solid #DDDFE5;
+}
+.dashboard .latest-donors .data-table table tbody tr .name {
+  padding: 1.5rem 2rem;
+  color: #000;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0.25px;
+}
+.dashboard .latest-donors .data-table table tbody tr .compaign {
+  padding: 1.5rem 2rem;
+  color: #000;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.dashboard .latest-donors .data-table table tbody tr .status {
+  padding: 1.5rem 2rem;
+}
+.dashboard .latest-donors .data-table table tbody tr .status .complete {
+  background-color: rgba(91, 193, 127, 0.1);
+  border-radius: 20px;
+  padding: 5px 10px;
+  color: #5BC17F;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0.07px;
+  width: -moz-max-content;
+  width: max-content;
+}
+.dashboard .latest-donors .data-table table tbody tr .status .pending {
+  background-color: rgba(252, 187, 69, 0.1);
+  border-radius: 20px;
+  padding: 5px 10px;
+  color: #FCBB45;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0.07px;
+  width: -moz-max-content;
+  width: max-content;
+}
+.dashboard .latest-donors .data-table table tbody tr .status .processing {
+  background-color: rgba(114, 113, 255, 0.1);
+  border-radius: 20px;
+  padding: 5px 10px;
+  color: #7271FF;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0.07px;
+  width: -moz-max-content;
+  width: max-content;
+}
+.dashboard .latest-donors .data-table table tbody tr .status .refunded {
+  background-color: rgba(151, 71, 255, 0.1);
+  border-radius: 20px;
+  padding: 5px 10px;
+  color: #9747FF;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0.07px;
+  width: -moz-max-content;
+  width: max-content;
+}
+.dashboard .latest-donors .data-table table tbody tr .status .failed {
+  background-color: rgba(253, 76, 92, 0.1);
+  border-radius: 20px;
+  padding: 5px 10px;
+  color: #FD4C5C;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0.07px;
+  width: -moz-max-content;
+  width: max-content;
+}
+.dashboard .latest-donors .data-table table tbody tr .amount {
+  padding: 1.5rem 2rem;
+  color: #000;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.dashboard .latest-donors .data-table table tbody tr .fee-recoverd {
+  padding: 1.5rem 2rem;
+  color: #000;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.dashboard .latest-donors .data-table table tbody tr .date-time {
+  padding: 1.5rem 2rem;
+  color: #000;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.dashboard .latest-donors .data-table table tbody tr:last-child {
+  border: none;
 }/*# sourceMappingURL=dashboard.css.map */
