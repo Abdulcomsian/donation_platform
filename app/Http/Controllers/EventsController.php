@@ -15,4 +15,14 @@ class EventsController extends Controller
     {
         return view('events.create');
     }
+
+    public function getPublicEvents()
+    {
+        return view('public.events.index');
+    }
+
+    public function getEventDetail()
+    {
+        return view('public.events.event-details');
+    }
 }

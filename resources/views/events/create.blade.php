@@ -126,22 +126,143 @@
                     </div>
                 </div>
             </div>
+
+            <div class="tickets">
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="heading">
+                            Tickets & Pricing
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ticket-form-fields" id="ticket-form-container">
+                    <div class="row wrapper-element">
+                        <div class="col-md-5">
+                            <div class="left">
+                                <div class="form-control">
+                                    <label for="name">Name</label>
+                                    <input type="text" name="name" id="name">
+                                </div>
+                                <div class="form-control">
+                                    <label for="quantity">Ticket Quantity</label>
+                                    <input type="number" step="1" min="0" placeholder="100" name="quantity"
+                                        id="quantity">
+                                </div>
+                                <div class="form-control">
+                                    <label for="price">Ticket Price</label>
+                                    <div class="checkbox-wrapper">
+                                        <div class="custom-checkbox">
+                                            <input type="checkbox" name="freeTicket" id="freeTicket">
+                                        </div>
+                                        <label for="freeTicket">Ticket is Free</label>
+                                    </div>
+                                    <input type="number" step="1" min="0" placeholder="100" name="price" id="price">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="right">
+                                <div class="form-control">
+                                    <label for="descrition">Descrition</label>
+                                    <textarea name="descrition" id="descrition" placeholder="Descrition..."></textarea>
+                                </div>
+
+                                <div class="delete-element-container">
+                                    <button onclick="deleteElement(event)" class="btn--delete">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-10">
+                            <div class="divider">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="buttons">
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="button-container">
+                            <button id="add-fields" class="add" type="button">Add Another Ticket Type</button>
+                            <button class="create" type="submit">Create Event</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </form>
     </div>
 </div>
 <script>
     function importFile(event) {
-
-        event.preventDefault()
-  let input = document.createElement('input');
-  input.type = 'file';
-  input.onchange = _ => {
-    // you can use this method to get file and perform respective operations
-            let files =   Array.from(input.files);
-            console.log(files);
-        };
-  input.click();
-  
+        event.preventDefault();
+        let input = document.createElement('input');
+        input.type = 'file';
+        input.onchange = _ => {
+            // you can use this method to get file and perform respective operations
+                let files =   Array.from(input.files);
+                console.log(files);
+            };
+        input.click();
 }
+
+function deleteElement(event) {
+    event.preventDefault();
+    event.target.closest('.wrapper-element').remove();
+}
+
+document.querySelector("#add-fields").addEventListener('click', function(e) {
+    e.preventDefault();
+    console.log("testetstet");
+
+    var newDiv = document.createElement('div');
+    newDiv.className = 'row wrapper-element';
+
+    newDiv.innerHTML = `<div class="col-md-5">
+                            <div class="left">
+                                <div class="form-control">
+                                    <label for="name">Name</label>
+                                    <input type="text" name="name" id="name">
+                                </div>
+                                <div class="form-control">
+                                    <label for="quantity">Ticket Quantity</label>
+                                    <input type="number" step="1" min="0" placeholder="100" name="quantity"
+                                        id="quantity">
+                                </div>
+                                <div class="form-control">
+                                    <label for="price">Ticket Price</label>
+                                    <div class="checkbox-wrapper">
+                                        <div class="custom-checkbox">
+                                            <input type="checkbox" name="freeTicket" id="freeTicket">
+                                        </div>
+                                        <label for="freeTicket">Ticket is Free</label>
+                                    </div>
+                                    <input type="number" step="1" min="0" placeholder="100" name="price" id="price">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="right">
+                                <div class="form-control">
+                                    <label for="descrition">Descrition</label>
+                                    <textarea name="descrition" id="descrition" placeholder="Descrition..."></textarea>
+                                </div>
+
+                                <div class="delete-element-container">
+                                    <button onclick="deleteElement(event)" class="btn--delete">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-10">
+                            <div class="divider">
+                            </div>
+                        </div>`
+
+                        document.getElementById('ticket-form-container').appendChild(newDiv);
+})
+
 </script>
 @endsection

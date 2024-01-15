@@ -56,7 +56,7 @@
             .form-control {
                 display: flex;
                 flex-direction: column;
-                gap: 0.5rem;
+                gap: 1rem;
 
                 border: none;
 
@@ -140,6 +140,8 @@
                     font-weight: 400;
                     line-height: normal;
                     letter-spacing: 0.32px;
+
+                    background-color: #FFF;
                 }
 
                 .image-upload {
@@ -219,11 +221,6 @@
                         line-height: normal;
                     }
 
-                    .right span {
-                        left: initial;
-                        right: .9em;
-                    }
-
                     input[type='number'] {
                         -moz-appearance: textfield;
                         appearance: textfield;
@@ -260,16 +257,13 @@
                         color: crimson;
                     }
 
-                    .right input[type='number'] {
-                        padding-inline: .9em 2em;
-                    }
-
                     input[type='number']::-webkit-outer-spin-button,
                     input[type='number']::-webkit-inner-spin-button {
                         -webkit-appearance: none;
+                        -moz-appearance: none;
+                        appearance: none;
                         margin: 0;
                     }
-
                 }
 
                 .toggler-label {
