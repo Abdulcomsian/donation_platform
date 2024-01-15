@@ -127,7 +127,7 @@
                                     fill="#5BC17F" />
                             </svg>
                         </div>
-                        <a class="nav-link" href="">
+                        <a class="nav-link" href="{{ route('membership') }}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22"
                                 fill="none">
                                 <path class="fill"
@@ -200,8 +200,8 @@
                                 <path d="M5.08008 7.66797L10.7051 13.293L16.3301 7.66797" stroke="black"
                                     stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="square" />
                             </svg>
-                            <svg id="down" style="display: none" xmlns="http://www.w3.org/2000/svg" width="21" height="21"
-                                viewBox="0 0 21 21" fill="none">
+                            <svg id="down" style="display: none" xmlns="http://www.w3.org/2000/svg" width="21"
+                                height="21" viewBox="0 0 21 21" fill="none">
                                 <path d="M16.2441 13.293L10.6191 7.66797L4.99414 13.293" stroke="black"
                                     stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="square" />
                             </svg>

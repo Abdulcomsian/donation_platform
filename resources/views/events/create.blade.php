@@ -215,7 +215,6 @@ function deleteElement(event) {
 
 document.querySelector("#add-fields").addEventListener('click', function(e) {
     e.preventDefault();
-    console.log("testetstet");
 
     var newDiv = document.createElement('div');
     newDiv.className = 'row wrapper-element';
