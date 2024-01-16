@@ -93,20 +93,20 @@
                     <div class="campaign">
                         <div class="card">
                             <div class="left">
-                                <img src="{{ asset('assets/images/26d0ba0efd3df0807e2e00c7265e76df.jpeg') }}" alt="">
+                                <img src="{{ asset('assets/images/365eb7a379deca9af5c01258e4a52010.jpeg') }}" alt="">
                             </div>
                             <div class="right">
-                                <div class="heading">Donation For Orphans</div>
+                                <div class="heading">Donation For Education</div>
                                 <div class="amount">
-                                    <div class="collected">$10,000</div>
+                                    <div class="collected">$8,000</div>
                                     <div class="total">/</div>
-                                    <div class="total">$20,000</div>
+                                    <div class="total">$12,000</div>
                                 </div>
                                 <div class="progress-container">
                                     <div class="progress-bar-element">
-                                        <progress id="fileProgress" value="20" max="100"></progress>
+                                        <progress id="fileProgress" value="77" max="100"></progress>
                                     </div>
-                                    <div class="text">3% of your goal</div>
+                                    <div class="text">77% of your goal</div>
                                 </div>
                             </div>
                         </div>
@@ -187,14 +187,14 @@
 
                 <div class="divider"></div>
 
-                <div class="active-recurring-plans">
+                <div class="active-recurring-donors">
                     <div class="left">
                         <div class="icon">
                             <img src="{{ asset('assets/images/fluent-mdl2_recurring-event.png') }}" alt="">
                         </div>
                     </div>
                     <div class="right">
-                        <div class="heading">Active Recurring Plans</div>
+                        <div class="heading">Active Recurring Donors</div>
                         <div class="amount">20</div>
                     </div>
                 </div>

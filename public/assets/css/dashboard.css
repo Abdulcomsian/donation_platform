@@ -358,7 +358,7 @@
   font-weight: 600;
   line-height: normal;
 }
-.dashboard .dashboard-counter .right .card .active-recurring-plans {
+.dashboard .dashboard-counter .right .card .active-recurring-donors {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -367,7 +367,7 @@
   margin-top: 25px;
   margin-bottom: 25px;
 }
-.dashboard .dashboard-counter .right .card .active-recurring-plans .left .icon {
+.dashboard .dashboard-counter .right .card .active-recurring-donors .left .icon {
   width: 53px;
   height: 53px;
   border-radius: 50px;
@@ -376,17 +376,17 @@
   align-items: center;
   justify-content: center;
 }
-.dashboard .dashboard-counter .right .card .active-recurring-plans .left .icon img {
+.dashboard .dashboard-counter .right .card .active-recurring-donors .left .icon img {
   width: 24px;
   height: 24px;
 }
-.dashboard .dashboard-counter .right .card .active-recurring-plans .right {
+.dashboard .dashboard-counter .right .card .active-recurring-donors .right {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   gap: 2px;
 }
-.dashboard .dashboard-counter .right .card .active-recurring-plans .right .heading {
+.dashboard .dashboard-counter .right .card .active-recurring-donors .right .heading {
   color: #000;
   font-family: Poppins;
   font-size: 16px;
@@ -394,7 +394,7 @@
   font-weight: 400;
   line-height: normal;
 }
-.dashboard .dashboard-counter .right .card .active-recurring-plans .right .amount {
+.dashboard .dashboard-counter .right .card .active-recurring-donors .right .amount {
   color: #000;
   font-family: Poppins;
   font-size: 32px;
