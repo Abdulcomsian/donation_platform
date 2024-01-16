@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{UserController, HomeController, DonationController, CampaignController, DashboardController, EventsController, MembershipController};
+use App\Http\Controllers\{UserController, HomeController, DonationController, CampaignController, DashboardController, EventsController, MembershipController, SettingController};
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +40,10 @@ Route::group(['middleware' => ['preventBackHistory', 'auth']], function () {
 
     Route::group(['prefix' => 'membership'], function () {
         Route::get("/", [MembershipController::class, 'membership'])->name('membership');
+    });
+
+    Route::group(['prefix' => 'settings'], function () {
+        Route::get("/", [SettingController::class, 'settings'])->name('settings');
     });
 });
 
