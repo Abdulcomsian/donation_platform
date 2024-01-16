@@ -305,6 +305,235 @@
                             }
                         }
                     }
+
+                    #change-password-modal {
+                        @media (min-width: 576px) {
+                            .modal-dialog {
+                                max-width: 823.774px;
+                            }
+                        }
+
+                        .modal-content {
+                            .modal-header {
+                                border: none;
+                                padding: 2rem 2rem;
+
+                                .modal-title {
+                                    color: #000;
+                                    font-feature-settings: 'clig' off, 'liga' off;
+                                    font-family: Poppins;
+                                    font-size: 20px;
+                                    font-style: normal;
+                                    font-weight: 600;
+                                    line-height: 24px;
+                                }
+                            }
+
+                            .modal-body {
+                                padding: 1rem 2rem;
+
+                                .form-control-old-password {
+                                    display: flex;
+                                    flex-direction: column;
+                                    justify-content: flex-start;
+                                    gap: 10px;
+
+                                    margin-bottom: 20px;
+
+                                    label {
+                                        color: #000;
+                                        font-family: Poppins;
+                                        font-size: 18px;
+                                        font-style: normal;
+                                        font-weight: 400;
+                                        line-height: normal;
+                                        letter-spacing: 0.36px;
+                                    }
+
+                                    input[type='password'] {
+                                        padding: 1rem;
+
+                                        border-radius: 15px;
+                                        border: 1px solid #E5E5E5;
+                                        outline: none;
+
+                                        color: #000;
+
+                                        font-family: Poppins;
+                                        font-size: 16px;
+                                        font-style: normal;
+                                        font-weight: 400;
+                                        line-height: normal;
+                                        letter-spacing: 0.32px;
+                                    }
+
+                                    input[type='password']::placeholder {
+                                        color: #949494;
+                                        font-family: Poppins;
+                                        font-size: 16px;
+                                        font-style: normal;
+                                        font-weight: 400;
+                                        line-height: normal;
+                                        letter-spacing: 0.32px;
+                                    }
+                                }
+
+                                .form-control-new-password {
+                                    display: flex;
+                                    flex-direction: column;
+                                    justify-content: flex-start;
+                                    gap: 10px;
+
+                                    margin-bottom: 20px;
+
+                                    label {
+                                        color: #000;
+                                        font-family: Poppins;
+                                        font-size: 18px;
+                                        font-style: normal;
+                                        font-weight: 400;
+                                        line-height: normal;
+                                        letter-spacing: 0.36px;
+                                    }
+
+                                    .new-password-container {
+                                        position: relative;
+
+                                        input {
+                                            padding: 1rem;
+
+                                            border-radius: 15px;
+                                            border: 1px solid #E5E5E5;
+                                            outline: none;
+
+                                            width: 100%;
+
+                                            color: #000;
+
+                                            font-family: Poppins;
+                                            font-size: 16px;
+                                            font-style: normal;
+                                            font-weight: 400;
+                                            line-height: normal;
+                                            letter-spacing: 0.32px;
+                                        }
+
+                                        input::placeholder {
+                                            color: #949494;
+                                            font-family: Poppins;
+                                            font-size: 16px;
+                                            font-style: normal;
+                                            font-weight: 400;
+                                            line-height: normal;
+                                            letter-spacing: 0.32px;
+                                        }
+
+                                        .password-icon {
+                                            display: flex;
+                                            align-items: center;
+
+                                            position: absolute;
+                                            top: 50%;
+                                            right: 15px;
+                                            transform: translateY(-50%);
+
+                                            color: #949494;
+
+                                            .feather-eye-off {
+                                                display: none;
+                                            }
+                                        }
+                                    }
+                                }
+
+                                .form-control-confirm-password {
+                                    display: flex;
+                                    flex-direction: column;
+                                    justify-content: flex-start;
+                                    gap: 10px;
+
+                                    label {
+                                        color: #000;
+                                        font-family: Poppins;
+                                        font-size: 18px;
+                                        font-style: normal;
+                                        font-weight: 400;
+                                        line-height: normal;
+                                        letter-spacing: 0.36px;
+                                    }
+
+                                    input[type='password'] {
+                                        padding: 1rem;
+
+                                        border-radius: 15px;
+                                        border: 1px solid #E5E5E5;
+                                        outline: none;
+
+                                        color: #000;
+
+                                        font-family: Poppins;
+                                        font-size: 16px;
+                                        font-style: normal;
+                                        font-weight: 400;
+                                        line-height: normal;
+                                        letter-spacing: 0.32px;
+                                    }
+
+                                    input[type='password']::placeholder {
+                                        color: #949494;
+                                        font-family: Poppins;
+                                        font-size: 16px;
+                                        font-style: normal;
+                                        font-weight: 400;
+                                        line-height: normal;
+                                        letter-spacing: 0.32px;
+                                    }
+                                }
+
+                                .submit-actions {
+                                    border: none;
+                                    padding: 1rem 2rem;
+
+                                    display: flex;
+                                    flex-direction: row;
+                                    justify-content: flex-end;
+                                    align-items: center;
+                                    gap: 25px;
+
+                                    .cancel {
+                                        background-color: transparent;
+                                        border: none;
+                                        outline: none;
+
+                                        color: #5BC17F;
+                                        font-feature-settings: 'clig' off, 'liga' off;
+                                        font-family: Poppins;
+                                        font-size: 18px;
+                                        font-style: normal;
+                                        font-weight: 400;
+                                        line-height: 24px;
+                                    }
+
+                                    .save {
+                                        border-radius: 8px;
+                                        background-color: #5BC17F;
+                                        border: none;
+                                        outline: none;
+
+                                        padding: 12px 16px;
+
+                                        color: var(--White-Full, #FFF);
+                                        font-feature-settings: 'clig' off, 'liga' off;
+                                        font-family: Poppins;
+                                        font-size: 16px;
+                                        font-style: normal;
+                                        font-weight: 400;
+                                        line-height: 24px;
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }

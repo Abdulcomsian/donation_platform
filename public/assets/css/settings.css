@@ -259,4 +259,216 @@
   font-style: normal;
   font-weight: 400;
   line-height: 24px;
+}
+@media (min-width: 576px) {
+  .settings .tabs-container .tab-content .tab-pane .profile #change-password-modal .modal-dialog {
+    max-width: 823.774px;
+  }
+}
+.settings .tabs-container .tab-content .tab-pane .profile #change-password-modal .modal-content .modal-header {
+  border: none;
+  padding: 2rem 2rem;
+}
+.settings .tabs-container .tab-content .tab-pane .profile #change-password-modal .modal-content .modal-header .modal-title {
+  color: #000;
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Poppins;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+}
+.settings .tabs-container .tab-content .tab-pane .profile #change-password-modal .modal-content .modal-body {
+  padding: 1rem 2rem;
+}
+.settings .tabs-container .tab-content .tab-pane .profile #change-password-modal .modal-content .modal-body .form-control-old-password {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.settings .tabs-container .tab-content .tab-pane .profile #change-password-modal .modal-content .modal-body .form-control-old-password label {
+  color: #000;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.36px;
+}
+.settings .tabs-container .tab-content .tab-pane .profile #change-password-modal .modal-content .modal-body .form-control-old-password input[type=password] {
+  padding: 1rem;
+  border-radius: 15px;
+  border: 1px solid #E5E5E5;
+  outline: none;
+  color: #000;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.settings .tabs-container .tab-content .tab-pane .profile #change-password-modal .modal-content .modal-body .form-control-old-password input[type=password]::-moz-placeholder {
+  color: #949494;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.settings .tabs-container .tab-content .tab-pane .profile #change-password-modal .modal-content .modal-body .form-control-old-password input[type=password]::placeholder {
+  color: #949494;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.settings .tabs-container .tab-content .tab-pane .profile #change-password-modal .modal-content .modal-body .form-control-new-password {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.settings .tabs-container .tab-content .tab-pane .profile #change-password-modal .modal-content .modal-body .form-control-new-password label {
+  color: #000;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.36px;
+}
+.settings .tabs-container .tab-content .tab-pane .profile #change-password-modal .modal-content .modal-body .form-control-new-password .new-password-container {
+  position: relative;
+}
+.settings .tabs-container .tab-content .tab-pane .profile #change-password-modal .modal-content .modal-body .form-control-new-password .new-password-container input {
+  padding: 1rem;
+  border-radius: 15px;
+  border: 1px solid #E5E5E5;
+  outline: none;
+  width: 100%;
+  color: #000;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.settings .tabs-container .tab-content .tab-pane .profile #change-password-modal .modal-content .modal-body .form-control-new-password .new-password-container input::-moz-placeholder {
+  color: #949494;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.settings .tabs-container .tab-content .tab-pane .profile #change-password-modal .modal-content .modal-body .form-control-new-password .new-password-container input::placeholder {
+  color: #949494;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.settings .tabs-container .tab-content .tab-pane .profile #change-password-modal .modal-content .modal-body .form-control-new-password .new-password-container .password-icon {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  color: #949494;
+}
+.settings .tabs-container .tab-content .tab-pane .profile #change-password-modal .modal-content .modal-body .form-control-new-password .new-password-container .password-icon .feather-eye-off {
+  display: none;
+}
+.settings .tabs-container .tab-content .tab-pane .profile #change-password-modal .modal-content .modal-body .form-control-confirm-password {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 10px;
+}
+.settings .tabs-container .tab-content .tab-pane .profile #change-password-modal .modal-content .modal-body .form-control-confirm-password label {
+  color: #000;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.36px;
+}
+.settings .tabs-container .tab-content .tab-pane .profile #change-password-modal .modal-content .modal-body .form-control-confirm-password input[type=password] {
+  padding: 1rem;
+  border-radius: 15px;
+  border: 1px solid #E5E5E5;
+  outline: none;
+  color: #000;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.settings .tabs-container .tab-content .tab-pane .profile #change-password-modal .modal-content .modal-body .form-control-confirm-password input[type=password]::-moz-placeholder {
+  color: #949494;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.settings .tabs-container .tab-content .tab-pane .profile #change-password-modal .modal-content .modal-body .form-control-confirm-password input[type=password]::placeholder {
+  color: #949494;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.settings .tabs-container .tab-content .tab-pane .profile #change-password-modal .modal-content .modal-body .submit-actions {
+  border: none;
+  padding: 1rem 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 25px;
+}
+.settings .tabs-container .tab-content .tab-pane .profile #change-password-modal .modal-content .modal-body .submit-actions .cancel {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: #5BC17F;
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}
+.settings .tabs-container .tab-content .tab-pane .profile #change-password-modal .modal-content .modal-body .submit-actions .save {
+  border-radius: 8px;
+  background-color: #5BC17F;
+  border: none;
+  outline: none;
+  padding: 12px 16px;
+  color: var(--White-Full, #FFF);
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
 }/*# sourceMappingURL=settings.css.map */
