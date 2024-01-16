@@ -17,7 +17,8 @@
 <div class="dashboard">
     <div class="header">
         <div class="left">
-            <div class="upload">
+            <input type="file" class="d-none" name="file" id="file">
+            <div class="upload" onclick="importFile(event)">
                 <div class="icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="7 7 35 35" fill="none">
                         <path d="M29.1176 21.3503L24.8061 17.1268L20.4946 21.3503" stroke="#949494" stroke-width="1.5"
@@ -317,5 +318,12 @@
         </div>
     </div>
 </div>
+<script>
+    function importFile(event) {
+        event.preventDefault()
+        let file = document.getElementById("file");
+        file.click();
 
+    }
+</script>
 @endsection
