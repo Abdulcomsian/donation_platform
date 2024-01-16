@@ -132,6 +132,9 @@
 }
 .campaign-created .share-actions .share {
   text-decoration: none;
+  background-color: #FFF;
+  border: none;
+  outline: none;
   color: #000;
   font-family: Poppins;
   font-size: 16px;
@@ -142,4 +145,69 @@
   flex-direction: row;
   align-items: center;
   gap: 2px;
+}
+@media (min-width: 576px) {
+  .campaign-created #share-link-modal .modal-dialog {
+    max-width: 823.774px;
+  }
+}
+.campaign-created #share-link-modal .modal-content .modal-header {
+  border: none;
+  padding: 2rem 2rem;
+}
+.campaign-created #share-link-modal .modal-content .modal-header .modal-title {
+  color: #000;
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Poppins;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+}
+.campaign-created #share-link-modal .modal-content .modal-body {
+  padding: 1rem 2rem;
+}
+.campaign-created #share-link-modal .modal-content .modal-body .iframe-container {
+  width: 100%;
+  height: 289.378px;
+  padding: 1rem;
+  color: #000;
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+  border-radius: 15px;
+  border: 1px solid #E5E5E5;
+}
+.campaign-created #share-link-modal .modal-content .modal-footer {
+  border: none;
+  padding: 1rem 2rem;
+}
+.campaign-created #share-link-modal .modal-content .modal-footer .cancel {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: #5BC17F;
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}
+.campaign-created #share-link-modal .modal-content .modal-footer .save {
+  border-radius: 8px;
+  background-color: #5BC17F;
+  border: none;
+  outline: none;
+  padding: 12px 16px;
+  color: var(--White-Full, #FFF);
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
 }/*# sourceMappingURL=campaign-created.css.map */
