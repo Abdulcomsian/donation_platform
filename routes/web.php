@@ -41,10 +41,6 @@ Route::group(['middleware' => ['preventBackHistory', 'auth']], function () {
     Route::group(['prefix' => 'membership'], function () {
         Route::get("/", [MembershipController::class, 'membership'])->name('membership');
     });
-
-    Route::any('{any}', function () {
-        return redirect('/dashboard');
-    })->where('any', '.*');
 });
 
 Route::group(['prefix' => 'public'], function () {
@@ -52,3 +48,7 @@ Route::group(['prefix' => 'public'], function () {
     Route::get('/events/{id}', [EventsController::class, 'getEventDetail'])->name('eventDetail');
     Route::get('/donate-now', [DonationController::class, "donateNow"])->name('donateNow');
 });
+
+Route::any('{any}', function () {
+    return redirect('/dashboard');
+})->where('any', '.*');
