@@ -387,6 +387,7 @@
   right: 15px;
   transform: translateY(-50%);
   color: #949494;
+  cursor: pointer;
 }
 .settings .tabs-container .tab-content .tab-pane .profile #change-password-modal .modal-content .modal-body .form-control-new-password .new-password-container .password-icon .feather-eye-off {
   display: none;
