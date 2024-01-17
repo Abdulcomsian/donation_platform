@@ -438,7 +438,7 @@
                                             transform: translateY(-50%);
 
                                             color: #949494;
-                                            
+
                                             cursor: pointer;
 
                                             .feather-eye-off {
@@ -532,6 +532,282 @@
                                         font-weight: 400;
                                         line-height: 24px;
                                     }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .organization {
+                    .form-container {
+                        form {
+                            .form-control-name {
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: flex-start;
+                                gap: 0.5rem;
+
+                                margin-top: 20px;
+
+                                label {
+                                    color: #000;
+                                    font-family: Poppins;
+                                    font-size: 18px;
+                                    font-style: normal;
+                                    font-weight: 400;
+                                    line-height: normal;
+                                    letter-spacing: 0.36px;
+                                }
+
+                                input[type='text'] {
+                                    padding: 1rem;
+
+                                    border-radius: 15px;
+                                    border: 1px solid #E5E5E5;
+                                    outline: none;
+
+                                    color: #000;
+
+                                    font-family: Poppins;
+                                    font-size: 16px;
+                                    font-style: normal;
+                                    font-weight: 400;
+                                    line-height: normal;
+                                    letter-spacing: 0.32px;
+                                }
+
+                                input[type='text']::placeholder {
+                                    color: #949494;
+                                    font-family: Poppins;
+                                    font-size: 16px;
+                                    font-style: normal;
+                                    font-weight: 400;
+                                    line-height: normal;
+                                    letter-spacing: 0.32px;
+                                }
+                            }
+
+                            .form-control-type {
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: flex-start;
+                                gap: 0.5rem;
+
+                                margin-top: 20px;
+
+                                label {
+                                    color: #000;
+                                    font-family: Poppins;
+                                    font-size: 18px;
+                                    font-style: normal;
+                                    font-weight: 400;
+                                    line-height: normal;
+                                    letter-spacing: 0.36px;
+                                }
+
+                                select {
+                                    padding: 1rem;
+
+                                    border-radius: 15px;
+                                    border: 1px solid #E5E5E5;
+                                    outline: none;
+
+                                    color: #000;
+
+                                    font-family: Poppins;
+                                    font-size: 16px;
+                                    font-style: normal;
+                                    font-weight: 400;
+                                    line-height: normal;
+                                    letter-spacing: 0.32px;
+                                }
+                            }
+
+                            .form-control-logo {
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: flex-start;
+                                gap: 0.5rem;
+
+                                margin-top: 20px;
+
+                                label {
+                                    color: #000;
+                                    font-family: Poppins;
+                                    font-size: 18px;
+                                    font-style: normal;
+                                    font-weight: 400;
+                                    line-height: normal;
+                                    letter-spacing: 0.36px;
+                                }
+
+                                .image-upload {
+                                    height: 133.83px;
+
+                                    border-radius: 15px;
+                                    border: 1px solid #E5E5E5;
+
+                                    display: flex;
+                                    flex-direction: column;
+                                    align-items: center;
+                                    justify-content: center;
+                                    gap: 0.5rem;
+
+                                    button {
+                                        width: 124px;
+                                        height: 36px;
+
+                                        border-radius: 8px;
+                                        background-color: #5BC17F;
+
+                                        color: var(--White-Full, #FFF);
+                                        font-feature-settings: 'clig' off, 'liga' off;
+                                        font-family: Poppins;
+                                        font-size: 14px;
+                                        font-style: normal;
+                                        font-weight: 400;
+                                        line-height: 24px;
+
+                                        border: none;
+
+                                        display: flex;
+                                        flex-direction: column;
+                                        align-items: center;
+                                        justify-content: center;
+                                    }
+
+                                    .label {
+                                        color: rgba(64, 64, 64, 0.60);
+                                        font-family: Poppins;
+                                        font-size: 14px;
+                                        font-style: normal;
+                                        font-weight: 400;
+                                        line-height: normal;
+                                        letter-spacing: 0.28px;
+                                    }
+
+                                    .info {
+                                        color: #CBCBCB;
+                                        font-family: Poppins;
+                                        font-size: 14px;
+                                        font-style: normal;
+                                        font-weight: 400;
+                                        line-height: normal;
+                                        letter-spacing: 0.28px;
+                                    }
+                                }
+                            }
+
+                            .form-control-description {
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: flex-start;
+                                gap: 0.5rem;
+
+                                margin-top: 20px;
+
+                                label {
+                                    color: #000;
+                                    font-family: Poppins;
+                                    font-size: 18px;
+                                    font-style: normal;
+                                    font-weight: 400;
+                                    line-height: normal;
+                                    letter-spacing: 0.36px;
+                                }
+
+                                textarea {
+                                    border-radius: 15px;
+                                    border: 1px solid #E5E5E5;
+
+                                    color: rgba(64, 64, 64, 0.60);
+
+                                    font-family: Poppins;
+                                    font-size: 16px;
+                                    font-style: normal;
+                                    font-weight: 400;
+                                    line-height: normal;
+                                    letter-spacing: 0.32px;
+
+                                    padding: 1rem;
+
+                                    resize: none;
+
+                                    outline: none;
+
+                                    height: 133.83px;
+                                }
+                            }
+
+                            .form-control-website {
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: flex-start;
+                                gap: 0.5rem;
+
+                                margin-top: 20px;
+
+                                label {
+                                    color: #000;
+                                    font-family: Poppins;
+                                    font-size: 18px;
+                                    font-style: normal;
+                                    font-weight: 400;
+                                    line-height: normal;
+                                    letter-spacing: 0.36px;
+                                }
+
+                                input[type='text'] {
+                                    padding: 1rem;
+
+                                    border-radius: 15px;
+                                    border: 1px solid #E5E5E5;
+                                    outline: none;
+
+                                    color: #000;
+
+                                    font-family: Poppins;
+                                    font-size: 16px;
+                                    font-style: normal;
+                                    font-weight: 400;
+                                    line-height: normal;
+                                    letter-spacing: 0.32px;
+                                }
+
+                                input[type='text']::placeholder {
+                                    color: #949494;
+                                    font-family: Poppins;
+                                    font-size: 16px;
+                                    font-style: normal;
+                                    font-weight: 400;
+                                    line-height: normal;
+                                    letter-spacing: 0.32px;
+                                }
+                            }
+
+                            .submit {
+                                margin-top: 20px;
+
+                                display: flex;
+                                flex-direction: row;
+                                align-items: center;
+                                justify-content: flex-end;
+
+                                button {
+                                    padding: 12px 16px;
+
+                                    border-radius: 8px;
+                                    background-color: #5BC17F;
+                                    outline: none;
+                                    border: none;
+
+                                    color: var(--White-Full, #FFF);
+                                    font-feature-settings: 'clig' off, 'liga' off;
+                                    font-family: Poppins;
+                                    font-size: 18px;
+                                    font-style: normal;
+                                    font-weight: 400;
+                                    line-height: 24px;
                                 }
                             }
                         }

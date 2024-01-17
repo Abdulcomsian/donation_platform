@@ -73,8 +73,6 @@
         
         iframeContent = iframeContent.replace(/</g, '&lt;');
         iframeContent = iframeContent.replace(/>/g, '&gt;');
-
-        console.log(iframeContent);
         
         // Get the container element
         var container = document.getElementById('iframe-content');

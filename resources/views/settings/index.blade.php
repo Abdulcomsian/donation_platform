@@ -55,7 +55,6 @@
                     </div>
                     <div class="tab-pane fade" id="pills-organization" role="tabpanel"
                         aria-labelledby="pills-organization-tab">
-                        Organization
                         @include('settings.organization')
                     </div>
                     <div class="tab-pane fade" id="pills-admin" role="tabpanel" aria-labelledby="pills-admin-tab">
