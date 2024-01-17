@@ -37,7 +37,7 @@
             </div>
         </div>
         <div class="right">
-            <a href="{{ route('campaign.create.form') }}">Create Compaign</a>
+            <a href="{{ route('campaign.create.form') }}">Create Campaign</a>
         </div>
     </div>
 
