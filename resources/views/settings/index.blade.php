@@ -58,7 +58,6 @@
                         @include('settings.organization')
                     </div>
                     <div class="tab-pane fade" id="pills-admin" role="tabpanel" aria-labelledby="pills-admin-tab">
-                        Admin
                         @include('settings.admin')
                     </div>
                     <div class="tab-pane fade" id="pills-emails" role="tabpanel" aria-labelledby="pills-emails-tab">

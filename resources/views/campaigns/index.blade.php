@@ -12,11 +12,11 @@
 <link
     href="https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
     rel="stylesheet">
-<link rel="stylesheet" href="{{ asset('assets/css/compaign.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/css/campaign.css') }}">
 @endsection
 
 @section('content')
-<div class="compaigns">
+<div class="campaigns">
     <div class="header">
         <div class="heading">Campaigns</div>
         <div class="create-comapaign">

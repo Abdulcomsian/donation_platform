@@ -26,13 +26,13 @@
                         <option value="">Status</option>
                     </select>
                 </div>
-                <div class="compaign-select">
-                    <select name="compaign" id="compaign" aria-placeholder="Status">
-                        <option value="">Compaign</option>
+                <div class="campaign-select">
+                    <select name="campaign" id="campaign" aria-placeholder="Status">
+                        <option value="">Campaign</option>
                     </select>
                 </div>
                 <div class="date-select">
-                    <select name="compaign" id="compaign" aria-placeholder="Status">
+                    <select name="date" id="date" aria-placeholder="Status">
                         <option value="">Date</option>
                     </select>
                 </div>
@@ -188,7 +188,7 @@
             <tbody>
                 <tr>
                     <td class="name">John Doe</td>
-                    <td class="compaign">Lorem Ipsum</td>
+                    <td class="campaign">Lorem Ipsum</td>
                     <td class="status">
                         <div class="complete">Complete</div>
                     </td>
@@ -197,7 +197,7 @@
                 </tr>
                 <tr>
                     <td class="name">John Doe</td>
-                    <td class="compaign">Lorem Ipsum</td>
+                    <td class="campaign">Lorem Ipsum</td>
                     <td class="status">
                         <div class="complete">Complete</div>
                     </td>
@@ -206,7 +206,7 @@
                 </tr>
                 <tr>
                     <td class="name">John Doe</td>
-                    <td class="compaign">Lorem Ipsum</td>
+                    <td class="campaign">Lorem Ipsum</td>
                     <td class="status">
                         <div class="pending">Pending</div>
                     </td>
@@ -215,7 +215,7 @@
                 </tr>
                 <tr>
                     <td class="name">John Doe</td>
-                    <td class="compaign">Lorem Ipsum</td>
+                    <td class="campaign">Lorem Ipsum</td>
                     <td class="status">
                         <div class="processing">Processing</div>
                     </td>
@@ -224,7 +224,7 @@
                 </tr>
                 <tr>
                     <td class="name">John Doe</td>
-                    <td class="compaign">Lorem Ipsum</td>
+                    <td class="campaign">Lorem Ipsum</td>
                     <td class="status">
                         <div class="complete">Complete</div>
                     </td>
@@ -233,7 +233,7 @@
                 </tr>
                 <tr>
                     <td class="name">John Doe</td>
-                    <td class="compaign">Lorem Ipsum</td>
+                    <td class="campaign">Lorem Ipsum</td>
                     <td class="status">
                         <div class="complete">Complete</div>
                     </td>
@@ -242,7 +242,7 @@
                 </tr>
                 <tr>
                     <td class="name">John Doe</td>
-                    <td class="compaign">Lorem Ipsum</td>
+                    <td class="campaign">Lorem Ipsum</td>
                     <td class="status">
                         <div class="pending">Pending</div>
                     </td>
@@ -251,7 +251,7 @@
                 </tr>
                 <tr>
                     <td class="name">John Doe</td>
-                    <td class="compaign">Lorem Ipsum</td>
+                    <td class="campaign">Lorem Ipsum</td>
                     <td class="status">
                         <div class="complete">Complete</div>
                     </td>
@@ -260,7 +260,7 @@
                 </tr>
                 <tr>
                     <td class="name">John Doe</td>
-                    <td class="compaign">Lorem Ipsum</td>
+                    <td class="campaign">Lorem Ipsum</td>
                     <td class="status">
                         <div class="failed">Failed</div>
                     </td>

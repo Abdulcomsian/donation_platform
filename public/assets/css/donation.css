@@ -49,13 +49,13 @@
   outline: none;
   border-radius: 8px;
 }
-.donations .header .filters form .compaign-select {
+.donations .header .filters form .campaign-select {
   width: 132.576px;
   height: 48px;
   border: 1px solid #DDDFE5;
   border-radius: 8px;
 }
-.donations .header .filters form .compaign-select select {
+.donations .header .filters form .campaign-select select {
   height: 100%;
   width: 100%;
   color: #949494;
@@ -268,7 +268,7 @@
   line-height: 22px;
   letter-spacing: 0.25px;
 }
-.donations .data-table table tbody tr .compaign {
+.donations .data-table table tbody tr .campaign {
   padding: 1.5rem 2rem;
   color: var(--Black, #303030);
   font-family: Poppins;
