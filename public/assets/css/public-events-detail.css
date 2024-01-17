@@ -1,0 +1,135 @@
+@import url("https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+.main {
+  margin: 0;
+  padding: 0;
+}
+.main .detail .rectangle {
+  position: relative;
+  height: 430px;
+  padding: 4;
+  background-color: #5BC17F;
+}
+.main .detail .rectangle .top .logo {
+  margin-top: 25px;
+}
+.main .detail .rectangle .event-content {
+  display: flex;
+  gap: 4.2rem;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, 0px);
+}
+.main .detail .rectangle .event-content .img-content img {
+  width: 535.393px;
+  height: 534.113px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.main .detail .rectangle .event-content .detail-content .title {
+  margin-top: 2rem;
+  color: #FFF;
+  font-family: Poppins;
+  font-size: 44px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  text-transform: capitalize;
+}
+.main .detail .rectangle .event-content .detail-content .date {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+}
+.main .detail .rectangle .event-content .detail-content .date .icon img {
+  width: 18px;
+  height: 18px;
+}
+.main .detail .rectangle .event-content .detail-content .date .text {
+  color: #FFF;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0.08px;
+}
+.main .detail .rectangle .event-content .detail-content .venue {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+.main .detail .rectangle .event-content .detail-content .venue .icon img {
+  width: 18px;
+  height: 18px;
+}
+.main .detail .rectangle .event-content .detail-content .venue .text {
+  color: #FFF;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0.08px;
+}
+.main .detail .rectangle .event-content .detail-content .buy-btn {
+  margin-top: 2rem;
+}
+.main .detail .rectangle .event-content .detail-content .buy-btn button {
+  width: 241px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  border: none;
+  background: #FFF;
+  color: #000;
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+}
+.main .detail .rectangle .event-content .detail-content .details {
+  margin-top: 1rem;
+}
+.main .detail .rectangle .event-content .detail-content .details p {
+  margin: 0;
+  padding: 0;
+  color: #000;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px;
+  letter-spacing: 0.09px;
+  white-space: pre-line;
+}
+.main .detail .rectangle .event-content .detail-content .organizer {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+}
+.main .detail .rectangle .event-content .detail-content .organizer .heading {
+  color: #000;
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+}
+.main .detail .rectangle .event-content .detail-content .organizer .name {
+  color: #000;
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}/*# sourceMappingURL=public-events-detail.css.map */
