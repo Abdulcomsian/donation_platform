@@ -11,11 +11,11 @@
             contentType : false,
             success:function(res){
                 loader.classList.add("d-none")
-                if(typeof(submitBtn) !== null){
+                if(submitBtn != null){
                         submitBtn.removeAttribute('disabled' , true);
                 }
                 if(res.status){
-                    if(typeof(redirectUrl) !== null){
+                    if(redirectUrl != null){
                         window.location.href = redirectUrl;
                     }else{
                         Swal.fire({

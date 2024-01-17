@@ -16,6 +16,9 @@
 @endsection
 
 @section('content')
+@if(session('toastr'))
+    {!! session('toastr') !!}
+@endif
 <div class="compaigns">
     <div class="header">
         <div class="heading">Campaigns</div>
@@ -30,7 +33,28 @@
             <div class="col-md-4 my-2">
                 <div class="card">
                     <div class="top">
-                        <div class="heading">{{$campaign->title}}</div>
+                        <div class="container p-0 menu-container d-flex justify-content-between">
+                            <div class="heading">
+                                <a href="{{url('donate-now', $campaign->id)}}">
+                                    {{$campaign->title}}
+                                </a>
+                            </div>
+                            <div class="menu-wrap">
+                                <input type="checkbox" class="toggler" />
+                                <div class="dots">
+                                  <div></div>
+                                </div>
+                                <div class="menu">
+                                  <div>
+                                    <ul>
+                                        <li><a href="{{url('donate-now' , $campaign->id)}}" class="link">View</a></li>
+                                      <li><a href="{{url('campaigns/edit-campaign' , $campaign->id)}}" class="link">Edit</a></li>
+                                      <li><a href="{{url('campaigns/delete-campaign' , $campaign->id)}}" class="link">Delete</a></li>
+                                    </ul>
+                                  </div>
+                                </div>
+                              </div>
+                        </div>
                         <div class="info">
                             <div class="days-ago">
                                 <div class="icon">

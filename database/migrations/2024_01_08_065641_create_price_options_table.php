@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('campaign_price_options', function (Blueprint $table) {
+        Schema::create('price_options', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('campaign_id');
             $table->double('amount' , 6 , 2);
-            $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -26,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('campaign_price_options');
+        Schema::dropIfExists('price_options');
     }
 };

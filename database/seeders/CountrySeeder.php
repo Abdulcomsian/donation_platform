@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Country;
+use App\Models\{Country, City};
 
 class CountrySeeder extends Seeder
 {
@@ -19,15 +19,14 @@ class CountrySeeder extends Seeder
             $country = new Country();
             $country->name = $key;
             $country->save();
-            // $cityList = [];
-            // foreach($cities as $city){
-            //     $cityList[] = ['name' => $city , 'country_id' => $country->id];
-            // }
+            $cityList = [];
+            foreach($cities as $city){
+                $cityList[] = ['name' => $city , 'country_id' => $country->id];
+            }
 
-            // City::insert($cityList);
+            City::insert($cityList);
             
         } 
 
-        echo "Country added successfully";
     }
 }
