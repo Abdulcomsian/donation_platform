@@ -23,7 +23,7 @@ return new class extends Migration
             $table->double('amount' , 6 , 2)->nullable();
             $table->enum('fee_recovery' , ['disable' , 'optional' , 'required'])->nullable();
             $table->dateTime('date');
-            $table->integer('status')->default(1);
+            $table->integer('status')->default(0);
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
             $table->softDeletes();

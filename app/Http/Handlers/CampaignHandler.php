@@ -1,9 +1,7 @@
 <?php
 
 namespace App\Http\Handlers;
-use App\Models\Campaign;
-use App\Models\CampaignFrequency;
-use GuzzleHttp\Psr7\Request;
+use App\Models\{Campaign , CampaignFrequency , CampaignPriceOption , PriceOption} ;
 
 class CampaignHandler{
 
@@ -16,6 +14,7 @@ class CampaignHandler{
         $campaign->recurring = $request->recurring;
         $campaign->user_id = auth()->user()->id;
         $campaign->campaign_goal = isset($request->campaign_goal) ? $request->campaign_goal : 0;
+        $campaign->status = $request->status;
     
         $file = $request->file('file');
         $filename =  strtotime(now()).str_replace(" ", "-" ,$file->getClientOriginalName());
@@ -40,21 +39,86 @@ class CampaignHandler{
            $campaignfrequency->save();
         }
 
+        $priceOptions = PriceOption::select('id')->get()->pluck('id')->toArray();
+        $priceOptionsList= [];
+        foreach($priceOptions as $option){
+            $priceOptionsList[] = ['campaign_id' => $campaign->id , 'price_option_id' => $option];
+        }   
+
+        CampaignPriceOption::insert($priceOptionsList);
+
+
+
         return ['status' => true , 'msg' => 'Campaign Created Successfully'];
     }
 
+
+    public function editCampaign($request){
+        $campaign = Campaign::where('id' , $request->campaign_id)->first();
+        $campaign->title = $request->title;
+        $campaign->excerpt = $request->excerpt;
+        $campaign->description = $request->description;
+        $campaign->recurring = $request->recurring;
+        $campaign->campaign_goal = isset($request->campaign_goal) ? $request->campaign_goal : 0;
+        $campaign->status = $request->status;
+
+        if($request->hasFile('file')){
+            $file = $request->file('file');
+            $filename =  strtotime(now()).str_replace(" ", "-" ,$file->getClientOriginalName());
+            $file->move(public_path('assets/uploads') , $filename);
+            $campaign->image = $filename;
+        }
+
+
+        if($request->campaign_goal){
+            $campaign->amount = $request->amount;
+            $campaign->fee_recovery = $request->fee_recovery;
+        }else{
+            $campaign->amount = null;
+            $campaign->fee_recovery = null;
+        }
+
+        $campaign->date = $request->date;
+        $campaign->save();
+
+        $frequencies = explode(",",$request->frequency);
+
+        //deleting all the frequencies that are not in current frequency
+        CampaignFrequency::where('campaign_id' , $request->campaign_id)->whereNotIn('type' , $frequencies)->delete();
+
+        $campaignFrequencies = CampaignFrequency::where('id' , $request->campaign_id)->get()->pluck('type')->toArray();
+
+        foreach($frequencies as $frequency){
+            if(!in_array($frequency , $campaignFrequencies)){
+                $campaignfrequency = new CampaignFrequency;
+                $campaignfrequency->campaign_id = $request->campaign_id;
+                $campaignfrequency->type = $frequency;
+                $campaignfrequency->save();
+            }
+        }
+
+
+
+        return ['status' => true , 'msg' => 'Campaign Updated Successfully'];
+    }
+
     public function getCampaignWithId($id){
-        return  Campaign::with('frequency')->where('id' , $id)->first(); 
+        return  Campaign::with('frequencies')->where('id' , $id)->first(); 
     }
 
     public function getCampaignList(){
         $campaigns = null;
-        if(auth()->user()->type != \AppConst::ADMIN){
-            $campaigns = Campaign::where('user_id' , auth()->user()->id)->orderBy('id' , 'desc')->paginate(10);
-        }else{
+        if(auth()->user()->hasRole('admin')){
             $campaigns = Campaign::orderBy('id' , 'desc')->paginate(10);
+        }else{
+            $campaigns = Campaign::where('user_id' , auth()->user()->id)->orderBy('id' , 'desc')->paginate(10);
         }
         return $campaigns;
+    }
+
+
+    public function removeCampaign($id){
+        Campaign::where('id' , $id)->delete();
     }
 
 }

@@ -134,8 +134,8 @@
             </div>
 
             <div class="button-container">
-                <button class="btn submit" type="submit" class="save">Save <i class="fas fa-circle-notch fa-spin mx-2 d-none submit-loader"></i></button>
-                <button class="publish" type="button">Publish Campaign</button>
+                <button class="btn submit" type="submit" class="save">Update <i class="fas fa-circle-notch fa-spin mx-2 d-none submit-loader"></i></button>
+                <button class="publish" type="button">Publish Campaign <i class="fas fa-circle-notch fa-spin mx-2 d-none publish-loader"></i></button>
             </div>
         </form>
     </div>
@@ -155,7 +155,7 @@
 
         function setFrequency(){
             $('#frequency').select2();
-            let frequency = '{{implode("," , $campaign->frequency->pluck('type')->toArray())}}'.split(",");
+            let frequency = '{{implode("," , $campaign->frequencies->pluck('type')->toArray())}}'.split(",");
             $('#frequency').val(frequency).trigger('change');
         }
     })
@@ -185,9 +185,27 @@
         let loader = document.querySelector(".submit-loader");
         let form = new FormData(this);
         form.append("frequency" , frequency);
-        url = '{{route("create.campaign")}}';
-        redirectUrl = "{{route('campaign.created')}}";
+        form.append('status' , 0 );
+        url = '{{route("edit.campaign")}}';
+        redirectUrl = "{{route('campaign.updated')}}";
         addFormData(url , form , loader , redirectUrl , submitBtn );
+
+    })
+
+
+    document.querySelector(".publish").addEventListener("click" , function(e){
+        
+        e.preventDefault();
+        let publishBtn = document.querySelector(".publish");
+        let frequency = $("#frequency").val().join(",");
+        let loader = document.querySelector(".publish-loader");
+        let form = new FormData(document.querySelector(".campaign-form"));
+        form.append("frequency" , frequency);
+        form.append('status' , 1 );
+        url = '{{route("edit.campaign")}}';
+        redirectUrl = "{{route('campaign.updated')}}";
+        addFormData(url , form , loader , redirectUrl , publishBtn );
+
     })
 
 

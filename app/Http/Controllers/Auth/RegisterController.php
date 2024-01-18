@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\AppConst;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
-use App\Models\{User , OrganizationProfile};
+use App\Models\{User , OrganizationProfile , Address};
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -85,23 +85,21 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $user = new User();
-        $user->type = $data['type'];
-        $user->country_id = $data['country'] ?? null;
         $user->first_name = $data['first_name'];
         $user->last_name = $data['last_name'];
         $user->email = $data['email'];
         $user->password = Hash::make($data['password']);
         $user->save();
-
-        // User::create([
-        //     'type' => $data['type'],
-        //     'country_id' => $data['country'],
-        //     'first_name' => $data['first_name'],
-        //     'last_name' => $data['last_name'],
-        //     'email' => $data['email'],
-        //     'password' => Hash::make($data['password']),
-        // ]);
-
+        
+        if(!is_null($data['country'])){
+            Address::create([
+                'country_id' => $data['country'],
+                'addressable_id' => $user->id,
+                'addressable_type' => 'App\Models\Address'
+            ]);
+        }
+        
+        $data['type'] == AppConst::NON_PROFIT_ORGANIZATION ? $user->assignRole('non_profit_organization') : $user->assignRole('fundraiser');
         
         if($data['type'] == AppConst::NON_PROFIT_ORGANIZATION){
 

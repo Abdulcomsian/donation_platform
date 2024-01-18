@@ -10,9 +10,9 @@ class PriceOption extends Model
 {
     use HasFactory;
     
-    protected $table = 'campaign_price_options';
+    protected $table = 'price_options';
     protected $primaryKey = 'id';
-    protected $fillable = ['campaign_id' , 'amount'];
+    protected $fillable = ['amount'];
 
     public function campaign(){
         return $this->belongTo(Campaign::class , 'campaign_id' , 'id');

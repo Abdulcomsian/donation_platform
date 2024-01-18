@@ -4,15 +4,18 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasRoles;
+use Spatie\Permission\Traits\HasPermissions;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Cashier\Billable;
-use App\Models\Country;
+use App\Models\{Address , MailchimpIntegration};
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable , Billable;
+    use HasApiTokens, HasFactory, Notifiable , Billable , HasRoles , HasPermissions;
 
     /**
      * The attributes that are mass assignable.
@@ -24,8 +27,7 @@ class User extends Authenticatable
         'last_name',
         'email',
         'password',
-        'type',
-        'country_id'
+        'phone',
     ];
 
     /**
@@ -48,11 +50,23 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function country(){
-        return $this->belongsTo(Country::class , 'country_id' , 'id');
+    protected static function booted()
+    {
+        static::addGlobalScope('postDetails' , function(Builder $builder){
+            $builder->with('address');
+        });
     }
-
+    
     public function campaigns(){
         return $this->hasMany(Campaign::class , 'user_id' , 'id');
     }
+
+    public function address(){
+        return $this->morphOne(Address::class , 'addressable');
+    }
+
+    public function mailchimp(){
+        return $this->hasOne(MailchimpIntegration::class , 'user_id' , 'id');
+    }
+
 }

@@ -18,10 +18,11 @@ class Campaign extends Model
     }
 
     public function priceOptions(){
-        return $this->hasMany(PriceOption::class , 'campaign_id' , 'id');
+        return $this->belongsToMany(PriceOption::class , 'campaign_price_options' , 'campaign_id' , 'price_option_id');
     }
 
-    public function frequency(){
+    public function frequencies(){
         return $this->hasMany(CampaignFrequency::class , 'campaign_id' , 'id');
     }
+
 }

@@ -16,7 +16,7 @@ class EventsController extends Controller
         return view('events.create');
     }
 
-    public function getPublicEvents()
+    public function getEvents()
     {
         return view('public.events.index');
     }

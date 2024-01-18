@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\{Campaign , CampaignFrequency, User};
+use App\Models\{Campaign , CampaignFrequency, User , PriceOption , CampaignPriceOption};
 use Faker\Factory as Faker;
 
 class CampaignSeeder extends Seeder
@@ -16,13 +16,14 @@ class CampaignSeeder extends Seeder
     {
         $faker = Faker::create();
 
-            $campaignList = [];
-            $userId = User::orderBy('id' , 'asc')->first()->id;
+            $priceOptions = PriceOption::select('id')->get()->pluck('id')->toArray();
+
+            // $userId = User::orderBy('id' , 'asc')->first()->id;
 
             for($i =0 ; $i <= 20 ; $i++){
 
                 $campaign = [
-                    'user_id' => $userId,
+                    'user_id' => $faker->randomElement([1,4]),
                     'title' => $faker->name,
                     'excerpt' => $faker->text(100),
                     'description' => $faker->text(200),
@@ -57,7 +58,14 @@ class CampaignSeeder extends Seeder
                                         'campaign_id' => $campaignId,
                                         'type' => $faker->randomElement(['monthly' , 'quarterly' , 'annually']),
                                     ]);
+                
+                $campaignPriceOptionList = [];
+                foreach($priceOptions as $option){
+                    $campaignPriceOptionList[] = ['campaign_id' => $campaignId , 'price_option_id' => $option];
+                }
 
+                CampaignPriceOption::insert($campaignPriceOptionList);
+               
             }
 
         }

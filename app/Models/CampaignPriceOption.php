@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Country extends Model
+class CampaignPriceOption extends Model
 {
     use HasFactory;
 
-    protected $table = 'countries';
+    protected $table = 'campaign_price_options';
     protected $primaryKey = 'id';
-    protected $fillable = ['name'];
+    protected $fillable = ['campaign_id' , 'price_option_id'];
 
 }

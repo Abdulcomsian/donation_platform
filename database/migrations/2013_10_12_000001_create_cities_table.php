@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('frequency_plans', function (Blueprint $table) {
-            // 'frequency_id', 'plan_id'
+        Schema::create('cities', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('frequency_id');
-            $table->string('plan_id')->unique();
-            $table->string('plan_title');
+            $table->unsignedBigInteger('country_id');
+            $table->string('name');
+            $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('frequency_plans');
+        Schema::dropIfExists('cities');
     }
 };

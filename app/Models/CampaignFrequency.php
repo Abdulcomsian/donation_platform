@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\{ Campaign , FrequencyPlan};
+use App\Models\{ Campaign};
 
 class CampaignFrequency extends Model
 {
@@ -18,7 +18,4 @@ class CampaignFrequency extends Model
         return $this->belongsTo(Campaign::class , 'campaign_id' , 'id');
     }
 
-    public function plan(){
-        return $this->hasOne(FrequencyPlan::class , 'frequency_id' , 'id');
-    }
 }

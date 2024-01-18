@@ -19,9 +19,38 @@
     <!-- Scripts -->
     {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <script src="{{asset('assets/js/jquery-3.7.1.min.js')}}"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
-
+    <script src="{{asset('assets/package/validator/validator.js')}}"></script>
+    
     <link rel="stylesheet" href="{{asset('assets/css/donate-now-layout.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="{{asset('assets/package/sweet-alert/sweet-alert.min.js')}}"></script>
+    <style>
+        .donation-amount-box.active .donation-amount{
+            color: white!important;
+            background: #5BC17F;
+        }
+
+        select.form-select {
+            height: 60px;
+            border: 1px solid #E5E5E5;
+            border-radius: 13px;
+        }
+
+        .back-btn{
+            cursor: pointer;
+            transition: 0.2s ease-in-out;
+            border: 2px solid black;
+            border-radius: 50%;
+            padding: 0px 7px;
+        }
+
+        .back-btn:hover{
+            color: #5BC17F;
+            border: 2px solid #5BC17F;
+        }
+    </style>
 </head>
 
 <body>
@@ -32,6 +61,7 @@
                     <div class="icon">
                         <img src="{{ asset('assets/images/Group 2 (1).png') }}" alt="">
                     </div>
+                    @if(auth()->check())
                     <div class="profile">
                         <div class="items">
                             <div class="notification">
@@ -49,7 +79,7 @@
                                     <div class="profile-icon">
                                         <img src="{{ asset('assets/images/Ellipse 3 (1).png') }}" alt="">
                                     </div>
-                                    <div class="profile-name">Esther</div>
+                                    <div class="profile-name">{{ auth()->user()->first_name }}</div>
                                     <div class="caret-drop">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             viewBox="0 0 24 24" fill="none">
@@ -62,14 +92,15 @@
                             </div>
                         </div>
                     </div>
+                    @endif
                 </div>
             </div>
 
             <div class="container donate-now-container">
                 <div class="left">
-                    <div class="title">Donation For Orphans</div>
+                    <div class="title">{{$campaign->title}}</div>
                     <div class="description">
-                        Lorem ipsum dolor sit amet consectetur. At fermentum augue tempor felis nisi.
+                        {{$campaign->description}}
                     </div>
                     <div class="icon">
                         <img src="{{ asset('assets/images/26d0ba0efd3df0807e2e00c7265e76df.jpeg') }}" alt="">
@@ -91,6 +122,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
     </script>
+    @yield('script')
 </body>
 
 </html>
