@@ -4,8 +4,8 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-control-name">
-                        <label for="name">Organization Name</label>
-                        <input type="text" id="name" name="name" placeholder="Donate" value="Donate" required>
+                        <label for="organization-name">Organization Name</label>
+                        <input type="text" id="organization-name" name="organization-name" placeholder="Donate" value="Donate" required>
                     </div>
                     <div class="form-control-type">
                         <label for="type">Organization Type</label>

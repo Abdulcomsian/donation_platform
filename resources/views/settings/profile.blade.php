@@ -4,8 +4,8 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-control-name">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" placeholder="John Doe" value="John Doe" name="name">
+                        <label for="user-name">Name</label>
+                        <input type="text" id="user-name" placeholder="John Doe" value="John Doe" name="user-name">
                     </div>
                     <div class="form-control-email">
                         <label for="email">Email</label>

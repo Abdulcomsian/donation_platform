@@ -784,6 +784,7 @@
   position: sticky;
   top: 0;
   z-index: 1;
+  text-align: center;
   padding: 1rem 2rem;
   background-color: rgba(221, 223, 229, 0.15);
   color: #000;
@@ -798,6 +799,7 @@
 }
 .settings .tabs-container .tab-content .tab-pane .admin .data-table table tbody tr .name {
   padding: 1.5rem 2rem;
+  text-align: center;
   color: #000;
   font-family: Poppins;
   font-size: 14px;
@@ -808,6 +810,7 @@
 }
 .settings .tabs-container .tab-content .tab-pane .admin .data-table table tbody tr .email {
   padding: 1.5rem 2rem;
+  text-align: center;
   color: var(--Black, #303030);
   font-family: Inter;
   font-size: 14px;
@@ -815,97 +818,269 @@
   font-weight: 400;
   line-height: normal;
 }
+.settings .tabs-container .tab-content .tab-pane .admin .data-table table tbody tr .role {
+  padding: 1.5rem 2rem;
+  text-align: center;
+}
+.settings .tabs-container .tab-content .tab-pane .admin .data-table table tbody tr .role select {
+  padding: 5px 10px;
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  background-color: rgba(94, 99, 102, 0.08);
+  color: var(--Black-30, #8B8D97);
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
 .settings .tabs-container .tab-content .tab-pane .admin .data-table table tbody tr .status {
   padding: 1.5rem 2rem;
+  text-align: center;
 }
-.settings .tabs-container .tab-content .tab-pane .admin .data-table table tbody tr .status .complete {
-  background-color: rgba(91, 193, 127, 0.1);
-  border-radius: 20px;
-  padding: 5px 10px;
+.settings .tabs-container .tab-content .tab-pane .admin .data-table table tbody tr .status .active {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.settings .tabs-container .tab-content .tab-pane .admin .data-table table tbody tr .status .active .icon {
+  width: 5.32px;
+  height: 5.32px;
+  background-color: #5BC17F;
+  border-radius: 50px;
+}
+.settings .tabs-container .tab-content .tab-pane .admin .data-table table tbody tr .status .active .text {
   color: #5BC17F;
+  text-align: center;
   font-family: Poppins;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
-  line-height: 16px;
-  letter-spacing: 0.07px;
-  width: -moz-max-content;
-  width: max-content;
+  line-height: normal;
 }
 .settings .tabs-container .tab-content .tab-pane .admin .data-table table tbody tr .status .pending {
-  background-color: rgba(252, 187, 69, 0.1);
-  border-radius: 20px;
-  padding: 5px 10px;
-  color: #FCBB45;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.settings .tabs-container .tab-content .tab-pane .admin .data-table table tbody tr .status .pending .icon {
+  width: 5.32px;
+  height: 5.32px;
+  background-color: #EBA352;
+  border-radius: 50px;
+}
+.settings .tabs-container .tab-content .tab-pane .admin .data-table table tbody tr .status .pending .text {
+  color: #EBA352;
+  text-align: center;
   font-family: Poppins;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
-  line-height: 16px;
-  letter-spacing: 0.07px;
-  width: -moz-max-content;
-  width: max-content;
+  line-height: normal;
 }
-.settings .tabs-container .tab-content .tab-pane .admin .data-table table tbody tr .status .processing {
-  background-color: rgba(114, 113, 255, 0.1);
-  border-radius: 20px;
-  padding: 5px 10px;
-  color: #7271FF;
-  font-family: Poppins;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 16px;
-  letter-spacing: 0.07px;
-  width: -moz-max-content;
-  width: max-content;
+.settings .tabs-container .tab-content .tab-pane .admin .data-table table tbody tr .status .inactive {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
 }
-.settings .tabs-container .tab-content .tab-pane .admin .data-table table tbody tr .status .refunded {
-  background-color: rgba(151, 71, 255, 0.1);
-  border-radius: 20px;
-  padding: 5px 10px;
-  color: #9747FF;
-  font-family: Poppins;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 16px;
-  letter-spacing: 0.07px;
-  width: -moz-max-content;
-  width: max-content;
+.settings .tabs-container .tab-content .tab-pane .admin .data-table table tbody tr .status .inactive .icon {
+  width: 5.32px;
+  height: 5.32px;
+  background-color: #FD4C5C;
+  border-radius: 50px;
 }
-.settings .tabs-container .tab-content .tab-pane .admin .data-table table tbody tr .status .failed {
-  background-color: rgba(253, 76, 92, 0.1);
-  border-radius: 20px;
-  padding: 5px 10px;
+.settings .tabs-container .tab-content .tab-pane .admin .data-table table tbody tr .status .inactive .text {
   color: #FD4C5C;
-  font-family: Poppins;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 16px;
-  letter-spacing: 0.07px;
-  width: -moz-max-content;
-  width: max-content;
-}
-.settings .tabs-container .tab-content .tab-pane .admin .data-table table tbody tr .amount {
-  padding: 1.5rem 2rem;
-  color: #000;
+  text-align: center;
   font-family: Poppins;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
 }
-.settings .tabs-container .tab-content .tab-pane .admin .data-table table tbody tr .fee-recoverd {
+.settings .tabs-container .tab-content .tab-pane .admin .data-table table tbody tr .action {
   padding: 1.5rem 2rem;
-  color: #000;
-  font-family: Poppins;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
+  text-align: center;
+}
+.settings .tabs-container .tab-content .tab-pane .admin .data-table table tbody tr .action button {
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  background-color: rgba(253, 76, 92, 0.1);
+  padding: 10px 10px;
+  display: inline-flex;
+}
+.settings .tabs-container .tab-content .tab-pane .admin .data-table table tbody tr .action button img {
+  width: 17px;
+  height: 17px;
 }
 .settings .tabs-container .tab-content .tab-pane .admin .data-table table tbody tr:last-child {
   border: none;
+}
+@media (min-width: 576px) {
+  .settings .tabs-container .tab-content .tab-pane .admin #add-user-modal .modal-dialog {
+    max-width: 745.375px;
+  }
+}
+.settings .tabs-container .tab-content .tab-pane .admin #add-user-modal .modal-content .modal-header {
+  border: none;
+  background-color: #F9FAFB;
+}
+.settings .tabs-container .tab-content .tab-pane .admin #add-user-modal .modal-content .modal-header .modal-title {
+  width: 100%;
+  text-align: center;
+  color: #000;
+  text-align: center;
+  font-family: Nunito;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0.13px;
+}
+.settings .tabs-container .tab-content .tab-pane .admin #add-user-modal .modal-content .modal-body {
+  padding: 3rem 1rem 1rem 1rem;
+}
+.settings .tabs-container .tab-content .tab-pane .admin #add-user-modal .modal-content .modal-body .form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.settings .tabs-container .tab-content .tab-pane .admin #add-user-modal .modal-content .modal-body .form-container form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  width: 504.5px;
+}
+.settings .tabs-container .tab-content .tab-pane .admin #add-user-modal .modal-content .modal-body .form-container form .form-control-name {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+.settings .tabs-container .tab-content .tab-pane .admin #add-user-modal .modal-content .modal-body .form-container form .form-control-name label {
+  color: var(--Neutral-Gray-1, #303030);
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+}
+.settings .tabs-container .tab-content .tab-pane .admin #add-user-modal .modal-content .modal-body .form-container form .form-control-name input[type=text] {
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #AEAEAE;
+  outline: none;
+  color: #000;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.settings .tabs-container .tab-content .tab-pane .admin #add-user-modal .modal-content .modal-body .form-container form .form-control-name input[type=text]::-moz-placeholder {
+  color: #949494;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.settings .tabs-container .tab-content .tab-pane .admin #add-user-modal .modal-content .modal-body .form-container form .form-control-name input[type=text]::placeholder {
+  color: #949494;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.settings .tabs-container .tab-content .tab-pane .admin #add-user-modal .modal-content .modal-body .form-container form .form-control-email {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+.settings .tabs-container .tab-content .tab-pane .admin #add-user-modal .modal-content .modal-body .form-container form .form-control-email label {
+  color: var(--Neutral-Gray-1, #303030);
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+}
+.settings .tabs-container .tab-content .tab-pane .admin #add-user-modal .modal-content .modal-body .form-container form .form-control-email .email-role-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #AEAEAE;
+}
+.settings .tabs-container .tab-content .tab-pane .admin #add-user-modal .modal-content .modal-body .form-container form .form-control-email .email-role-container input[type=email] {
+  border: none;
+  outline: none;
+  width: 100%;
+  color: #000;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.settings .tabs-container .tab-content .tab-pane .admin #add-user-modal .modal-content .modal-body .form-container form .form-control-email .email-role-container input[type=email]::-moz-placeholder {
+  color: #949494;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.settings .tabs-container .tab-content .tab-pane .admin #add-user-modal .modal-content .modal-body .form-container form .form-control-email .email-role-container input[type=email]::placeholder {
+  color: #949494;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.settings .tabs-container .tab-content .tab-pane .admin #add-user-modal .modal-content .modal-body .form-container form .form-control-email .email-role-container select {
+  border: none;
+  outline: none;
+  border-left: 1px solid #949494;
+  padding-left: 10px;
+  color: #000;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.settings .tabs-container .tab-content .tab-pane .admin #add-user-modal .modal-content .modal-body .form-container form .submit-action {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.settings .tabs-container .tab-content .tab-pane .admin #add-user-modal .modal-content .modal-body .form-container form .submit-action .send-invite {
+  border-radius: 8px;
+  background-color: #5BC17F;
+  border: none;
+  outline: none;
+  padding: 12px 16px;
+  color: #FFF;
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
 }/*# sourceMappingURL=settings.css.map */
