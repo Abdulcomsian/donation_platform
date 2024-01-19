@@ -1,7 +1,7 @@
 <script>
     function addFormData(url , form , loader , redirectUrl = null , submitBtn = null){
         loader.classList.remove("d-none")
-        submitBtn.setAttribute('disabled' , true);
+        // submitBtn.setAttribute('disabled' , true);
         form.append("_token" , '{{csrf_token()}}');
         $.ajax({
             url : url,
@@ -12,7 +12,7 @@
             success:function(res){
                 loader.classList.add("d-none")
                 if(submitBtn != null){
-                        submitBtn.removeAttribute('disabled' , true);
+                        // submitBtn.removeAttribute('disabled' , true);
                 }
                 if(res.status){
                     if(redirectUrl != null){
