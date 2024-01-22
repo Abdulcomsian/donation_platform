@@ -19,7 +19,8 @@ class DonationController extends Controller
 
     public function donors()
     {
-        return view('donors.index');
+        $donars = $this->donationHandler->getRecentDonars();
+        return view('donors.index')->with("donars" , $donars);
     }
 
     public function donations()
@@ -119,8 +120,8 @@ class DonationController extends Controller
                 break;
             }
         }else{
-            [$recievedAmount , $totalAmount] = $this->donationHandler->calculateDonationAmount($request->status , $request->campaignId , $request->upperDate , $request->lowerDate );
-            [$failedAmount , $failedRecievedAmount ] = $this->donationHandler->calculateDonationAmount($request->status , $request->campaignId , $request->upperDate , $request->lowerDate );
+            [$recievedAmount , $totalAmount] = $this->donationHandler->calculateDonationAmount(\AppConst::DONATION_COMPLETED , $request->campaignId , $request->upperDate , $request->lowerDate );
+            [$failedAmount , $failedRecievedAmount ] = $this->donationHandler->calculateDonationAmount(\AppConst::DONATION_FAILED , $request->campaignId , $request->upperDate , $request->lowerDate );
             
             
         }

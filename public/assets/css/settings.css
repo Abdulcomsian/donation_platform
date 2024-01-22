@@ -1,0 +1,1086 @@
+.settings {
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+  padding: 1rem;
+}
+.settings .heading {
+  color: #0D161A;
+  font-family: Poppins;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 166.5%;
+}
+.settings .tabs-container {
+  margin-top: 1.5rem;
+}
+.settings .tabs-container .nav {
+  border-bottom: 2px solid #E5E7EB;
+}
+.settings .tabs-container .nav .nav-item {
+  position: relative;
+}
+.settings .tabs-container .nav .nav-item .nav-link {
+  color: #1F2937;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0.07px;
+  outline: none;
+  padding: 15px 20px;
+}
+.settings .tabs-container .nav .nav-item .nav-link.active {
+  background-color: transparent;
+  color: #5BC17F;
+  border-radius: 0;
+}
+.settings .tabs-container .nav .nav-item .nav-link.active::after {
+  content: "";
+  border-bottom: 2px solid #5BC17F;
+  display: block;
+  width: 100%;
+  position: absolute;
+  bottom: -2px;
+  right: 0;
+}
+.settings .tabs-container .tab-content .tab-pane .profile .form-container form .form-control-name {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  margin-top: 20px;
+}
+.settings .tabs-container .tab-content .tab-pane .profile .form-container form .form-control-name label {
+  color: #000;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.36px;
+}
+.settings .tabs-container .tab-content .tab-pane .profile .form-container form .form-control-name input[type=text] {
+  padding: 1rem;
+  border-radius: 15px;
+  border: 1px solid #E5E5E5;
+  outline: none;
+  color: #000;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.settings .tabs-container .tab-content .tab-pane .profile .form-container form .form-control-name input[type=text]::-moz-placeholder {
+  color: #949494;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.settings .tabs-container .tab-content .tab-pane .profile .form-container form .form-control-name input[type=text]::placeholder {
+  color: #949494;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.settings .tabs-container .tab-content .tab-pane .profile .form-container form .form-control-email {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  margin-top: 20px;
+}
+.settings .tabs-container .tab-content .tab-pane .profile .form-container form .form-control-email label {
+  color: #000;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.36px;
+}
+.settings .tabs-container .tab-content .tab-pane .profile .form-container form .form-control-email input[type=email] {
+  padding: 1rem;
+  border-radius: 15px;
+  border: 1px solid #E5E5E5;
+  outline: none;
+  color: #000;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.settings .tabs-container .tab-content .tab-pane .profile .form-container form .form-control-email input[type=email]::-moz-placeholder {
+  color: #949494;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.settings .tabs-container .tab-content .tab-pane .profile .form-container form .form-control-email input[type=email]::placeholder {
+  color: #949494;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.settings .tabs-container .tab-content .tab-pane .profile .form-container form .form-control-password {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  margin-top: 20px;
+}
+.settings .tabs-container .tab-content .tab-pane .profile .form-container form .form-control-password label {
+  color: #000;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.36px;
+}
+.settings .tabs-container .tab-content .tab-pane .profile .form-container form .form-control-password button {
+  width: 200px;
+  border-radius: 8px;
+  border: 1px solid #5BC17F;
+  outline: none;
+  padding: 12px 16px;
+  background-color: #FFF;
+  color: #5BC17F;
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}
+.settings .tabs-container .tab-content .tab-pane .profile .form-container form .form-control-country {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  margin-top: 20px;
+}
+.settings .tabs-container .tab-content .tab-pane .profile .form-container form .form-control-country label {
+  color: #000;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.36px;
+}
+.settings .tabs-container .tab-content .tab-pane .profile .form-container form .form-control-country select {
+  padding: 1rem;
+  border-radius: 15px;
+  border: 1px solid #E5E5E5;
+  outline: none;
+  color: #000;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.settings .tabs-container .tab-content .tab-pane .profile .form-container form .form-control-number {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  margin-top: 20px;
+}
+.settings .tabs-container .tab-content .tab-pane .profile .form-container form .form-control-number label {
+  color: #000;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.36px;
+}
+.settings .tabs-container .tab-content .tab-pane .profile .form-container form .form-control-number input[type=tel] {
+  width: 100%;
+  border-radius: 15px;
+  border: 1px solid #E5E5E5;
+  outline: none;
+  margin-top: 10px;
+  height: 65.932px;
+}
+.settings .tabs-container .tab-content .tab-pane .profile .form-container form .form-control-number .iti__flag-container {
+  display: flex;
+  align-items: center;
+}
+.settings .tabs-container .tab-content .tab-pane .profile .form-container form .form-control-number .iti__selected-flag {
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  padding: 0 15px 0 30px;
+  width: 100%;
+  height: 40px;
+  border-right: 1px solid #E5E5E5;
+}
+.settings .tabs-container .tab-content .tab-pane .profile .form-container form .form-control-number .iti--allow-dropdown input[type=tel] {
+  padding-left: 88px;
+}
+.settings .tabs-container .tab-content .tab-pane .profile .form-container form .submit {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
+.settings .tabs-container .tab-content .tab-pane .profile .form-container form .submit button {
+  padding: 12px 16px;
+  border-radius: 8px;
+  background-color: #5BC17F;
+  outline: none;
+  border: none;
+  color: var(--White-Full, #FFF);
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}
+@media (min-width: 576px) {
+  .settings .tabs-container .tab-content .tab-pane .profile #change-password-modal .modal-dialog {
+    max-width: 823.774px;
+  }
+}
+.settings .tabs-container .tab-content .tab-pane .profile #change-password-modal .modal-content .modal-header {
+  border: none;
+  padding: 2rem 2rem;
+}
+.settings .tabs-container .tab-content .tab-pane .profile #change-password-modal .modal-content .modal-header .modal-title {
+  color: #000;
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Poppins;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+}
+.settings .tabs-container .tab-content .tab-pane .profile #change-password-modal .modal-content .modal-body {
+  padding: 1rem 2rem;
+}
+.settings .tabs-container .tab-content .tab-pane .profile #change-password-modal .modal-content .modal-body .form-control-old-password {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.settings .tabs-container .tab-content .tab-pane .profile #change-password-modal .modal-content .modal-body .form-control-old-password label {
+  color: #000;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.36px;
+}
+.settings .tabs-container .tab-content .tab-pane .profile #change-password-modal .modal-content .modal-body .form-control-old-password input[type=password] {
+  padding: 1rem;
+  border-radius: 15px;
+  border: 1px solid #E5E5E5;
+  outline: none;
+  color: #000;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.settings .tabs-container .tab-content .tab-pane .profile #change-password-modal .modal-content .modal-body .form-control-old-password input[type=password]::-moz-placeholder {
+  color: #949494;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.settings .tabs-container .tab-content .tab-pane .profile #change-password-modal .modal-content .modal-body .form-control-old-password input[type=password]::placeholder {
+  color: #949494;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.settings .tabs-container .tab-content .tab-pane .profile #change-password-modal .modal-content .modal-body .form-control-new-password {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.settings .tabs-container .tab-content .tab-pane .profile #change-password-modal .modal-content .modal-body .form-control-new-password label {
+  color: #000;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.36px;
+}
+.settings .tabs-container .tab-content .tab-pane .profile #change-password-modal .modal-content .modal-body .form-control-new-password .new-password-container {
+  position: relative;
+}
+.settings .tabs-container .tab-content .tab-pane .profile #change-password-modal .modal-content .modal-body .form-control-new-password .new-password-container input {
+  padding: 1rem;
+  border-radius: 15px;
+  border: 1px solid #E5E5E5;
+  outline: none;
+  width: 100%;
+  color: #000;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.settings .tabs-container .tab-content .tab-pane .profile #change-password-modal .modal-content .modal-body .form-control-new-password .new-password-container input::-moz-placeholder {
+  color: #949494;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.settings .tabs-container .tab-content .tab-pane .profile #change-password-modal .modal-content .modal-body .form-control-new-password .new-password-container input::placeholder {
+  color: #949494;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.settings .tabs-container .tab-content .tab-pane .profile #change-password-modal .modal-content .modal-body .form-control-new-password .new-password-container .password-icon {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  color: #949494;
+  cursor: pointer;
+}
+.settings .tabs-container .tab-content .tab-pane .profile #change-password-modal .modal-content .modal-body .form-control-new-password .new-password-container .password-icon .feather-eye-off {
+  display: none;
+}
+.settings .tabs-container .tab-content .tab-pane .profile #change-password-modal .modal-content .modal-body .form-control-confirm-password {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 10px;
+}
+.settings .tabs-container .tab-content .tab-pane .profile #change-password-modal .modal-content .modal-body .form-control-confirm-password label {
+  color: #000;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.36px;
+}
+.settings .tabs-container .tab-content .tab-pane .profile #change-password-modal .modal-content .modal-body .form-control-confirm-password input[type=password] {
+  padding: 1rem;
+  border-radius: 15px;
+  border: 1px solid #E5E5E5;
+  outline: none;
+  color: #000;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.settings .tabs-container .tab-content .tab-pane .profile #change-password-modal .modal-content .modal-body .form-control-confirm-password input[type=password]::-moz-placeholder {
+  color: #949494;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.settings .tabs-container .tab-content .tab-pane .profile #change-password-modal .modal-content .modal-body .form-control-confirm-password input[type=password]::placeholder {
+  color: #949494;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.settings .tabs-container .tab-content .tab-pane .profile #change-password-modal .modal-content .modal-body .submit-actions {
+  border: none;
+  padding: 1rem 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 25px;
+}
+.settings .tabs-container .tab-content .tab-pane .profile #change-password-modal .modal-content .modal-body .submit-actions .cancel {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: #5BC17F;
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}
+.settings .tabs-container .tab-content .tab-pane .profile #change-password-modal .modal-content .modal-body .submit-actions .save {
+  border-radius: 8px;
+  background-color: #5BC17F;
+  border: none;
+  outline: none;
+  padding: 12px 16px;
+  color: var(--White-Full, #FFF);
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}
+.settings .tabs-container .tab-content .tab-pane .organization .form-container form .form-control-name {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  margin-top: 20px;
+}
+.settings .tabs-container .tab-content .tab-pane .organization .form-container form .form-control-name label {
+  color: #000;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.36px;
+}
+.settings .tabs-container .tab-content .tab-pane .organization .form-container form .form-control-name input[type=text] {
+  padding: 1rem;
+  border-radius: 15px;
+  border: 1px solid #E5E5E5;
+  outline: none;
+  color: #000;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.settings .tabs-container .tab-content .tab-pane .organization .form-container form .form-control-name input[type=text]::-moz-placeholder {
+  color: #949494;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.settings .tabs-container .tab-content .tab-pane .organization .form-container form .form-control-name input[type=text]::placeholder {
+  color: #949494;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.settings .tabs-container .tab-content .tab-pane .organization .form-container form .form-control-type {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  margin-top: 20px;
+}
+.settings .tabs-container .tab-content .tab-pane .organization .form-container form .form-control-type label {
+  color: #000;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.36px;
+}
+.settings .tabs-container .tab-content .tab-pane .organization .form-container form .form-control-type select {
+  padding: 1rem;
+  border-radius: 15px;
+  border: 1px solid #E5E5E5;
+  outline: none;
+  color: #000;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.settings .tabs-container .tab-content .tab-pane .organization .form-container form .form-control-logo {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  margin-top: 20px;
+}
+.settings .tabs-container .tab-content .tab-pane .organization .form-container form .form-control-logo label {
+  color: #000;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.36px;
+}
+.settings .tabs-container .tab-content .tab-pane .organization .form-container form .form-control-logo .image-upload {
+  height: 133.83px;
+  border-radius: 15px;
+  border: 1px solid #E5E5E5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.settings .tabs-container .tab-content .tab-pane .organization .form-container form .form-control-logo .image-upload button {
+  width: 124px;
+  height: 36px;
+  border-radius: 8px;
+  background-color: #5BC17F;
+  color: var(--White-Full, #FFF);
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.settings .tabs-container .tab-content .tab-pane .organization .form-container form .form-control-logo .image-upload .label {
+  color: rgba(64, 64, 64, 0.6);
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.28px;
+}
+.settings .tabs-container .tab-content .tab-pane .organization .form-container form .form-control-logo .image-upload .info {
+  color: #CBCBCB;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.28px;
+}
+.settings .tabs-container .tab-content .tab-pane .organization .form-container form .form-control-description {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  margin-top: 20px;
+}
+.settings .tabs-container .tab-content .tab-pane .organization .form-container form .form-control-description label {
+  color: #000;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.36px;
+}
+.settings .tabs-container .tab-content .tab-pane .organization .form-container form .form-control-description textarea {
+  border-radius: 15px;
+  border: 1px solid #E5E5E5;
+  color: rgba(64, 64, 64, 0.6);
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+  padding: 1rem;
+  resize: none;
+  outline: none;
+  height: 133.83px;
+}
+.settings .tabs-container .tab-content .tab-pane .organization .form-container form .form-control-website {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  margin-top: 20px;
+}
+.settings .tabs-container .tab-content .tab-pane .organization .form-container form .form-control-website label {
+  color: #000;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.36px;
+}
+.settings .tabs-container .tab-content .tab-pane .organization .form-container form .form-control-website input[type=text] {
+  padding: 1rem;
+  border-radius: 15px;
+  border: 1px solid #E5E5E5;
+  outline: none;
+  color: #000;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.settings .tabs-container .tab-content .tab-pane .organization .form-container form .form-control-website input[type=text]::-moz-placeholder {
+  color: #949494;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.settings .tabs-container .tab-content .tab-pane .organization .form-container form .form-control-website input[type=text]::placeholder {
+  color: #949494;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.settings .tabs-container .tab-content .tab-pane .organization .form-container form .submit {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
+.settings .tabs-container .tab-content .tab-pane .organization .form-container form .submit button {
+  padding: 12px 16px;
+  border-radius: 8px;
+  background-color: #5BC17F;
+  outline: none;
+  border: none;
+  color: var(--White-Full, #FFF);
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}
+.settings .tabs-container .tab-content .tab-pane .admin .header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 15px;
+}
+.settings .tabs-container .tab-content .tab-pane .admin .header .search-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+  border-radius: 8px;
+  border: 1px solid #D0D5DD;
+  padding: 10px;
+}
+.settings .tabs-container .tab-content .tab-pane .admin .header .search-container img {
+  width: 16px;
+  height: 16px;
+}
+.settings .tabs-container .tab-content .tab-pane .admin .header .search-container input {
+  border: none;
+  outline: none;
+  padding: 0;
+  overflow: hidden;
+  color: #64748B;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: Nunito;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.settings .tabs-container .tab-content .tab-pane .admin .header .add-btn-container button {
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  background: #5BC17F;
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: var(--White-Full, #FFF);
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}
+.settings .tabs-container .tab-content .tab-pane .admin .header .add-btn-container button span {
+  color: var(--White-Full, #FFF);
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Poppins;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  /* 109.091% */
+}
+.settings .tabs-container .tab-content .tab-pane .admin .data-table {
+  margin-top: 1.5rem;
+}
+.settings .tabs-container .tab-content .tab-pane .admin .data-table table {
+  width: 100%;
+}
+.settings .tabs-container .tab-content .tab-pane .admin .data-table table thead {
+  position: static;
+}
+.settings .tabs-container .tab-content .tab-pane .admin .data-table table thead tr th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  text-align: center;
+  padding: 1rem 2rem;
+  background-color: rgba(221, 223, 229, 0.15);
+  color: #000;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.settings .tabs-container .tab-content .tab-pane .admin .data-table table tbody tr {
+  border-bottom: 1px solid #DDDFE5;
+}
+.settings .tabs-container .tab-content .tab-pane .admin .data-table table tbody tr .name {
+  padding: 1.5rem 2rem;
+  text-align: center;
+  color: #000;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0.25px;
+}
+.settings .tabs-container .tab-content .tab-pane .admin .data-table table tbody tr .email {
+  padding: 1.5rem 2rem;
+  text-align: center;
+  color: var(--Black, #303030);
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.settings .tabs-container .tab-content .tab-pane .admin .data-table table tbody tr .role {
+  padding: 1.5rem 2rem;
+  text-align: center;
+}
+.settings .tabs-container .tab-content .tab-pane .admin .data-table table tbody tr .role select {
+  padding: 5px 10px;
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  background-color: rgba(94, 99, 102, 0.08);
+  color: var(--Black-30, #8B8D97);
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.settings .tabs-container .tab-content .tab-pane .admin .data-table table tbody tr .status {
+  padding: 1.5rem 2rem;
+  text-align: center;
+}
+.settings .tabs-container .tab-content .tab-pane .admin .data-table table tbody tr .status .active {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.settings .tabs-container .tab-content .tab-pane .admin .data-table table tbody tr .status .active .icon {
+  width: 5.32px;
+  height: 5.32px;
+  background-color: #5BC17F;
+  border-radius: 50px;
+}
+.settings .tabs-container .tab-content .tab-pane .admin .data-table table tbody tr .status .active .text {
+  color: #5BC17F;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.settings .tabs-container .tab-content .tab-pane .admin .data-table table tbody tr .status .pending {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.settings .tabs-container .tab-content .tab-pane .admin .data-table table tbody tr .status .pending .icon {
+  width: 5.32px;
+  height: 5.32px;
+  background-color: #EBA352;
+  border-radius: 50px;
+}
+.settings .tabs-container .tab-content .tab-pane .admin .data-table table tbody tr .status .pending .text {
+  color: #EBA352;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.settings .tabs-container .tab-content .tab-pane .admin .data-table table tbody tr .status .inactive {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.settings .tabs-container .tab-content .tab-pane .admin .data-table table tbody tr .status .inactive .icon {
+  width: 5.32px;
+  height: 5.32px;
+  background-color: #FD4C5C;
+  border-radius: 50px;
+}
+.settings .tabs-container .tab-content .tab-pane .admin .data-table table tbody tr .status .inactive .text {
+  color: #FD4C5C;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.settings .tabs-container .tab-content .tab-pane .admin .data-table table tbody tr .action {
+  padding: 1.5rem 2rem;
+  text-align: center;
+}
+.settings .tabs-container .tab-content .tab-pane .admin .data-table table tbody tr .action button {
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  background-color: rgba(253, 76, 92, 0.1);
+  padding: 10px 10px;
+  display: inline-flex;
+}
+.settings .tabs-container .tab-content .tab-pane .admin .data-table table tbody tr .action button img {
+  width: 17px;
+  height: 17px;
+}
+.settings .tabs-container .tab-content .tab-pane .admin .data-table table tbody tr:last-child {
+  border: none;
+}
+@media (min-width: 576px) {
+  .settings .tabs-container .tab-content .tab-pane .admin #add-user-modal .modal-dialog {
+    max-width: 745.375px;
+  }
+}
+.settings .tabs-container .tab-content .tab-pane .admin #add-user-modal .modal-content .modal-header {
+  border: none;
+  background-color: #F9FAFB;
+}
+.settings .tabs-container .tab-content .tab-pane .admin #add-user-modal .modal-content .modal-header .modal-title {
+  width: 100%;
+  text-align: center;
+  color: #000;
+  text-align: center;
+  font-family: Nunito;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0.13px;
+}
+.settings .tabs-container .tab-content .tab-pane .admin #add-user-modal .modal-content .modal-body {
+  padding: 3rem 1rem 1rem 1rem;
+}
+.settings .tabs-container .tab-content .tab-pane .admin #add-user-modal .modal-content .modal-body .form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.settings .tabs-container .tab-content .tab-pane .admin #add-user-modal .modal-content .modal-body .form-container form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  width: 504.5px;
+}
+.settings .tabs-container .tab-content .tab-pane .admin #add-user-modal .modal-content .modal-body .form-container form .form-control-name {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+.settings .tabs-container .tab-content .tab-pane .admin #add-user-modal .modal-content .modal-body .form-container form .form-control-name label {
+  color: var(--Neutral-Gray-1, #303030);
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+}
+.settings .tabs-container .tab-content .tab-pane .admin #add-user-modal .modal-content .modal-body .form-container form .form-control-name input[type=text] {
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #AEAEAE;
+  outline: none;
+  color: #000;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.settings .tabs-container .tab-content .tab-pane .admin #add-user-modal .modal-content .modal-body .form-container form .form-control-name input[type=text]::-moz-placeholder {
+  color: #949494;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.settings .tabs-container .tab-content .tab-pane .admin #add-user-modal .modal-content .modal-body .form-container form .form-control-name input[type=text]::placeholder {
+  color: #949494;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.settings .tabs-container .tab-content .tab-pane .admin #add-user-modal .modal-content .modal-body .form-container form .form-control-email {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+.settings .tabs-container .tab-content .tab-pane .admin #add-user-modal .modal-content .modal-body .form-container form .form-control-email label {
+  color: var(--Neutral-Gray-1, #303030);
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+}
+.settings .tabs-container .tab-content .tab-pane .admin #add-user-modal .modal-content .modal-body .form-container form .form-control-email .email-role-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #AEAEAE;
+}
+.settings .tabs-container .tab-content .tab-pane .admin #add-user-modal .modal-content .modal-body .form-container form .form-control-email .email-role-container input[type=email] {
+  border: none;
+  outline: none;
+  width: 100%;
+  color: #000;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.settings .tabs-container .tab-content .tab-pane .admin #add-user-modal .modal-content .modal-body .form-container form .form-control-email .email-role-container input[type=email]::-moz-placeholder {
+  color: #949494;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.settings .tabs-container .tab-content .tab-pane .admin #add-user-modal .modal-content .modal-body .form-container form .form-control-email .email-role-container input[type=email]::placeholder {
+  color: #949494;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.settings .tabs-container .tab-content .tab-pane .admin #add-user-modal .modal-content .modal-body .form-container form .form-control-email .email-role-container select {
+  border: none;
+  outline: none;
+  border-left: 1px solid #949494;
+  padding-left: 10px;
+  color: #000;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.settings .tabs-container .tab-content .tab-pane .admin #add-user-modal .modal-content .modal-body .form-container form .submit-action {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.settings .tabs-container .tab-content .tab-pane .admin #add-user-modal .modal-content .modal-body .form-container form .submit-action .send-invite {
+  border-radius: 8px;
+  background-color: #5BC17F;
+  border: none;
+  outline: none;
+  padding: 12px 16px;
+  color: #FFF;
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}/*# sourceMappingURL=settings.css.map */

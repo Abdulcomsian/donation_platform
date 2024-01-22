@@ -1,0 +1,1280 @@
+.settings {
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
+
+    padding: 1rem;
+
+    .heading {
+        color: #0D161A;
+        font-family: Poppins;
+        font-size: 26px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 166.5%;
+    }
+
+    .tabs-container {
+        margin-top: 1.5rem;
+
+        .nav {
+            border-bottom: 2px solid #E5E7EB;
+
+            .nav-item {
+                position: relative;
+
+                .nav-link {
+                    color: #1F2937;
+                    font-family: Poppins;
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: 20px;
+                    letter-spacing: 0.07px;
+
+                    outline: none;
+
+                    padding: 15px 20px;
+
+                    &.active {
+                        background-color: transparent;
+                        color: #5BC17F;
+                        border-radius: 0;
+
+                        &::after {
+                            content: "";
+                            border-bottom: 2px solid #5BC17F;
+                            display: block;
+                            width: 100%;
+                            position: absolute;
+                            bottom: -2px;
+                            right: 0;
+                        }
+                    }
+                }
+            }
+        }
+
+        .tab-content {
+            .tab-pane {
+                .profile {
+                    .form-container {
+                        form {
+                            .form-control-name {
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: flex-start;
+                                gap: 0.5rem;
+
+                                margin-top: 20px;
+
+                                label {
+                                    color: #000;
+                                    font-family: Poppins;
+                                    font-size: 18px;
+                                    font-style: normal;
+                                    font-weight: 400;
+                                    line-height: normal;
+                                    letter-spacing: 0.36px;
+                                }
+
+                                input[type='text'] {
+                                    padding: 1rem;
+
+                                    border-radius: 15px;
+                                    border: 1px solid #E5E5E5;
+                                    outline: none;
+
+                                    color: #000;
+
+                                    font-family: Poppins;
+                                    font-size: 16px;
+                                    font-style: normal;
+                                    font-weight: 400;
+                                    line-height: normal;
+                                    letter-spacing: 0.32px;
+                                }
+
+                                input[type='text']::placeholder {
+                                    color: #949494;
+                                    font-family: Poppins;
+                                    font-size: 16px;
+                                    font-style: normal;
+                                    font-weight: 400;
+                                    line-height: normal;
+                                    letter-spacing: 0.32px;
+                                }
+                            }
+
+                            .form-control-email {
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: flex-start;
+                                gap: 0.5rem;
+
+                                margin-top: 20px;
+
+                                label {
+                                    color: #000;
+                                    font-family: Poppins;
+                                    font-size: 18px;
+                                    font-style: normal;
+                                    font-weight: 400;
+                                    line-height: normal;
+                                    letter-spacing: 0.36px;
+                                }
+
+                                input[type='email'] {
+                                    padding: 1rem;
+
+                                    border-radius: 15px;
+                                    border: 1px solid #E5E5E5;
+                                    outline: none;
+
+                                    color: #000;
+
+                                    font-family: Poppins;
+                                    font-size: 16px;
+                                    font-style: normal;
+                                    font-weight: 400;
+                                    line-height: normal;
+                                    letter-spacing: 0.32px;
+                                }
+
+                                input[type='email']::placeholder {
+                                    color: #949494;
+                                    font-family: Poppins;
+                                    font-size: 16px;
+                                    font-style: normal;
+                                    font-weight: 400;
+                                    line-height: normal;
+                                    letter-spacing: 0.32px;
+                                }
+                            }
+
+                            .form-control-password {
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: flex-start;
+                                gap: 0.5rem;
+
+                                margin-top: 20px;
+
+                                label {
+                                    color: #000;
+                                    font-family: Poppins;
+                                    font-size: 18px;
+                                    font-style: normal;
+                                    font-weight: 400;
+                                    line-height: normal;
+                                    letter-spacing: 0.36px;
+                                }
+
+                                button {
+                                    width: 200px;
+
+                                    border-radius: 8px;
+                                    border: 1px solid #5BC17F;
+                                    outline: none;
+
+                                    padding: 12px 16px;
+
+                                    background-color: #FFF;
+
+                                    color: #5BC17F;
+                                    font-feature-settings: 'clig' off, 'liga' off;
+                                    font-family: Poppins;
+                                    font-size: 18px;
+                                    font-style: normal;
+                                    font-weight: 400;
+                                    line-height: 24px;
+                                }
+                            }
+
+                            .form-control-country {
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: flex-start;
+                                gap: 0.5rem;
+
+                                margin-top: 20px;
+
+                                label {
+                                    color: #000;
+                                    font-family: Poppins;
+                                    font-size: 18px;
+                                    font-style: normal;
+                                    font-weight: 400;
+                                    line-height: normal;
+                                    letter-spacing: 0.36px;
+                                }
+
+                                select {
+                                    padding: 1rem;
+
+                                    border-radius: 15px;
+                                    border: 1px solid #E5E5E5;
+                                    outline: none;
+
+                                    color: #000;
+
+                                    font-family: Poppins;
+                                    font-size: 16px;
+                                    font-style: normal;
+                                    font-weight: 400;
+                                    line-height: normal;
+                                    letter-spacing: 0.32px;
+                                }
+                            }
+
+                            .form-control-number {
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: flex-start;
+                                gap: 0.5rem;
+
+                                margin-top: 20px;
+
+                                label {
+                                    color: #000;
+                                    font-family: Poppins;
+                                    font-size: 18px;
+                                    font-style: normal;
+                                    font-weight: 400;
+                                    line-height: normal;
+                                    letter-spacing: 0.36px;
+                                }
+
+                                input[type='tel'] {
+                                    width: 100%;
+
+                                    border-radius: 15px;
+                                    border: 1px solid #E5E5E5;
+                                    outline: none;
+
+                                    margin-top: 10px;
+
+                                    height: 65.932px;
+                                }
+
+                                .iti__flag-container {
+                                    display: flex;
+                                    align-items: center;
+                                }
+
+                                .iti__selected-flag {
+                                    border-top-left-radius: 15px;
+                                    border-bottom-left-radius: 15px;
+                                    padding: 0 15px 0 30px;
+
+                                    width: 100%;
+                                    height: 40px;
+
+                                    border-right: 1px solid #E5E5E5;
+                                }
+
+                                .iti--allow-dropdown input[type=tel] {
+                                    padding-left: 88px;
+                                }
+                            }
+
+                            .submit {
+                                margin-top: 20px;
+
+                                display: flex;
+                                flex-direction: row;
+                                align-items: center;
+                                justify-content: flex-end;
+
+                                button {
+                                    padding: 12px 16px;
+
+                                    border-radius: 8px;
+                                    background-color: #5BC17F;
+                                    outline: none;
+                                    border: none;
+
+                                    color: var(--White-Full, #FFF);
+                                    font-feature-settings: 'clig' off, 'liga' off;
+                                    font-family: Poppins;
+                                    font-size: 18px;
+                                    font-style: normal;
+                                    font-weight: 400;
+                                    line-height: 24px;
+                                }
+                            }
+                        }
+                    }
+
+                    #change-password-modal {
+                        @media (min-width: 576px) {
+                            .modal-dialog {
+                                max-width: 823.774px;
+                            }
+                        }
+
+                        .modal-content {
+                            .modal-header {
+                                border: none;
+                                padding: 2rem 2rem;
+
+                                .modal-title {
+                                    color: #000;
+                                    font-feature-settings: 'clig' off, 'liga' off;
+                                    font-family: Poppins;
+                                    font-size: 20px;
+                                    font-style: normal;
+                                    font-weight: 600;
+                                    line-height: 24px;
+                                }
+                            }
+
+                            .modal-body {
+                                padding: 1rem 2rem;
+
+                                .form-control-old-password {
+                                    display: flex;
+                                    flex-direction: column;
+                                    justify-content: flex-start;
+                                    gap: 10px;
+
+                                    margin-bottom: 20px;
+
+                                    label {
+                                        color: #000;
+                                        font-family: Poppins;
+                                        font-size: 18px;
+                                        font-style: normal;
+                                        font-weight: 400;
+                                        line-height: normal;
+                                        letter-spacing: 0.36px;
+                                    }
+
+                                    input[type='password'] {
+                                        padding: 1rem;
+
+                                        border-radius: 15px;
+                                        border: 1px solid #E5E5E5;
+                                        outline: none;
+
+                                        color: #000;
+
+                                        font-family: Poppins;
+                                        font-size: 16px;
+                                        font-style: normal;
+                                        font-weight: 400;
+                                        line-height: normal;
+                                        letter-spacing: 0.32px;
+                                    }
+
+                                    input[type='password']::placeholder {
+                                        color: #949494;
+                                        font-family: Poppins;
+                                        font-size: 16px;
+                                        font-style: normal;
+                                        font-weight: 400;
+                                        line-height: normal;
+                                        letter-spacing: 0.32px;
+                                    }
+                                }
+
+                                .form-control-new-password {
+                                    display: flex;
+                                    flex-direction: column;
+                                    justify-content: flex-start;
+                                    gap: 10px;
+
+                                    margin-bottom: 20px;
+
+                                    label {
+                                        color: #000;
+                                        font-family: Poppins;
+                                        font-size: 18px;
+                                        font-style: normal;
+                                        font-weight: 400;
+                                        line-height: normal;
+                                        letter-spacing: 0.36px;
+                                    }
+
+                                    .new-password-container {
+                                        position: relative;
+
+                                        input {
+                                            padding: 1rem;
+
+                                            border-radius: 15px;
+                                            border: 1px solid #E5E5E5;
+                                            outline: none;
+
+                                            width: 100%;
+
+                                            color: #000;
+
+                                            font-family: Poppins;
+                                            font-size: 16px;
+                                            font-style: normal;
+                                            font-weight: 400;
+                                            line-height: normal;
+                                            letter-spacing: 0.32px;
+                                        }
+
+                                        input::placeholder {
+                                            color: #949494;
+                                            font-family: Poppins;
+                                            font-size: 16px;
+                                            font-style: normal;
+                                            font-weight: 400;
+                                            line-height: normal;
+                                            letter-spacing: 0.32px;
+                                        }
+
+                                        .password-icon {
+                                            display: flex;
+                                            align-items: center;
+
+                                            position: absolute;
+                                            top: 50%;
+                                            right: 15px;
+                                            transform: translateY(-50%);
+
+                                            color: #949494;
+
+                                            cursor: pointer;
+
+                                            .feather-eye-off {
+                                                display: none;
+                                            }
+                                        }
+                                    }
+                                }
+
+                                .form-control-confirm-password {
+                                    display: flex;
+                                    flex-direction: column;
+                                    justify-content: flex-start;
+                                    gap: 10px;
+
+                                    label {
+                                        color: #000;
+                                        font-family: Poppins;
+                                        font-size: 18px;
+                                        font-style: normal;
+                                        font-weight: 400;
+                                        line-height: normal;
+                                        letter-spacing: 0.36px;
+                                    }
+
+                                    input[type='password'] {
+                                        padding: 1rem;
+
+                                        border-radius: 15px;
+                                        border: 1px solid #E5E5E5;
+                                        outline: none;
+
+                                        color: #000;
+
+                                        font-family: Poppins;
+                                        font-size: 16px;
+                                        font-style: normal;
+                                        font-weight: 400;
+                                        line-height: normal;
+                                        letter-spacing: 0.32px;
+                                    }
+
+                                    input[type='password']::placeholder {
+                                        color: #949494;
+                                        font-family: Poppins;
+                                        font-size: 16px;
+                                        font-style: normal;
+                                        font-weight: 400;
+                                        line-height: normal;
+                                        letter-spacing: 0.32px;
+                                    }
+                                }
+
+                                .submit-actions {
+                                    border: none;
+                                    padding: 1rem 2rem;
+
+                                    display: flex;
+                                    flex-direction: row;
+                                    justify-content: flex-end;
+                                    align-items: center;
+                                    gap: 25px;
+
+                                    .cancel {
+                                        background-color: transparent;
+                                        border: none;
+                                        outline: none;
+
+                                        color: #5BC17F;
+                                        font-feature-settings: 'clig' off, 'liga' off;
+                                        font-family: Poppins;
+                                        font-size: 18px;
+                                        font-style: normal;
+                                        font-weight: 400;
+                                        line-height: 24px;
+                                    }
+
+                                    .save {
+                                        border-radius: 8px;
+                                        background-color: #5BC17F;
+                                        border: none;
+                                        outline: none;
+
+                                        padding: 12px 16px;
+
+                                        color: var(--White-Full, #FFF);
+                                        font-feature-settings: 'clig' off, 'liga' off;
+                                        font-family: Poppins;
+                                        font-size: 16px;
+                                        font-style: normal;
+                                        font-weight: 400;
+                                        line-height: 24px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .organization {
+                    .form-container {
+                        form {
+                            .form-control-name {
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: flex-start;
+                                gap: 0.5rem;
+
+                                margin-top: 20px;
+
+                                label {
+                                    color: #000;
+                                    font-family: Poppins;
+                                    font-size: 18px;
+                                    font-style: normal;
+                                    font-weight: 400;
+                                    line-height: normal;
+                                    letter-spacing: 0.36px;
+                                }
+
+                                input[type='text'] {
+                                    padding: 1rem;
+
+                                    border-radius: 15px;
+                                    border: 1px solid #E5E5E5;
+                                    outline: none;
+
+                                    color: #000;
+
+                                    font-family: Poppins;
+                                    font-size: 16px;
+                                    font-style: normal;
+                                    font-weight: 400;
+                                    line-height: normal;
+                                    letter-spacing: 0.32px;
+                                }
+
+                                input[type='text']::placeholder {
+                                    color: #949494;
+                                    font-family: Poppins;
+                                    font-size: 16px;
+                                    font-style: normal;
+                                    font-weight: 400;
+                                    line-height: normal;
+                                    letter-spacing: 0.32px;
+                                }
+                            }
+
+                            .form-control-type {
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: flex-start;
+                                gap: 0.5rem;
+
+                                margin-top: 20px;
+
+                                label {
+                                    color: #000;
+                                    font-family: Poppins;
+                                    font-size: 18px;
+                                    font-style: normal;
+                                    font-weight: 400;
+                                    line-height: normal;
+                                    letter-spacing: 0.36px;
+                                }
+
+                                select {
+                                    padding: 1rem;
+
+                                    border-radius: 15px;
+                                    border: 1px solid #E5E5E5;
+                                    outline: none;
+
+                                    color: #000;
+
+                                    font-family: Poppins;
+                                    font-size: 16px;
+                                    font-style: normal;
+                                    font-weight: 400;
+                                    line-height: normal;
+                                    letter-spacing: 0.32px;
+                                }
+                            }
+
+                            .form-control-logo {
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: flex-start;
+                                gap: 0.5rem;
+
+                                margin-top: 20px;
+
+                                label {
+                                    color: #000;
+                                    font-family: Poppins;
+                                    font-size: 18px;
+                                    font-style: normal;
+                                    font-weight: 400;
+                                    line-height: normal;
+                                    letter-spacing: 0.36px;
+                                }
+
+                                .image-upload {
+                                    height: 133.83px;
+
+                                    border-radius: 15px;
+                                    border: 1px solid #E5E5E5;
+
+                                    display: flex;
+                                    flex-direction: column;
+                                    align-items: center;
+                                    justify-content: center;
+                                    gap: 0.5rem;
+
+                                    button {
+                                        width: 124px;
+                                        height: 36px;
+
+                                        border-radius: 8px;
+                                        background-color: #5BC17F;
+
+                                        color: var(--White-Full, #FFF);
+                                        font-feature-settings: 'clig' off, 'liga' off;
+                                        font-family: Poppins;
+                                        font-size: 14px;
+                                        font-style: normal;
+                                        font-weight: 400;
+                                        line-height: 24px;
+
+                                        border: none;
+
+                                        display: flex;
+                                        flex-direction: column;
+                                        align-items: center;
+                                        justify-content: center;
+                                    }
+
+                                    .label {
+                                        color: rgba(64, 64, 64, 0.60);
+                                        font-family: Poppins;
+                                        font-size: 14px;
+                                        font-style: normal;
+                                        font-weight: 400;
+                                        line-height: normal;
+                                        letter-spacing: 0.28px;
+                                    }
+
+                                    .info {
+                                        color: #CBCBCB;
+                                        font-family: Poppins;
+                                        font-size: 14px;
+                                        font-style: normal;
+                                        font-weight: 400;
+                                        line-height: normal;
+                                        letter-spacing: 0.28px;
+                                    }
+                                }
+                            }
+
+                            .form-control-description {
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: flex-start;
+                                gap: 0.5rem;
+
+                                margin-top: 20px;
+
+                                label {
+                                    color: #000;
+                                    font-family: Poppins;
+                                    font-size: 18px;
+                                    font-style: normal;
+                                    font-weight: 400;
+                                    line-height: normal;
+                                    letter-spacing: 0.36px;
+                                }
+
+                                textarea {
+                                    border-radius: 15px;
+                                    border: 1px solid #E5E5E5;
+
+                                    color: rgba(64, 64, 64, 0.60);
+
+                                    font-family: Poppins;
+                                    font-size: 16px;
+                                    font-style: normal;
+                                    font-weight: 400;
+                                    line-height: normal;
+                                    letter-spacing: 0.32px;
+
+                                    padding: 1rem;
+
+                                    resize: none;
+
+                                    outline: none;
+
+                                    height: 133.83px;
+                                }
+                            }
+
+                            .form-control-website {
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: flex-start;
+                                gap: 0.5rem;
+
+                                margin-top: 20px;
+
+                                label {
+                                    color: #000;
+                                    font-family: Poppins;
+                                    font-size: 18px;
+                                    font-style: normal;
+                                    font-weight: 400;
+                                    line-height: normal;
+                                    letter-spacing: 0.36px;
+                                }
+
+                                input[type='text'] {
+                                    padding: 1rem;
+
+                                    border-radius: 15px;
+                                    border: 1px solid #E5E5E5;
+                                    outline: none;
+
+                                    color: #000;
+
+                                    font-family: Poppins;
+                                    font-size: 16px;
+                                    font-style: normal;
+                                    font-weight: 400;
+                                    line-height: normal;
+                                    letter-spacing: 0.32px;
+                                }
+
+                                input[type='text']::placeholder {
+                                    color: #949494;
+                                    font-family: Poppins;
+                                    font-size: 16px;
+                                    font-style: normal;
+                                    font-weight: 400;
+                                    line-height: normal;
+                                    letter-spacing: 0.32px;
+                                }
+                            }
+
+                            .submit {
+                                margin-top: 20px;
+
+                                display: flex;
+                                flex-direction: row;
+                                align-items: center;
+                                justify-content: flex-end;
+
+                                button {
+                                    padding: 12px 16px;
+
+                                    border-radius: 8px;
+                                    background-color: #5BC17F;
+                                    outline: none;
+                                    border: none;
+
+                                    color: var(--White-Full, #FFF);
+                                    font-feature-settings: 'clig' off, 'liga' off;
+                                    font-family: Poppins;
+                                    font-size: 18px;
+                                    font-style: normal;
+                                    font-weight: 400;
+                                    line-height: 24px;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .admin {
+                    .header {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        justify-content: flex-end;
+                        gap: 15px;
+
+                        .search-container {
+                            display: flex;
+                            flex-direction: row;
+                            align-items: center;
+                            gap: 5px;
+
+                            border-radius: 8px;
+                            border: 1px solid #D0D5DD;
+
+                            padding: 10px;
+
+                            img {
+                                width: 16px;
+                                height: 16px;
+                            }
+
+                            input {
+                                border: none;
+                                outline: none;
+
+                                padding: 0;
+
+                                overflow: hidden;
+                                color: #64748B;
+                                text-overflow: ellipsis;
+                                white-space: nowrap;
+                                font-family: Nunito;
+                                font-size: 14px;
+                                font-style: normal;
+                                font-weight: 500;
+                                line-height: normal;
+                            }
+                        }
+
+                        .add-btn-container {
+                            button {
+                                border: none;
+                                outline: none;
+                                border-radius: 8px;
+                                background: #5BC17F;
+
+                                padding: 12px 16px;
+
+                                display: flex;
+                                flex-direction: row;
+                                align-items: center;
+
+                                color: var(--White-Full, #FFF);
+                                font-feature-settings: 'clig' off, 'liga' off;
+                                font-family: Poppins;
+                                font-size: 18px;
+                                font-style: normal;
+                                font-weight: 400;
+                                line-height: 24px;
+
+                                span {
+                                    color: var(--White-Full, #FFF);
+                                    font-feature-settings: 'clig' off, 'liga' off;
+                                    font-family: Poppins;
+                                    font-size: 22px;
+                                    font-style: normal;
+                                    font-weight: 400;
+                                    line-height: 24px;
+                                    /* 109.091% */
+                                }
+                            }
+                        }
+                    }
+
+                    .data-table {
+                        margin-top: 1.5rem;
+
+                        table {
+                            width: 100%;
+
+                            thead {
+                                position: static;
+
+                                tr {
+                                    th {
+                                        position: sticky;
+                                        top: 0;
+                                        z-index: 1;
+
+                                        text-align: center;
+
+                                        padding: 1rem 2rem;
+
+                                        background-color: rgba(221, 223, 229, 0.15);
+
+                                        color: #000;
+                                        font-family: Poppins;
+                                        font-size: 16px;
+                                        font-style: normal;
+                                        font-weight: 500;
+                                        line-height: normal;
+                                    }
+                                }
+                            }
+
+                            tbody {
+                                tr {
+                                    border-bottom: 1px solid #DDDFE5;
+
+                                    .name {
+                                        padding: 1.5rem 2rem;
+
+                                        text-align: center;
+
+                                        color: #000;
+                                        font-family: Poppins;
+                                        font-size: 14px;
+                                        font-style: normal;
+                                        font-weight: 400;
+                                        line-height: 22px;
+                                        letter-spacing: 0.25px;
+                                    }
+
+                                    .email {
+                                        padding: 1.5rem 2rem;
+
+                                        text-align: center;
+
+                                        color: var(--Black, #303030);
+
+                                        font-family: Inter;
+                                        font-size: 14px;
+                                        font-style: normal;
+                                        font-weight: 400;
+                                        line-height: normal;
+                                    }
+
+                                    .role {
+                                        padding: 1.5rem 2rem;
+
+                                        text-align: center;
+
+                                        select {
+                                            padding: 5px 10px;
+
+                                            border: none;
+                                            outline: none;
+                                            border-radius: 4px;
+                                            background-color: rgba(94, 99, 102, 0.08);
+
+                                            color: var(--Black-30, #8B8D97);
+                                            font-family: Poppins;
+                                            font-size: 14px;
+                                            font-style: normal;
+                                            font-weight: 400;
+                                            line-height: normal;
+                                        }
+                                    }
+
+                                    .status {
+                                        padding: 1.5rem 2rem;
+
+                                        text-align: center;
+
+                                        .active {
+                                            display: inline-flex;
+                                            align-items: center;
+                                            gap: 7px;
+
+                                            .icon {
+                                                width: 5.32px;
+                                                height: 5.32px;
+
+                                                background-color: #5BC17F;
+                                                border-radius: 50px;
+                                            }
+
+                                            .text {
+                                                color: #5BC17F;
+                                                text-align: center;
+                                                font-family: Poppins;
+                                                font-size: 14px;
+                                                font-style: normal;
+                                                font-weight: 400;
+                                                line-height: normal;
+                                            }
+                                        }
+
+                                        .pending {
+                                            display: inline-flex;
+                                            align-items: center;
+                                            gap: 7px;
+
+                                            .icon {
+                                                width: 5.32px;
+                                                height: 5.32px;
+
+                                                background-color: #EBA352;
+                                                border-radius: 50px;
+                                            }
+
+                                            .text {
+                                                color: #EBA352;
+                                                text-align: center;
+                                                font-family: Poppins;
+                                                font-size: 14px;
+                                                font-style: normal;
+                                                font-weight: 400;
+                                                line-height: normal;
+                                            }
+                                        }
+
+                                        .inactive {
+                                            display: inline-flex;
+                                            align-items: center;
+                                            gap: 7px;
+
+                                            .icon {
+                                                width: 5.32px;
+                                                height: 5.32px;
+
+                                                background-color: #FD4C5C;
+                                                border-radius: 50px;
+                                            }
+
+                                            .text {
+                                                color: #FD4C5C;
+                                                text-align: center;
+                                                font-family: Poppins;
+                                                font-size: 14px;
+                                                font-style: normal;
+                                                font-weight: 400;
+                                                line-height: normal;
+                                            }
+                                        }
+                                    }
+
+                                    .action {
+                                        padding: 1.5rem 2rem;
+
+                                        text-align: center;
+
+                                        button {
+                                            border: none;
+                                            outline: none;
+                                            border-radius: 4px;
+                                            background-color: rgba(253, 76, 92, 0.10);
+
+                                            padding: 10px 10px;
+
+                                            display: inline-flex;
+
+                                            img {
+                                                width: 17px;
+                                                height: 17px;
+                                            }
+                                        }
+                                    }
+
+                                }
+
+                                tr:last-child {
+                                    border: none;
+                                }
+                            }
+                        }
+                    }
+
+                    #add-user-modal {
+                        @media (min-width: 576px) {
+                            .modal-dialog {
+                                max-width: 745.375px;
+                            }
+                        }
+
+                        .modal-content {
+                            .modal-header {
+                                border: none;
+                                background-color: #F9FAFB;
+
+                                .modal-title {
+                                    width: 100%;
+
+                                    text-align: center;
+
+                                    color: #000;
+                                    text-align: center;
+                                    font-family: Nunito;
+                                    font-size: 26px;
+                                    font-style: normal;
+                                    font-weight: 700;
+                                    line-height: normal;
+                                    letter-spacing: 0.13px;
+                                }
+                            }
+
+                            .modal-body {
+                                padding: 3rem 1rem 1rem 1rem;
+
+                                .form-container {
+                                    display: flex;
+                                    flex-direction: column;
+                                    align-items: center;
+
+                                    form {
+                                        display: flex;
+                                        flex-direction: column;
+                                        align-items: center;
+                                        gap: 15px;
+
+                                        width: 504.5px;
+
+                                        .form-control-name {
+                                            display: flex;
+                                            flex-direction: column;
+                                            gap: 10px;
+
+                                            width: 100%;
+
+                                            label {
+                                                color: var(--Neutral-Gray-1, #303030);
+                                                font-family: Poppins;
+                                                font-size: 18px;
+                                                font-style: normal;
+                                                font-weight: 400;
+                                                line-height: 150%;
+                                            }
+
+                                            input[type='text'] {
+                                                padding: 1rem;
+
+                                                border-radius: 8px;
+                                                border: 1px solid #AEAEAE;
+                                                outline: none;
+
+                                                color: #000;
+
+                                                font-family: Poppins;
+                                                font-size: 16px;
+                                                font-style: normal;
+                                                font-weight: 400;
+                                                line-height: normal;
+                                                letter-spacing: 0.32px;
+                                            }
+
+                                            input[type='text']::placeholder {
+                                                color: #949494;
+                                                font-family: Poppins;
+                                                font-size: 16px;
+                                                font-style: normal;
+                                                font-weight: 400;
+                                                line-height: normal;
+                                                letter-spacing: 0.32px;
+                                            }
+                                        }
+
+                                        .form-control-email {
+                                            display: flex;
+                                            flex-direction: column;
+                                            gap: 10px;
+
+                                            width: 100%;
+
+                                            label {
+                                                color: var(--Neutral-Gray-1, #303030);
+                                                font-family: Poppins;
+                                                font-size: 18px;
+                                                font-style: normal;
+                                                font-weight: 400;
+                                                line-height: 150%;
+                                            }
+
+                                            .email-role-container {
+                                                display: flex;
+                                                flex-direction: row;
+                                                align-items: center;
+
+                                                padding: 1rem;
+
+                                                border-radius: 8px;
+                                                border: 1px solid #AEAEAE;
+
+                                                input[type='email'] {
+                                                    border: none;
+                                                    outline: none;
+
+                                                    width: 100%;
+
+                                                    color: #000;
+
+                                                    font-family: Poppins;
+                                                    font-size: 16px;
+                                                    font-style: normal;
+                                                    font-weight: 400;
+                                                    line-height: normal;
+                                                    letter-spacing: 0.32px;
+                                                }
+
+                                                input[type='email']::placeholder {
+                                                    color: #949494;
+                                                    font-family: Poppins;
+                                                    font-size: 16px;
+                                                    font-style: normal;
+                                                    font-weight: 400;
+                                                    line-height: normal;
+                                                    letter-spacing: 0.32px;
+                                                }
+
+                                                select {
+                                                    border: none;
+                                                    outline: none;
+                                                    border-left: 1px solid #949494;
+
+                                                    padding-left: 10px;
+
+                                                    color: #000;
+                                                    font-family: Poppins;
+                                                    font-size: 16px;
+                                                    font-style: normal;
+                                                    font-weight: 400;
+                                                    line-height: normal;
+                                                }
+                                            }
+                                        }
+
+                                        .submit-action {
+                                            width: 100%;
+
+                                            display: flex;
+                                            justify-content: flex-end;
+
+                                            margin-top: 15px;
+                                            margin-bottom: 15px;
+
+                                            .send-invite {
+                                                border-radius: 8px;
+                                                background-color: #5BC17F;
+                                                border: none;
+                                                outline: none;
+
+                                                padding: 12px 16px;
+
+                                                color: #FFF;
+                                                font-feature-settings: 'clig' off, 'liga' off;
+                                                font-family: Poppins;
+                                                font-size: 16px;
+                                                font-style: normal;
+                                                font-weight: 400;
+                                                line-height: 24px;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

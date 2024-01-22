@@ -12,21 +12,21 @@
 <link
     href="https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
     rel="stylesheet">
-<link rel="stylesheet" href="{{ asset('assets/css/compaign.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/css/campaign.css') }}">
 @endsection
 
 @section('content')
 @if(session('toastr'))
-    {!! session('toastr') !!}
+{!! session('toastr') !!}
 @endif
-<div class="compaigns">
+<div class="campaigns">
     <div class="header">
         <div class="heading">Campaigns</div>
         <div class="create-comapaign">
-            <a href="{{ route('campaign.create.form') }}">Create Compaign</a>
+            <a href="{{ route('campaign.create.form') }}">Create Campaign</a>
         </div>
     </div>
- 
+
     <div class="data-cards">
         <div class="row">
             @foreach($campaigns as $campaign)
@@ -42,18 +42,21 @@
                             <div class="menu-wrap">
                                 <input type="checkbox" class="toggler" />
                                 <div class="dots">
-                                  <div></div>
+                                    <div></div>
                                 </div>
                                 <div class="menu">
-                                  <div>
-                                    <ul>
-                                        <li><a href="{{url('donate-now' , $campaign->id)}}" class="link">View</a></li>
-                                      <li><a href="{{url('campaigns/edit-campaign' , $campaign->id)}}" class="link">Edit</a></li>
-                                      <li><a href="{{url('campaigns/delete-campaign' , $campaign->id)}}" class="link">Delete</a></li>
-                                    </ul>
-                                  </div>
+                                    <div>
+                                        <ul>
+                                            <li><a href="{{url('donate-now' , $campaign->id)}}" class="link">View</a>
+                                            </li>
+                                            <li><a href="{{url('campaigns/edit-campaign' , $campaign->id)}}"
+                                                    class="link">Edit</a></li>
+                                            <li><a href="{{url('campaigns/delete-campaign' , $campaign->id)}}"
+                                                    class="link">Delete</a></li>
+                                        </ul>
+                                    </div>
                                 </div>
-                              </div>
+                            </div>
                         </div>
                         <div class="info">
                             <div class="days-ago">
@@ -66,9 +69,9 @@
                                     </svg>
                                 </div>
                                 @php
-                                 $date = \Carbon\Carbon::createFromDate($campaign->date);
-                                 $today = \Carbon\Carbon::now();
-                                 $diffDays = $date->diffInDays($today);
+                                $date = \Carbon\Carbon::createFromDate($campaign->date);
+                                $today = \Carbon\Carbon::now();
+                                $diffDays = $date->diffInDays($today);
                                 @endphp
                                 <div class="text">{{$diffDays}} Days Ago</div>
                             </div>
@@ -91,25 +94,27 @@
                     <div class="bottom">
                         <div class="progress-container">
                             @if($campaign->campaign_goal)
-                                <div class="progress-bar-element">
-                                    @php
-                                        $progress = null;
-                                        if($campaign->donations->sum('amount') > 0){
-                                            $progress = $campaign->donations->sum('amount') > $campaign->amount ? 100 : ceil((($campaign->donations->sum('amount'))/$campaign->amount) * 100) ;
-                                        }else{
-                                            $progress = 0;
-                                        }
-                                    @endphp 
-                                    <progress id="fileProgress" value="{{$progress == 0 ? 1 : $progress}}" max="100"></progress>
-                                </div>
-                                <div class="text">{{$progress}}%</div>
+                            <div class="progress-bar-element">
+                                @php
+                                $progress = null;
+                                if($campaign->donations->sum('amount') > 0){
+                                $progress = $campaign->donations->sum('amount') > $campaign->amount ? 100 :
+                                ceil((($campaign->donations->sum('amount'))/$campaign->amount) * 100) ;
+                                }else{
+                                $progress = 0;
+                                }
+                                @endphp
+                                <progress id="fileProgress" value="{{$progress == 0 ? 1 : $progress}}"
+                                    max="100"></progress>
+                            </div>
+                            <div class="text">{{$progress}}%</div>
                             @endif
                         </div>
                     </div>
                 </div>
             </div>
             @endforeach
-           
+
         </div>
     </div>
 

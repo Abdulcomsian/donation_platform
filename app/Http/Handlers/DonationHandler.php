@@ -219,4 +219,9 @@ class DonationHandler{
         return [$recievedAmount , $totalAmount];
     }
 
+    public function getRecentDonars(){
+        $donations = Donation::with('donar' , 'price')->orderBy('id' , 'desc')->limit(10)->get();
+        return $donations;
+    }
+
 }

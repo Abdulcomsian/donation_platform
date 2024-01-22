@@ -198,7 +198,7 @@
             <tbody>
                 {{-- <tr>
                     <td class="name">John Doe</td>
-                    <td class="compaign">Lorem Ipsum</td>
+                    <td class="campaign">Lorem Ipsum</td>
                     <td class="status">
                         <div class="complete">Complete</div>
                     </td>
@@ -207,7 +207,7 @@
                 </tr>
                 <tr>
                     <td class="name">John Doe</td>
-                    <td class="compaign">Lorem Ipsum</td>
+                    <td class="campaign">Lorem Ipsum</td>
                     <td class="status">
                         <div class="complete">Complete</div>
                     </td>
@@ -216,7 +216,7 @@
                 </tr>
                 <tr>
                     <td class="name">John Doe</td>
-                    <td class="compaign">Lorem Ipsum</td>
+                    <td class="campaign">Lorem Ipsum</td>
                     <td class="status">
                         <div class="pending">Pending</div>
                     </td>
@@ -225,7 +225,7 @@
                 </tr>
                 <tr>
                     <td class="name">John Doe</td>
-                    <td class="compaign">Lorem Ipsum</td>
+                    <td class="campaign">Lorem Ipsum</td>
                     <td class="status">
                         <div class="processing">Processing</div>
                     </td>
@@ -234,7 +234,7 @@
                 </tr>
                 <tr>
                     <td class="name">John Doe</td>
-                    <td class="compaign">Lorem Ipsum</td>
+                    <td class="campaign">Lorem Ipsum</td>
                     <td class="status">
                         <div class="complete">Complete</div>
                     </td>
@@ -243,7 +243,7 @@
                 </tr>
                 <tr>
                     <td class="name">John Doe</td>
-                    <td class="compaign">Lorem Ipsum</td>
+                    <td class="campaign">Lorem Ipsum</td>
                     <td class="status">
                         <div class="complete">Complete</div>
                     </td>
@@ -252,7 +252,7 @@
                 </tr>
                 <tr>
                     <td class="name">John Doe</td>
-                    <td class="compaign">Lorem Ipsum</td>
+                    <td class="campaign">Lorem Ipsum</td>
                     <td class="status">
                         <div class="pending">Pending</div>
                     </td>
@@ -261,7 +261,7 @@
                 </tr>
                 <tr>
                     <td class="name">John Doe</td>
-                    <td class="compaign">Lorem Ipsum</td>
+                    <td class="campaign">Lorem Ipsum</td>
                     <td class="status">
                         <div class="complete">Complete</div>
                     </td>
@@ -270,7 +270,7 @@
                 </tr>
                 <tr>
                     <td class="name">John Doe</td>
-                    <td class="compaign">Lorem Ipsum</td>
+                    <td class="campaign">Lorem Ipsum</td>
                     <td class="status">
                         <div class="failed">Failed</div>
                     </td>
