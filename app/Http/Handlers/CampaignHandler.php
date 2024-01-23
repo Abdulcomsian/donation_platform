@@ -121,4 +121,8 @@ class CampaignHandler{
         Campaign::where('id' , $id)->delete();
     }
 
+    public function getUserCampaigns(){
+        return  auth()->user()->hasRole('admin') ? Campaign::orderBy('id' , 'desc')->get() : Campaign::where('user_id' , auth()->user()->id)->orderBy('id' , 'desc')->get();
+    }
+
 }

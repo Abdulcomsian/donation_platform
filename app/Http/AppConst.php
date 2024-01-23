@@ -14,5 +14,12 @@ class AppConst{
     //reference table campaings
     public const ACTIVE = 1;
     public const INACTIVE = 0;
+
+    //reference table Donation
+    public const DONATION_PENDING = 'pending';
+    public const DONATION_PROCESSING = 'processing';
+    public const DONATION_COMPLETED = 'completed';
+    public const DONATION_REFUNDED = 'refunded';
+    public const DONATION_FAILED = 'failed';
     
 }

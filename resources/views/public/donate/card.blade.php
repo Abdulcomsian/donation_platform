@@ -62,7 +62,8 @@
                         <div class="container-fluid recurring-box d-none">
                             <div class="row">
                                     <div class="col-12 p-0 mt-4">
-                                        <select name="frequency" class="form-select frequency-select" value="disable">
+                                        <select name="frequency" class="form-select frequency-select">
+                                            <option value="" selected disabled>Select Frequency</option>
                                                 @foreach($campaign->frequencies as $frequency)
                                                     <option value="{{$frequency->type}}">{{ucfirst($frequency->type)}}</option>
                                                 @endforeach
@@ -256,6 +257,7 @@
         let email = document.getElementById("email").value;
         let country = document.getElementById("country").value;
         let city = document.getElementById("city").value;
+        
 
         let fields = {
              'First_name' : firstName,
@@ -270,11 +272,14 @@
         let recurring = document.getElementById("recurring");
         if(recurring.classList.contains("active")){
             let activePriceOption = document.querySelector(".donation-amount-box.active");
+            let frequency = document.querySelector(".frequency-select");
             activePriceOption === null ? errors = "Please select price option for recursive transaction" : priceOption = activePriceOption.querySelector(".donation-amount").dataset.priceOptionId;
+            frequency.value == "" && (errors = "Please select plan");
         }else{
             let chargeAmount = document.getElementById("amount");
-            chargeAmount.value === null || chargeAmount.value <= 1 ? errors ="Amount should be greater or equal to 1" : amount = chargeAmount.value;
+            chargeAmount.value === null || chargeAmount.value <= 1 ? errors ="Amount should be greater or equal to $1" : amount = chargeAmount.value;
         }
+
 
         for(const field in fields ){
             if(validator.isEmpty(fields[field])){

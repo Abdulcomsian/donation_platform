@@ -23,8 +23,15 @@ Route::group(['middleware' => ['preventBackHistory', 'auth']], function () {
     Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
     Route::get('/logout-user', [UserController::class, 'logoutUser'])->name('logout.user');
     Route::post('get-cities-list' , [HomeController::class , 'getCitiesList'])->name('get.country.cities');
-    Route::get('/donors', [DonationController::class, 'donors'])->name('donors');
-    Route::get('/donations', [DonationController::class, 'donations'])->name('donations');
+    Route::group(['prefix' => 'donations'] , function(){
+        Route::get('/', [DonationController::class, 'donations'])->name('donations');
+        Route::get('/donors', [DonationController::class, 'donors'])->name('donors');
+        Route::post('/donation-list' , [DonationController::class , 'getDonationList'])->name('get.donations');
+        Route::post('load-donation-stats' ,[DonationController::class , 'getDonationDashboardStats'])->name('load.donation.dashboard.stats');
+    });
+
+    // Route::get('/donors', [DonationController::class, 'donors'])->name('donors');
+    // Route::get('/donations', [DonationController::class, 'donations'])->name('donations');
     Route::group(['prefix' => 'campaigns'], function () {
         Route::get('/', [CampaignController::class, 'campaign'])->name('campaigns');
         Route::get('/create-campaign', [CampaignController::class, 'getCampaignForm'])->name('campaign.create.form');

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\{ Campaign , PlatformPercentage , User };
+use App\Models\{ Campaign , PlatformPercentage , User ,PriceOption};
 
 class Donation extends Model
 {
@@ -24,6 +24,10 @@ class Donation extends Model
 
     public function donar(){
         return $this->belongsTo(User::class , 'donar_id' , 'id');
+    }
+
+    public function price(){
+        return $this->belongsTo(PriceOption::class , 'price_option_id' , 'id');
     }
 
 }
