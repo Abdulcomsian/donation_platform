@@ -30,7 +30,7 @@
                 {{-- @dd($donars) --}}
                 @foreach($donars as $donation)
                 <tr>
-                    <td class="name">{{$donation->donor->first_name.' '.$donation->donor->last_name}}</td>
+                    <td class="name">{{$donation->donar->first_name.' '.$donation->donar->last_name}}</td>
                     <td class="amount">${{$donation->amount ? $donation->amount : $donation->price->amount}}</td>
                 </tr>
                 @endforeach

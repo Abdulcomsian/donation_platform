@@ -5,10 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\{ Donation , PriceOption , CampaignFrequency, User };
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Campaign extends Model
 {
-    use HasFactory;
+    use HasFactory , SoftDeletes;
+    
     protected $table = 'campaigns';
     protected $primaryKey = 'id';
     protected $fillable = ['user_id', 'title' , 'excerpt' , 'description' , 'image' , 'recurring' , 'campaign_goal' , 'amount' , 'fee_recovery' , 'date', 'image' , 'status'];

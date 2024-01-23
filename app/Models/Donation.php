@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\{ Campaign , PlatformPercentage , User ,PriceOption};
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Donation extends Model
 {
-    use HasFactory;
+    use HasFactory , SoftDeletes;
 
     protected $table = 'donations';
     protected $primaryKey = 'id';

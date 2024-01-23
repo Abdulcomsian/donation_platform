@@ -111,17 +111,17 @@ class DonationController extends Controller
 
             switch($request->status){
                 case \AppConst::DONATION_FAILED:
-                    [$failedAmount , $failedRecievedAmount] = $this->donationHandler->calculateDonationAmount($request->status , $request->campaignId , $request->upperDate , $request->lowerDate );
+                    [$failedAmount , $failedRecievedAmount] = $this->donationHandler->calculateDonationAmount($request->status , false ,  $request->campaignId , $request->upperDate , $request->lowerDate );
                     $requestStatus = \AppConst::DONATION_FAILED;
                 break;
                 case \AppConst::DONATION_COMPLETED:
-                    [$recievedAmount , $totalAmount] = $this->donationHandler->calculateDonationAmount($request->status , $request->campaignId , $request->upperDate , $request->lowerDate );
+                    [$recievedAmount , $totalAmount] = $this->donationHandler->calculateDonationAmount($request->status , false , $request->campaignId , $request->upperDate , $request->lowerDate );
                     $requestStatus = \AppConst::DONATION_COMPLETED;
                 break;
             }
         }else{
-            [$recievedAmount , $totalAmount] = $this->donationHandler->calculateDonationAmount(\AppConst::DONATION_COMPLETED , $request->campaignId , $request->upperDate , $request->lowerDate );
-            [$failedAmount , $failedRecievedAmount ] = $this->donationHandler->calculateDonationAmount(\AppConst::DONATION_FAILED , $request->campaignId , $request->upperDate , $request->lowerDate );
+            [$recievedAmount , $totalAmount] = $this->donationHandler->calculateDonationAmount(\AppConst::DONATION_COMPLETED , false , $request->campaignId , $request->upperDate , $request->lowerDate );
+            [$failedAmount , $failedRecievedAmount ] = $this->donationHandler->calculateDonationAmount(\AppConst::DONATION_FAILED , false ,  $request->campaignId , $request->upperDate , $request->lowerDate );
             
             
         }

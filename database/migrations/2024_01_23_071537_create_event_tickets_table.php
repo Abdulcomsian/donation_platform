@@ -11,11 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cities', function (Blueprint $table) {
+        Schema::create('event_tickets', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('country_id');
+            $table->unsignedBigInteger('event_id');
+            $table->string('generated_id');
             $table->string('name');
-            $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
+            $table->longText('description')->nullable();
+            $table->integer('quantity');
+            $table->boolean('is_free');
+            $table->double('price' , 5 , 2)->default(0);
+            $table->foreign('event_id')->references('id')->on('events');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -26,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cities');
+        Schema::dropIfExists('event_tickets');
     }
 };

@@ -14,6 +14,10 @@
 
 @section('content')
 
+@if(session('toastr'))
+{!! session('toastr') !!}
+@endif
+
 <div class="dashboard">
     <div class="header">
         <div class="left">
@@ -54,63 +58,70 @@
                     Lorem ipsum dolor sit amet consectetur. At fermentum augue tempor felis nisi.
                 </div>
 
+                @if(!auth()->user()->hasStripeId())
                 <div class="btn-container">
-                    <a href="">Connect Stripe</a>
+                    <a href="{{route('connect.with.stripe')}}">Connect Stripe</a>
                 </div>
+                @else
+                <div class="btn-container">
+                    <a href="{{route('remove.connected.stripe')}}">Disconnect Stripe</a>
+                </div>
+                @endif
             </div>
 
             <div class="campaign-container">
                 <div class="header">
                     <div class="heading">Your Campaigns</div>
                     <div class="link">
-                        <a href="">View All</a>
+                        <a href="{{route('campaigns')}}">View All</a>
                     </div>
                 </div>
 
                 <div class="campaigns">
+                    @foreach($dashboardCampaigns as $campaign)
                     <div class="campaign">
                         <div class="card">
                             <div class="left">
-                                <img src="{{ asset('assets/images/26d0ba0efd3df0807e2e00c7265e76df.jpeg') }}" alt="">
+                                <img src="{{ asset('assets/uploads').'/'.$campaign->image }}" alt="">
                             </div>
                             <div class="right">
-                                <div class="heading">Donation For Orphans</div>
+                                <div class="heading">{{$campaign->title}}</div>
                                 <div class="amount">
-                                    <div class="collected">$10,000</div>
-                                    <div class="total">/</div>
-                                    <div class="total">$20,000</div>
-                                </div>
-                                <div class="progress-container">
-                                    <div class="progress-bar-element">
-                                        <progress id="fileProgress" value="20" max="100"></progress>
-                                    </div>
-                                    <div class="text">3% of your goal</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                                    @php
+                                         $donationAmount = 0;
+                                        
+                                        foreach($campaign->donations as $donation)
+                                        {
+                                            if($donation->price){
+                                                $donationAmount +=$donation->platformPercentage->percentage > 0 ?  (($donation->price->amount) - (($donation->platformPercentage->percentage / 100) * $donation->price->amount)) : $donation->price->amount;
+                                            }else{
+                                                $donationAmount +=$donation->platformPercentage->percentage > 0 ?  (($donation->amount) - (($donation->platformPercentage->percentage / 100) * $donation->amount)) : $donation->price->amount;
+                                            }
+                                        }
 
-                    <div class="campaign">
-                        <div class="card">
-                            <div class="left">
-                                <img src="{{ asset('assets/images/365eb7a379deca9af5c01258e4a52010.jpeg') }}" alt="">
-                            </div>
-                            <div class="right">
-                                <div class="heading">Donation For Education</div>
-                                <div class="amount">
-                                    <div class="collected">$8,000</div>
-                                    <div class="total">/</div>
-                                    <div class="total">$12,000</div>
+                                    @endphp
+
+                                    <div class="collected">${{ceil($donationAmount)}} </div>
+                                    @if($campaign->campaign_goal)
+                                        <div class="total">/</div>
+                                        <div class="total">${{ceil($campaign->amount)}}</div>
+                                    @endif
                                 </div>
-                                <div class="progress-container">
-                                    <div class="progress-bar-element">
-                                        <progress id="fileProgress" value="77" max="100"></progress>
+                                @if($campaign->campaign_goal)
+                                @php
+                                    $percentage = ceil(($donationAmount / $campaign->amount) * 100);
+                                @endphp
+                                    <div class="progress-container">
+                                        <div class="progress-bar-element">
+                                            <progress id="fileProgress" value="{{$percentage == 0 ? 1 : $percentage}}" max="100"></progress>
+                                        </div>
+                                        <div class="text">{{$percentage}}% of your goal</div>
                                     </div>
-                                    <div class="text">77% of your goal</div>
-                                </div>
+                                @endif
                             </div>
                         </div>
                     </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -124,7 +135,7 @@
                     </div>
                     <div class="right">
                         <div class="heading">Total Fundraised Amount</div>
-                        <div class="amount">$18,000</div>
+                        <div class="amount">${{ number_format(ceil($recievedAmount), 2) }}</div>
                     </div>
                 </div>
 
@@ -139,11 +150,11 @@
                         </div>
                         <div class="right-text">
                             <div class="top">Total Donations</div>
-                            <div class="bottom">50</div>
+                            <div class="bottom">{{$donationCount}}</div>
                         </div>
                     </div>
                     <div class="right">
-                        <a href="">
+                        <a href="{{route('donations')}}">
                             <img src="{{ asset('assets/images/chevron-down-sharp.png') }}" alt="">
                         </a>
                     </div>
@@ -159,7 +170,7 @@
                             </div>
                         </div>
                         <div class="right-text">
-                            <div class="top">Total Donations</div>
+                            <div class="top">Total Sold Tickets</div>
                             <div class="bottom">50</div>
                         </div>
                     </div>
@@ -181,7 +192,7 @@
                     </div>
                     <div class="right">
                         <div class="heading">New Memberships</div>
-                        <div class="amount">15</div>
+                        <div class="amount">{{$membersCount}}</div>
                     </div>
                 </div>
 
@@ -195,7 +206,7 @@
                     </div>
                     <div class="right">
                         <div class="heading">Active Recurring Donors</div>
-                        <div class="amount">20</div>
+                        <div class="amount">{{$recurringDonor}}</div>
                     </div>
                 </div>
             </div>
@@ -206,7 +217,7 @@
         <div class="header">
             <div class="left">Latest Donors</div>
             <div class="right">
-                <a href="">View All</a>
+                <a href="{{route('donors')}}">View All</a>
             </div>
         </div>
 
@@ -223,96 +234,49 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach($latestDonations as $donation)
                     <tr>
-                        <td class="name">John Doe</td>
-                        <td class="campaign">Lorem Ipsum</td>
+                        <td class="name">{{$donation->donar->first_name.' '.$donation->donar->last_name}}</td>
+                        <td class="campaign">{{$donation->campaign->title}}</td>
+                        @if($donation->status == \AppConst::DONATION_COMPLETED)
                         <td class="status">
                             <div class="complete">Complete</div>
                         </td>
-                        <td class="amount">$100</td>
-                        <td class="fee-recoverd">$90</td>
-                        <td class="date-time">02 Jan, 2024 - 12:00 AM</td>
-                    </tr>
-                    <tr>
-                        <td class="name">John Doe</td>
-                        <td class="campaign">Lorem Ipsum</td>
-                        <td class="status">
-                            <div class="complete">Complete</div>
-                        </td>
-                        <td class="amount">$100</td>
-                        <td class="fee-recoverd">$90</td>
-                        <td class="date-time">02 Jan, 2024 - 12:00 AM</td>
-                    </tr>
-                    <tr>
-                        <td class="name">John Doe</td>
-                        <td class="campaign">Lorem Ipsum</td>
+                        @elseif($donation->status == \AppConst::DONATION_PENDING)
                         <td class="status">
                             <div class="pending">Pending</div>
                         </td>
-                        <td class="amount">$100</td>
-                        <td class="fee-recoverd">$90</td>
-                        <td class="date-time">02 Jan, 2024 - 12:00 AM</td>
-                    </tr>
-                    <tr>
-                        <td class="name">John Doe</td>
-                        <td class="campaign">Lorem Ipsum</td>
+                        @elseif($donation->status == \AppConst::DONATION_PROCESSING)
                         <td class="status">
                             <div class="processing">Processing</div>
                         </td>
-                        <td class="amount">$100</td>
-                        <td class="fee-recoverd">$90</td>
-                        <td class="date-time">02 Jan, 2024 - 12:00 AM</td>
-                    </tr>
-                    <tr>
-                        <td class="name">John Doe</td>
-                        <td class="campaign">Lorem Ipsum</td>
+                        @elseif($donation->status == \AppConst::DONATION_REFUNDED)
                         <td class="status">
-                            <div class="complete">Complete</div>
+                            <div class="failed">REFUNDED</div>
                         </td>
-                        <td class="amount">$100</td>
-                        <td class="fee-recoverd">$90</td>
-                        <td class="date-time">02 Jan, 2024 - 12:00 AM</td>
-                    </tr>
-                    <tr>
-                        <td class="name">John Doe</td>
-                        <td class="campaign">Lorem Ipsum</td>
-                        <td class="status">
-                            <div class="complete">Complete</div>
-                        </td>
-                        <td class="amount">$100</td>
-                        <td class="fee-recoverd">$90</td>
-                        <td class="date-time">02 Jan, 2024 - 12:00 AM</td>
-                    </tr>
-                    <tr>
-                        <td class="name">John Doe</td>
-                        <td class="campaign">Lorem Ipsum</td>
-                        <td class="status">
-                            <div class="pending">Pending</div>
-                        </td>
-                        <td class="amount">$100</td>
-                        <td class="fee-recoverd">$90</td>
-                        <td class="date-time">02 Jan, 2024 - 12:00 AM</td>
-                    </tr>
-                    <tr>
-                        <td class="name">John Doe</td>
-                        <td class="campaign">Lorem Ipsum</td>
-                        <td class="status">
-                            <div class="complete">Complete</div>
-                        </td>
-                        <td class="amount">$100</td>
-                        <td class="fee-recoverd">$90</td>
-                        <td class="date-time">02 Jan, 2024 - 12:00 AM</td>
-                    </tr>
-                    <tr>
-                        <td class="name">John Doe</td>
-                        <td class="campaign">Lorem Ipsum</td>
+                        @elseif($donation->status == \AppConst::DONATION_FAILED)
                         <td class="status">
                             <div class="failed">Failed</div>
                         </td>
-                        <td class="amount">$100</td>
-                        <td class="fee-recoverd">$90</td>
-                        <td class="date-time">02 Jan, 2024 - 12:00 AM</td>
-                    </tr>
+                        @endif
+                        @php
+                        $donationAmount = $totalAmount = 0;
+                        
+                        if($donation->price){
+                                $donationAmount += $donation->platformPercentage->percentage > 0 ?  (($donation->price->amount) - (($donation->platformPercentage->percentage / 100) * $donation->price->amount)) : $donation->price->amount;
+                                $totalAmount +=  $donation->price->amount;
+                            }else{
+                                $donationAmount += $donation->platformPercentage->percentage > 0 ?  (($donation->amount) - (($donation->platformPercentage->percentage / 100) * $donation->amount)) : $donation->price->amount;
+                                $totalAmount += $donation->amount;
+                            }
+                        @endphp
+                        <td class="amount">${{ceil($totalAmount)}}</td>
+                        <td class="fee-recoverd">${{ceil($donationAmount)}}</td>
+                        @php
+                            $date = \Carbon\Carbon::create($donation->created_at);
+                        @endphp
+                        <td class="date-time">{{$date->format('d F Y h:i A')}}</td>
+                    @endforeach
                 </tbody>
             </table>
         </div>

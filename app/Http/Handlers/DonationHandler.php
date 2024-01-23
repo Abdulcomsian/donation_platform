@@ -19,8 +19,8 @@ class DonationHandler{
     }
 
     public function getDonationStats(){
-        [$recieveAmount , $totalAmount] = $this->calculateDonationAmount(\AppConst::DONATION_COMPLETED);
-        [$failedRecieveAmount , $failedTotalAmount] = $this->calculateDonationAmount(\AppConst::DONATION_FAILED);
+        [$recieveAmount , $totalAmount] = $this->calculateDonationAmount(\AppConst::DONATION_COMPLETED , true);
+        [$failedRecieveAmount , $failedTotalAmount] = $this->calculateDonationAmount(\AppConst::DONATION_FAILED , true);
 
         return [$recieveAmount , $totalAmount , $failedTotalAmount];
     }
@@ -173,13 +173,17 @@ class DonationHandler{
     }
 
 
-    public function calculateDonationAmount($status = null , $campaignId = null , $upperDate = null , $lowerDate = null){
+    public function calculateDonationAmount($status = null , $currentMonth = null , $campaignId = null , $upperDate = null , $lowerDate = null){
 
         $query = Donation::query();
 
-        $query->with('price' , 'platformPercentage')->whereHas('campaign' , function($query1){
-            $query1->whereHas('user' , function($query2){
-                $query2->where('id' , auth()->user()->id);
+        $query->with('price' , 'platformPercentage');
+        
+        $query->when(!auth()->user()->hasRole('admin') , function($query){
+            $query->whereHas('campaign' , function($query1){
+                $query1->whereHas('user' , function($query2){
+                    $query2->where('id' , auth()->user()->id);
+                });
             });
         });
 
@@ -187,7 +191,7 @@ class DonationHandler{
             $query1->where('status' , $status);
         });
 
-        $query->when(!isset($lowerDate) && !isset($upperDate) , function($query1){
+        $query->when(isset($currentMonth) && $currentMonth, function($query1){
             $query1->whereRaw('YEAR(created_at) = '.now()->year.' and MONTH(created_at)='.now()->month);
         });
       
@@ -207,13 +211,13 @@ class DonationHandler{
 
         $recievedAmount = $totalAmount = 0;
         foreach($donations as $donation){
-        if($donation->price){
-            $totalAmount += $donation->price->amount;
-            $recievedAmount += ($donation->price->amount - (($donation->platformPercentage->percentage /100 ) * $donation->price->amount));
-        }else{
-            $totalAmount += $donation->amount;
-            $recievedAmount += ($donation->amount - (($donation->platformPercentage->percentage /100 ) * $donation->amount));
-        }
+            if($donation->price){
+                $totalAmount += $donation->price->amount;
+                $recievedAmount += ($donation->price->amount - (($donation->platformPercentage->percentage /100 ) * $donation->price->amount));
+            }else{
+                $totalAmount += $donation->amount;
+                $recievedAmount += ($donation->amount - (($donation->platformPercentage->percentage /100 ) * $donation->amount));
+            }
         }   
 
         return [$recievedAmount , $totalAmount];
@@ -223,5 +227,42 @@ class DonationHandler{
         $donations = Donation::with('donar' , 'price')->orderBy('id' , 'desc')->limit(10)->get();
         return $donations;
     }
+
+    public function totalDonationCount(){
+        $query = Donation::query();
+
+        $query->when( !auth()->user()->hasRole('admin') , function($query){
+            $query->whereHas('campaign' ,function($query){
+                $query->whereHas('user' , function($query1){
+                    $query1->where('id' , auth()->user()->id);
+                });
+            });
+        });
+
+        $totalDonation = $query->count();
+
+        return $totalDonation;
+    }
+
+    public function getlatestDonars(){
+
+        $query = Donation::query();
+
+        $query->when( !auth()->user()->hasRole('admin') , function($query){
+            $query->whereHas('campaign' , function($query){
+                $query->where('user_id' , auth()->user()->id);
+            });
+        });
+
+        $donations =$query->with('campaign' , 'price' , 'platformPercentage' , 'donar')
+                        ->orderBy('id' , 'desc')
+                        ->limit(10)
+                        ->get();
+
+        return $donations;
+    }
+
+
+
 
 }
