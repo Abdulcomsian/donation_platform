@@ -439,3 +439,29 @@
         }
     }
 }
+
+@media(max-width: 600px) {
+    .membership {
+        .form-container {
+            .row {
+                .col-md-10 {
+                    .monthly-membership {
+                        .form-container {
+                            .tier {
+                                flex-wrap: wrap;
+                            }
+                        }
+                    }
+
+                    .annual-membership {
+                        .form-container {
+                            .tier {
+                                flex-wrap: wrap;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
