@@ -32,7 +32,7 @@
                             <span>Dashboard</span>
                         </a>
                     </li>
-                    <li class="menu-item {{Request::is('donors') ? 'active' : ''}}">
+                    <li class="menu-item {{Request::is('donations/donors') ? 'active' : ''}}">
                         <div class="active-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="8" height="23" viewBox="0 0 8 23"
                                 fill="none">

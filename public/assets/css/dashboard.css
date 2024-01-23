@@ -536,6 +536,7 @@
 }
 .dashboard .latest-donors .data-table {
   margin-top: 1.5rem;
+  overflow-x: scroll;
 }
 .dashboard .latest-donors .data-table table {
   width: 100%;
@@ -719,9 +720,6 @@
   }
   .dashboard .dashboard-counter .left .stripe-container {
     padding: 50px 50px;
-  }
-  .dashboard .latest-donors .data-table {
-    overflow-x: scroll;
   }
 }
 @media (max-width: 425px) {

@@ -691,6 +691,7 @@
 
         .data-table {
             margin-top: 1.5rem;
+            overflow-x: scroll;
 
             table {
                 width: 100%;
@@ -942,12 +943,6 @@
                 .stripe-container {
                     padding: 50px 50px;
                 }
-            }
-        }
-
-        .latest-donors {
-            .data-table {
-                overflow-x: scroll;
             }
         }
     }
