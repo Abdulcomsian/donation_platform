@@ -1,9 +1,11 @@
-<div class="sidebar">
+<div id="sidebar" class="sidebar">
     <div class="main-container">
         <div class="top">
             <div class="logo">
                 <div class="icon">
                     <img src="{{asset('assets/images/Group 2.png')}}" alt="">
+                    <button class="toggle-close" onclick="toggleSidebarClose(event)"><img
+                            src="{{ asset('assets/images/chevron-down-sharp.png') }}" alt=""></button>
                 </div>
             </div>
             <div class="menu-items">
@@ -260,6 +262,14 @@
 </div>
 
 <script>
+    function toggleSidebarClose(event) {
+        event.preventDefault();
+        const overlay = document.getElementById('overlay');
+        overlay.style.display = 'none';
+        const sidebar = document.getElementById('sidebar');
+        sidebar.classList.remove('sidebar-open');
+    }
+
     function toggleSubmenu(id) {
         if (id === "dropdown-bank") {
             const item = document.querySelector("#dropdown-bank");

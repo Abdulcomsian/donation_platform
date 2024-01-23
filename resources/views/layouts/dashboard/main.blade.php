@@ -25,20 +25,23 @@
     <script src="{{asset('assets/package/sweet-alert/sweet-alert.min.js')}}"></script>
     <script src="{{asset('assets/package/toastr/toastr.min.js')}}"></script>
     <link rel="stylesheet" href="{{asset('assets/css/main.css')}}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{{asset('assets/package/toastr/toastr.css')}}">
 </head>
 
 <body>
     <div id="app">
         <main>
+            <div id="overlay" class="overlay"></div>
             <div class="main">
                 <div class="sidebar-container">
                     @include('layouts.dashboard.sidebar')
                 </div>
 
                 <div class="content-pane">
-                    <div class="topbar-container">
+                    <div class="topbar">
                         @include('layouts.dashboard.topbar')
                     </div>
                     <div class="main-content">
@@ -54,9 +57,6 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
         integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
     </script>
     @include('common-script')
     @yield('script')
