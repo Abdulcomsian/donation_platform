@@ -19,7 +19,7 @@
 <div class="events">
     <div class="header">
         <div class="heading">Events</div>
-        <div class="create-comapaign">
+        <div class="create-campaign">
             <a href="{{ route('event.create.form') }}">Create New Events</a>
         </div>
     </div>
