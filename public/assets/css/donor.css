@@ -14,7 +14,7 @@
 }
 .donors .datatable {
   margin-top: 1rem;
-  overflow-x: scroll;
+  overflow-x: auto;
 }
 .donors .datatable table {
   width: 80%;
