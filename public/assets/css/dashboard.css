@@ -536,6 +536,7 @@
 }
 .dashboard .latest-donors .data-table {
   margin-top: 1.5rem;
+  overflow-x: scroll;
 }
 .dashboard .latest-donors .data-table table {
   width: 100%;
@@ -680,4 +681,112 @@
 }
 .dashboard .latest-donors .data-table table tbody tr:last-child {
   border: none;
+}
+
+@media (max-width: 1324px) {
+  .dashboard .dashboard-counter .left .stripe-container {
+    padding: 50px 100px;
+  }
+  .dashboard .dashboard-counter .left .stripe-container .heading {
+    text-align: center;
+  }
+}
+@media (max-width: 1160px) {
+  .dashboard .dashboard-counter .left .stripe-container {
+    padding: 50px 80px;
+  }
+}
+@media (max-width: 680px) {
+  .dashboard .header {
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 10px;
+  }
+  .dashboard .header .left {
+    width: 100%;
+  }
+  .dashboard .header .right {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+  }
+  .dashboard .header .right a {
+    display: inline-block;
+  }
+  .dashboard .dashboard-counter {
+    display: flex;
+    flex-direction: column;
+    grid-template-columns: none;
+  }
+  .dashboard .dashboard-counter .left .stripe-container {
+    padding: 50px 50px;
+  }
+}
+@media (max-width: 425px) {
+  .dashboard .header .left .heading .welcome {
+    font-size: 25px;
+  }
+  .dashboard .header .left .heading .org-name {
+    font-size: 15px;
+  }
+  .dashboard .dashboard-counter .right .card {
+    padding: 25px 25px;
+  }
+  .dashboard .dashboard-counter .right .card .total-funraised-amount .right .heading {
+    font-size: 13px;
+  }
+  .dashboard .dashboard-counter .right .card .total-funraised-amount .right .amount {
+    font-size: 26px;
+  }
+  .dashboard .dashboard-counter .right .card .total-donations .left .right-text .top {
+    font-size: 13px;
+  }
+  .dashboard .dashboard-counter .right .card .total-donations .left .right-text .bottom {
+    font-size: 26px;
+  }
+  .dashboard .dashboard-counter .right .card .total-ticket-sold .left .right-text .top {
+    font-size: 13px;
+  }
+  .dashboard .dashboard-counter .right .card .total-ticket-sold .left .right-text .bottom {
+    font-size: 26px;
+  }
+  .dashboard .dashboard-counter .right .card .new-membership .right .heading {
+    font-size: 13px;
+  }
+  .dashboard .dashboard-counter .right .card .new-membership .right .amount {
+    font-size: 26px;
+  }
+  .dashboard .dashboard-counter .right .card .active-recurring-donors .right .heading {
+    font-size: 13px;
+  }
+  .dashboard .dashboard-counter .right .card .active-recurring-donors .right .amount {
+    font-size: 26px;
+  }
+  .dashboard .latest-donors .data-table table thead tr th {
+    padding: 20px;
+    font-size: 13px;
+  }
+  .dashboard .latest-donors .data-table table tbody tr .name {
+    padding: 20px;
+    font-size: 12px;
+  }
+  .dashboard .latest-donors .data-table table tbody tr .campaign {
+    padding: 20px;
+    font-size: 12px;
+  }
+  .dashboard .latest-donors .data-table table tbody tr .status {
+    padding: 20px;
+  }
+  .dashboard .latest-donors .data-table table tbody tr .amount {
+    padding: 20px;
+    font-size: 12px;
+  }
+  .dashboard .latest-donors .data-table table tbody tr .fee-recoverd {
+    padding: 20px;
+    font-size: 12px;
+  }
+  .dashboard .latest-donors .data-table table tbody tr .date-time {
+    padding: 20px;
+    font-size: 12px;
+  }
 }/*# sourceMappingURL=dashboard.css.map */

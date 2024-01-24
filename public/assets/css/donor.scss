@@ -16,6 +16,7 @@
 
     .datatable {
         margin-top: 1rem;
+        overflow-x: scroll;
 
         table {
             width: 80%;
@@ -71,6 +72,16 @@
                 tr:last-child {
                     border: none;
                 }
+            }
+        }
+    }
+}
+
+@media(max-width: 768px) {
+    .donors {
+        .datatable {
+            table {
+                width: 100%;
             }
         }
     }

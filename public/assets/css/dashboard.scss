@@ -691,6 +691,7 @@
 
         .data-table {
             margin-top: 1.5rem;
+            overflow-x: scroll;
 
             table {
                 width: 100%;
@@ -875,6 +876,215 @@
 
                     tr:last-child {
                         border: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media(max-width: 1324px) {
+    .dashboard {
+        .dashboard-counter {
+            .left {
+                .stripe-container {
+                    padding: 50px 100px;
+
+                    .heading {
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media(max-width: 1160px) {
+    .dashboard {
+        .dashboard-counter {
+            .left {
+                .stripe-container {
+                    padding: 50px 80px;
+                }
+            }
+        }
+    }
+}
+
+@media(max-width: 680px) {
+    .dashboard {
+        .header {
+            flex-direction: column;
+            justify-content: flex-start;
+            gap: 10px;
+
+            .left {
+                width: 100%;
+            }
+
+            .right {
+                display: flex;
+                justify-content: flex-end;
+
+                width: 100%;
+
+                a {
+                    display: inline-block;
+                }
+            }
+        }
+
+        .dashboard-counter {
+            display: flex;
+            flex-direction: column;
+            grid-template-columns: none;
+
+            .left {
+                .stripe-container {
+                    padding: 50px 50px;
+                }
+            }
+        }
+    }
+}
+
+@media(max-width: 425px) {
+    .dashboard {
+        .header {
+            .left {
+                .heading {
+                    .welcome {
+                        font-size: 25px;
+                    }
+
+                    .org-name {
+                        font-size: 15px;
+                    }
+                }
+            }
+        }
+
+        .dashboard-counter {
+            .right {
+                .card {
+                    padding: 25px 25px;
+
+                    .total-funraised-amount {
+                        .right {
+                            .heading {
+                                font-size: 13px;
+                            }
+
+                            .amount {
+                                font-size: 26px;
+                            }
+                        }
+                    }
+
+                    .total-donations {
+                        .left {
+                            .right-text {
+                                .top {
+                                    font-size: 13px;
+                                }
+
+                                .bottom {
+                                    font-size: 26px;
+                                }
+                            }
+                        }
+                    }
+
+                    .total-ticket-sold {
+                        .left {
+                            .right-text {
+                                .top {
+                                    font-size: 13px;
+                                }
+
+                                .bottom {
+                                    font-size: 26px;
+                                }
+                            }
+                        }
+                    }
+
+                    .new-membership {
+                        .right {
+                            .heading {
+                                font-size: 13px;
+                            }
+
+                            .amount {
+                                font-size: 26px;
+                            }
+                        }
+                    }
+
+                    .active-recurring-donors {
+                        .right {
+                            .heading {
+                                font-size: 13px;
+                            }
+
+                            .amount {
+                                font-size: 26px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .latest-donors {
+            .data-table {
+                table {
+                    thead {
+                        tr {
+                            th {
+                                padding: 20px;
+
+                                font-size: 13px;
+                            }
+                        }
+                    }
+
+                    tbody {
+                        tr {
+                            .name {
+                                padding: 20px;
+
+                                font-size: 12px;
+                            }
+
+                            .campaign {
+                                padding: 20px;
+
+                                font-size: 12px;
+                            }
+
+                            .status {
+                                padding: 20px;
+                            }
+
+                            .amount {
+                                padding: 20px;
+
+                                font-size: 12px;
+                            }
+
+                            .fee-recoverd {
+                                padding: 20px;
+
+                                font-size: 12px;
+                            }
+
+                            .date-time {
+                                padding: 20px;
+
+                                font-size: 12px;
+                            }
+                        }
                     }
                 }
             }

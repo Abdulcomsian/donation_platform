@@ -36,23 +36,6 @@
   line-height: normal;
   text-transform: capitalize;
 }
-
-.theme-input-text{
-  padding: 1rem;
-  height: 65.932px;
-  border-radius: 15px;
-  border: 1px solid #E5E5E5;
-  outline: none;
-  color: #000;
-  font-family: Poppins;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  letter-spacing: 0.32px;
-}
-
-
 .donate-now-card .card .card-top .form-container form .campaign-item input[type=text] {
   padding: 1rem;
   height: 65.932px;

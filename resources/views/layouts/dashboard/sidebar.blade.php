@@ -1,9 +1,11 @@
-<div class="sidebar">
+<div id="sidebar" class="sidebar">
     <div class="main-container">
         <div class="top">
             <div class="logo">
                 <div class="icon">
                     <img src="{{asset('assets/images/Group 2.png')}}" alt="">
+                    <button class="toggle-close" onclick="toggleSidebarClose(event)"><img
+                            src="{{ asset('assets/images/chevron-down-sharp.png') }}" alt=""></button>
                 </div>
             </div>
             <div class="menu-items">
@@ -30,7 +32,7 @@
                             <span>Dashboard</span>
                         </a>
                     </li>
-                    <li class="menu-item {{Request::is('donors') ? 'active' : ''}}">
+                    <li class="menu-item {{Request::is('donations/donors') ? 'active' : ''}}">
                         <div class="active-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="8" height="23" viewBox="0 0 8 23"
                                 fill="none">
@@ -260,6 +262,14 @@
 </div>
 
 <script>
+    function toggleSidebarClose(event) {
+        event.preventDefault();
+        const overlay = document.getElementById('overlay');
+        overlay.style.display = 'none';
+        const sidebar = document.getElementById('sidebar');
+        sidebar.classList.remove('sidebar-open');
+    }
+
     function toggleSubmenu(id) {
         if (id === "dropdown-bank") {
             const item = document.querySelector("#dropdown-bank");

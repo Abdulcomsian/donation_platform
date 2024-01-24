@@ -55,17 +55,6 @@
   border: 1px solid #DDDFE5;
   border-radius: 8px;
 }
-
-span.select2-selection.select2-selection--single {
-    height: 47px;
-    padding-top: 7px;
-    color: #949494!important;
-}
-
-span.select2-selection__arrow {
-    margin-top: 10px;
-}
-
 .donations .header .filters form .campaign-select select {
   height: 100%;
   width: 100%;
@@ -80,15 +69,11 @@ span.select2-selection__arrow {
   outline: none;
   border-radius: 8px;
 }
-input#daterange {
-  color: #949494;
-  height: 45px;
+.donations .header .filters form .date-select {
+  width: 132.576px;
+  height: 48px;
   border: 1px solid #DDDFE5;
-  border-radius: 6px;
-}
-
-#donation-table thead tr{
-  border-bottom: none!important;
+  border-radius: 8px;
 }
 .donations .header .filters form .date-select select {
   height: 100%;
@@ -104,12 +89,6 @@ input#daterange {
   outline: none;
   border-radius: 8px;
 }
-
-i.fas.fa-circle-notch.fa-spin.mx-2.stats-loader {
-  font-size: 50px;
-  color: #5BC17F;
-}
-
 .donations .header .filters form .download-btn-container {
   height: 48px;
   padding: 12px 16px;
@@ -133,8 +112,6 @@ i.fas.fa-circle-notch.fa-spin.mx-2.stats-loader {
   font-weight: 400;
   line-height: 24px;
 }
-
-
 .donations .counter-cards .row .col-md-4 .card {
   height: 169px;
   border-radius: 8px;
@@ -281,7 +258,7 @@ i.fas.fa-circle-notch.fa-spin.mx-2.stats-loader {
 .donations .data-table table tbody tr {
   border-bottom: 1px solid #DDDFE5;
 }
-.donations .data-table table tbody tr .name , .donations .data-table table tbody tr td:nth-child(1) {
+.donations .data-table table tbody tr .name {
   padding: 1.5rem 2rem;
   color: #000;
   font-family: Poppins;
@@ -291,7 +268,7 @@ i.fas.fa-circle-notch.fa-spin.mx-2.stats-loader {
   line-height: 22px;
   letter-spacing: 0.25px;
 }
-.donations .data-table table tbody tr .compaign, .donations .data-table table tbody tr td:nth-child(2)  {
+.donations .data-table table tbody tr .campaign {
   padding: 1.5rem 2rem;
   color: var(--Black, #303030);
   font-family: Poppins;
@@ -301,32 +278,10 @@ i.fas.fa-circle-notch.fa-spin.mx-2.stats-loader {
   line-height: 22px;
   letter-spacing: 0.25px;
 }
-.donations .data-table table tbody tr .status , .donations .data-table table tbody tr td:nth-child(3)  {
+.donations .data-table table tbody tr .status {
   padding: 1.5rem 2rem;
 }
-
-.donations .data-table table tbody tr td:nth-child(3) .pending{
-  background-color: rgba(91, 193, 127, 0.1);
-  color: #FCBB45;
-}
-
-.donations .data-table table tbody tr td:nth-child(3) .complete{
-  background-color: rgba(91, 193, 127, 0.1);
-  color: #5BC17F;
-}
-
-.donations .data-table table tbody tr td:nth-child(3) .processing{
-  background-color: rgba(91, 193, 127, 0.1);
-  color: #7271FF;
-}
-
-.donations .data-table table tbody tr td:nth-child(3) .refunded{
-  background-color: rgba(91, 193, 127, 0.1);
-  color: #7271FF;
-}
-
-
-.donations .data-table table tbody tr .status .complete  {
+.donations .data-table table tbody tr .status .complete {
   background-color: rgba(91, 193, 127, 0.1);
   border-radius: 20px;
   padding: 5px 10px;
@@ -406,7 +361,7 @@ i.fas.fa-circle-notch.fa-spin.mx-2.stats-loader {
   line-height: 16px;
   letter-spacing: 0.07px;
 }
-.donations .data-table table tbody tr .fee-recoverd, .donations .data-table table tbody tr td:nth-child(4) {
+.donations .data-table table tbody tr .fee-recoverd {
   padding: 1.5rem 2rem;
   color: var(--Black, #303030);
   font-family: Inter;

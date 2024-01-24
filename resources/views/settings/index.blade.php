@@ -68,7 +68,6 @@
                     </div>
                     <div class="tab-pane fade" id="pills-integrations" role="tabpanel"
                         aria-labelledby="pills-integrations-tab">
-                        Integrations
                         @include('settings.integrations')
                     </div>
                 </div>
