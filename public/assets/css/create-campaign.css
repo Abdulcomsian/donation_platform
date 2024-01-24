@@ -54,7 +54,7 @@
   line-height: normal;
 }
 .create-campaign .form-container .row .form-control input[type=text],
-.create-campaign .form-container .row .form-control input[type=datetime-local] {
+.create-campaign .form-container .row .form-control input[type=date] {
   padding: 1rem;
   border-radius: 15px;
   border: 1px solid #E5E5E5;
@@ -67,7 +67,7 @@
   line-height: normal;
   letter-spacing: 0.32px;
 }
-.create-campaign .form-container .row .form-control input[type=text]::-moz-placeholder, .create-campaign .form-container .row .form-control input[type=datetime-local]::-moz-placeholder {
+.create-campaign .form-container .row .form-control input[type=text]::-moz-placeholder, .create-campaign .form-container .row .form-control input[type=date]::-moz-placeholder {
   color: rgba(64, 64, 64, 0.6);
   font-family: Poppins;
   font-size: 16px;
@@ -77,7 +77,7 @@
   letter-spacing: 0.32px;
 }
 .create-campaign .form-container .row .form-control input[type=text]::placeholder,
-.create-campaign .form-container .row .form-control input[type=datetime-local]::placeholder {
+.create-campaign .form-container .row .form-control input[type=date]::placeholder {
   color: rgba(64, 64, 64, 0.6);
   font-family: Poppins;
   font-size: 16px;
@@ -114,6 +114,17 @@
   line-height: normal;
   letter-spacing: 0.32px;
   background-color: #FFF;
+}
+.create-campaign .form-container .row .form-control .select2 {
+  width: 100% !important;
+}
+.create-campaign .form-container .row .form-control .select2 .selection .select2-selection {
+  border-radius: 15px !important;
+  border: 1px solid #E5E5E5 !important;
+  min-height: 59px !important;
+}
+.create-campaign .form-container .row .form-control .select2 .selection .select2-selection .select2-selection__rendered {
+  padding: 10px 5px;
 }
 .create-campaign .form-container .row .form-control .image-upload {
   height: 133.83px;
@@ -160,6 +171,21 @@
   font-weight: 400;
   line-height: normal;
   letter-spacing: 0.28px;
+}
+.create-campaign .form-container .row .form-control .image-upload .selectFile {
+  color: #CBCBCB;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.28px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+  padding: 0 10px;
+  text-align: center;
 }
 .create-campaign .form-container .row .form-control .currency-input {
   position: relative;
