@@ -5,7 +5,8 @@
                 <div class="col-md-6">
                     <div class="form-control-name">
                         <label for="organization-name">Organization Name</label>
-                        <input type="text" id="organization-name" name="organization-name" placeholder="Donate" value="Donate" required>
+                        <input type="text" id="organization-name" name="organization-name" placeholder="Donate"
+                            value="Donate" required>
                     </div>
                     <div class="form-control-type">
                         <label for="type">Organization Type</label>
@@ -16,9 +17,11 @@
                     <div class="form-control-logo">
                         <label for="logo">Organization Logo</label>
                         <div class="image-upload">
-                            <input type="file" class="d-none" name="file" id="file">
+                            <input type="file" class="d-none" name="file" id="file" onchange="onFileChange(event)">
                             <label class="label" for="image">Image</label>
                             <button type="button" onclick="importFile(event)">Upload Image</button>
+                            <span class="selectFile" data-bs-toggle="tooltip" data-bs-placement="top"
+                                id="selectFile"></span>
                             <label class="info" for="">Recommended Size: 300px x 300px</label>
                         </div>
                     </div>
@@ -46,5 +49,14 @@
         event.preventDefault()
         let file = document.getElementById("file");
         file.click();
+    }
+
+    function onFileChange(event) {
+        event.preventDefault();
+        const file = event.target.files[0];
+
+        const element = document.getElementById('selectFile');
+        element.innerHTML = file.name;
+        element.title = file.name;
     }
 </script>
