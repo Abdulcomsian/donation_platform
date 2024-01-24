@@ -6,11 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class City extends Model
+class UserTicket extends Model
 {
     use HasFactory , SoftDeletes;
     
-    protected $table = 'cities';
+    protected $table = 'user_tickets';
     protected $primaryKey = 'id';
-    protected $fillable = [ 'country_id' , 'name'];
+    protected $fillable = ['user_id' , 'ticket_id'];
+
+  
 }

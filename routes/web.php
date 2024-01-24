@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{UserController, HomeController, DonationController, CampaignController, DashboardController, EventsController, MembershipController, SettingController};
+use App\Http\Controllers\{UserController, HomeController, DonationController, CampaignController, DashboardController, EventsController, MembershipController, SettingController, StripeController};
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +42,10 @@ Route::group(['middleware' => ['preventBackHistory', 'auth']], function () {
         Route::get('/campaign-created', [CampaignController::class, 'campaignCreated'])->name('campaign.created');
         Route::get('/campaign-updated', [CampaignController::class, 'campaignUpdated'])->name('campaign.updated');
     });
+
+    Route::get('/connect' , [StripeController::class , 'connectStripe'])->name('connect.with.stripe');
+    Route::get('/remove-connected-account' , [StripeController::class , 'removeConnectedAccount'])->name('remove.connected.stripe');
+    // Route::get('/connect/callback' , [StripeController::class , 'redirectCallback']);
 
     Route::group(['prefix' => 'events'], function () {
         Route::get("/", [EventsController::class, 'event'])->name('events');

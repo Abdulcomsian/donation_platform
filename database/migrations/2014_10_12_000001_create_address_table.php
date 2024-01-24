@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('addressable_type');
             $table->longText('street')->nullable();
             $table->timestamps();
+            $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
+            $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
             $table->softDeletes();
         });
     }

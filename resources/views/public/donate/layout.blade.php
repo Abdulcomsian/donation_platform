@@ -41,14 +41,11 @@
         .back-btn{
             cursor: pointer;
             transition: 0.2s ease-in-out;
-            border: 2px solid black;
-            border-radius: 50%;
             padding: 0px 7px;
         }
 
         .back-btn:hover{
             color: #5BC17F;
-            border: 2px solid #5BC17F;
         }
     </style>
 </head>

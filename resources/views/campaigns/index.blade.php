@@ -35,7 +35,7 @@
                     <div class="top">
                         <div class="container p-0 menu-container d-flex justify-content-between">
                             <div class="heading">
-                                <a href="{{url('donate-now', $campaign->id)}}">
+                                <a href="{{url('donate-now', $campaign->id)}}" target="_blank">
                                     {{$campaign->title}}
                                 </a>
                             </div>
@@ -47,12 +47,9 @@
                                 <div class="menu">
                                     <div>
                                         <ul>
-                                            <li><a href="{{url('donate-now' , $campaign->id)}}" class="link">View</a>
-                                            </li>
-                                            <li><a href="{{url('campaigns/edit-campaign' , $campaign->id)}}"
-                                                    class="link">Edit</a></li>
-                                            <li><a href="{{url('campaigns/delete-campaign' , $campaign->id)}}"
-                                                    class="link">Delete</a></li>
+                                            <li><a href="{{url('donate-now' , $campaign->id)}}" target="_blank" class="link">View</a></li>
+                                            <li><a href="{{url('campaigns/edit-campaign' , $campaign->id)}}" class="link">Edit</a></li>
+                                            <li><a href="{{url('campaigns/delete-campaign' , $campaign->id)}}" class="link">Delete</a></li>
                                         </ul>
                                     </div>
                                 </div>

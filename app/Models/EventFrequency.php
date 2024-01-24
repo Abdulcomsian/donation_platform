@@ -6,11 +6,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class City extends Model
+class EventFrequency extends Model
 {
     use HasFactory , SoftDeletes;
-    
-    protected $table = 'cities';
+
+    protected $table = 'event_frequency';
     protected $primaryKey = 'id';
-    protected $fillable = [ 'country_id' , 'name'];
+    protected $fillable = [ 'title'];
+
+    public function event(){
+        return $this->hasMany(Event::class , 'frequency_id' , 'id');
+    } 
+
+    
 }

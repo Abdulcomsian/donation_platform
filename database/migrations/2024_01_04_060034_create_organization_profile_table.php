@@ -21,8 +21,9 @@ return new class extends Migration
             $table->string("link");
             $table->string("platform")->nullable();
             $table->string("logo_link")->nullable();
-            $table->foreign("user_id")->references("id")->on("users");
+            $table->foreign("user_id")->references("id")->on("users")->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
