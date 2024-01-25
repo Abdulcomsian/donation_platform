@@ -19,7 +19,7 @@
 <div class="donors">
     <div class="heading">
         <div class="text">Donors</div>
-        <div class="filters">
+        <form class="filters">
             <div class="input-date">
                 <input type="date" id="date" name="date" placeholder="Date">
             </div>
@@ -29,7 +29,7 @@
                 </select>
             </div>
             <div class="btn-download">
-                <button>
+                <button type="button">
                     <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 27 27" fill="none">
                         <path
                             d="M17.1815 9.4375H19.2128C19.7515 9.4375 20.2681 9.65151 20.6491 10.0324C21.03 10.4134 21.244 10.93 21.244 11.4688V22.0312C21.244 22.57 21.03 23.0866 20.6491 23.4676C20.2681 23.8485 19.7515 24.0625 19.2128 24.0625H7.02527C6.48655 24.0625 5.96989 23.8485 5.58896 23.4676C5.20802 23.0866 4.99402 22.57 4.99402 22.0312V11.4688C4.99402 10.93 5.20802 10.4134 5.58896 10.0324C5.96989 9.65151 6.48655 9.4375 7.02527 9.4375H9.05652"
@@ -42,9 +42,9 @@
                 </button>
             </div>
             <div class="btn-add-csv">
-                <button>Add CSV</button>
+                <button type="button">Add CSV</button>
             </div>
-        </div>
+        </form>
     </div>
     <div class="datatable">
         <table>
