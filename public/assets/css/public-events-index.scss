@@ -77,6 +77,8 @@
                                     padding: 0;
                                     margin: 0;
 
+                                    width: max-content;
+
                                     border: none;
 
                                     select {
@@ -314,6 +316,88 @@
 
                                 }
 
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .main {
+        .main-content {
+            .content-pane {
+                .header {
+                    .container {
+                        flex-direction: column;
+                        gap: 10px;
+
+                        .heading {
+                            width: 100%;
+
+                            text-align: start;
+                        }
+
+                        .filters {
+                            width: 100%;
+
+                            .form-container {
+                                form {
+                                    justify-content: flex-end;
+                                    flex-wrap: wrap;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .events-list {
+                    .container {
+                        .events-container {
+                            .event-item {
+                                .card {
+                                    flex-direction: column;
+
+                                    height: max-content;
+
+                                    .start {
+                                        width: 350px;
+                                        height: 300px;
+                                    }
+
+                                    .mid {
+                                        width: 100%;
+                                    }
+
+                                    .end {
+                                        width: 100%;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 400px) {
+    .main {
+        .main-content {
+            .content-pane {
+                .events-list {
+                    .container {
+                        .events-container {
+                            .event-item {
+                                .card {
+                                    .start {
+                                        width: 250px;
+                                        height: 200px;
+                                    }
+                                }
                             }
                         }
                     }
