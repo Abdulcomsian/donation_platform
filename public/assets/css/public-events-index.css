@@ -240,7 +240,7 @@
 @media (max-width: 768px) {
   .main .main-content .content-pane .header .container {
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
   }
   .main .main-content .content-pane .header .container .heading {
     width: 100%;
