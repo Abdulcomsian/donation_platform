@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Handlers;
-use App\Models\{Campaign , CampaignFrequency , CampaignPriceOption , PriceOption} ;
+use App\Models\{Campaign , CampaignFrequency , CampaignPriceOption , PriceOption , Donation} ;
 
 class CampaignHandler{
 
@@ -118,7 +118,27 @@ class CampaignHandler{
 
 
     public function removeCampaign($id){
+        Donation::where('campaign_id' , $id)->delete();
         Campaign::where('id' , $id)->delete();
+    }
+
+    public function getUserCampaigns(){
+        return  auth()->user()->hasRole('admin') ? Campaign::orderBy('id' , 'desc')->get() : Campaign::where('user_id' , auth()->user()->id)->orderBy('id' , 'desc')->get();
+    }
+
+    public function getDashboardCampaigns()
+    {
+        $query = Campaign::query();
+        
+        $query->when(!auth()->user()->hasRole('admin') , function($query1){
+            $query1->where('user_id' , auth()->user()->id);
+        });
+
+        $query->with('donations.price' , 'donations.platformPercentage');
+
+        $campaigns = $query->orderBy('id' , 'desc')->limit(2)->get();
+        // $campaigns  = Campaign::with('donations.price' , 'donations.platformPercentage')->where('user_id' , auth()->user()->id)->orderBy('id' , 'desc')->limit(2)->get();
+        return $campaigns;
     }
 
 }

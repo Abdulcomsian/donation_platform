@@ -27,44 +27,16 @@
                 </tr>
             </thead>
             <tbody>
+                {{-- @dd($donars) --}}
+                @foreach($donars as $donation)
                 <tr>
-                    <td class="name">John Doe</td>
-                    <td class="amount">$100</td>
+                    <td class="name">{{$donation->donar->first_name.' '.$donation->donar->last_name}}</td>
+                    <td class="amount">${{$donation->amount ? $donation->amount : $donation->price->amount}}</td>
                 </tr>
-                <tr>
-                    <td class="name">John Doe</td>
-                    <td class="amount">$100</td>
-                </tr>
-                <tr>
-                    <td class="name">John Doe</td>
-                    <td class="amount">$100</td>
-                </tr>
-                <tr>
-                    <td class="name">John Doe</td>
-                    <td class="amount">$100</td>
-                </tr>
-                <tr>
-                    <td class="name">John Doe</td>
-                    <td class="amount">$100</td>
-                </tr>
-                <tr>
-                    <td class="name">John Doe</td>
-                    <td class="amount">$100</td>
-                </tr>
-                <tr>
-                    <td class="name">John Doe</td>
-                    <td class="amount">$100</td>
-                </tr>
-                <tr>
-                    <td class="name">John Doe</td>
-                    <td class="amount">$100</td>
-                </tr>
-                <tr>
-                    <td class="name">John Doe</td>
-                    <td class="amount">$100</td>
-                </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
 </div>
 @endsection
+

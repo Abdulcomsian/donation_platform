@@ -9,7 +9,7 @@
     <div class="card">
         <div class="card-top">
             <div class="heading">
-                Donate Now <span class="back-btn toggle-donation d-none"><i class="fa-solid fa-arrow-left"></i></span>
+                <span class="back-btn toggle-donation d-none"><i class="fa-solid fa-arrow-left"></i></span> Donate Now 
             </div>
 
             <div class="form-container">
@@ -62,7 +62,8 @@
                         <div class="container-fluid recurring-box d-none">
                             <div class="row">
                                     <div class="col-12 p-0 mt-4">
-                                        <select name="frequency" class="form-select frequency-select" value="disable">
+                                        <select name="frequency" class="form-select frequency-select">
+                                            <option value="" selected disabled>Select Frequency</option>
                                                 @foreach($campaign->frequencies as $frequency)
                                                     <option value="{{$frequency->type}}">{{ucfirst($frequency->type)}}</option>
                                                 @endforeach
@@ -217,10 +218,17 @@
     document.querySelectorAll(".toggle-donation").forEach(btn=>{
         btn.addEventListener("click" , function(){
             let donationForms = document.querySelectorAll(".donation-form");
+            let error = checkRecurringOption();
+            if(error){
+                Swal.fire({ icon: "error", title: "Oops...", text: error});
+                return;
+            }
+
             if(donationForms[0].classList.contains("d-none")){
                 donationForms[0].classList.remove("d-none")
                 donationForms[1].classList.add("d-none");
                 document.querySelector(".back-btn").classList.add("d-none");
+
             }else{
                 donationForms[1].classList.remove("d-none")
                 donationForms[0].classList.add("d-none");
@@ -228,6 +236,23 @@
             }
         })
     })
+
+
+    function checkRecurringOption(){
+        let errors = null;
+        let amount = priceOption = null; 
+        let recurring = document.getElementById("recurring");
+        if(recurring.classList.contains("active")){
+            let activePriceOption = document.querySelector(".donation-amount-box.active");
+            let frequency = document.querySelector(".frequency-select");
+            activePriceOption === null ? errors = "Please select price option for recursive transaction" : priceOption = activePriceOption.querySelector(".donation-amount").dataset.priceOptionId;
+            frequency.value == "" && (errors = "Please select plan");
+        }else{
+            let chargeAmount = document.getElementById("amount");
+            chargeAmount.value.trim() === null || chargeAmount.value.trim()  < 1  || chargeAmount.value.trim() == "" ? errors ="Amount should be greater or equal to $1" : amount = chargeAmount.value;
+        }
+        return errors !== null ? errors : false; 
+    }
 
 
     document.querySelector("select[name='country']").addEventListener("change" , function(){
@@ -256,6 +281,8 @@
         let email = document.getElementById("email").value;
         let country = document.getElementById("country").value;
         let city = document.getElementById("city").value;
+        let amount = document.getElementById("amount").value;
+        
 
         let fields = {
              'First_name' : firstName,
@@ -266,15 +293,8 @@
         }
 
         let errors = null
-        let amount = priceOption = null; 
-        let recurring = document.getElementById("recurring");
-        if(recurring.classList.contains("active")){
-            let activePriceOption = document.querySelector(".donation-amount-box.active");
-            activePriceOption === null ? errors = "Please select price option for recursive transaction" : priceOption = activePriceOption.querySelector(".donation-amount").dataset.priceOptionId;
-        }else{
-            let chargeAmount = document.getElementById("amount");
-            chargeAmount.value === null || chargeAmount.value <= 1 ? errors ="Amount should be greater or equal to 1" : amount = chargeAmount.value;
-        }
+        
+
 
         for(const field in fields ){
             if(validator.isEmpty(fields[field])){

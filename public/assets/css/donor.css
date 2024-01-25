@@ -14,6 +14,7 @@
 }
 .donors .datatable {
   margin-top: 1rem;
+  overflow-x: auto;
 }
 .donors .datatable table {
   width: 80%;
@@ -54,4 +55,10 @@
 }
 .donors .datatable table tbody tr:last-child {
   border: none;
+}
+
+@media (max-width: 768px) {
+  .donors .datatable table {
+    width: 100%;
+  }
 }/*# sourceMappingURL=donor.css.map */

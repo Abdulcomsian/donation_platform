@@ -11,7 +11,7 @@ use Spatie\Permission\Traits\HasRoles;
 use Spatie\Permission\Traits\HasPermissions;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Cashier\Billable;
-use App\Models\{Address , MailchimpIntegration};
+use App\Models\{Address , MailchimpIntegration , Donation , EventTicket};
 
 class User extends Authenticatable
 {
@@ -67,6 +67,15 @@ class User extends Authenticatable
 
     public function mailchimp(){
         return $this->hasOne(MailchimpIntegration::class , 'user_id' , 'id');
+    }
+
+    public function donations(){
+        return $this->hasMany(Donation::class , 'donar_id' , 'id');
+    }
+
+    public function ticket()
+    {
+        return $this->belongsToMany(EventTicket::class , 'user_ticket' , 'user_id' , 'ticket_id');
     }
 
 }

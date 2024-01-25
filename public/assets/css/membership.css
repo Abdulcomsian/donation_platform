@@ -1,0 +1,369 @@
+.membership {
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+  padding: 1rem 1.5rem;
+}
+.membership .header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+.membership .header .heading {
+  color: #000;
+  font-family: Poppins;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 166.5%;
+}
+.membership .header .description .row .col-md-5 {
+  color: #000;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.membership .form-container .row .col-md-10 .monthly-membership {
+  margin-bottom: 1rem;
+}
+.membership .form-container .row .col-md-10 .monthly-membership .heading {
+  color: #000;
+  font-family: Poppins;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  border-bottom: 2px solid #DDDFE5;
+  padding-bottom: 0.8rem;
+  margin-bottom: 1rem;
+}
+.membership .form-container .row .col-md-10 .monthly-membership .form-container .tier {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.membership .form-container .row .col-md-10 .monthly-membership .form-container .tier .name {
+  width: 418.915px;
+}
+.membership .form-container .row .col-md-10 .monthly-membership .form-container .tier .name input[type=text] {
+  padding: 1rem;
+  width: 100%;
+  border-radius: 15px;
+  border: 1px solid #E5E5E5;
+  outline: none;
+  color: rgba(64, 64, 64, 0.6);
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.membership .form-container .row .col-md-10 .monthly-membership .form-container .tier .name input[type=text]::-moz-placeholder {
+  color: rgba(64, 64, 64, 0.6);
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.membership .form-container .row .col-md-10 .monthly-membership .form-container .tier .name input[type=text]::placeholder {
+  color: rgba(64, 64, 64, 0.6);
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.membership .form-container .row .col-md-10 .monthly-membership .form-container .tier .currency-input {
+  position: relative;
+  width: 120px;
+}
+.membership .form-container .row .col-md-10 .monthly-membership .form-container .tier .currency-input span {
+  position: absolute;
+  left: 0.9em;
+  top: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+  color: #949494;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.membership .form-container .row .col-md-10 .monthly-membership .form-container .tier .currency-input input[type=number] {
+  -moz-appearance: textfield;
+  -webkit-appearance: textfield;
+          appearance: textfield;
+  border: 1px solid #E5E5E5;
+  border-radius: 15px;
+  padding: 1rem 2rem;
+  outline: none;
+  width: 100%;
+  color: #949494;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.membership .form-container .row .col-md-10 .monthly-membership .form-container .tier .currency-input input[type=number]::-moz-placeholder {
+  color: #949494;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.membership .form-container .row .col-md-10 .monthly-membership .form-container .tier .currency-input input[type=number]::placeholder {
+  color: #949494;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.membership .form-container .row .col-md-10 .monthly-membership .form-container .tier .currency-input input[type=number]:invalid {
+  border-color: orangered;
+  color: crimson;
+}
+.membership .form-container .row .col-md-10 .monthly-membership .form-container .tier .currency-input input[type=number]::-webkit-outer-spin-button,
+.membership .form-container .row .col-md-10 .monthly-membership .form-container .tier .currency-input input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+.membership .form-container .row .col-md-10 .monthly-membership .form-container .tier .remove button {
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+.membership .form-container .row .col-md-10 .monthly-membership .add-new button {
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid #5BC17F;
+  background-color: #FFF;
+  color: #5BC17F;
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 18px;
+}
+.membership .form-container .row .col-md-10 .monthly-membership .add-new button span {
+  color: #5BC17F;
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Poppins;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}
+.membership .form-container .row .col-md-10 .annual-membership .heading {
+  color: #000;
+  font-family: Poppins;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  border-bottom: 2px solid #DDDFE5;
+  padding-bottom: 0.8rem;
+  margin-bottom: 1rem;
+}
+.membership .form-container .row .col-md-10 .annual-membership .form-container .tier {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.membership .form-container .row .col-md-10 .annual-membership .form-container .tier .name {
+  width: 418.915px;
+}
+.membership .form-container .row .col-md-10 .annual-membership .form-container .tier .name input[type=text] {
+  padding: 1rem;
+  width: 100%;
+  border-radius: 15px;
+  border: 1px solid #E5E5E5;
+  outline: none;
+  color: rgba(64, 64, 64, 0.6);
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.membership .form-container .row .col-md-10 .annual-membership .form-container .tier .name input[type=text]::-moz-placeholder {
+  color: rgba(64, 64, 64, 0.6);
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.membership .form-container .row .col-md-10 .annual-membership .form-container .tier .name input[type=text]::placeholder {
+  color: rgba(64, 64, 64, 0.6);
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
+.membership .form-container .row .col-md-10 .annual-membership .form-container .tier .currency-input {
+  position: relative;
+  width: 120px;
+}
+.membership .form-container .row .col-md-10 .annual-membership .form-container .tier .currency-input span {
+  position: absolute;
+  left: 0.9em;
+  top: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+  color: #949494;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.membership .form-container .row .col-md-10 .annual-membership .form-container .tier .currency-input input[type=number] {
+  -moz-appearance: textfield;
+  -webkit-appearance: textfield;
+          appearance: textfield;
+  border: 1px solid #E5E5E5;
+  border-radius: 15px;
+  padding: 1rem 2rem;
+  outline: none;
+  width: 100%;
+  color: #949494;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.membership .form-container .row .col-md-10 .annual-membership .form-container .tier .currency-input input[type=number]::-moz-placeholder {
+  color: #949494;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.membership .form-container .row .col-md-10 .annual-membership .form-container .tier .currency-input input[type=number]::placeholder {
+  color: #949494;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.membership .form-container .row .col-md-10 .annual-membership .form-container .tier .currency-input input[type=number]:invalid {
+  border-color: orangered;
+  color: crimson;
+}
+.membership .form-container .row .col-md-10 .annual-membership .form-container .tier .currency-input input[type=number]::-webkit-outer-spin-button,
+.membership .form-container .row .col-md-10 .annual-membership .form-container .tier .currency-input input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+.membership .form-container .row .col-md-10 .annual-membership .form-container .tier .remove button {
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+.membership .form-container .row .col-md-10 .annual-membership .add-new button {
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid #5BC17F;
+  background-color: #FFF;
+  color: #5BC17F;
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 18px;
+}
+.membership .form-container .row .col-md-10 .annual-membership .add-new button span {
+  color: #5BC17F;
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Poppins;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}
+.membership .form-container .row .col-md-10 .submit-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.membership .form-container .row .col-md-10 .submit-container .create button {
+  border: none;
+  outline: none;
+  padding: 12px 16px;
+  border-radius: 8px;
+  background-color: #D9D9D9;
+  color: #949494;
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}
+.membership .form-container .row .col-md-10 .submit-container .save button {
+  border: none;
+  outline: none;
+  padding: 12px 16px;
+  border-radius: 8px;
+  background: #5BC17F;
+  color: var(--White-Full, #FFF);
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+@media (max-width: 600px) {
+  .membership .form-container .row .col-md-10 .monthly-membership .form-container .tier {
+    flex-wrap: wrap;
+  }
+  .membership .form-container .row .col-md-10 .annual-membership .form-container .tier {
+    flex-wrap: wrap;
+  }
+}/*# sourceMappingURL=membership.css.map */

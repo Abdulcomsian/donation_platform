@@ -1,9 +1,11 @@
-<div class="sidebar">
+<div id="sidebar" class="sidebar">
     <div class="main-container">
         <div class="top">
             <div class="logo">
                 <div class="icon">
                     <img src="{{asset('assets/images/Group 2.png')}}" alt="">
+                    <button class="toggle-close" onclick="toggleSidebarClose(event)"><img
+                            src="{{ asset('assets/images/chevron-down-sharp.png') }}" alt=""></button>
                 </div>
             </div>
             <div class="menu-items">
@@ -17,7 +19,7 @@
                                     fill="#5BC17F" />
                             </svg>
                         </div>
-                        <a class="nav-link" href="">
+                        <a class="nav-link" href="{{ route('dashboard') }}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="23" height="19" viewBox="0 0 23 19"
                                 fill="none">
                                 <path class="stroke"
@@ -30,7 +32,7 @@
                             <span>Dashboard</span>
                         </a>
                     </li>
-                    <li class="menu-item {{Request::is('donors') ? 'active' : ''}}">
+                    <li class="menu-item {{Request::is('donations/donors') ? 'active' : ''}}">
                         <div class="active-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="8" height="23" viewBox="0 0 8 23"
                                 fill="none">
@@ -127,7 +129,7 @@
                                     fill="#5BC17F" />
                             </svg>
                         </div>
-                        <a class="nav-link" href="">
+                        <a class="nav-link" href="{{ route('membership') }}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22"
                                 fill="none">
                                 <path class="fill"
@@ -200,8 +202,8 @@
                                 <path d="M5.08008 7.66797L10.7051 13.293L16.3301 7.66797" stroke="black"
                                     stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="square" />
                             </svg>
-                            <svg id="down" style="display: none" xmlns="http://www.w3.org/2000/svg" width="21" height="21"
-                                viewBox="0 0 21 21" fill="none">
+                            <svg id="down" style="display: none" xmlns="http://www.w3.org/2000/svg" width="21"
+                                height="21" viewBox="0 0 21 21" fill="none">
                                 <path d="M16.2441 13.293L10.6191 7.66797L4.99414 13.293" stroke="black"
                                     stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="square" />
                             </svg>
@@ -228,7 +230,7 @@
                                     fill="#5BC17F" />
                             </svg>
                         </div>
-                        <a class="nav-link" href="">
+                        <a class="nav-link" href="{{ route('settings') }}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="19" viewBox="0 0 18 19"
                                 fill="none">
                                 <path class="fill"
@@ -260,6 +262,14 @@
 </div>
 
 <script>
+    function toggleSidebarClose(event) {
+        event.preventDefault();
+        const overlay = document.getElementById('overlay');
+        overlay.style.display = 'none';
+        const sidebar = document.getElementById('sidebar');
+        sidebar.classList.remove('sidebar-open');
+    }
+
     function toggleSubmenu(id) {
         if (id === "dropdown-bank") {
             const item = document.querySelector("#dropdown-bank");

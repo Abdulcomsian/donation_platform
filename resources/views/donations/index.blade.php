@@ -13,6 +13,9 @@
     href="https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
     rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('assets/css/donation.css') }}">
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="{{asset('assets/package/daterangepicker/daterangepicker.min.css')}}">
+<link rel="stylesheet" href="{{asset('assets/package/select2/select2.min.css')}}">
 @endsection
 
 @section('content')
@@ -24,17 +27,20 @@
                 <div class="status-select">
                     <select name="status" id="status" aria-placeholder="Status">
                         <option value="">Status</option>
+                        <option value="{{AppConst::DONATION_COMPLETED}}">{{ucfirst(AppConst::DONATION_COMPLETED)}}</option>
+                        <option value="{{AppConst::DONATION_FAILED}}">{{ucfirst(AppConst::DONATION_FAILED)}}</option>
                     </select>
                 </div>
                 <div class="compaign-select">
                     <select name="compaign" id="compaign" aria-placeholder="Status">
-                        <option value="">Compaign</option>
+                        <option value="" selected>Select Campaign</option>
+                        @foreach($campaigns as $campaign)
+                            <option value="{{$campaign->id}}">{{$campaign->title}}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="date-select">
-                    <select name="compaign" id="compaign" aria-placeholder="Status">
-                        <option value="">Date</option>
-                    </select>
+                    <input type="text" name="daterange" id="daterange" placeholder="Please Enter Date Range">
                 </div>
                 <button class="download-btn-container">
                     <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 27 27" fill="none">
@@ -61,7 +67,7 @@
                     <div class="top">
                         <div class="heading">
                             <div class="heading-content">Total Donations</div>
-                            <div class="tag-green">
+                            {{-- <div class="tag-green">
                                 <div class="icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 11 11"
                                         fill="none">
@@ -81,19 +87,21 @@
                                 <div class="text">
                                     10.0%
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                     <div class="middle">
                         <div class="amount">
-                            $1,567.99
+                            <span class="stats-numbers">${{number_format($totalAmount , 2)}}</span>
+                            <i class="fas fa-circle-notch fa-spin mx-2 d-none stats-loader"></i>
+                            {{-- $1,567.99 --}}
                         </div>
                     </div>
                     <div class="bottom">
                         <div class="duration">
                             <div class="month">This Month</div>
                             <div class="view">
-                                <a href="">View All</a>
+                                {{-- <a href="">View All</a> --}}
                             </div>
                         </div>
                     </div>
@@ -104,7 +112,7 @@
                     <div class="top">
                         <div class="heading">
                             <div class="heading-content">Rec. Donations</div>
-                            <div class="tag-green">
+                            {{-- <div class="tag-green">
                                 <div class="icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 11 11"
                                         fill="none">
@@ -124,19 +132,20 @@
                                 <div class="text">
                                     3.2%
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                     <div class="middle">
                         <div class="amount">
-                            $2,868.99
+                            <span class="stats-numbers">${{number_format($recievedAmount , 2)}}</span>
+                            <i class="fas fa-circle-notch fa-spin mx-2 d-none stats-loader"></i>
                         </div>
                     </div>
                     <div class="bottom">
                         <div class="duration">
                             <div class="month">This Month</div>
                             <div class="view">
-                                <a href="">View All</a>
+                                {{-- <a href="">View All</a> --}}
                             </div>
                         </div>
                     </div>
@@ -147,25 +156,26 @@
                     <div class="top">
                         <div class="heading">
                             <div class="heading-content">Failed Donations</div>
-                            <div class="tag-red">
+                            {{-- <div class="tag-red">
                                 <div class="icon">
                                 </div>
                                 <div class="text">
                                     3.0%
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                     <div class="middle">
                         <div class="amount">
-                            20
+                            <span class="stats-numbers">${{number_format($failedAmount , 2)}}</span>
+                            <i class="fas fa-circle-notch fa-spin mx-2 d-none stats-loader"></i>
                         </div>
                     </div>
                     <div class="bottom">
                         <div class="duration">
                             <div class="month">This Month</div>
                             <div class="view">
-                                <a href="">View All</a>
+                                {{-- <a href="">View All</a> --}}
                             </div>
                         </div>
                     </div>
@@ -174,8 +184,8 @@
         </div>
     </div>
 
-    <div class="data-table">
-        <table>
+    <div class="data-table mt-5">
+        <table id="donation-table">
             <thead>
                 <tr>
                     <th>Donor</th>
@@ -186,9 +196,9 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                {{-- <tr>
                     <td class="name">John Doe</td>
-                    <td class="compaign">Lorem Ipsum</td>
+                    <td class="campaign">Lorem Ipsum</td>
                     <td class="status">
                         <div class="complete">Complete</div>
                     </td>
@@ -197,7 +207,7 @@
                 </tr>
                 <tr>
                     <td class="name">John Doe</td>
-                    <td class="compaign">Lorem Ipsum</td>
+                    <td class="campaign">Lorem Ipsum</td>
                     <td class="status">
                         <div class="complete">Complete</div>
                     </td>
@@ -206,7 +216,7 @@
                 </tr>
                 <tr>
                     <td class="name">John Doe</td>
-                    <td class="compaign">Lorem Ipsum</td>
+                    <td class="campaign">Lorem Ipsum</td>
                     <td class="status">
                         <div class="pending">Pending</div>
                     </td>
@@ -215,7 +225,7 @@
                 </tr>
                 <tr>
                     <td class="name">John Doe</td>
-                    <td class="compaign">Lorem Ipsum</td>
+                    <td class="campaign">Lorem Ipsum</td>
                     <td class="status">
                         <div class="processing">Processing</div>
                     </td>
@@ -224,7 +234,7 @@
                 </tr>
                 <tr>
                     <td class="name">John Doe</td>
-                    <td class="compaign">Lorem Ipsum</td>
+                    <td class="campaign">Lorem Ipsum</td>
                     <td class="status">
                         <div class="complete">Complete</div>
                     </td>
@@ -233,7 +243,7 @@
                 </tr>
                 <tr>
                     <td class="name">John Doe</td>
-                    <td class="compaign">Lorem Ipsum</td>
+                    <td class="campaign">Lorem Ipsum</td>
                     <td class="status">
                         <div class="complete">Complete</div>
                     </td>
@@ -242,7 +252,7 @@
                 </tr>
                 <tr>
                     <td class="name">John Doe</td>
-                    <td class="compaign">Lorem Ipsum</td>
+                    <td class="campaign">Lorem Ipsum</td>
                     <td class="status">
                         <div class="pending">Pending</div>
                     </td>
@@ -251,7 +261,7 @@
                 </tr>
                 <tr>
                     <td class="name">John Doe</td>
-                    <td class="compaign">Lorem Ipsum</td>
+                    <td class="campaign">Lorem Ipsum</td>
                     <td class="status">
                         <div class="complete">Complete</div>
                     </td>
@@ -260,15 +270,185 @@
                 </tr>
                 <tr>
                     <td class="name">John Doe</td>
-                    <td class="compaign">Lorem Ipsum</td>
+                    <td class="campaign">Lorem Ipsum</td>
                     <td class="status">
                         <div class="failed">Failed</div>
                     </td>
                     <td class="amount">$100</td>
                     <td class="fee-recoverd">$90</td>
-                </tr>
+                </tr> --}}
             </tbody>
         </table>
     </div>
 </div>
+@endsection
+
+@section('script')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="{{asset('assets/package/moment/moment.min.js')}}"></script>
+<script src="{{asset('assets/package/daterangepicker/daterangepicker.min.js')}}"></script>
+<script src="{{asset('assets/package/select2/select2.full.min.js')}}"></script>
+<script>
+    
+
+
+$(document).ready(function(){
+
+    loadDonationTable();
+
+    $("#daterange").daterangepicker({
+        autoUpdateInput: false,
+        locale: {
+            cancelLabel: 'Clear'
+        }
+    });
+
+    $('#compaign').select2();
+
+    $("#daterange").on('apply.daterangepicker', function(ev, picker) {
+        $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
+        this.setAttribute('data-lower-date' , picker.startDate.format("YYYY-MM-DD"));
+        this.setAttribute('data-upper-date' , picker.endDate.format("YYYY-MM-DD"));
+        loadDonationTable();
+        loadDashboardStats();
+    });
+
+    $("#daterange").on('cancel.daterangepicker', function(ev, picker) {
+        $(this).val('')
+        picker.setStartDate({});
+        picker.setEndDate({});
+        //relaoding datatable
+        
+    });
+
+document.getElementById('status').addEventListener("change" , function(){
+    loadDonationTable();
+    loadDashboardStats();
+})
+
+$(document.body).on("change","#compaign",function(){
+    loadDonationTable();
+    loadDashboardStats();
+});
+
+
+function loadDonationTable(){
+   let campaign = document.getElementById("compaign").value;
+   let status = document.getElementById("status").value;
+   let upperDate = document.getElementById("daterange").dataset.upperDate;
+   let lowerDate = document.getElementById("daterange").dataset.lowerDate;
+   let [ table , url , columns ] = tableInformation();
+   let data = {
+        campaignId : campaign,
+        status : status,
+        upperDate : upperDate,
+        lowerDate : lowerDate
+   }
+   loadData(table , url , columns , data);
+}
+
+
+function tableInformation(){
+    let table = document.getElementById("donation-table");
+    let url = "{{route('get.donations')}}";
+    let columns = [
+                    { data: 'donar', name: 'type' },
+                    { data: 'campaign', name: 'campaign' },
+                    { data: 'status', name: 'status' },
+                    { data: 'amount', name: 'amount' },
+                    { data: 'fee_recovered', name: 'fee_recovered' },
+                ];
+    return [table , url , columns];
+}
+
+
+function loadData(table , url , columns , data){
+    $(table).DataTable({
+                    processing: true,
+                    serverSide: true,
+                    searching: false,
+                    bLengthChange: false,
+                    bInfo: false,
+                    pagingType: 'full_numbers',
+                    "bDestroy": true,
+                    ajax : {
+                        type : 'POST',
+                        url : url,
+                        data : {
+                            _token : '{{csrf_token()}}',
+                            ...data
+                        }
+                    },
+                    columns: columns
+                });             
+}
+
+
+
+function loadDashboardStats(){
+    let campaign = document.getElementById("compaign").value;
+    let status = document.getElementById("status").value;
+    let upperDate = document.getElementById("daterange").dataset.upperDate;
+    let lowerDate = document.getElementById("daterange").dataset.lowerDate;
+    let data = {
+        campaignId : campaign,
+        status : status,
+        upperDate : upperDate,
+        lowerDate : lowerDate
+   }
+
+   toggleStats();
+
+    $.ajax({
+        type : 'POST',
+        url : '{{route("load.donation.dashboard.stats")}}',
+        data : {
+            _token : "{{csrf_token()}}",
+            ...data
+        },
+        success: function(res){
+            toggleStats();
+
+            if(res.status){
+                document.querySelectorAll(".stats-numbers")[0].innerHTML = res.totalAmount;
+                document.querySelectorAll(".stats-numbers")[1].innerHTML = res.recievedAmount;
+                document.querySelectorAll(".stats-numbers")[2].innerHTML = res.failedAmount;
+            }else{
+                Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: res.msg,
+                    });
+            }
+        }
+    })
+}
+
+
+function toggleStats(){
+    document.querySelectorAll(".stats-numbers").forEach(item => {
+      item.classList.contains("d-none") ? item.classList.remove("d-none") : item.classList.add("d-none") ;
+   })
+
+   document.querySelectorAll(".stats-loader").forEach(item => {
+    item.classList.contains("d-none") ? item.classList.remove("d-none") : item.classList.add("d-none") ;
+   })
+}
+
+
+
+
+
+})
+
+
+
+
+
+
+
+
+
+
+</script>
 @endsection

@@ -24,7 +24,7 @@ return new class extends Migration
             $table->enum('fee_recovery' , ['disable' , 'optional' , 'required'])->nullable();
             $table->dateTime('date');
             $table->integer('status')->default(0);
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });
