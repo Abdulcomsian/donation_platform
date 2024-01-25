@@ -34,10 +34,15 @@
                 </div>
                 <div class="campaign-select">
                     <select name="campaign" id="campaign" aria-placeholder="Status">
-                        <option value="" selected>Select Campaign</option>
+                        <option value="" selected>Campaign</option>
                         @foreach($campaigns as $campaign)
                         <option value="{{$campaign->id}}">{{$campaign->title}}</option>
                         @endforeach
+                    </select>
+                </div>
+                <div class="membership-select">
+                    <select name="membership" id="membership" aria-placeholder="membership">
+                        <option value="">Membership</option>
                     </select>
                 </div>
                 <div class="date-select">

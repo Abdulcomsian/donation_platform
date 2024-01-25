@@ -73,6 +73,31 @@
                     }
                 }
 
+                .membership-select {
+                    width: 132.576px;
+                    height: 48px;
+                    border: 1px solid #DDDFE5;
+                    border-radius: 8px;
+
+                    select {
+                        height: 100%;
+                        width: 100%;
+
+                        color: #949494;
+                        font-family: Poppins;
+                        font-size: 14px;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: normal;
+                        letter-spacing: 0.14px;
+
+                        border: none;
+                        outline: none;
+
+                        border-radius: 8px;
+                    }
+                }
+
                 .campaign-select {
                     .select2 {
                         .selection {
@@ -89,6 +114,16 @@
                                 .select2-selection__arrow {
                                     top: 50% !important;
                                     transform: translateY(-50%) !important;
+                                }
+
+                                .select2-selection__rendered {
+                                    color: #949494;
+                                    font-family: Poppins;
+                                    font-size: 14px;
+                                    font-style: normal;
+                                    font-weight: 400;
+                                    line-height: normal;
+                                    letter-spacing: 0.14px;
                                 }
                             }
                         }
