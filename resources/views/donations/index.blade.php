@@ -27,15 +27,16 @@
                 <div class="status-select">
                     <select name="status" id="status" aria-placeholder="Status">
                         <option value="">Status</option>
-                        <option value="{{AppConst::DONATION_COMPLETED}}">{{ucfirst(AppConst::DONATION_COMPLETED)}}</option>
+                        <option value="{{AppConst::DONATION_COMPLETED}}">{{ucfirst(AppConst::DONATION_COMPLETED)}}
+                        </option>
                         <option value="{{AppConst::DONATION_FAILED}}">{{ucfirst(AppConst::DONATION_FAILED)}}</option>
                     </select>
                 </div>
-                <div class="compaign-select">
-                    <select name="compaign" id="compaign" aria-placeholder="Status">
+                <div class="campaign-select">
+                    <select name="campaign" id="campaign" aria-placeholder="Status">
                         <option value="" selected>Select Campaign</option>
                         @foreach($campaigns as $campaign)
-                            <option value="{{$campaign->id}}">{{$campaign->title}}</option>
+                        <option value="{{$campaign->id}}">{{$campaign->title}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -67,7 +68,7 @@
                     <div class="top">
                         <div class="heading">
                             <div class="heading-content">Total Donations</div>
-                            {{-- <div class="tag-green">
+                            <div class="tag-green">
                                 <div class="icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 11 11"
                                         fill="none">
@@ -87,21 +88,20 @@
                                 <div class="text">
                                     10.0%
                                 </div>
-                            </div> --}}
+                            </div>
                         </div>
                     </div>
                     <div class="middle">
                         <div class="amount">
                             <span class="stats-numbers">${{number_format($totalAmount , 2)}}</span>
                             <i class="fas fa-circle-notch fa-spin mx-2 d-none stats-loader"></i>
-                            {{-- $1,567.99 --}}
                         </div>
                     </div>
                     <div class="bottom">
                         <div class="duration">
                             <div class="month">This Month</div>
                             <div class="view">
-                                {{-- <a href="">View All</a> --}}
+                                <a href="">View All</a>
                             </div>
                         </div>
                     </div>
@@ -112,7 +112,7 @@
                     <div class="top">
                         <div class="heading">
                             <div class="heading-content">Rec. Donations</div>
-                            {{-- <div class="tag-green">
+                            <div class="tag-green">
                                 <div class="icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 11 11"
                                         fill="none">
@@ -132,7 +132,7 @@
                                 <div class="text">
                                     3.2%
                                 </div>
-                            </div> --}}
+                            </div>
                         </div>
                     </div>
                     <div class="middle">
@@ -145,7 +145,7 @@
                         <div class="duration">
                             <div class="month">This Month</div>
                             <div class="view">
-                                {{-- <a href="">View All</a> --}}
+                                <a href="">View All</a>
                             </div>
                         </div>
                     </div>
@@ -156,13 +156,13 @@
                     <div class="top">
                         <div class="heading">
                             <div class="heading-content">Failed Donations</div>
-                            {{-- <div class="tag-red">
+                            <div class="tag-red">
                                 <div class="icon">
                                 </div>
                                 <div class="text">
                                     3.0%
                                 </div>
-                            </div> --}}
+                            </div>
                         </div>
                     </div>
                     <div class="middle">
@@ -175,7 +175,7 @@
                         <div class="duration">
                             <div class="month">This Month</div>
                             <div class="view">
-                                {{-- <a href="">View All</a> --}}
+                                <a href="">View All</a>
                             </div>
                         </div>
                     </div>
@@ -289,10 +289,7 @@
 <script src="{{asset('assets/package/daterangepicker/daterangepicker.min.js')}}"></script>
 <script src="{{asset('assets/package/select2/select2.full.min.js')}}"></script>
 <script>
-    
-
-
-$(document).ready(function(){
+    $(document).ready(function(){
 
     loadDonationTable();
 
@@ -303,7 +300,7 @@ $(document).ready(function(){
         }
     });
 
-    $('#compaign').select2();
+    $('#campaign').select2();
 
     $("#daterange").on('apply.daterangepicker', function(ev, picker) {
         $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
@@ -326,14 +323,14 @@ document.getElementById('status').addEventListener("change" , function(){
     loadDashboardStats();
 })
 
-$(document.body).on("change","#compaign",function(){
+$(document.body).on("change","#campaign",function(){
     loadDonationTable();
     loadDashboardStats();
 });
 
 
 function loadDonationTable(){
-   let campaign = document.getElementById("compaign").value;
+   let campaign = document.getElementById("campaign").value;
    let status = document.getElementById("status").value;
    let upperDate = document.getElementById("daterange").dataset.upperDate;
    let lowerDate = document.getElementById("daterange").dataset.lowerDate;
@@ -386,7 +383,7 @@ function loadData(table , url , columns , data){
 
 
 function loadDashboardStats(){
-    let campaign = document.getElementById("compaign").value;
+    let campaign = document.getElementById("campaign").value;
     let status = document.getElementById("status").value;
     let upperDate = document.getElementById("daterange").dataset.upperDate;
     let lowerDate = document.getElementById("daterange").dataset.lowerDate;

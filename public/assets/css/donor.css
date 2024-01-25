@@ -149,7 +149,6 @@
 }
 @media (max-width: 595px) {
   .donors .heading .filters {
-    flex-direction: column;
-    align-items: flex-end;
+    flex-wrap: wrap;
   }
 }/*# sourceMappingURL=donor.css.map */
