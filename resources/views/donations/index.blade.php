@@ -42,6 +42,7 @@
                 <div class="date-select">
                     <input type="text" name="daterange" id="daterange" placeholder="Please Enter Date Range">
                 </div>
+                <div class="btn-inline-group">
                 <button class="download-btn-container">
                     <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 27 27" fill="none">
                         <path
@@ -56,6 +57,7 @@
                 <button class="add-csv-btn-container">
                     Add CSV
                 </button>
+                </div>
             </form>
         </div>
     </div>
