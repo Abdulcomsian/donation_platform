@@ -186,7 +186,7 @@
         </div>
     </div>
 
-    <div class="data-table mt-5">
+    <div class="data-table table-responsive mt-5">
         <table id="donation-table">
             <thead>
                 <tr>
