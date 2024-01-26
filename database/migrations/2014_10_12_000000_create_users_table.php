@@ -19,6 +19,10 @@ return new class extends Migration
             $table->string('phone')->unique()->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
+            $table->string('stripe_connected_id')->nullable();
+            $table->boolean('stripe_is_verified')->default(0);
+            $table->longText('profile_image')->nullable();
+            $table->longText('logo')->nullable();
             $table->rememberToken();
             $table->timestamp('created_at')->default(now());
             $table->timestamp('updated_at')->default(now());

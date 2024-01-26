@@ -124,3 +124,18 @@
     </div>
 </div>
 @endsection
+
+@section('script')
+<script>
+
+    document.querySelectorAll("input[type='checkbox']").forEach((item , index)=>{
+        item.addEventListener("change" , function(){
+            document.querySelectorAll("input[type='checkbox']").forEach( (checkbox , checkboxIndex) => {
+                if(checkboxIndex != index ){
+                    checkbox.checked = false;
+                }
+            }) 
+        });
+    })
+</script>
+@endsection

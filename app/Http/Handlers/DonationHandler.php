@@ -3,11 +3,12 @@
 namespace App\Http\Handlers;
 
 use App\Http\AppConst;
-use App\Models\{ Donation , Campaign , Country , User , PlatformPercentage , Address};
+use App\Models\{ Donation , Campaign , Country , User , PlatformPercentage , Address, PriceOption};
 use App\Http\Handlers\{StripeHandler , MailChimpHandler};
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Stripe\{Stripe , Transfer};
 
 class DonationHandler{
 
@@ -95,32 +96,52 @@ class DonationHandler{
         $campaignId = $request->campaign_id;
 
         $percentageId = PlatformPercentage::latestPercentage()->id;
-        $donation = new Donation;
-        $donation->campaign_id = $campaignId;
-        isset($request->frequency) ? $donation->price_option_id = $request->price_option : $donation->amount = $request->amount;
-        $donation->status = "completed";
-        $donation->percentage_id = $percentageId;
-        $donarId = $this->createDonar($request);
-        $donation->donar_id = $donarId; 
-        $donation->save();
+        //set percentage when split payment has been discussed
+        Stripe::setApiKey(env('STRIPE_SECRET'));
+        $amount = isset($request->frequency) ? PriceOption::where('id' , $request->price_option)->first()->amount : $request->amount;
+        $connectedAccountId = Campaign::with('user')->where('id' , $campaignId)->first()->user->stripe_connected_id;
+        
+        $transfer = Transfer::create([
+            'amount' => $amount * 100,
+            'currency' => 'usd',
+            'destination' => $connectedAccountId,
+        ]);
 
-        $campaignCreator = User::with('mailchimp')->whereHas('campaigns' , function($query) use ($campaignId){
-                                            $query->where('id' , $campaignId);
-                                    })->first();
-
-        if($campaignCreator->mailchimp){
-            $mailchimp = new MailChimpHandler($campaignCreator->mailchimp->api_key);
-            if(!$mailchimp->findSubscriber($campaignCreator->mailchimp->list_id , $request->email)){
-                $mailchimp->addSubscriber($campaignCreator->mailchimp->list_id , $request->email);
+        if($transfer->id){
+            
+            $donation = new Donation;
+            $donation->campaign_id = $campaignId;
+            isset($request->frequency) ? $donation->price_option_id = $request->price_option : $donation->amount = $request->amount;
+            $donation->status = "completed";
+            $donation->percentage_id = $percentageId;
+            $donarId = $this->createDonar($request);
+            $donation->donar_id = $donarId; 
+            $donation->transfer_id = $transfer->id;
+            $donation->save();
+    
+            $campaignCreator = User::with('mailchimp')->whereHas('campaigns' , function($query) use ($campaignId){
+                                                $query->where('id' , $campaignId);
+                                        })->first();
+    
+            if($campaignCreator->mailchimp){
+                $mailchimp = new MailChimpHandler($campaignCreator->mailchimp->api_key);
+                if(!$mailchimp->findSubscriber($campaignCreator->mailchimp->list_id , $request->email)){
+                    $mailchimp->addSubscriber($campaignCreator->mailchimp->list_id , $request->email);
+                }
             }
-        }
+    
+    
+            if($donarId){
+                return ['status' => true , 'msg' => 'Donation added successfully'];
+            }else{
+                return ['status' => false , 'msg' => 'Something went wrong while adding donation'];
+            }
 
-
-        if($donarId){
-            return ['status' => true , 'msg' => 'Donation added successfully'];
         }else{
             return ['status' => false , 'msg' => 'Something went wrong while adding donation'];
         }
+
+
         
     }
 

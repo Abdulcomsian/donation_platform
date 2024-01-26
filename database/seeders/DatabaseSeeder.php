@@ -11,7 +11,9 @@ use Database\Seeders\{CampaignSeeder,
                         UserSeeder, 
                         PriceOptionSeeder, 
                         RolesSeeder, 
-                        MailchimpSeeder
+                        MailchimpSeeder,
+                        EventCategorySeeder,
+                        EventFrequencySeeder,
                     };
 class DatabaseSeeder extends Seeder
 {
@@ -27,5 +29,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PriceOptionSeeder::class);
         $this->call(CampaignSeeder::class);
         $this->call(PlatformPercentageSeeder::class);
+        $this->call(EventCategorySeeder::class);
+        $this->call(EventFrequencySeeder::class);
     }
 }
