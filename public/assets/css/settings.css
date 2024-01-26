@@ -244,7 +244,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: flex-start;
 }
 .settings .tabs-container .tab-content .tab-pane .profile .form-container form .submit button {
   padding: 12px 16px;
@@ -443,7 +443,7 @@
   padding: 1rem 2rem;
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: flex-start;
   align-items: center;
   gap: 25px;
 }
@@ -709,7 +709,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: flex-start;
 }
 .settings .tabs-container .tab-content .tab-pane .organization .form-container form .submit button {
   padding: 12px 16px;
@@ -1082,7 +1082,7 @@
 .settings .tabs-container .tab-content .tab-pane .admin #add-user-modal .modal-content .modal-body .form-container form .submit-action {
   width: 100%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   margin-top: 15px;
   margin-bottom: 15px;
 }
@@ -1248,3 +1248,28 @@
     flex-direction: column;
   }
 }/*# sourceMappingURL=settings.css.map */
+
+.accordion-button:not(.collapsed){
+  background-color: #5bc17f4f;
+  box-shadow: none;
+  outline: none;
+  color: #000;
+ 
+}
+.accordion-button{
+  box-shadow: none;
+  outline: none;
+  border: none;
+  color: #000;
+  font-family: Poppins;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.36px;
+}
+.accordion-flush .accordion-item .accordion-button, .accordion-flush .accordion-item .accordion-button.collapsed{
+  box-shadow: none;
+  outline: none;
+  border: none;
+}
