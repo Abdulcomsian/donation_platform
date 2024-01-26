@@ -40,6 +40,8 @@
             font-style: normal;
             font-weight: 500;
             line-height: 166.5%;
+
+            text-align: center;
         }
     }
 
@@ -65,6 +67,8 @@
             font-style: normal;
             font-weight: 500;
             line-height: 166.5%;
+
+            text-align: center;
         }
 
         .url {
@@ -77,6 +81,10 @@
                 line-height: 166.5%;
 
                 text-decoration: none;
+
+                word-break: break-all;
+
+                text-align: center;
             }
         }
 
@@ -228,6 +236,8 @@
 
                     border-radius: 15px;
                     border: 1px solid #E5E5E5;
+
+                    word-break: break-all;
                 }
             }
 
@@ -268,5 +278,33 @@
             }
         }
 
+    }
+}
+
+@media (max-width: 465px) {
+    .campaign-created {
+        #share-link-modal {
+            .modal-content {
+                .modal-body {
+                    .iframe-container {
+                        height: max-content;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 465px) {
+    .campaign-created {
+        .url-container {
+            height: max-content;
+
+            padding: 3rem 0;
+
+            .action-container {
+                flex-direction: column;
+            }
+        }
     }
 }

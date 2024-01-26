@@ -16,7 +16,7 @@
     href="https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
     rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('assets/css/create-campaign.css') }}">
-<link rel="stylesheet" href="{{asset('assets/package/select2/select2.min.css')}}"  />
+<link rel="stylesheet" href="{{asset('assets/package/select2/select2.min.css')}}" />
 @endsection
 
 @section('content')
@@ -46,7 +46,7 @@
                 <div class="col-md-5">
                     <div class="form-control">
                         <label for="">Excerpt</label>
-                        <input type="text" name="excerpt" id="title" >
+                        <input type="text" name="excerpt" id="title">
                     </div>
                 </div>
             </div>
@@ -62,9 +62,10 @@
                     <div class="form-control">
                         <label for="image">Image</label>
                         <div class="image-upload">
-                            <input type="file" class="d-none" name="file" id="file">
+                            <input type="file" class="d-none" name="file" id="file" onchange="onFileChange(event)">
                             <label class="label" for="image">Image</label>
                             <button onclick="importFile(event)">Upload Image</button>
+                            <span class="selectFile" data-bs-toggle="tooltip" data-bs-placement="top" id="selectFile"></span>
                             <label class="info" for="">Recommended Size: 530px x 530px</label>
                         </div>
                     </div>
@@ -87,7 +88,7 @@
                     <div class="form-control">
                         <label for="title">Recurring</label>
                         <select name="recurring" id="">
-                            <option value="" disabled selected>Select Recurring</option>
+                            <option value="" disabled selected>Set Recurring</option>
                             <option value="disable">Disable</option>
                             <option value="optional">Optional</option>
                             <option value="required">Required</option>
@@ -102,12 +103,13 @@
                         <div class="toggler-label">
                             <label for="">Campaign Goal</label>
                             <div class="toggler">
-                                <input type="checkbox" class="campaign-goal-toggle" name="campaign_goal" id="switch" value="1"/><label for="switch">Toggle</label>
+                                <input type="checkbox" class="campaign-goal-toggle" name="campaign_goal" id="switch"
+                                    value="1" /><label for="switch">Toggle</label>
                             </div>
                         </div>
                         <div class="currency-input campaign-goal d-none">
                             <span>$</span>
-                            <input type="number" step="0.01" inputmode="decimal" name="amount"  min="0" placeholder="0">
+                            <input type="number" step="0.01" inputmode="decimal" name="amount" min="0" placeholder="0">
                         </div>
                     </div>
                 </div>
@@ -127,14 +129,16 @@
             <div class="row">
                 <div class="col-md-5">
                     <div class="form-control">
-                        <input type="datetime-local" id="date" name="date">
+                        <input type="date" id="date" name="date">
                     </div>
                 </div>
             </div>
 
             <div class="button-container">
-                <button class="btn submit" type="submit" class="save">Save <i class="fas fa-circle-notch fa-spin mx-2 d-none submit-loader"></i></button>
-                <button class="publish" type="button">Publish Campaign<i class="fas fa-circle-notch fa-spin mx-2 d-none publish-loader"></i></button>
+                <button class="btn submit" type="submit" class="save">Save <i
+                        class="fas fa-circle-notch fa-spin mx-2 d-none submit-loader"></i></button>
+                <button class="publish" type="button">Publish Campaign<i
+                        class="fas fa-circle-notch fa-spin mx-2 d-none publish-loader"></i></button>
             </div>
         </form>
     </div>
@@ -148,6 +152,16 @@
         file.click();
   
     }
+
+    function onFileChange(event) {
+        event.preventDefault();
+        const file = event.target.files[0];
+
+        const element = document.getElementById('selectFile');
+        element.innerHTML = file.name;
+        element.title = file.name;
+    }
+    
     $('#frequency').select2();
 
     $(document).on("change" , ".campaign-goal-toggle" , function(e){

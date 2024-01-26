@@ -19,7 +19,7 @@
   font-weight: 500;
   line-height: 166.5%;
 }
-.campaigns .header .create-comapaign a {
+.campaigns .header .create-campaign a {
   padding: 12px 16px;
   border-radius: 8px;
   background-color: #5BC17F;
@@ -34,6 +34,9 @@
   border: none;
   text-decoration: none;
 }
+.campaigns .data-cards .row {
+  row-gap: 15px;
+}
 .campaigns .data-cards .row .col-md-4 .card {
   padding: 1.5rem 1.5rem 1rem 1.5rem;
   border-radius: 8px;
@@ -47,6 +50,12 @@
   gap: 0.1rem;
 }
 .campaigns .data-cards .row .col-md-4 .card .top .heading {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.campaigns .data-cards .row .col-md-4 .card .top .heading .text {
+  width: 90%;
   color: #0D161A;
   font-family: Poppins;
   font-size: 20px;
@@ -54,6 +63,40 @@
   font-weight: 500;
   line-height: 24px;
   letter-spacing: 0.1px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.campaigns .data-cards .row .col-md-4 .card .top .heading .menu {
+  width: 10%;
+}
+.campaigns .data-cards .row .col-md-4 .card .top .heading .menu .dropdown {
+  text-align: end;
+}
+.campaigns .data-cards .row .col-md-4 .card .top .heading .menu .dropdown button {
+  border: none;
+  outline: none;
+  background-color: #FFF;
+  box-shadow: none;
+}
+.campaigns .data-cards .row .col-md-4 .card .top .heading .menu .dropdown .dropdown-menu {
+  border-radius: 8px;
+  border: 1px solid #E5E5E5;
+  background: #FFF;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+  width: -moz-max-content;
+  width: max-content;
+  min-width: -moz-max-content;
+  min-width: max-content;
+}
+.campaigns .data-cards .row .col-md-4 .card .top .heading .menu .dropdown .dropdown-menu .dropdown-item {
+  padding: 10px 25px;
+  color: #000;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 .campaigns .data-cards .row .col-md-4 .card .top .info {
   display: flex;
@@ -385,3 +428,20 @@
     margin: 0;
   }
 }
+}
+
+@media (max-width: 375px) {
+  .campaigns .header {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .campaigns .header .heading {
+    width: 100%;
+    text-align: start;
+  }
+  .campaigns .header .create-campaign {
+    width: 100%;
+    display: inline-flex;
+    justify-content: flex-end;
+  }
+}/*# sourceMappingURL=campaign.css.map */

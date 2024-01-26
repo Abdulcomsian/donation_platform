@@ -49,13 +49,13 @@
   outline: none;
   border-radius: 8px;
 }
-.donations .header .filters form .campaign-select {
+.donations .header .filters form .membership-select {
   width: 132.576px;
   height: 48px;
   border: 1px solid #DDDFE5;
   border-radius: 8px;
 }
-.donations .header .filters form .campaign-select select {
+.donations .header .filters form .membership-select select {
   height: 100%;
   width: 100%;
   color: #949494;
@@ -69,8 +69,29 @@
   outline: none;
   border-radius: 8px;
 }
+.donations .header .filters form .campaign-select .select2 .selection .select2-selection {
+  height: 48px !important;
+  border: 1px solid #DDDFE5 !important;
+  border-radius: 8px !important;
+}
+.donations .header .filters form .campaign-select .select2 .selection .select2-selection--single {
+  display: flex !important;
+  align-items: center !important;
+}
+.donations .header .filters form .campaign-select .select2 .selection .select2-selection--single .select2-selection__arrow {
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+}
+.donations .header .filters form .campaign-select .select2 .selection .select2-selection--single .select2-selection__rendered {
+  color: #949494;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.14px;
+}
 .donations .header .filters form .date-select {
-  width: 132.576px;
   height: 48px;
   border: 1px solid #DDDFE5;
   border-radius: 8px;
@@ -117,6 +138,9 @@ span.select2-selection__arrow {
   font-style: normal;
   font-weight: 400;
   line-height: 24px;
+}
+.donations .counter-cards .row {
+  row-gap: 10px;
 }
 .donations .counter-cards .row .col-md-4 .card {
   height: 169px;
@@ -241,8 +265,12 @@ span.select2-selection__arrow {
 .donations .data-table {
   margin-top: 1rem;
 }
+.donations .data-table .dataTables_wrapper {
+  overflow-x: auto;
+}
 .donations .data-table table {
-  width: 100%;
+  width: 100% !important;
+  overflow-x: auto !important;
 }
 .donations .data-table table thead {
   position: static;
@@ -395,4 +423,27 @@ span.select2-selection.select2-selection--single {
 }
 .donations .data-table table tbody tr:last-child {
   border: none;
+}
+
+@media (max-width: 1245px) {
+  .donations .header {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .donations .header .heading {
+    width: 100%;
+    text-align: start;
+  }
+  .donations .header .filters {
+    width: 100%;
+  }
+  .donations .header .filters form {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+@media (max-width: 1070px) {
+  .donations .header .filters form {
+    flex-wrap: wrap;
+  }
 }/*# sourceMappingURL=donation.css.map */

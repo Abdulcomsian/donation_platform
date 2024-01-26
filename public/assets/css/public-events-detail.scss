@@ -125,6 +125,7 @@
 
                     .details {
                         margin-top: 1rem;
+
                         p {
                             margin: 0;
                             padding: 0;
@@ -165,6 +166,70 @@
                             font-style: normal;
                             font-weight: 400;
                             line-height: 24px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media(max-width: 991px) {
+    .main {
+        .detail {
+            .rectangle {
+                .event-content {
+                    flex-direction: column;
+
+                    .img-content {
+                        width: 100%;
+
+                        text-align: center;
+                    }
+
+                    .detail-content {
+                        .title {
+                            color: #000;
+                        }
+
+                        .date {
+                            .text {
+                                color: #000;
+                            }
+                        }
+
+                        .venue {
+                            .text {
+                                color: #000;
+                            }
+                        }
+
+                        .buy-btn {
+                            button {
+                                border: 1px solid #5BC17F;
+
+                                color: #5BC17F;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media(max-width: 565px) {
+    .main {
+        .detail {
+            .rectangle {
+                .event-content {
+                    .img-content {
+                        height: 100%;
+                        width: 100%;
+
+                        img {
+                            width: inherit;
+                            height: inherit;
                         }
                     }
                 }

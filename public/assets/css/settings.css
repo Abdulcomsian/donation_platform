@@ -602,6 +602,21 @@
   line-height: normal;
   letter-spacing: 0.28px;
 }
+.settings .tabs-container .tab-content .tab-pane .organization .form-container form .form-control-logo .image-upload .selectFile {
+  color: #CBCBCB;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.28px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+  padding: 0 10px;
+  text-align: center;
+}
 .settings .tabs-container .tab-content .tab-pane .organization .form-container form .form-control-logo .image-upload .info {
   color: #CBCBCB;
   font-family: Poppins;
@@ -773,6 +788,7 @@
 }
 .settings .tabs-container .tab-content .tab-pane .admin .data-table {
   margin-top: 1.5rem;
+  overflow-x: auto;
 }
 .settings .tabs-container .tab-content .tab-pane .admin .data-table table {
   width: 100%;
@@ -1220,4 +1236,15 @@
   font-style: normal;
   font-weight: 400;
   line-height: 24px;
+}
+
+@media (max-width: 550px) {
+  .settings .tabs-container .tab-content .tab-pane .admin #add-user-modal .modal-content .modal-body .form-container form {
+    width: 100%;
+  }
+}
+@media (max-width: 425px) {
+  .settings .tabs-container .tab-content .tab-pane .admin .header {
+    flex-direction: column;
+  }
 }/*# sourceMappingURL=settings.css.map */

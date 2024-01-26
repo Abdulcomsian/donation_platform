@@ -536,7 +536,7 @@
 }
 .dashboard .latest-donors .data-table {
   margin-top: 1.5rem;
-  overflow-x: scroll;
+  overflow-x: auto;
 }
 .dashboard .latest-donors .data-table table {
   width: 100%;

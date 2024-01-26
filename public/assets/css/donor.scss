@@ -6,17 +6,115 @@
     padding: 1rem 1rem 1rem 2rem;
 
     .heading {
-        color: #000;
-        font-family: Poppins;
-        font-size: 26px;
-        font-style: normal;
-        font-weight: 500;
-        line-height: 166.5%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+
+        .text {
+            color: #000;
+            font-family: Poppins;
+            font-size: 26px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 166.5%;
+        }
+
+        .filters {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 10px;
+
+            .input-date {
+                input {
+                    padding: 1rem;
+
+                    border-radius: 8px;
+                    border: 1px solid #DDDFE5;
+                    background: #FFF;
+                    box-shadow: 0px 20px 50px 0px rgba(220, 224, 249, 0.00);
+                    outline: none;
+
+                    height: 48px;
+
+                    color: #949494;
+                    font-family: Poppins;
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: normal;
+                    letter-spacing: 0.14px;
+                }
+
+                input::placeholder {
+                    color: #000;
+                }
+            }
+
+            .select-membership {
+                select {
+                    padding: 10px;
+
+                    border-radius: 8px;
+                    border: 1px solid #DDDFE5;
+                    background: #FFF;
+                    box-shadow: 0px 20px 50px 0px rgba(220, 224, 249, 0.00);
+                    outline: none;
+
+                    height: 48px;
+
+                    color: #949494;
+                    font-family: Poppins;
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: normal;
+                    letter-spacing: 0.14px;
+                }
+            }
+
+            .btn-download {
+                button {
+                    height: 48px;
+                    padding: 12px 16px;
+
+                    border-radius: 8px;
+
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+
+                    background-color: transparent;
+
+                    border: 1px solid #DDDFE5;
+                }
+            }
+
+            .btn-add-csv {
+                button {
+                    border-radius: 8px;
+                    border: 1px solid #5BC17F;
+                    padding: 12px 16px;
+
+                    background-color: transparent;
+
+                    color: #5BC17F;
+
+                    font-feature-settings: 'clig' off, 'liga' off;
+                    font-family: Poppins;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 24px;
+                }
+            }
+        }
     }
 
     .datatable {
         margin-top: 1rem;
-        overflow-x: scroll;
+        overflow-x: auto;
 
         table {
             width: 80%;
@@ -79,9 +177,35 @@
 
 @media(max-width: 768px) {
     .donors {
+        .heading {
+            flex-direction: column;
+            gap: 10px;
+
+            .text {
+                width: 100%;
+                text-align: start;
+            }
+
+            .filters {
+                width: 100%;
+
+                justify-content: flex-end;
+            }
+        }
+
         .datatable {
             table {
                 width: 100%;
+            }
+        }
+    }
+}
+
+@media(max-width: 595px) {
+    .donors {
+        .heading {
+            .filters {
+                flex-wrap: wrap;
             }
         }
     }

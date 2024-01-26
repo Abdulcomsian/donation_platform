@@ -686,6 +686,25 @@
                                         letter-spacing: 0.28px;
                                     }
 
+                                    .selectFile {
+                                        color: #CBCBCB;
+                                        font-family: Poppins;
+                                        font-size: 14px;
+                                        font-style: normal;
+                                        font-weight: 400;
+                                        line-height: normal;
+                                        letter-spacing: 0.28px;
+
+                                        text-overflow: ellipsis;
+                                        overflow: hidden;
+                                        white-space: nowrap;
+
+                                        width: 100%;
+                                        padding: 0 10px;
+
+                                        text-align: center;
+                                    }
+
                                     .info {
                                         color: #CBCBCB;
                                         font-family: Poppins;
@@ -893,6 +912,7 @@
 
                     .data-table {
                         margin-top: 1.5rem;
+                        overflow-x: auto;
 
                         table {
                             width: 100%;
@@ -1445,6 +1465,46 @@
                                     }
                                 }
                             }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 550px) {
+    .settings {
+        .tabs-container {
+            .tab-content {
+                .tab-pane {
+                    .admin {
+                        #add-user-modal {
+                            .modal-content {
+                                .modal-body {
+                                    .form-container {
+                                        form {
+                                            width: 100%;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 425px) {
+    .settings {
+        .tabs-container {
+            .tab-content {
+                .tab-pane {
+                    .admin {
+                        .header {
+                            flex-direction: column;
                         }
                     }
                 }

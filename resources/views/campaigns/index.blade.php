@@ -22,7 +22,7 @@
 <div class="campaigns">
     <div class="header">
         <div class="heading">Campaigns</div>
-        <div class="create-comapaign">
+        <div class="create-campaign">
             <a href="{{ route('campaign.create.form') }}">Create Campaign</a>
         </div>
     </div>
@@ -30,28 +30,21 @@
     <div class="data-cards">
         <div class="row">
             @foreach($campaigns as $campaign)
-            <div class="col-md-4 my-2">
+            <div class="col-md-4">
                 <div class="card">
                     <div class="top">
-                        <div class="container p-0 menu-container d-flex justify-content-between">
-                            <div class="heading">
-                                <a href="{{url('donate-now', $campaign->id)}}" target="_blank">
-                                    {{$campaign->title}}
-                                </a>
-                            </div>
-                            <div class="menu-wrap">
-                                <input type="checkbox" class="toggler" />
-                                <div class="dots">
-                                    <div></div>
-                                </div>
-                                <div class="menu">
-                                    <div>
-                                        <ul>
-                                            <li><a href="{{url('donate-now' , $campaign->id)}}" target="_blank" class="link">View</a></li>
-                                            <li><a href="{{url('campaigns/edit-campaign' , $campaign->id)}}" class="link">Edit</a></li>
-                                            <li><a href="{{url('campaigns/delete-campaign' , $campaign->id)}}" class="link">Delete</a></li>
-                                        </ul>
-                                    </div>
+                        <div class="heading">
+                            <div class="text"><a href="{{url('donate-now' , $campaign->id)}}">{{$campaign->title}}</a></div>
+                            <div class="menu">
+                                <div class="dropdown">
+                                    <button type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <img src="{{ asset('assets/images/ellipsis-vertical-sharp.png') }}" alt="">
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                        <li><a class="dropdown-item" href="{{url('donate-now' , $campaign->id)}}" target="_blank">View</a></li>
+                                        <li><a class="dropdown-item" href="{{url('campaigns/edit-campaign' , $campaign->id)}}">Edit</a></li>
+                                        <li><a class="dropdown-item" href="{{url('campaigns/delete-campaign' , $campaign->id)}}">Delete</a></li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
@@ -111,7 +104,6 @@
                 </div>
             </div>
             @endforeach
-
         </div>
     </div>
 

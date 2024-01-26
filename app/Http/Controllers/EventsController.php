@@ -25,12 +25,12 @@ class EventsController extends Controller
         return $this->eventHandler->getEventForm();
     }
 
-    public function getEvents()
+    public function getPublicEvents()
     {
         return view('public.events.index');
     }
 
-    public function getEventDetail()
+    public function getPublicEventDetail()
     {
         return view('public.events.event-details');
     }

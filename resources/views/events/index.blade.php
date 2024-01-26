@@ -19,7 +19,7 @@
 <div class="events">
     <div class="header">
         <div class="heading">Events</div>
-        <div class="create-comapaign">
+        <div class="create-campaign">
             <a href="{{ route('event.create.form') }}">Create New Events</a>
         </div>
     </div>
@@ -29,7 +29,22 @@
             <div class="col-md-4">
                 <div class="card">
                     <div class="top">
-                        <div class="heading">Donation For Orphans</div>
+                        <div class="heading">
+                            <div class="text">Donation For Orphans</div>
+                            <div class="menu">
+                                <div class="dropdown">
+                                    <button type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                        <img src="{{ asset('assets/images/ellipsis-vertical-sharp.png') }}" alt="">
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                        <li><a class="dropdown-item" href="#">View</a></li>
+                                        <li><a class="dropdown-item" href="#">Edit</a></li>
+                                        <li><a class="dropdown-item" href="#">Delete</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                         <div class="sub-heading">Lorem ipsum dolor sit amet co...</div>
                         <div class="info">
                             <div class="days-ago">
@@ -73,7 +88,22 @@
             <div class="col-md-4">
                 <div class="card">
                     <div class="top">
-                        <div class="heading">Donation For Orphans</div>
+                        <div class="heading">
+                            <div class="text">Donation For Orphans</div>
+                            <div class="menu">
+                                <div class="dropdown">
+                                    <button type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                        <img src="{{ asset('assets/images/ellipsis-vertical-sharp.png') }}" alt="">
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                        <li><a class="dropdown-item" href="#">View</a></li>
+                                        <li><a class="dropdown-item" href="#">Edit</a></li>
+                                        <li><a class="dropdown-item" href="#">Delete</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                         <div class="sub-heading">Lorem ipsum dolor sit amet co...</div>
                         <div class="info">
                             <div class="days-ago">
@@ -117,7 +147,22 @@
             <div class="col-md-4">
                 <div class="card">
                     <div class="top">
-                        <div class="heading">Donation For Orphans</div>
+                        <div class="heading">
+                            <div class="text">Donation For Orphans</div>
+                            <div class="menu">
+                                <div class="dropdown">
+                                    <button type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                        <img src="{{ asset('assets/images/ellipsis-vertical-sharp.png') }}" alt="">
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                        <li><a class="dropdown-item" href="#">View</a></li>
+                                        <li><a class="dropdown-item" href="#">Edit</a></li>
+                                        <li><a class="dropdown-item" href="#">Delete</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                         <div class="sub-heading">Lorem ipsum dolor sit amet co...</div>
                         <div class="info">
                             <div class="days-ago">

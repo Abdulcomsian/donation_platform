@@ -56,9 +56,11 @@
                     <div class="form-control">
                         <label for="image">Image</label>
                         <div class="image-upload">
-                            <input type="file" class="d-none" name="file" id="file">
+                            <input type="file" class="d-none" name="file" id="file" onchange="onFileChange(event)">
                             <label class="label" for="image">Image</label>
                             <button onclick="importFile(event)">Upload Image</button>
+                            <span class="selectFile" data-bs-toggle="tooltip" data-bs-placement="top"
+                                id="selectFile"></span>
                             <label class="info" for="">Recommended Size: 530px x 530px</label>
                         </div>
                     </div>
@@ -221,6 +223,15 @@
     function deleteElement(event) {
         event.preventDefault();
         event.target.closest('.ticket-container').remove();
+    }
+
+    function onFileChange(event) {
+        event.preventDefault();
+        const file = event.target.files[0];
+
+        const element = document.getElementById('selectFile');
+        element.innerHTML = file.name;
+        element.title = file.name;
     }
 
     document.querySelector("#add-fields").addEventListener('click', function(e) {
