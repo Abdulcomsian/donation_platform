@@ -110,7 +110,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-12 d-flex justify-content-center">
+            <div class="col-12 d-flex justify-content-center compaign-navigation">
                 {!! $campaigns->links() !!}
             </div>
         </div>

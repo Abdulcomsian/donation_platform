@@ -1,0 +1,24 @@
+.compaign-navigation nav div:first-child{
+    display: none;
+}
+.compaign-navigation nav{
+    margin-top: 25px;
+}
+.compaign-navigation nav div span svg{
+    width: 25px;
+}
+.compaign-navigation nav div span span{
+    margin-right: 5px;
+}
+.compaign-navigation nav div span span span{
+    margin-right: 0px;
+}
+.compaign-navigation nav div span a{
+    margin-right: 5px;
+    color: #000;
+    text-decoration: none;
+}
+.compaign-navigation nav div span[aria-current="page"] span{
+    background: #5bc17f !important;
+    color: #fff !important;
+}
