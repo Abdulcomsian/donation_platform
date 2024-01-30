@@ -5,8 +5,8 @@
 @endsection
 
 @section('content')
-<div class="login">
-    <div class="section-left">
+<div class="login row">
+    <div class="section-left col-md-7">
         <div class="section-1">
             <div class="sign-in-form">
                 <div class="heading">
@@ -44,7 +44,7 @@
             </div>
         </div>
     </div>
-    <div class="section-right">
+    <div class="section-right col-md-5">
         <div class="text-section">
             <div class="text-1">Sign up to</div>
             <div class="text-2">Create Your Donation Account</div>

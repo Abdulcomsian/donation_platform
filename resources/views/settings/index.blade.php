@@ -63,7 +63,6 @@
                         @include('settings.admin')
                     </div>
                     <div class="tab-pane fade" id="pills-emails" role="tabpanel" aria-labelledby="pills-emails-tab">
-                        Emails
                         @include('settings.emails')
                     </div>
                     <div class="tab-pane fade" id="pills-integrations" role="tabpanel"

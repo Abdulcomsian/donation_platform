@@ -179,6 +179,22 @@
 @section('script')
 <script src="https://js.stripe.com/v3/"></script>
 <script>
+
+
+function changeActive(item1, item2) {
+        document.getElementById(item1).classList.add('active')
+        document.getElementById(item2).classList.remove('active')
+        let amount = document.getElementById("amount");
+        if(item1 === 'recurring'){
+            document.querySelector('.recurring-box').classList.remove('d-none');
+            amount.setAttribute("readonly" , true);
+        }else{
+            document.querySelector('.recurring-box').classList.add('d-none');
+            amount.removeAttribute("readonly");
+        } 
+
+    }
+
     $(document).ready(function(){
         var stripe = Stripe('{{env("STRIPE_KEY")}}')
         var card = null;
@@ -198,19 +214,7 @@
     
 
 
-    function changeActive(item1, item2) {
-        document.getElementById(item1).classList.add('active')
-        document.getElementById(item2).classList.remove('active')
-        let amount = document.getElementById("amount");
-        if(item1 === 'recurring'){
-            document.querySelector('.recurring-box').classList.remove('d-none');
-            amount.setAttribute("readonly" , true);
-        }else{
-            document.querySelector('.recurring-box').classList.add('d-none');
-            amount.removeAttribute("readonly");
-        } 
-
-    }
+    
 
     document.querySelectorAll(".donation-amount-box").forEach(box => {
         box.addEventListener("click" , function(){

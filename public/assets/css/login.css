@@ -8,8 +8,8 @@
   flex-direction: row;
 }
 .login .section-left {
-  width: 60%;
-  position: relative;
+  /* width: 60%;
+  position: relative; */
 }
 .login .section-left .section-1 {
   width: 100%;
@@ -18,7 +18,7 @@
   flex-direction: column;
   align-items: center;
   gap: 2rem;
-  position: absolute;
+  /* position: absolute; */
   justify-content: center;
 }
 .login .section-left .section-1 .sign-in-form .heading {
@@ -109,7 +109,7 @@
   margin-left: 5px;
 }
 .login .section-left .section-2 {
-  position: absolute;
+  /* position: absolute; */
   bottom: 0;
   width: 100%;
   display: flex;
@@ -141,7 +141,7 @@
   color: #000;
 }
 .login .section-right {
-  width: 40%;
+  /* width: 40%; */
   height: 100vh;
   background-image: url(../images/Group\ 10177.png);
   background-position: center;
@@ -197,3 +197,26 @@
   line-height: normal;
   letter-spacing: 0.36px;
 }/*# sourceMappingURL=login.css.map */
+
+@media only screen and (max-width: 768px) {
+  .login .section-left{
+    margin-top: 50px;
+    margin-bottom: 30px;
+    height: 100%;
+  }
+  .login .section-left .section-1 .sign-in-form .sign-in-form-container .form-control input[type=email], .login .section-left .section-1 .sign-in-form .sign-in-form-container .form-control input[type=password]{
+    width: 100%;
+  }
+  .login .section-left .section-1 .sign-in-form .sign-in-form-container .button-container{
+    width: 100%;
+  }
+  .login .section-left .section-1 .sign-in-form .sign-in-form-container .button-container button{
+    width: 100%;
+  }
+  .login .section-left .section-1 .sign-in-form .sign-in-form-container{
+    width: 100%;
+  }
+  .sign-in-form{
+    width: 100%;
+  }
+}

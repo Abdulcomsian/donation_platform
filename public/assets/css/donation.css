@@ -92,8 +92,9 @@
   letter-spacing: 0.14px;
 }
 .donations .header .filters form .date-select {
+  /* width: 132.576px;
   height: 48px;
-  border: 1px solid #DDDFE5;
+  border: 1px solid #DDDFE5; */
   border-radius: 8px;
   margin-right: 56px!important;
 }
@@ -101,7 +102,26 @@
 span.select2-selection__arrow {
   top: 9px!important;
 }
-
+.donations .header .filters form .date-select input {
+border: 1px solid #DDDFE5;
+color: #949494;
+padding: 10px 15px;
+border-radius: 5px;
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow{
+  top: 13px !important;
+    right: 9px !important;
+}
+.select2-container--default .select2-selection--single .select2-selection__rendered{
+  color: #949494 !important;
+}
+.select2-container--default .select2-selection--single{
+  border: 1px solid #DDDFE5 !important;
+color: #949494 !important;
+height: auto !important;
+padding: 10px 15px;
+border-radius: 5px;
+}
 .donations .header .filters form .date-select select {
   height: 100%;
   width: 100%;
@@ -151,6 +171,7 @@ span.select2-selection__arrow {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  margin-bottom: 20px;
 }
 .donations .counter-cards .row .col-md-4 .card .top .heading {
   display: flex;
@@ -423,27 +444,35 @@ span.select2-selection.select2-selection--single {
 }
 .donations .data-table table tbody tr:last-child {
   border: none;
+}/*# sourceMappingURL=donation.css.map */
+.btn-inline-group{
+  display: flex;
+}
+.btn-inline-group button:first-child{
+  margin-right: 10px;
 }
 
-@media (max-width: 1245px) {
-  .donations .header {
-    flex-direction: column;
-    gap: 10px;
+@media only screen and (max-width: 768px) {
+  .donations .header .heading{
+      display: block;
   }
-  .donations .header .heading {
-    width: 100%;
-    text-align: start;
+  .donations .header{
+    display: block;
   }
-  .donations .header .filters {
+  .donations .header form{
+    display: block !important;
+  }
+  .donations .header form div{
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .donations .header form select,input{
+    width: 100% !important;
+  }
+  .donations .header .filters form .status-select{
     width: 100%;
   }
-  .donations .header .filters form {
-    width: 100%;
-    justify-content: flex-end;
+  .btn-inline-group{
+    display: flex;
   }
 }
-@media (max-width: 1070px) {
-  .donations .header .filters form {
-    flex-wrap: wrap;
-  }
-}/*# sourceMappingURL=donation.css.map */

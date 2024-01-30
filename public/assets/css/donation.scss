@@ -131,8 +131,9 @@
                 }
 
                 .date-select {
-                    height: 48px;
-                    border: 1px solid #DDDFE5;
+                    // width: 132.576px;
+                    // height: 48px;
+                    // border: 1px solid #DDDFE5;
                     border-radius: 8px;
 
                     input {
@@ -208,7 +209,7 @@
                     display: flex;
                     flex-direction: column;
                     justify-content: space-between;
-
+                    margin-bottom: 20px;
                     .top {
                         .heading {
                             display: flex;
@@ -543,40 +544,56 @@
         }
     }
 }
-
-@media (max-width: 1245px) {
-    .donations {
-        .header {
-            flex-direction: column;
-            gap: 10px;
-
-            .heading {
-                width: 100%;
-
-                text-align: start;
-            }
-
-            .filters {
-                width: 100%;
-
-                form {
-                    width: 100%;
-
-                    justify-content: flex-end;
-                }
-            }
-        }
+.donations .header .filters form .date-select input {
+    border: 1px solid #DDDFE5;
+    color: #949494;
+    padding: 10px 15px;
+    border-radius: 5px;
     }
-}
-
-@media (max-width: 1070px) {
-    .donations {
-        .header {
-            .filters {
-                form {
-                    flex-wrap: wrap;
-                }
-            }
-        }
+    .select2-container--default .select2-selection--single .select2-selection__arrow{
+      top: 13px !important;
+        right: 9px !important;
     }
-}
+    .select2-container--default .select2-selection--single .select2-selection__rendered{
+      color: #949494 !important;
+    }
+    .select2-container--default .select2-selection--single{
+      border: 1px solid #DDDFE5 !important;
+    color: #949494 !important;
+    height: auto !important;
+    padding: 10px 15px;
+    border-radius: 5px;
+    }
+
+
+    .btn-inline-group{
+        display: flex;
+      }
+      .btn-inline-group button:first-child{
+        margin-right: 10px;
+      }
+      
+      @media only screen and (max-width: 768px) {
+        .donations .header .heading{
+            display: block;
+        }
+        .donations .header{
+          display: block;
+        }
+        .donations .header form{
+          display: block !important;
+        }
+        .donations .header form div{
+          width: 100%;
+          margin-bottom: 20px;
+        }
+        .donations .header form select,input{
+          width: 100% !important;
+        }
+        .donations .header .filters form .status-select{
+          width: 100%;
+        }
+        .btn-inline-group{
+          display: flex;
+        }
+      }
