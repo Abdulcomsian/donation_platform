@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('quantity');
             $table->boolean('is_free');
             $table->double('price' , 5 , 2)->default(0);
+            $table->boolean('is_active')->default(1);
             $table->foreign('event_id')->references('id')->on('events');
             $table->timestamps();
             $table->softDeletes();

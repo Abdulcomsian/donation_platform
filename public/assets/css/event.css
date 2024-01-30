@@ -167,3 +167,12 @@
   -o-object-fit: cover;
      object-fit: cover;
 }/*# sourceMappingURL=event.css.map */
+
+.heading a{
+  color: black;
+  text-decoration: none;
+}
+
+.heading a:hover{
+  color: #5BC17F;
+}

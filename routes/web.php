@@ -50,10 +50,14 @@ Route::group(['middleware' => ['preventBackHistory', 'auth']], function () {
     Route::get('/remove-stripe-connected-account' , [StripeController::class , 'removeStripeConnectedAccount'])->name('remove.connected.stripe.account');
 
     Route::group(['prefix' => 'events'], function () {
-        Route::get("/", [EventsController::class, 'event'])->name('events');
+        Route::get("/", [EventsController::class, 'getEventList'])->name('events');
         Route::get("/create-event", [EventsController::class, 'getEventForm'])->name('event.create.form');
+        Route::get('edit-event/{id}' , [EventsController::class , 'editEventForm'])->name('edit.event');
         Route::post("create-event" , [EventsController::class , 'createEvent'])->name('create.event');
+        Route::post("edit-event" , [EventsController::class , 'editEvent'])->name('edit.event');
+        Route::get("delete-event" , [EventsController::class , 'deleteEvent'])->name('delete.event');
         Route::get('event-created' , [EventsController::class , 'eventCreated'])->name('event.created');
+        Route::get('event-updated/{id?}', [EventsController::class, 'eventUpdated'])->name('event.updated');
     });
 
     Route::group(['prefix' => 'membership'], function () {
@@ -69,12 +73,12 @@ Route::group(['middleware' => ['preventBackHistory', 'auth']], function () {
 
 
 Route::get('public/events', [EventsController::class, 'getPublicEvents'])->name('publicEvents');
-Route::get('public/events/{id}', [EventsController::class, 'getPublicEventDetail'])->name('publicEvent.detail');
+Route::get('event-detail/{id}', [EventsController::class, 'getEventDetail'])->name('event.detail');
 Route::get('donate-now/{campaign_id}', [DonationController::class, "getDonationForm"])->name('get.donation.form');
 Route::post('add-donation' , [DonationController::class , 'addDonation'])->name('add.donation');
 Route::post('get-cities-list' , [HomeController::class , 'getCitiesList'])->name('get.country.cities');
 
 
-Route::any('{any}', function () {
-    return redirect('/dashboard');
-})->where('any', '.*');
+// Route::any('{any}', function () {
+//     return redirect('/dashboard');
+// })->where('any', '.*');

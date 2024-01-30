@@ -12,12 +12,14 @@ class EventsController extends Controller
 
     function __construct(EventHandler $eventHandler)
     {
+        // dd("hi mana how are yo");
         $this->eventHandler = $eventHandler;
     }
 
-    public function event()
+    public function getEventList()
     {
-        return view('events.index');
+        $events = $this->eventHandler->eventList();
+        return view('events.index')->with(['events' => $events]);
     }
 
     public function getEventForm()
@@ -25,37 +27,40 @@ class EventsController extends Controller
         return $this->eventHandler->getEventForm();
     }
 
+    public function editEventForm(Request $request)
+    {
+        return $this->eventHandler->getEditEventForm($request);
+    }
+
     public function getPublicEvents()
     {
         return view('public.events.index');
     }
 
-    public function getPublicEventDetail()
+    public function getEventDetail(Request $request)
     {
-        return view('public.events.event-details');
+        $event = $this->eventHandler->eventDetail($request);
+        return view('public.events.event-details')->with(['event' => $event]);
     }
 
     public function createEvent(Request $request){
-        dd($request->tickets);
+
         $validator = Validator::make($request->all() , [
-                        'country_id' => 'required|numeric',
-                        'category_id' => 'required|numeric',
-                        'frequency_id' => 'required|numeric',
+                        'country' => 'required|numeric',
+                        'category' => 'required|numeric',
+                        'frequency' => 'numeric|nullable',
                         'title' => 'required|string',
                         'description' => 'required|string',
-                        'image' => 'file|required|mimes:jpeg,png,jpg,PNG,JPEG,JPG',
+                        'image' => 'file|mimes:jpeg,png,jpg,PNG,JPEG,JPG',
                         'date' => 'required|date',
-                        'time' => 'required|time',
+                        'time' => 'required|date_format:H:i',
                         'venue' => 'required|string',
                         'organizer' => 'required|string',
-                        'featured' => 'nullable|boolean',
-                        'ticket_name' => 'required|array|min:1',
-                        'ticket_description' => 'required|array|min:1',
-                        'ticket_quantity' => 'required|array|min:1',
-                        'is_free' => 'required|array|min:1',
-                        'ticket_amount' => 'required|array|min:1',
+                        'featured' => 'nullable',
                     ]);
 
+
+              
         if($validator->fails()){
             return response()->json(['status' => false , 'msg' => 'Something Went Wrong' , 'error' => implode( ",", $validator->messages()->all())]);
         }
@@ -72,24 +77,20 @@ class EventsController extends Controller
     }
 
     public function editEvent(Request $request){
+
         $validator = Validator::make($request->all() , [
             'event_id' => 'required|numeric',
-            'country_id' => 'required|numeric',
-            'category_id' => 'required|numeric',
-            'frequency_id' => 'required|numeric',
+            'country' => 'required|numeric',
+            'category' => 'required|numeric',
+            'frequency' => 'numeric|nullable',
             'title' => 'required|string',
             'description' => 'required|string',
-            'image' => 'file|required|mimes:jpeg,png,jpg,PNG,JPEG,JPG',
+            'image' => 'file|mimes:jpeg,png,jpg,PNG,JPEG,JPG',
             'date' => 'required|date',
-            'time' => 'required|time',
+            'time' => 'required|date_format:H:i',
             'venue' => 'required|string',
             'organizer' => 'required|string',
-            'featured' => 'nullable|boolean',
-            'ticket_name' => 'required|array|min:1',
-            'ticket_description' => 'required|array|min:1',
-            'ticket_quantity' => 'required|array|min:1',
-            'is_free' => 'required|array|min:1',
-            'ticket_amount' => 'required|array|min:1',
+            'featured' => 'nullable',
         ]);
 
         
@@ -97,6 +98,7 @@ class EventsController extends Controller
             return response()->json(['status' => false , 'msg' => 'Something Went Wrong' , 'error' => implode( ",", $validator->messages()->all())]);
         }
                     
+        
         try{
             $response = $this->eventHandler->editEvent($request);
             return response()->json($response);
@@ -110,6 +112,11 @@ class EventsController extends Controller
     public function eventCreated(){
         return view('events.success');
     }
+
+    public function eventUpdated(Request $request){
+        return view('events.successful-updated')->with(['event_id' => $request->id ?? null]);
+    }
+
 
 
     public function deleteEvent(Request $request){

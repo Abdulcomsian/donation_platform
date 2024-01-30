@@ -21,5 +21,10 @@ class AppConst{
     public const DONATION_COMPLETED = 'completed';
     public const DONATION_REFUNDED = 'refunded';
     public const DONATION_FAILED = 'failed';
+
+    //reference table event_tickets
+    public const STOP = 0;
+    public const CONTINUE = 1;
+
     
 }

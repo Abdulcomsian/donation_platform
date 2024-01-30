@@ -395,7 +395,7 @@
             contentType: false,
             success : function(){
                 element.querySelector(".loader").classList.add("d-none");
-                window.location.href = "{{route('home')}}"; 
+                window.location.href = "/"; 
             },
             error: function(err){
                 element.querySelector(".loader").classList.add("d-none");

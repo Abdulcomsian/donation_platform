@@ -15,10 +15,11 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('country_id');
             $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('frequency_id')->nullable();
             $table->string('title');
             $table->longText('description')->nullable();
-            $table->longText('image');
+            $table->longText('image')->nullable;
             $table->date('date');
             $table->time('time');
             $table->string('venue');
@@ -27,6 +28,7 @@ return new class extends Migration
             $table->foreign('country_id')->references('id')->on('countries');
             $table->foreign('category_id')->references('id')->on('event_categories');
             $table->foreign('frequency_id')->references('id')->on('event_frequency');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
             $table->softDeletes();
         });
