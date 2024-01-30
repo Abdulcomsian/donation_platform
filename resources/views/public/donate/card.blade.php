@@ -2,6 +2,7 @@
 
 @section('stylesheet')
 <link rel="stylesheet" href="{{ asset('assets/css/donate-now-card.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
 @endsection
 
 @section('content')
@@ -97,13 +98,13 @@
                                 <div class="col-6 my-2">
                                     <div>
                                         <label for="first_name">First Name</label>
-                                        <input type="text" class="theme-input-text form-control" id="first_name" name="first_name">
+                                        <input type="text" class="theme-input-text form-css" id="first_name" name="first_name">
                                     </div>
                                 </div>
                                 <div class="col-6 my-2">
                                     <div>
                                         <label for="last_name">Last Name</label>
-                                        <input type="text" class="theme-input-text form-control" id="last_name" name="last_name">
+                                        <input type="text" class="theme-input-text form-css" id="last_name" name="last_name">
                                     </div>
                                 </div>
                                 <div class="col-12 my-2">
@@ -111,7 +112,7 @@
                                         <div>
                                             <label for="email">Email</label>
                                         </div>
-                                        <input type="text" class="theme-input-text w-100 form-control" id="email" name="email">
+                                        <input type="text" class="theme-input-text w-100 form-css" id="email" name="email">
                                     </div>
                                 </div>
                                 <div class="col-12 my-2">
@@ -119,7 +120,7 @@
                                         <div>
                                             <label for="Phone">Phone</label>
                                         </div>
-                                        <input type="text" class="theme-input-text w-100 form-control" id="phone" name="phone" >
+                                        <input type="text" class="theme-input-text w-100 form-css" id="phone" name="phone" >
                                     </div>
                                 </div>
                                 <div class="col-6 my-2">
@@ -150,7 +151,7 @@
                                         <div>
                                             <label for="street">Street</label>
                                         </div>
-                                        <input type="text" class="theme-input-text w-100 form-control" id="street" name="street">
+                                        <input type="text" class="theme-input-text w-100 form-css" id="street" name="street">
                                     </div>
                                 </div>
                                 <div class="col-12">

@@ -22,3 +22,11 @@
     background: #5bc17f !important;
     color: #fff !important;
 }
+.form-css{
+    border-radius: 7px;
+    border: 1px solid #E5E5E5;
+    padding: 1rem;
+    height: 65.932px;
+    width: 100%;
+    border: 1px solid #E5E5E5;
+}
