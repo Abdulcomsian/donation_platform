@@ -13,6 +13,7 @@
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+  text-align: center;
 }
 .campaign-created .success .success-icon {
   width: 100px;
@@ -46,6 +47,11 @@
   align-items: center;
   justify-content: center;
   gap: 1rem;
+}
+.url-container .url{
+  word-break: break-all;
+  text-align: center;
+  padding: 0px 26px;
 }
 .campaign-created .url-container .heading {
   color: #000;
