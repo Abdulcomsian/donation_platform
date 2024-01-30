@@ -58,13 +58,14 @@
                     Lorem ipsum dolor sit amet consectetur. At fermentum augue tempor felis nisi.
                 </div>
 
-                @if(!auth()->user()->hasStripeId())
+
+                @if(!auth()->user()->stripe_is_verified)
                 <div class="btn-container">
-                    <a href="{{route('connect.with.stripe')}}">Connect Stripe</a>
+                    <a href="{{route('stripe.hosted.onboarding')}}">Connect Stripe</a> 
                 </div>
                 @else
                 <div class="btn-container">
-                    <a href="{{route('remove.connected.stripe')}}">Disconnect Stripe</a>
+                    <a href="{{route('remove.connected.stripe.account')}}">Disconnect Stripe</a>
                 </div>
                 @endif
             </div>
@@ -88,19 +89,19 @@
                                 <div class="heading">{{$campaign->title}}</div>
                                 <div class="amount">
                                     @php
-                                         $donationAmount = 0;
+                                        $donationAmount = 0;
+                                        
                                         
                                         foreach($campaign->donations as $donation)
                                         {
                                             if($donation->price){
-                                                $donationAmount +=$donation->platformPercentage->percentage > 0 ?  (($donation->price->amount) - (($donation->platformPercentage->percentage / 100) * $donation->price->amount)) : $donation->price->amount;
+                                                $donationAmount += $donation->platformPercentage->percentage > 0 ?  (($donation->price->amount) - (($donation->platformPercentage->percentage / 100) * $donation->price->amount)) : $donation->price->amount;
                                             }else{
-                                                $donationAmount +=$donation->platformPercentage->percentage > 0 ?  (($donation->amount) - (($donation->platformPercentage->percentage / 100) * $donation->amount)) : $donation->price->amount;
+                                                $donationAmount += $donation->platformPercentage->percentage > 0 ?  (($donation->amount) - (($donation->platformPercentage->percentage / 100) * $donation->amount)) : $donation->amount;
                                             }
                                         }
 
                                     @endphp
-
                                     <div class="collected">${{ceil($donationAmount)}} </div>
                                     @if($campaign->campaign_goal)
                                         <div class="total">/</div>
@@ -266,7 +267,7 @@
                                 $donationAmount += $donation->platformPercentage->percentage > 0 ?  (($donation->price->amount) - (($donation->platformPercentage->percentage / 100) * $donation->price->amount)) : $donation->price->amount;
                                 $totalAmount +=  $donation->price->amount;
                             }else{
-                                $donationAmount += $donation->platformPercentage->percentage > 0 ?  (($donation->amount) - (($donation->platformPercentage->percentage / 100) * $donation->amount)) : $donation->price->amount;
+                                $donationAmount += $donation->platformPercentage->percentage > 0 ?  (($donation->amount) - (($donation->platformPercentage->percentage / 100) * $donation->amount)) : $donation->amount;
                                 $totalAmount += $donation->amount;
                             }
                         @endphp
@@ -289,5 +290,9 @@
         file.click();
 
     }
+
+    
+
+
 </script>
 @endsection

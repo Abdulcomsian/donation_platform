@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->enum('status' , ['pending' , 'processing' , 'completed' , 'refunded' , 'failed']);
             $table->double('amount' , 6 , 2 )->nullable();
+            $table->string('transfer_id');
             $table->foreign('percentage_id')->references('id')->on('platform_percentage')->onDelete('cascade');
             $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');
             $table->foreign('donar_id')->references('id')->on('users')->onDelete('cascade');

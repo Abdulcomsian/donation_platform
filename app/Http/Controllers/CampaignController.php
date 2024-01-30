@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use App\Http\Handlers\CampaignHandler;
-use App\Models\Campaign;
+use App\Models\{Campaign};
 
 class CampaignController extends Controller
 {
@@ -15,6 +15,7 @@ class CampaignController extends Controller
     function __construct(CampaignHandler $campaignHandler)
     {
         $this->campaignHandler = $campaignHandler;
+        
     }
 
     public function campaign(){
@@ -29,6 +30,7 @@ class CampaignController extends Controller
 
     public function editCampaignForm(Request $request)
     {
+        $this->authorize('view'  , [Campaign::class , $request->id]);
         $campaign = $this->campaignHandler->getCampaignWithId($request->id);
         return view('campaigns.edit')->with(['campaign' => $campaign]);
     }

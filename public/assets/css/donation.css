@@ -63,13 +63,13 @@
   border-radius: 8px;
   border-right: 7px solid transparent ;
 }
-.donations .header .filters form .campaign-select {
+.donations .header .filters form .membership-select {
   width: 132.576px;
   height: 48px;
   border: 1px solid #DDDFE5;
   border-radius: 8px;
 }
-.donations .header .filters form .campaign-select select {
+.donations .header .filters form .membership-select select {
   height: 100%;
   width: 100%;
   color: #949494;
@@ -83,11 +83,38 @@
   outline: none;
   border-radius: 8px;
 }
+.donations .header .filters form .campaign-select .select2 .selection .select2-selection {
+  height: 48px !important;
+  border: 1px solid #DDDFE5 !important;
+  border-radius: 8px !important;
+}
+.donations .header .filters form .campaign-select .select2 .selection .select2-selection--single {
+  display: flex !important;
+  align-items: center !important;
+}
+.donations .header .filters form .campaign-select .select2 .selection .select2-selection--single .select2-selection__arrow {
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+}
+.donations .header .filters form .campaign-select .select2 .selection .select2-selection--single .select2-selection__rendered {
+  color: #949494;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.14px;
+}
 .donations .header .filters form .date-select {
   /* width: 132.576px;
   height: 48px;
   border: 1px solid #DDDFE5; */
   border-radius: 8px;
+  margin-right: 56px!important;
+}
+
+span.select2-selection__arrow {
+  top: 9px!important;
 }
 .donations .header .filters form .date-select input {
 border: 1px solid #DDDFE5;
@@ -145,6 +172,9 @@ border-radius: 5px;
   font-style: normal;
   font-weight: 400;
   line-height: 24px;
+}
+.donations .counter-cards .row {
+  row-gap: 10px;
 }
 .donations .counter-cards .row .col-md-4 .card {
   height: 169px;
@@ -270,8 +300,12 @@ border-radius: 5px;
 .donations .data-table {
   margin-top: 1rem;
 }
+.donations .data-table .dataTables_wrapper {
+  overflow-x: auto;
+}
 .donations .data-table table {
-  width: 100%;
+  width: 100% !important;
+  overflow-x: auto !important;
 }
 .donations .data-table table thead {
   position: static;
@@ -396,6 +430,22 @@ border-radius: 5px;
   line-height: 16px;
   letter-spacing: 0.07px;
 }
+
+input#daterange {
+  color: #949494;
+  height: 47px;
+  border: 1px solid #DDDFE5;
+  border-radius: 6px;
+}
+
+span.select2-selection.select2-selection--single {
+  height: 45px;
+  text-align: center;
+  border: 1px solid #e0e0e0;
+  padding-top: 6px;
+  color: #ffebeb!important;
+}
+
 .donations .data-table table tbody tr .fee-recoverd {
   padding: 1.5rem 2rem;
   color: var(--Black, #303030);

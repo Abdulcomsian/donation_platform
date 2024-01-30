@@ -28,6 +28,10 @@ class User extends Authenticatable
         'email',
         'password',
         'phone',
+        'stripe_connected_id',
+        'stripe_is_verified',
+        'profile_image',
+        'logo',
     ];
 
     /**

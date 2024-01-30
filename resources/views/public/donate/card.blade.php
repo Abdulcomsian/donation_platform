@@ -154,6 +154,7 @@
                                         <input type="text" class="theme-input-text w-100 form-css" id="street" name="street">
                                     </div>
                                 </div>
+                                <div id="card-element"></div>
                                 <div class="col-12">
                                     <div class="donate-btn">
                                         <button class="donate donate-btn" type="submit">Donate <i class="fas fa-circle-notch fa-spin mx-2 d-none submit-loader"></i></button>
@@ -177,8 +178,11 @@
 @endsection
 
 @section('script')
+<script src="https://js.stripe.com/v3/"></script>
 <script>
-    function changeActive(item1, item2) {
+
+
+function changeActive(item1, item2) {
         document.getElementById(item1).classList.add('active')
         document.getElementById(item2).classList.remove('active')
         let amount = document.getElementById("amount");
@@ -191,6 +195,27 @@
         } 
 
     }
+
+    $(document).ready(function(){
+        var stripe = Stripe('{{env("STRIPE_KEY")}}')
+        var card = null;
+
+        createCardElements()
+
+        function createCardElements(){
+            const element = stripe.elements();
+            card = element.create('card')
+            card.mount("#card-element");
+        }
+
+        async function confirmCardPayment(){
+            
+        }
+
+    
+
+
+    
 
     document.querySelectorAll(".donation-amount-box").forEach(box => {
         box.addEventListener("click" , function(){
@@ -273,9 +298,9 @@
         })
     })
 
-    document.querySelector("#donation-form").addEventListener("submit" , function(e){
+    document.querySelector("#donation-form").addEventListener("submit" , async function(e){
         e.preventDefault();
-        
+
         let form = new FormData(this);
         let firstName = document.getElementById("first_name").value;
         let lastName = document.getElementById("last_name").value;
@@ -286,16 +311,14 @@
         
 
         let fields = {
-             'First_name' : firstName,
-             'Last_name' : lastName,
-             'Email' : email,
-             'Country' : country,
-             'City' : city 
+                'First_name' : firstName,
+                'Last_name' : lastName,
+                'Email' : email,
+                'Country' : country,
+                'City' : city 
         }
 
-        let errors = null
-        
-
+        let errors = null;
 
         for(const field in fields ){
             if(validator.isEmpty(fields[field])){
@@ -304,22 +327,45 @@
             }
         }
 
+
         if(errors !== null){
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: errors+=".",
+                });
+                return;
+        }
+
+        const { setupIntent, error} = await stripe.confirmCardSetup( '{{$clientSecret}}' , {
+                                                                        payment_method : {
+                                                                            card : card,
+                                                                        }
+                                                                });
+
+
+        if(error){
             Swal.fire({
                 icon: "error",
                 title: "Oops...",
-                text: errors+=".",
+                text: error,
             });
             return;
+        }else{
+
+            
+            let url = this.getAttribute('action');
+            let loader = document.querySelector(".submit-loader");
+            let submitBtn = this.querySelector(".donate.donate-btn");
+            form.append('amount' , amount);
+            form.append('price_option' , priceOption);
+            form.append('payment_method' , setupIntent.payment_method);
+            addFormData(url , form , loader , null , submitBtn)
+
         }
 
-        let url = this.getAttribute('action');
-        let loader = document.querySelector(".submit-loader");
-        let submitBtn = this.querySelector(".donate.donate-btn");
+        
 
-        form.append('amount' , amount);
-        form.append('price_option' , priceOption);
-        addFormData(url , form , loader , null , submitBtn)
         
 
     })
@@ -330,7 +376,8 @@
     }
 
 
-
+    
+})
 
 </script>
 @include('common-script')

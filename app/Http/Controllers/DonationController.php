@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Handlers\DonationHandler;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use Stripe\SetupIntent;
+use Stripe\Stripe;
 class DonationController extends Controller
 {
     protected $donationHandler;
@@ -54,7 +56,9 @@ class DonationController extends Controller
         try{
             $campaignId = $request->campaign_id;
             [$campaign , $countries] = $this->donationHandler->getCampaignDonation($campaignId);
-            return view('public.donate.card')->with(['campaign' => $campaign , 'countries' => $countries]);
+            Stripe::setApiKey(env('STRIPE_SECRET'));
+            $setupIntent = SetupIntent::create(['usage' => 'on_session']);
+            return view('public.donate.card')->with(['campaign' => $campaign , 'countries' => $countries , 'clientSecret' => $setupIntent->client_secret]);
             
         }catch(\Exception $e){
             return redirect()->back();

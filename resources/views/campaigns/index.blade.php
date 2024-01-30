@@ -34,11 +34,10 @@
                 <div class="card">
                     <div class="top">
                         <div class="heading">
-                            <div class="text">{{$campaign->title}}</div>
+                            <div class="text"><a href="{{url('donate-now' , $campaign->id)}}">{{$campaign->title}}</a></div>
                             <div class="menu">
                                 <div class="dropdown">
-                                    <button type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                                        aria-expanded="false">
+                                    <button type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                         <img src="{{ asset('assets/images/ellipsis-vertical-sharp.png') }}" alt="">
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -116,4 +115,19 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('script')
+<script>
+
+    document.querySelectorAll("input[type='checkbox']").forEach((item , index)=>{
+        item.addEventListener("change" , function(){
+            document.querySelectorAll("input[type='checkbox']").forEach( (checkbox , checkboxIndex) => {
+                if(checkboxIndex != index ){
+                    checkbox.checked = false;
+                }
+            }) 
+        });
+    })
+</script>
 @endsection

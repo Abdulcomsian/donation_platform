@@ -35,6 +35,7 @@
   font-style: normal;
   font-weight: 500;
   line-height: 166.5%;
+  text-align: center;
 }
 .campaign-created .url-container {
   margin-top: 3rem;
@@ -60,6 +61,7 @@
   font-style: normal;
   font-weight: 500;
   line-height: 166.5%;
+  text-align: center;
 }
 .campaign-created .url-container .url a {
   color: #1293EC;
@@ -69,6 +71,8 @@
   font-weight: 400;
   line-height: 166.5%;
   text-decoration: none;
+  word-break: break-all;
+  text-align: center;
 }
 .campaign-created .url-container .action-container {
   display: flex;
@@ -186,6 +190,7 @@
   line-height: 30px;
   border-radius: 15px;
   border: 1px solid #E5E5E5;
+  word-break: break-all;
 }
 .campaign-created #share-link-modal .modal-content .modal-footer {
   border: none;
@@ -216,4 +221,21 @@
   font-style: normal;
   font-weight: 400;
   line-height: 24px;
+}
+
+@media (max-width: 465px) {
+  .campaign-created #share-link-modal .modal-content .modal-body .iframe-container {
+    height: -moz-max-content;
+    height: max-content;
+  }
+}
+@media (max-width: 465px) {
+  .campaign-created .url-container {
+    height: -moz-max-content;
+    height: max-content;
+    padding: 3rem 0;
+  }
+  .campaign-created .url-container .action-container {
+    flex-direction: column;
+  }
 }/*# sourceMappingURL=campaign-created.css.map */

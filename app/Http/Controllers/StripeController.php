@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Laravel\Cashier\Cashier;
-use Stripe\{ Stripe };
+use Stripe\{ Stripe , AccountLink , OAuth , Account };
 use Stripe\Exception\CardException;
-
+use App\Models\User;
 class StripeController extends Controller
 {
     function __construct()
@@ -20,7 +19,7 @@ class StripeController extends Controller
         try{
             if(!$user->hasStripeId())
             {
-                $user->createAsStripeCustomer([ 'name' =>'talha nafees' , 'email' => 'talfanafees@gmail.com']);
+                $user->createAsStripeCustomer([ 'name' =>'Shakir Faisal' , 'email' => 'shakirfaisalktk873@gmail.com']);
                 \Toastr::success('User Connected Successfully' , 'Success!');
                 return redirect()->back();
             }else{
@@ -55,16 +54,63 @@ class StripeController extends Controller
         
     }
 
-    // public function redirectCallback(Request $request)
-    // {
-    //     $user = auth()->user();
-    //     $code = $request->code;
-    //     $user->connectStripeAccount($code);
-    //     dd("connected");
-    //     return redirect()->route('dashboard')->with(['success'=> 'Stripe account connected successfully.']);
-    // }
+    
+   public function stripeHostedOnboarding(){
+    try{
 
-    public function addDonation(Request $request){
+        $redirectUrl  = route('stripe.connect.callback');
+    
+        $account =   Account::create(['type' => 'express']);
+    
+        if($account){
+            $user = User::where('id' , auth()->user()->id)->first();
+            $user->stripe_connected_id = $account->id;
+            $user->save();
+            $accountLink = AccountLink::create([
+                    'account' => $account->id,
+                    'refresh_url' => route('stripe.hosted.onboarding'),
+                    'return_url' => $redirectUrl, 
+                    'type' => 'account_onboarding',
+            ]);
 
+            return redirect($accountLink->url);
+        }
+    
+    
+    }catch(\Exception $e){
+        \Toastr::error('Something Went Wrong' , 'Error!' );
+        \Toastr::error($e->getMessage() , 'Error!' );
+        return redirect()->back();
     }
+    
+   }
+
+   public function handleConnectCallback(){
+
+    $account = Account::retrieve(auth()->user()->stripe_connected_id);
+    
+    if($account->payouts_enabled && $account->charges_enabled){
+        $user = User::where('id' , auth()->user()->id)->first();
+        $user->stripe_is_verified = 1;
+        $user->save();
+        \Toastr::success('User Connected Successfully' , 'Success!');
+        return redirect()->route('dashboard');
+    }else{
+        \Toastr::error('Something Went Wrong' , 'Error!' );
+        return redirect()->back();
+    }
+
+   }
+
+
+   public function removeStripeConnectedAccount()
+   {
+        $user = User::where('id' , auth()->user()->id)->first();
+        $user->stripe_connected_id = null;
+        $user->stripe_is_verified = 0;
+        $user->save();
+        \Toastr::success('Connected Account Removed Successfully' , 'Success!');
+        return redirect()->route('dashboard');
+   }
+
 }

@@ -13,6 +13,6 @@ class PlatformPercentageSeeder extends Seeder
      */
     public function run(): void
     {
-        PlatformPercentage::create(['percentage' => 10]);
+        PlatformPercentage::create(['percentage' => 0 ]);
     }
 }

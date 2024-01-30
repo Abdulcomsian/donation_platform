@@ -36,11 +36,12 @@
 
     <div class="form-container">
         <form id="event-form" action="{{route('create.event')}}" >
+            <input type="hidden" name="event_id" value="{{$event->id}}">
             <div class="row">
                 <div class="col-12">
                     <div class="form-control">
                         <label for="title">Title</label>
-                        <input type="text" name="title" id="title" placeholder="Title...">
+                        <input type="text" name="title" value="{{$event->title}}" id="title" placeholder="Title...">
                     </div>
                 </div>
             </div>
@@ -49,7 +50,7 @@
                 <div class="col-md-5">
                     <div class="form-control">
                         <label for="descrition">Descrition</label>
-                        <textarea name="description" id="description" placeholder="Description..."></textarea>
+                        <textarea name="description" id="description" placeholder="Description...">{{$event->description}}</textarea>
                     </div>
                 </div>
                 <div class="col-md-5">
@@ -71,13 +72,13 @@
                 <div class="col-md-5">
                     <div class="form-control">
                         <label for="date">Date</label>
-                        <input type="date" name="date" id="date" placeholder="Descrition...">
+                        <input type="date" name="date" id="date" placeholder="date..." value="{{$event->date}}">
                     </div>
                 </div>
                 <div class="col-md-5">
                     <div class="form-control">
                         <label for="time">Time</label>
-                        <input type="time" name="time" id="time" placeholder="Descrition...">
+                        <input type="time" name="time" id="time" placeholder="time..." value="{{date("H:i" , strtotime($event->time))}}">
                     </div>
                 </div>
             </div>
@@ -86,7 +87,7 @@
                 <div class="col-md-5">
                     <div class="form-control">
                         <label for="venue">Venue</label>
-                        <input type="text" name="venue" id="venue" placeholder="e.g. Blue Wales">
+                        <input type="text" name="venue" id="venue" value="{{$event->venue}}" placeholder="e.g. Blue Wales">
                     </div>
                 </div>
                 <div class="col-md-5">
@@ -95,7 +96,7 @@
                         <select name="country" id="">
                             <option value="" disabled selected>Select Country</option>
                             @foreach($countries as $country)
-                                <option value="{{$country->id}}">{{$country->name}}</option>
+                                <option value="{{$country->id}}" @if($event->country_id) selected @endif>{{$country->name}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -110,7 +111,7 @@
                             <option value="" selected disabled>Select Recurring</option>
                             <option value="">None</option>
                             @foreach($frequencies as $frequency)
-                                <option value="{{$frequency->id}}">{{$frequency->title}}</option>
+                                <option value="{{$frequency->id}}" @if($event->frequency_id) selected @endif>{{$frequency->title}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -121,7 +122,7 @@
                         <select name="category" id="">
                             <option value="">Select Category</option>
                             @foreach($categories as $category)
-                                <option value="{{$category->id}}">{{$category->title}}</option>
+                                <option value="{{$category->id}}" @if($event->category_id) selected @endif>{{$category->title}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -132,7 +133,7 @@
                 <div class="col-md-5">
                     <div class="form-control">
                         <label for="organizer">Organizer</label>
-                        <input type="text" name="organizer" id="organizer" placeholder="">
+                        <input type="text" name="organizer" id="organizer" placeholder="Organizer"  value="{{$event->organizer}}">
                     </div>
                 </div>
             </div>
@@ -142,7 +143,7 @@
                     <div class="form-control">
                         <div class="checkbox-wrapper">
                             <div class="custom-checkbox">
-                                <input type="checkbox" name="featured" id="featured">
+                                <input type="checkbox" name="featured" id="featured" @if($event->featured) checked @endif>
                             </div>
                             <label for="featured">Featured Event</label>
                         </div>
@@ -160,34 +161,39 @@
                 </div>
 
                 <div class="ticket-form-fields" id="ticket-form-container">
+                    @foreach($event->ticket as $index => $ticket)
                     <div class="row wrapper-element ticket-container">
                             <div class="col-md-5">
                                 <div class="left">
+                                    <input type="hidden"  value="{{$ticket->id}}" class="id">
                                     <div class="form-control">
                                         <label for="name">Name</label>
-                                        <input type="text" class="name">
+                                        <input type="text" class="name" value="{{$ticket->name}}">
                                     </div>
                                     <div class="form-control">
                                         <label for="quantity">Ticket Quantity</label>
-                                        <input type="number" step="1" min="0" placeholder="100"  class="quantity">
+                                        <input type="number" step="1" min="0"  value="{{$ticket->quantity}}" placeholder="100"  class="quantity">
                                     </div>
                                     <div class="form-control">
                                         <label for="price">Ticket Price</label>
                                         <div class="checkbox-wrapper">
                                             <div class="custom-checkbox">
-                                                <input type="checkbox" class="freeTicket">
+                                                <input type="checkbox" class="freeTicket" @if($ticket->is_free) checked @endif>
                                             </div>
                                             <label for="freeTicket">Ticket is Free</label>
+
+    
                                         </div>
-                                        <input type="number" step="1" min="0" placeholder="100" class="price">
+                                        <input type="number" step="1" min="0" placeholder="100" class="price" value="{{$ticket->price}}">
                                     </div>
+                                    
                                 </div>
                             </div>
                             <div class="col-md-5">
                                 <div class="right">
                                     <div class="form-control">
                                         <label for="descrition">Descrition</label>
-                                        <textarea name="description" class="description" placeholder="Descrition..."></textarea>
+                                        <textarea name="description" class="description" placeholder="Descrition...">{{$ticket->description}}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -195,9 +201,11 @@
                                 <div class="divider">
                                 </div>
                             </div>
-
-
                     </div>
+
+                    @endforeach
+
+
                 </div>
             </div>
 
@@ -206,7 +214,7 @@
                     <div class="col-md-10">
                         <div class="button-container">
                             <button id="add-fields" class="add" type="button">Add Another Ticket Type</button>
-                            <button class="create submit-btn" type="submit">Create Event <i class="fas fa-circle-notch fa-spin mx-2 d-none event-loader"></i></button>
+                            <button class="create submit-btn" type="submit">Update Event <i class="fas fa-circle-notch fa-spin mx-2 d-none event-loader"></i></button>
                         </div>
                     </div>
                 </div>
@@ -242,6 +250,7 @@
         newDiv.className = 'row wrapper-element ticket-container';
 
         newDiv.innerHTML = `<div class="col-md-5">
+                                <input type="hidden" value="" class="id">
                                 <div class="left">
                                     <div class="form-control">
                                         <label for="name">Name</label>
@@ -308,6 +317,7 @@
         let errors = null;
         let errorFlag = false;
         ticketContainer.forEach(container => {
+            let id = container.querySelector(".id").value
             let name = container.querySelector(".name").value;
             let description = container.querySelector(".description").value;
             let quantity = container.querySelector(".quantity").value;
@@ -315,24 +325,27 @@
             let amount = container.querySelector(".price").value;
 
             let ticketDetail = { 
+                                 id  : id,
                                  name : name , 
                                  description : description, 
                                  quantity : quantity , 
                                  isFree : isFree,
                                  amount : amount,
-                            }
-                            
+                               }
+    
+            
             let errors = null;
             for(const keyElement in ticketDetail){
                 const value = ticketDetail[keyElement].toString();
-                if(validator.isEmpty(value)){
+                
+                if(keyElement != 'id' && validator.isEmpty(value)){
                     let key = keyElement.replace(/_/g, ' ');
                     errors === null ? errors = `${key} must Be Required` : errors += `, ${key} must Be Required`;
                     errorFlag = true;
                 }
 
             }
-
+            console.log(ticketDetail)
             if(errors !== null)
             {
                 Swal.fire({
@@ -342,16 +355,14 @@
                 });
                 return;
             }
-
-            console.log(ticketDetail);
             tickets.push(ticketDetail);
             
         })
         if(!errorFlag){
-            let url = "{{route('create.event')}}";
+            let url = "{{route('edit.event')}}";
             form.append('tickets' , JSON.stringify(tickets));
             let submitBtn = this.querySelector(".submit-btn");
-            let redirectUrl = "{{route('event.created')}}";
+            let redirectUrl = "{{url( 'events/event-updated' , $event->id )}}";
             addFormData(url , form , loader , redirectUrl , submitBtn );
         }else{
             alert(errorFlag);
