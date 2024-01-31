@@ -166,7 +166,24 @@ class EventHandler{
         $event = Event::with('country' , 'category' , 'frequency' , 'ticket.users')->where('id' , $request->id)->first();
         return $event;
     }
+
+    public function eventOrganizer()
+    {
+        $distinctOrganizer = DB::table('events')->select('organizer')->distinct()->get();
+        return $distinctOrganizer;
+    }
     
+    public function eventVenue()
+    {   
+        $distinctVenue = DB::table('events')->select('venue')->distinct()->get();
+        return $distinctVenue;
+    }
+
+    public function eventCategories()
+    {
+        $eventCategories = EventCategory::all();
+        return $eventCategories;
+    }
 
     public function removeEvent($request)
     {

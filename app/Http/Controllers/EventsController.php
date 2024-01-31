@@ -34,7 +34,12 @@ class EventsController extends Controller
 
     public function getRecentEvents()
     {
-        return view('public.events.index');
+        $distinctOrganizer = $this->eventHandler->eventOrganizer();
+        $distinctVenue = $this->eventHandler->eventVenue();
+        $eventCategories = $this->eventHandler->eventCategories();
+
+        return view('public.events.index')->with(['distinctOrganizer' => $distinctOrganizer , 'distinctVenue' => $distinctVenue , 'eventCategories' => $eventCategories]);
+       
     }
 
     public function getEventDetail(Request $request)
