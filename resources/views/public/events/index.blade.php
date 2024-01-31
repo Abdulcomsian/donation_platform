@@ -14,27 +14,36 @@
                         <div class="form-control">
                             <select name="category" id="category">
                                 <option value="">Category</option>
+                                @foreach($eventCategories as $category)
+                                    <option value="{{$category->id}}">{{$category->title}}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="form-control">
                             <select name="venue" id="venue">
                                 <option value="">Venue</option>
+                                @foreach($distinctVenue as $eachVenue)
+                                    <option value="{{$eachVenue->venue}}">{{$eachVenue->venue}}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="form-control">
                             <select name="organizer" id="organizer">
                                 <option value="">Organizer</option>
+                                @foreach($distinctOrganizer as $eachOrganizer)
+                                    <option value="{{$eachOrganizer->organizer}}">{{$eachOrganizer->organizer}}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="form-control">
-                            <button type="button" class="grid-button">
+                            <button type="button" class="list-button active">
                                 <i class="fas fa-list"></i>
                                 {{-- <img src="{{ asset('assets/images/list-outline.png') }}" alt=""> --}}
                             </button>
                         </div>
 
                         <div class="form-control">
-                            <button type="button" class="list-button">
+                            <button type="button" class="grid-button">
                                 <i class="fas fa-th-large"></i>
                                 {{-- <img src="{{ asset('assets/images/iconoir_view-grid.png') }}" alt=""> --}}
                             </button>
@@ -48,7 +57,7 @@
     <div class="events-list">
         <div class="container">
             <div class="events-container">
-                <a class="event-item" href="">
+                <a class="event-item list" href="">
                     <div class="card">
                         <div class="start">
                             <div class="icon">
@@ -202,11 +211,28 @@
     document.querySelector(".grid-button").addEventListener("click" , function(event){
         this.classList.add("active");
         document.querySelector(".list-button").classList.remove("active");
+        document.querySelectorAll(".event-item").forEach(item => {
+            item.classList.add("grid");
+            item.classList.remove("list");
+        })
+
     })
 
     document.querySelector(".list-button").addEventListener("click" , function(event){
         this.classList.add("active");
         document.querySelector(".grid-button").classList.remove("active");
+        document.querySelectorAll(".event-item").forEach(item => {
+            item.classList.add("list");
+            item.classList.remove("grid");
+        })
     })
+
+    $(document).ready(function(){
+        $("#category").select2()
+        $("#organizer").select2()
+        $("#venue").select2()
+    })
+
+
 </script>
 @endsection
