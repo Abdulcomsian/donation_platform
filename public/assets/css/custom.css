@@ -30,3 +30,51 @@
     width: 100%;
     border: 1px solid #E5E5E5;
 }
+.select2-container--default .select2-selection--single .select2-selection__arrow{
+    height: 100%;
+}
+.select2-container--default .select2-selection--single{
+    padding: 6px;
+}
+.select2-container .select2-selection--single{
+    height: 100%;
+    border: 1px solid #DDDFE5;
+}
+.has-grid{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+.main .main-content .content-pane .events-list .container .events-container.has-grid .event-item .card{
+    flex-direction: column;
+}
+.main .main-content .content-pane .events-list .container .events-container.has-grid .event-item .card{
+    height: 100%;
+}
+.main .main-content .content-pane .events-list .container .events-container.has-grid .event-item .card .start{
+    width: 100%;
+    height: 250px;
+}
+.main .main-content .content-pane .events-list .container .events-container.has-grid .event-item .card .mid{
+    width: 100%;
+    height: auto;
+}
+.main .main-content .content-pane .events-list .container .events-container.has-grid .event-item .card .end{
+    width: 100%;
+}
+.main .main-content .content-pane .events-list .container .events-container.has-grid .event-item .card .end .buy-button{
+    display: block;
+}
+.main .main-content .content-pane .events-list .container .events-container.has-grid .event-item .card .end .buy-button button{
+    width: 100%;
+}
+
+
+@media (max-width: 320px) {
+    .has-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+  }
+}
+
