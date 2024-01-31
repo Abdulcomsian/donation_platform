@@ -29,7 +29,7 @@
                         @enderror
                     </div>
 
-                    <div class="button-container">
+                    <div class="button-container form-control">
                         <button type="submit" id="nextBtn">Sign In</button>
                     </div>
                 </form>

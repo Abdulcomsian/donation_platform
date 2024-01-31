@@ -2,11 +2,11 @@
 .register {
   margin: 0;
   padding: 0;
-  height: 100vh;
+  height: 88vh;
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  align-items: center;
 }
 .register .section-left {
   width: 60%;
@@ -368,3 +368,63 @@
   line-height: normal;
   letter-spacing: 0.36px;
 }/*# sourceMappingURL=register.css.map */
+
+
+@media only screen and (max-width: 768px) {
+  .register{
+    display: block;
+    height: auto;
+  }
+  .register .section-left {
+      margin-top: 50px;
+      margin-bottom: 30px;
+      padding: 10px;
+      width: 100%;
+  }
+  .register .section-left .section-2{
+    display: block;
+  }
+  .register .section-left .section-2 .type-selection .form-container .form-item-1{
+    display: block;
+    width: 100%;
+  }
+  .register .section-left .section-2 .type-selection .form-container .form-item-2{
+    display: block;
+    width: 100%;
+  }
+  .register .section-left .section-3{
+    display: block;
+    text-align: center;
+  }
+  .register .section-right .text-section .text-2{
+    font-size: 25px;
+  }
+  .register .section-left .section-1 .sign-in-form .sign-in-form-container .form-control input[type=email],
+  .login .section-left .section-1 .sign-in-form .sign-in-form-container .form-control input[type=password] {
+      width: 100%;
+  }
+
+  .register .section-left .section-1 .sign-in-form .sign-in-form-container .button-container {
+      width: 100%;
+  }
+
+  .register .section-left .section-1 .sign-in-form .sign-in-form-container .button-container button {
+      width: 100%;
+  }
+
+  .register .section-left .section-1 .sign-in-form .sign-in-form-container {
+      width: 100%;
+  }
+  .register .section-right .text-section{
+    margin-top: 80px;
+  }
+  .register .section-right{
+    width: 100%;
+    background: #5bc17f;
+    height: 100%;
+    padding-bottom: 30px;
+  }
+  .register .section-right .text-section .text-1{
+    padding-top: 25px;
+  }
+}

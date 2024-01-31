@@ -19,6 +19,7 @@
     <!-- Scripts -->
     {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+   
     <script src="{{ asset('js/app.js') }}" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" integrity="sha512-GWzVrcGlo0TxTRvz9ttioyYJ+Wwk9Ck0G81D+eO63BaqHaJ3YZX9wuqjwgfcV/MrB2PhaVX9DkYVhbFpStnqpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -26,9 +27,7 @@
     <link rel="stylesheet" href="{{asset('assets/css/public-events-index.css')}}">
 
     <link rel="stylesheet" href="{{asset('assets/package/select2/select2.min.css')}}" />
-
-    <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}" />
-
+    <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
     <script src="{{asset('assets/js/jquery-3.7.1.min.js')}}"></script>
 
     <style>

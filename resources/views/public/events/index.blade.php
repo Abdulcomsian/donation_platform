@@ -128,6 +128,9 @@
             item.classList.add("grid");
             item.classList.remove("list");
         })
+        document.querySelectorAll(".events-container").forEach(item => {
+            item.classList.add("has-grid");
+        })
 
     })
 
@@ -137,6 +140,9 @@
         document.querySelectorAll(".event-item").forEach(item => {
             item.classList.add("list");
             item.classList.remove("grid");
+        })
+        document.querySelectorAll(".events-container").forEach(item => {
+            item.classList.remove("has-grid");
         })
     })
 

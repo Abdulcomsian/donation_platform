@@ -10,6 +10,28 @@
   display: flex;
   flex-direction: row;
 }
+.nav-drop .dropdown-menu{
+  inset: 23px -15px auto auto !important;
+}
+.nav-drop .dropdown-menu .dropdown-item{
+  background-color: transparent;
+}
+.sign-out{
+  color: #000;
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 166.5%;
+}
+.dropdown-toggle::after{
+  position: absolute;
+  top: 48%;
+  right: 16px;
+}
+.nav-drop{
+  list-style-type: none;
+}
 .main .sidebar {
   width: 18%;
   position: absolute;
@@ -21,7 +43,8 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100%;
+  background-color: #fff;
+  /* height: 100%; */
   border-right: 2px solid #DDDFE5;
 }
 .main .sidebar .main-container .top .logo .icon {

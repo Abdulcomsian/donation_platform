@@ -2,6 +2,16 @@
   font-family: "Product Sans";
   src: url("../fonts/ProductSans/ProductSans-Black.ttf") format("truetype"), url("../fonts/ProductSans/ProductSans-BlackItalic.ttf") format("truetype"), url("../fonts/ProductSans/ProductSans-Bold.ttf") format("truetype"), url("../fonts/ProductSans/ProductSans-BoldItalic.ttf") format("truetype"), url("../fonts/ProductSans/ProductSans-Italic.ttf") format("truetype"), url("../fonts/ProductSans/ProductSans-Light.ttf") format("truetype"), url("../fonts/ProductSans/ProductSans-LightItalic.ttf") format("truetype"), url("../fonts/ProductSans/ProductSans-Medium.ttf") format("truetype"), url("../fonts/ProductSans/ProductSans-MediumItalic.ttf") format("truetype"), url("../fonts/ProductSans/ProductSans-Regular.ttf") format("truetype"), url("../fonts/ProductSans/ProductSans-Thin.ttf") format("truetype"), url("../fonts/ProductSans/ProductSans-ThinItalic.ttf") format("truetype");
 }
+.select2-container .select2-selection--single .select2-selection__rendered{
+  padding:0 !important;
+}
+.status-select select::after {
+  content: "▼";
+  font-size: 1rem;
+  top: 6px;
+  right: 10px;
+  position: absolute;
+}
 .donations {
   height: 100%;
   width: 100%;
@@ -34,6 +44,7 @@
   height: 48px;
   border: 1px solid #DDDFE5;
   border-radius: 8px;
+  position: relative;
 }
 .donations .header .filters form .status-select select {
   height: 100%;
@@ -43,11 +54,14 @@
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
+ 
   line-height: normal;
+  padding: 10px 15px;
   letter-spacing: 0.14px;
   border: none;
   outline: none;
   border-radius: 8px;
+  border-right: 7px solid transparent ;
 }
 .donations .header .filters form .membership-select {
   width: 132.576px;

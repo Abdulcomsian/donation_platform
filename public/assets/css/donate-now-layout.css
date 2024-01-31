@@ -94,7 +94,6 @@
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
-  line-height: 36px;
 }
 .donate-noe-layout .rectangle .donate-now-container .left .icon {
   margin-top: 7rem;
@@ -215,3 +214,33 @@
   font-weight: 400;
   line-height: 24px;
 }/*# sourceMappingURL=donate-now-layout.css.map */
+
+@media only screen and (max-width: 992px) {
+  .donate-noe-layout .rectangle .donate-now-container {
+    display: block;
+    position: unset;
+    transform: none;
+    height: auto;
+    margin-top: 130px;
+    padding-bottom: 14px;
+  }
+  .donate-noe-layout .rectangle .donate-now-container .left{
+    width: 100%;
+  }
+  .donate-noe-layout .rectangle .donate-now-container .right{
+    width: 100%;
+  }
+  .donate-noe-layout .rectangle .donate-now-container .left .icon img{
+    width: 100%;
+  }
+  .donate-now-card .card{
+    margin-bottom: 80px;
+    height: auto !important;
+  }
+  .donate-now-card .card .card-top .form-container form .amount-item .static-amount .item{
+    margin-bottom: 10px;
+  }
+  .donate-now-card .card .card-top .form-container form .frequency-item .frequency-types .type{
+    margin-bottom: 10px;
+  }
+}

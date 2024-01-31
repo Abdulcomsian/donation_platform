@@ -19,7 +19,8 @@
 
     <!-- Scripts -->
     {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{asset('assets/js/jquery-3.7.1.min.js')}}"></script>
     <script src="{{asset('assets/package/sweet-alert/sweet-alert.min.js')}}"></script>
