@@ -57,33 +57,42 @@
     <div class="events-list">
         <div class="container">
             <div class="events-container">
+                @foreach($filteredEvents as $event)
                 <a class="event-item list" href="">
                     <div class="card">
                         <div class="start">
                             <div class="icon">
-                                <img src="{{ asset('assets/images/d3f7e3dc434bdc4136496a06f562ac81.jpeg') }}" alt="">
+                                @if($event->image)
+                                    <img src="{{ asset('assets/uploads').'/'.$event->image }}" alt="">
+                                @else
+                                    <img src="{{ asset('assets/images/Event.png') }}" alt="">
+                                @endif
                             </div>
-
-                            <div class="featured">Featured</div>
+                            @if($event->featured)
+                                <div class="featured">Featured</div>
+                            @endif
                         </div>
                         <div class="mid">
-                            <div class="title">Event Title</div>
+                            <div class="title">{{$event->title}}</div>
                             <div class="description">
-                                Lorem ipsum dolor sit amet consectetur. Venenatis ornare sit scelerisque sit. Dapibus
-                                quisque volutpat varius ante leo sdfv dfv dfv dsfvsd fvs dfv sdfv sdfvs dfvsdfvsdfvs
-                                dfvs dfvsdfvsdfvsdfvs dfvsdf vsdfv sdfvsdf v
+                                {{$event->description}}
                             </div>
                             <div class="time">
                                 <div class="icon">
                                     <img src="{{ asset('assets/images/calendar-outline.png') }}" alt="">
                                 </div>
-                                <div class="text">Saturday 13 January, 2024 6:30 PM</div>
+                                @php 
+                                    $date = \Carbon\Carbon::parse($event->date);
+                                    $time = \Carbon\Carbon::parse($event->time);
+                                @endphp
+
+                                <div class="text">{{$date->format('l j F, Y')}}, {{$time->format('g:i A')}}</div>
                             </div>
                             <div class="venue">
                                 <div class="icon">
                                     <img src="{{ asset('assets/images/location-outline.png') }}" alt="">
                                 </div>
-                                <div class="text">Venue Here</div>
+                                <div class="text">{{$event->venue}}</div>
                             </div>
                         </div>
                         <div class="end">
@@ -94,112 +103,16 @@
                     </div>
                 </a>
 
-                <a class="event-item" href="">
-                    <div class="card">
-                        <div class="start">
-                            <div class="icon">
-                                <img src="{{ asset('assets/images/d3f7e3dc434bdc4136496a06f562ac81.jpeg') }}" alt="">
-                            </div>
+                @endforeach
 
-                            <div class="featured">Featured</div>
-                        </div>
-                        <div class="mid">
-                            <div class="title">Event Title</div>
-                            <div class="description">
-                                Lorem ipsum dolor sit amet consectetur. Venenatis ornare sit scelerisque sit. Dapibus
-                                quisque volutpat varius ante leo sdfv dfv dfv dsfvsd fvs dfv sdfv sdfvs dfvsdfvsdfvs
-                                dfvs dfvsdfvsdfvsdfvs dfvsdf vsdfv sdfvsdf v
-                            </div>
-                            <div class="time">
-                                <div class="icon">
-                                    <img src="{{ asset('assets/images/calendar-outline.png') }}" alt="">
-                                </div>
-                                <div class="text">Saturday 13 January, 2024 6:30 PM</div>
-                            </div>
-                            <div class="venue">
-                                <div class="icon">
-                                    <img src="{{ asset('assets/images/location-outline.png') }}" alt="">
-                                </div>
-                                <div class="text">Venue Here</div>
-                            </div>
-                        </div>
-                        <div class="end">
-                            <div class="buy-button">
-                                <button>Buy Ticket</button>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
-                <a class="event-item" href="">
-                    <div class="card">
-                        <div class="start">
-                            <div class="icon">
-                                <img src="{{ asset('assets/images/d3f7e3dc434bdc4136496a06f562ac81.jpeg') }}" alt="">
-                            </div>
-                        </div>
-                        <div class="mid">
-                            <div class="title">Event Title</div>
-                            <div class="description">
-                                Lorem ipsum dolor sit amet consectetur. Venenatis ornare sit scelerisque sit. Dapibus
-                                quisque volutpat varius ante leo sdfv dfv dfv dsfvsd fvs dfv sdfv sdfvs dfvsdfvsdfvs
-                                dfvs dfvsdfvsdfvsdfvs dfvsdf vsdfv sdfvsdf v
-                            </div>
-                            <div class="time">
-                                <div class="icon">
-                                    <img src="{{ asset('assets/images/calendar-outline.png') }}" alt="">
-                                </div>
-                                <div class="text">Saturday 13 January, 2024 6:30 PM</div>
-                            </div>
-                            <div class="venue">
-                                <div class="icon">
-                                    <img src="{{ asset('assets/images/location-outline.png') }}" alt="">
-                                </div>
-                                <div class="text">Venue Here</div>
-                            </div>
-                        </div>
-                        <div class="end">
-                            <div class="buy-button">
-                                <button>Buy Ticket</button>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
-                <a class="event-item" href="">
-                    <div class="card">
-                        <div class="start">
-                            <div class="icon">
-                                <img src="{{ asset('assets/images/d3f7e3dc434bdc4136496a06f562ac81.jpeg') }}" alt="">
-                            </div>
-                        </div>
-                        <div class="mid">
-                            <div class="title">Event Title</div>
-                            <div class="description">
-                                Lorem ipsum dolor sit amet consectetur. Venenatis ornare sit scelerisque sit. Dapibus
-                                quisque volutpat varius ante leo sdfv dfv dfv dsfvsd fvs dfv sdfv sdfvs dfvsdfvsdfvs
-                                dfvs dfvsdfvsdfvsdfvs dfvsdf vsdfv sdfvsdf v
-                            </div>
-                            <div class="time">
-                                <div class="icon">
-                                    <img src="{{ asset('assets/images/calendar-outline.png') }}" alt="">
-                                </div>
-                                <div class="text">Saturday 13 January, 2024 6:30 PM</div>
-                            </div>
-                            <div class="venue">
-                                <div class="icon">
-                                    <img src="{{ asset('assets/images/location-outline.png') }}" alt="">
-                                </div>
-                                <div class="text">Venue Here</div>
-                            </div>
-                        </div>
-                        <div class="end">
-                            <div class="buy-button">
-                                <button>Buy Ticket</button>
-                            </div>
-                        </div>
-                    </div>
-                </a>
+                
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 d-flex justify-content-center">
+                    {!! $filteredEvents->links() !!}
+                </div>
             </div>
         </div>
     </div>

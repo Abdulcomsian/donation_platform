@@ -185,6 +185,16 @@ class EventHandler{
         return $eventCategories;
     }
 
+    public function filteredEvent($request)
+    {
+        $query = Event::query();
+        $currentDate = now();
+        $query->where('date', '>=' , $currentDate);
+        $events = $query->orderBy('date' , 'asc')->paginate(1); 
+        return $events;
+
+    }
+
     public function removeEvent($request)
     {
         

@@ -27,6 +27,8 @@
 
     <link rel="stylesheet" href="{{asset('assets/package/select2/select2.min.css')}}" />
 
+    <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}" />
+
     <script src="{{asset('assets/js/jquery-3.7.1.min.js')}}"></script>
 
     <style>

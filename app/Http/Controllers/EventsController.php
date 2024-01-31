@@ -32,13 +32,19 @@ class EventsController extends Controller
         return $this->eventHandler->getEditEventForm($request);
     }
 
-    public function getRecentEvents()
+    public function getRecentEvents(Request $request)
     {
         $distinctOrganizer = $this->eventHandler->eventOrganizer();
         $distinctVenue = $this->eventHandler->eventVenue();
         $eventCategories = $this->eventHandler->eventCategories();
+        $filteredEvents = $this->eventHandler->filteredEvent($request);
 
-        return view('public.events.index')->with(['distinctOrganizer' => $distinctOrganizer , 'distinctVenue' => $distinctVenue , 'eventCategories' => $eventCategories]);
+        return view('public.events.index')->with([
+                                                  'distinctOrganizer' => $distinctOrganizer , 
+                                                  'distinctVenue' => $distinctVenue , 
+                                                  'eventCategories' => $eventCategories,
+                                                  'filteredEvents' => $filteredEvents
+                                                ]);
        
     }
 
