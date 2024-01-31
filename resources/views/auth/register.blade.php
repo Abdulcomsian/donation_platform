@@ -6,6 +6,7 @@
 @endsection
 
 @section('content')
+
 <div class="register">
     <div class="section-left">
         <div class="section-1">
