@@ -211,7 +211,7 @@
     document.querySelector(".grid-button").addEventListener("click" , function(event){
         this.classList.add("active");
         document.querySelector(".list-button").classList.remove("active");
-        document.querySelectorAll("event-item").forEach(item => {
+        document.querySelectorAll(".event-item").forEach(item => {
             item.classList.add("grid");
             item.classList.remove("list");
         })
@@ -221,7 +221,7 @@
     document.querySelector(".list-button").addEventListener("click" , function(event){
         this.classList.add("active");
         document.querySelector(".grid-button").classList.remove("active");
-        document.querySelectorAll("event-item").forEach(item => {
+        document.querySelectorAll(".event-item").forEach(item => {
             item.classList.add("list");
             item.classList.remove("grid");
         })
