@@ -27,14 +27,16 @@
                             </select>
                         </div>
                         <div class="form-control">
-                            <button type="button">
-                                <img src="{{ asset('assets/images/list-outline.png') }}" alt="">
+                            <button type="button" class="grid-button">
+                                <i class="fas fa-list"></i>
+                                {{-- <img src="{{ asset('assets/images/list-outline.png') }}" alt=""> --}}
                             </button>
                         </div>
 
                         <div class="form-control">
-                            <button type="button">
-                                <img src="{{ asset('assets/images/iconoir_view-grid.png') }}" alt="">
+                            <button type="button" class="list-button">
+                                <i class="fas fa-th-large"></i>
+                                {{-- <img src="{{ asset('assets/images/iconoir_view-grid.png') }}" alt=""> --}}
                             </button>
                         </div>
                     </form>
@@ -193,4 +195,18 @@
         </div>
     </div>
 </div>
+
+@endsection
+@section('script')
+<script>
+    document.querySelector(".grid-button").addEventListener("click" , function(event){
+        this.classList.add("active");
+        document.querySelector(".list-button").classList.remove("active");
+    })
+
+    document.querySelector(".list-button").addEventListener("click" , function(event){
+        this.classList.add("active");
+        document.querySelector(".grid-button").classList.remove("active");
+    })
+</script>
 @endsection
