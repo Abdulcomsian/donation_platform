@@ -32,7 +32,7 @@ class EventsController extends Controller
         return $this->eventHandler->getEditEventForm($request);
     }
 
-    public function getPublicEvents()
+    public function getRecentEvents()
     {
         return view('public.events.index');
     }

@@ -72,7 +72,7 @@ Route::group(['middleware' => ['preventBackHistory', 'auth']], function () {
 });
 
 
-Route::get('public/events', [EventsController::class, 'getPublicEvents'])->name('publicEvents');
+Route::get('recent-events', [EventsController::class, 'getRecentEvents'])->name('publicEvents');
 Route::get('event-detail/{id}', [EventsController::class, 'getEventDetail'])->name('event.detail');
 Route::get('donate-now/{campaign_id}', [DonationController::class, "getDonationForm"])->name('get.donation.form');
 Route::post('add-donation' , [DonationController::class , 'addDonation'])->name('add.donation');
