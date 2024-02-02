@@ -1,80 +1,250 @@
-.compaign-navigation nav div:first-child{
-    display: none;
-}
-.compaign-navigation nav{
-    margin-top: 25px;
-}
-.compaign-navigation nav div span svg{
-    width: 25px;
-}
-.compaign-navigation nav div span span{
-    margin-right: 5px;
-}
-.compaign-navigation nav div span span span{
-    margin-right: 0px;
-}
-.compaign-navigation nav div span a{
-    margin-right: 5px;
-    color: #000;
-    text-decoration: none;
-}
-.compaign-navigation nav div span[aria-current="page"] span{
-    background: #5bc17f !important;
-    color: #fff !important;
-}
-.form-css{
-    border-radius: 7px;
-    border: 1px solid #E5E5E5;
-    padding: 1rem;
-    height: 65.932px;
-    width: 100%;
-    border: 1px solid #E5E5E5;
-}
-.select2-container--default .select2-selection--single .select2-selection__arrow{
-    height: 100%;
-}
-.select2-container--default .select2-selection--single{
-    padding: 6px;
-}
-.select2-container .select2-selection--single{
-    height: 100%;
-    border: 1px solid #DDDFE5;
-}
-.has-grid{
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-}
-.main .main-content .content-pane .events-list .container .events-container.has-grid .event-item .card{
-    flex-direction: column;
-}
-.main .main-content .content-pane .events-list .container .events-container.has-grid .event-item .card{
-    height: 100%;
-}
-.main .main-content .content-pane .events-list .container .events-container.has-grid .event-item .card .start{
-    width: 100%;
-    height: 250px;
-}
-.main .main-content .content-pane .events-list .container .events-container.has-grid .event-item .card .mid{
-    width: 100%;
-    height: auto;
-}
-.main .main-content .content-pane .events-list .container .events-container.has-grid .event-item .card .end{
-    width: 100%;
-}
-.main .main-content .content-pane .events-list .container .events-container.has-grid .event-item .card .end .buy-button{
-    display: block;
-}
-.main .main-content .content-pane .events-list .container .events-container.has-grid .event-item .card .end .buy-button button{
-    width: 100%;
+.compaign-navigation nav div:first-child {
+  display: none;
 }
 
+.compaign-navigation nav {
+  margin-top: 25px;
+}
+
+.compaign-navigation nav div span svg {
+  width: 25px;
+}
+
+.compaign-navigation nav div span span {
+  margin-right: 5px;
+}
+
+.compaign-navigation nav div span span span {
+  margin-right: 0px;
+}
+
+.compaign-navigation nav div span a {
+  margin-right: 5px;
+  color: #000;
+  text-decoration: none;
+}
+
+.compaign-navigation nav div span[aria-current=page] span {
+  background: #5bc17f !important;
+  color: #fff !important;
+}
+
+.form-css {
+  border-radius: 7px;
+  border: 1px solid #E5E5E5;
+  padding: 1rem;
+  height: 65.932px;
+  width: 100%;
+  border: 1px solid #E5E5E5;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+  height: 100%;
+}
+
+.select2-container--default .select2-selection--single {
+  padding: 6px;
+}
+
+.select2-container .select2-selection--single {
+  height: 100%;
+  border: 1px solid #DDDFE5;
+}
+
+.has-grid {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 1rem;
+}
+
+.main .main-content .content-pane .events-list .container .events-container.has-grid .event-item .card {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.main .main-content .content-pane .events-list .container .events-container.has-grid .event-item .card {
+  height: 100%;
+}
+
+.main .main-content .content-pane .events-list .container .events-container.has-grid .event-item .card .start {
+  width: 100%;
+  height: 250px;
+}
+
+.main .main-content .content-pane .events-list .container .events-container.has-grid .event-item .card .mid {
+  width: 100%;
+  height: auto;
+}
+
+.main .main-content .content-pane .events-list .container .events-container.has-grid .event-item .card .end {
+  width: 100%;
+}
+
+.main .main-content .content-pane .events-list .container .events-container.has-grid .event-item .card .end .buy-button {
+  display: block;
+}
+
+.main .main-content .content-pane .events-list .container .events-container.has-grid .event-item .card .end .buy-button button {
+  width: 100%;
+}
+
+.detail-modal .event-det {
+  text-align: center;
+  font-family: Poppins;
+}
+.detail-modal .nav {
+  margin-right: -1rem;
+  margin-left: -1rem;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  padding: 20px 30px;
+}
+.detail-modal .nav .nav-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 6px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+}
+.detail-modal .nav .nav-item::before {
+  position: absolute;
+  width: 54px;
+  border: 1px dashed #B0BEC5;
+  content: "";
+  right: -71px;
+}
+.detail-modal .nav .nav-item.active::before {
+  position: absolute;
+  width: 54px;
+  border: 1px solid #5BC17F;
+  content: "";
+  right: -71px;
+}
+.detail-modal .nav .nav-link {
+  width: 2rem;
+  height: 2rem;
+  background-color: var(--vz-light);
+  padding: 0;
+  font-family: Poppins;
+  color: var(--vz-body-color);
+  font-weight: 500;
+  background-color: #5BC17F;
+  color: #fff;
+  -webkit-box-shadow: 0 3px 3px rgba(56, 65, 74, 0.1);
+          box-shadow: 0 3px 3px rgba(56, 65, 74, 0.1);
+  border-radius: 50%;
+}
+.detail-modal .nav span {
+  color: #000;
+  font-weight: 600;
+  font-family: Poppins;
+}
+
+.modal-body hr {
+  width: 92%;
+  margin: 0 auto;
+  background: #b9b9b9;
+}
+
+.order-summary {
+  padding-left: 30px;
+  margin-top: 30px;
+  padding-right: 30px;
+}
+.order-summary h3 {
+  color: #000;
+  font-weight: 600;
+  font-size: 20px;
+  margin-bottom: 25px;
+  font-family: Poppins;
+}
+.order-summary table {
+  font-weight: 400;
+  background: rgba(238, 238, 238, 0.3803921569);
+  font-size: 15px;
+  font-family: Poppins;
+}
+.order-summary table tr td {
+  padding: 15px;
+}
+.order-summary label {
+  font-size: 15px;
+  font-family: Poppins;
+}
+
+.action-bttn button {
+  font-family: Poppins;
+}
+.action-bttn button:first-child {
+  margin-right: 15px;
+}
+
+.modal-header {
+  border: none;
+}
+
+.sub-total {
+  font-size: 17px;
+  font-family: Poppins;
+  font-weight: 600;
+  margin-left: 30px;
+}
+.sub-total b {
+  font-family: Poppins;
+  font-weight: 700;
+}
+
+.tab-data {
+  padding: 0 30px;
+}
+.tab-data .ticket-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  gap: 15px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 20px 0px;
+  border-bottom: 1px solid #efefef;
+}
+.tab-data .ticket-box .ticket-detail h3 {
+  font-size: 20px;
+  font-family: Poppins;
+}
+.tab-data .ticket-box .ticket-detail p {
+  font-size: 16px;
+  font-family: Poppins;
+  margin-bottom: 5px;
+}
+.tab-data .ticket-box .ticket-detail span {
+  font-size: 18px;
+  font-family: Poppins;
+}
 
 @media (max-width: 320px) {
-    .has-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
+  .has-grid {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    gap: 0;
   }
 }
-
