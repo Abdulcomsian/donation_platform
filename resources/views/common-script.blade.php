@@ -1,5 +1,6 @@
 <script>
-    function addFormData(url , form , loader , redirectUrl = null , submitBtn = null){
+    function addFormData(url , form , loader , redirectUrl = null , submitBtn = null ,  fn = null){
+        // console.log(arguments)
         loader.classList.remove("d-none")
         // submitBtn.setAttribute('disabled' , true);
         form.append("_token" , '{{csrf_token()}}');
@@ -17,6 +18,10 @@
                 if(res.status){
                     if(redirectUrl != null){
                         window.location.href = redirectUrl;
+                        if(fn != null){
+                            fn();
+                        }
+
                     }else{
                         Swal.fire({
                             text: res.msg,

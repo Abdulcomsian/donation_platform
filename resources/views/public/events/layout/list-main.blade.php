@@ -34,7 +34,7 @@
         svg{
             color: #949494!important;
         }
-        .grid-button:hover , .list-button:hover , .grid-button.active , .list-button.active{
+        .grid-button:hover , .list-button:hover , .grid-button.active , .list-button.active , .search-button:hover{
             
             background-color: #5BC17F!important;
 

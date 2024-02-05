@@ -36,6 +36,11 @@
                             </select>
                         </div>
                         <div class="form-control">
+                            <button type="button" class="search-button">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                        <div class="form-control">
                             <button type="button" class="list-button active">
                                 <i class="fas fa-list"></i>
                                 {{-- <img src="{{ asset('assets/images/list-outline.png') }}" alt=""> --}}
@@ -110,7 +115,7 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-12 d-flex justify-content-center">
+                <div class="col-12 d-flex justify-content-center paginate-navigation">
                     {!! $filteredEvents->links() !!}
                 </div>
             </div>
@@ -151,6 +156,32 @@
         $("#organizer").select2()
         $("#venue").select2()
     })
+
+    
+    document.querySelector(".search-button").addEventListener("click" , function(e){
+    
+        let category = document.getElementById("category").value;
+        let venue = document.getElementById("venue").value;
+        let organizer = document.getElementById("organizer").value;
+        let filterFields = {
+                        category : category,
+                        venue : venue,
+                        organizer : organizer
+                    }
+        let url = '{{Request::url()}}';
+        
+        let params = ''
+        for(let key in filterFields){
+            if(filterFields[key].trim().length != 0){
+                params.length == 0 ? params += `?${key}=${filterFields[key]}` : params += `&${key}=${filterFields[key]}`
+            }
+        }
+
+
+        window.location.href = url+=params;
+    
+
+    });
 
 
 </script>

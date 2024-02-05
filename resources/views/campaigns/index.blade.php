@@ -109,7 +109,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-12 d-flex justify-content-center compaign-navigation">
+            <div class="col-12 d-flex justify-content-center paginate-navigation">
                 {!! $campaigns->links() !!}
             </div>
         </div>
@@ -129,5 +129,10 @@
             }) 
         });
     })
+
+
+
+
+
 </script>
 @endsection
