@@ -29,6 +29,7 @@ return new class extends Migration
             $table->foreign('country_id')->references('id')->on('countries');
             $table->timestamp('created_at')->default(now());
             $table->timestamp('updated_at')->default(now());
+            $table->softDeletes();
         });
     }
 

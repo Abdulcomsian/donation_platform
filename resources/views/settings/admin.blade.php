@@ -231,7 +231,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-container">
-                        <form action="">
+                        <form method="POST" action="{{route('add.user')}}" id="user-form">
                             <div class="form-control-name">
                                 <label for="userName">First Name</label>
                                 <input type="text" id="userName" placeholder="" name="first_name" required>
@@ -245,6 +245,7 @@
                                 <div class="email-role-container">
                                     <input type="email" id="email" name="email" placeholder="johndoe@gmail.com" required>
                                     <select name="role" id="role" required>
+
                                         <option value="{{\AppConst::NON_PROFIT_ORGANIZATION}}">Non profit organization</option>
                                         <option value="{{\AppConst::FUNDRAISER}}">Fundraiser</option>
                                     </select>
@@ -264,10 +265,42 @@
 <script>
     $(document).ready(function(){
 
+        document.getElementById("user-form").addEventListener("submit" , function(e){
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            let form = new FormData(this);
+            let url = this.getAttribute("action");
+            let loader = document.querySelector(".user-loader");
+            let submitBtn = document.querySelector(".send-invite");
+            addFormData(url , form , loader ,  null , submitBtn , toggleAdminModal )
+        })
 
         function toggleAdminModal(){
-            $("#add-user-modal").modal("toggle");
+            $("#add-user-modal").modal("hide");
+            loadTable(); 
         }
+
+
+        $(document).on("change" , ".role" , function(e){
+            e.stopImmediatePropagation();
+            let userId = this.dataset.userId;
+            let role = this.value;
+            let data = { userId : userId , role : role};
+            let url = "{{route('update.role')}}";
+            updateData(data , url );
+        })
+
+
+        $(document).on("click" , ".delete-user-btn" , function(e){
+            e.stopImmediatePropagation();
+            let userId = this.dataset.userId;
+            let data = {userId , userId};
+            let url  = "{{route('delete.user')}}";
+            let confirmationHeader = "Are you sure you want to delete user";
+            let confirmationTextBtn = "Delete";
+            let confirmationText = "By deleting this user all the data for this user has been lost."
+            confirmationUpdate(data , url , [ confirmationHeader , confirmationTextBtn , confirmationText] , null , loadTable);
+        })
 
     })
 </script>

@@ -12,6 +12,17 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
 <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
+<style>
+    .admin .header{
+        position: relative;
+    }
+    .admin .header .add-btn-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+    }
+</style>
 
 @endsection
 
@@ -101,7 +112,7 @@
 
     function loadTable(){
         let table = document.getElementById("user-table");
-        let url = "{{route('userList')}}";
+        let url = "{{route('user.list')}}";
         let columns = [
                         { data: 'name', name: 'name' },
                         { data: 'email', name: 'email' },

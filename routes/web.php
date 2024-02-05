@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{UserController, HomeController, DonationController, CampaignController, DashboardController, EventsController, MembershipController, SettingController, StripeController};
+use App\Http\Controllers\{UserController, HomeController, DonationController, CampaignController, DashboardController, EventsController, MailingController, MembershipController, SettingController, StripeController};
 
 /*
 |--------------------------------------------------------------------------
@@ -66,11 +66,20 @@ Route::group(['middleware' => ['preventBackHistory', 'auth']], function () {
 
     Route::group(['prefix' => 'settings'], function () {
         Route::get("/", [SettingController::class, 'settings'])->name('settings');
-        Route::post("change-profile-setting",[SettingController::class , 'changeProfileSettings'])->name('changeProfile');
-        Route::post("change-password" , [SettingController::class , 'changePassword'])->name('changePassword');
-        Route::post("update-orgainzation" , [SettingController::class , 'updateOrganization'])->name('updateOrganization');
-        Route::post("get-user-list" , [UserController::class , 'getUserList'])->name('userList');
+        Route::post("change-profile-setting",[SettingController::class , 'changeProfileSettings'])->name('change.profile');
+        Route::post("change-password" , [SettingController::class , 'changePassword'])->name('change.password');
+        Route::post("update-orgainzation" , [SettingController::class , 'updateOrganization'])->name('update.organization');
+        Route::post("get-user-list" , [UserController::class , 'getUserList'])->name('user.list');
+        Route::post("add-new-user" , [UserController::class , 'addUser'])->name('add.user');
+        Route::post("update-role" , [UserController::class , 'updateRole'])->name('update.role');
+        Route::post("delete-user" , [UserController::class , 'deleteUser'])->name('delete.user');
     });
+
+    Route::group(['prefix' => 'email'] , function(){
+        Route::post('update-template' , [MailingController::class , 'updateUserMail'])->name('update.email.template');
+    });
+
+    Route::get("create-mail" , [MailingController::class , 'updateUserMail'])->name('update.mail');
 
     Route::view('/unauthorized' , 'unauthorized')->name('unauthorized');
 });

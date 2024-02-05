@@ -35,7 +35,7 @@ class UserController extends Controller
         ]);
 
         if($validator->fails()){
-            return response()->json(['status' => false , 'msg' => 'Something Went Wrong' , 'error' => $validator->getMessageBag() ]);
+            return response()->json(['status' => false , 'msg' => 'Something Went Wrong' , 'error' => implode( " ," ,$validator->messages()->all()) ]);
         }
 
         try{
@@ -45,5 +45,48 @@ class UserController extends Controller
             return response()->json(['status' => false , 'msg' => 'Something Went Wrong' , 'error' => $e->getMessage()]);
         }
 
+    }
+
+    public function updateRole(Request $request)
+    {
+        $validator = Validator::make($request->all() , [
+            "role" => "required|string",
+            "userId" => "required|numeric",
+        ]);
+
+        if($validator->fails()){
+            return response()->json(['status' => false , 'msg' => 'Something Went Wrong' , 'error' => implode( " ," ,$validator->messages()->all()) ]);
+        }
+
+        try{
+            $response = $this->userHandler->changeUserRole($request);
+            return response()->json($response);
+
+        }catch(\Exception $e){
+
+            return response()->json(['status' => false , 'msg' => 'Something Went Wrong' , 'error' => $e->getMessage()]);
+        
+        }
+    }
+
+    public function deleteUser(Request $request)
+    {
+        $validator = Validator::make($request->all() , [
+            "userId" => "required|numeric",
+        ]);
+
+        if($validator->fails()){
+            return response()->json(['status' => false , 'msg' => 'Something Went Wrong' , 'error' => implode( " ," ,$validator->messages()->all()) ]);
+        }
+
+        try{
+            $response = $this->userHandler->deleteUser($request);
+            return response()->json($response);
+
+        }catch(\Exception $e){
+
+            return response()->json(['status' => false , 'msg' => 'Something Went Wrong' , 'error' => $e->getMessage()]);
+        
+        }
     }
 }

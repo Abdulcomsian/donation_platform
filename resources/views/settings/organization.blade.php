@@ -1,6 +1,6 @@
 <div class="organization">
     <div class="form-container">
-        <form method="POST" action="{{route('updateOrganization')}}" id="organization-settings">
+        <form method="POST" action="{{route('update.organization')}}" id="organization-settings">
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-control-name">

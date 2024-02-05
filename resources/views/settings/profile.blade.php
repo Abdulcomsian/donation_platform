@@ -1,6 +1,6 @@
 <div class="profile">
     <div class="form-container">
-        <form method="POST" action="{{route('changeProfile')}}" id="profile-setting">
+        <form method="POST" action="{{route('change.profile')}}" id="profile-setting">
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-control-name">
@@ -60,7 +60,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form method="POST" action="{{route('changePassword')}}" id="password-setting">
+                    <form method="POST" action="{{route('change.password')}}" id="password-setting">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-container">

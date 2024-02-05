@@ -72,19 +72,20 @@ class UserHandler{
               ->addColumn('role' , function($user) use ($roles){
                 $html = '<select name="role" class="role  form-control add-arrow" data-user-id="'.$user->id.'">';
                 $currentRole = $user->roles->first(function($role){
-                    if(in_array($role->name , ['fundraiser' , 'non_profit_organization']))
-                    return $role->name;
+                    if(in_array($role->name , ['fundraiser' , 'non_profit_organization'])){
+                        return $role;
+                    }
                 });
                 foreach($roles as $role){
                     $roleName = ucfirst(str_replace("_" , " ", $role->name));
-                    $attribute = $currentRole == $role->name  ? 'selected' : '';
+                    $attribute = $currentRole->name == $role->name  ? 'selected' : '';
                     $html .= '<option value="'.$role->name.'" '.$attribute.' >'.$roleName.'</option>';
                 }
                 $html .= '</select>';
                 return $html;
               })
               ->addColumn('status' , function($user){
-                
+
                     switch($user->activation_status)
                     {
                         case \AppConst::PENDING:
@@ -101,7 +102,7 @@ class UserHandler{
               ->addColumn('action' , function($user){
                 $imgUrl = asset('assets/images/trash-outline.png');
                return  '<div class="d-flex justify-content-center">
-                            <button type="button" class="delete-container r-btn" data-user-id="'.$user->id.'">
+                            <button type="button" class="delete-container delete-user-btn r-btn" data-user-id="'.$user->id.'">
                                 <img src="'.$imgUrl.'" alt="">
                             </button>
                         </div>';
@@ -130,6 +131,30 @@ class UserHandler{
 
         return ['status' => true , 'msg' => 'User Created Successfully'];
 
+    }
+
+    function changeUserRole($request){
+        $role = $request->role;
+        $userId = $request->userId;
+        $user = User::where('id' , $userId)->first();
+        
+        if($role == 'non_profit_organization'){
+            $user->removeRole('fundraiser');
+            $user->assignRole($role);
+        }else{
+            $user->removeRole('non_profit_organization');
+            $user->assignRole($role);
+        }
+
+        return ['status' => true , 'msg' => 'User Role Updated Successfully'];
+
+    }
+
+    function deleteUser($request)
+    {
+        $userId = $request->userId;
+        User::where('id' , $userId)->delete();
+        return ['status' => true , 'msg' => 'User Deleted Successfully'];
     }
 
 
