@@ -1,32 +1,26 @@
-.compaign-navigation nav div:first-child {
-  display: none;
+.paginate-navigation nav div:first-child{
+    display: none;
 }
-
-.compaign-navigation nav {
-  margin-top: 25px;
+.paginate-navigation nav{
+    margin-top: 25px;
 }
-
-.compaign-navigation nav div span svg {
-  width: 25px;
+.paginate-navigation nav div span svg{
+    width: 25px;
 }
-
-.compaign-navigation nav div span span {
-  margin-right: 5px;
+.paginate-navigation nav div span span{
+    margin-right: 5px;
 }
-
-.compaign-navigation nav div span span span {
-  margin-right: 0px;
+.paginate-navigation nav div span span span{
+    margin-right: 0px;
 }
-
-.compaign-navigation nav div span a {
-  margin-right: 5px;
-  color: #000;
-  text-decoration: none;
+.paginate-navigation nav div span a{
+    margin-right: 5px;
+    color: #000;
+    text-decoration: none;
 }
-
-.compaign-navigation nav div span[aria-current=page] span {
-  background: #5bc17f !important;
-  color: #fff !important;
+.paginate-navigation nav div span[aria-current="page"] span{
+    background: #5bc17f !important;
+    color: #fff !important;
 }
 
 .form-css {
@@ -235,7 +229,20 @@
   font-size: 18px;
   font-family: Poppins;
 }
-
+.add-arrow{
+  background: transparent;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+    background-repeat: no-repeat;
+    background-position-x: 100%;
+    background-position-y: 5px;
+    border: 1px solid #dfdfdf;
+    padding: 10px 15px !important;
+    text-align: left !important;
+}
+.r-btn{
+  background: none;
+  border: none;
+}
 @media (max-width: 320px) {
   .has-grid {
     display: -webkit-box;

@@ -502,6 +502,20 @@
   line-height: normal;
   letter-spacing: 0.32px;
 }
+
+input[type=url]{
+  padding: 1rem;
+  border-radius: 15px;
+  border: 1px solid #E5E5E5;
+  outline: none;
+  color: #000;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+}
 .settings .tabs-container .tab-content .tab-pane .organization .form-container form .form-control-name input[type=text]::-moz-placeholder {
   color: #949494;
   font-family: Poppins;
@@ -565,7 +579,9 @@
   line-height: normal;
   letter-spacing: 0.36px;
 }
-.settings .tabs-container .tab-content .tab-pane .organization .form-container form .form-control-logo .image-upload {
+.settings .tabs-container .tab-content .tab-pane .organization .form-container form .form-control-logo .image-upload, 
+.settings .tabs-container .tab-content .tab-pane .profile .form-container form .form-control-logo .image-upload 
+{
   height: 133.83px;
   border-radius: 15px;
   border: 1px solid #E5E5E5;
@@ -575,7 +591,8 @@
   justify-content: center;
   gap: 0.5rem;
 }
-.settings .tabs-container .tab-content .tab-pane .organization .form-container form .form-control-logo .image-upload button {
+.settings .tabs-container .tab-content .tab-pane .organization .form-container form .form-control-logo .image-upload button,
+.settings .tabs-container .tab-content .tab-pane .profile .form-container form .form-control-logo .image-upload button {
   width: 124px;
   height: 36px;
   border-radius: 8px;
@@ -593,7 +610,9 @@
   align-items: center;
   justify-content: center;
 }
-.settings .tabs-container .tab-content .tab-pane .organization .form-container form .form-control-logo .image-upload .label {
+.settings .tabs-container .tab-content .tab-pane .organization .form-container form .form-control-logo .image-upload .label, 
+.settings .tabs-container .tab-content .tab-pane .profile .form-container form .form-control-logo .image-upload .label
+{
   color: rgba(64, 64, 64, 0.6);
   font-family: Poppins;
   font-size: 14px;
@@ -602,7 +621,9 @@
   line-height: normal;
   letter-spacing: 0.28px;
 }
-.settings .tabs-container .tab-content .tab-pane .organization .form-container form .form-control-logo .image-upload .selectFile {
+.settings .tabs-container .tab-content .tab-pane .organization .form-container form .form-control-logo .image-upload .selectFile,
+.settings .tabs-container .tab-content .tab-pane .profile .form-container form .form-control-logo .image-upload .selectFile
+{
   color: #CBCBCB;
   font-family: Poppins;
   font-size: 14px;
@@ -617,7 +638,9 @@
   padding: 0 10px;
   text-align: center;
 }
-.settings .tabs-container .tab-content .tab-pane .organization .form-container form .form-control-logo .image-upload .info {
+.settings .tabs-container .tab-content .tab-pane .organization .form-container form .form-control-logo .image-upload .info, 
+.settings .tabs-container .tab-content .tab-pane .profile .form-container form .form-control-logo .image-upload .info
+{
   color: #CBCBCB;
   font-family: Poppins;
   font-size: 14px;

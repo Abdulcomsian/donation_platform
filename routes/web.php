@@ -66,6 +66,10 @@ Route::group(['middleware' => ['preventBackHistory', 'auth']], function () {
 
     Route::group(['prefix' => 'settings'], function () {
         Route::get("/", [SettingController::class, 'settings'])->name('settings');
+        Route::post("change-profile-setting",[SettingController::class , 'changeProfileSettings'])->name('changeProfile');
+        Route::post("change-password" , [SettingController::class , 'changePassword'])->name('changePassword');
+        Route::post("update-orgainzation" , [SettingController::class , 'updateOrganization'])->name('updateOrganization');
+        Route::post("get-user-list" , [UserController::class , 'getUserList'])->name('userList');
     });
 
     Route::view('/unauthorized' , 'unauthorized')->name('unauthorized');

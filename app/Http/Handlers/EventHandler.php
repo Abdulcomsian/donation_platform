@@ -187,10 +187,32 @@ class EventHandler{
 
     public function filteredEvent($request)
     {
-        $query = Event::query();
+        $category = $request->category;
+        $venue = $request->venue;
+        $organizer = $request->organizer;
         $currentDate = now();
+        $query = Event::query();
+
+        $query->when(isset($category) && !empty($category), function($query) use($category){
+            $query->where('category_id' , $category);
+        });
+
+        $query->when(isset($venue) && !empty($venue), function($query) use($venue){
+            $query->where('venue' , 'like' ,  '%'.$venue.'%');
+        });
+
+        $query->when(isset($organizer) && !empty($organizer), function($query) use($organizer){
+            $query->where('organizer' , 'like' , '%'.$organizer.'%');
+        });
+        
         $query->where('date', '>=' , $currentDate);
-        $events = $query->orderBy('date' , 'asc')->paginate(1); 
+        
+        $events = $query->orderBy('date' , 'asc')->paginate(10)->appends([
+                        'category' => $category,
+                        'venue' => $venue,
+                        'organizer' => $organizer,
+                    ]); 
+        
         return $events;
 
     }

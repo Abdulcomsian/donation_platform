@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger("user_id");
             $table->string("name");
-            $table->string("phone");
+            $table->string("phone")->nullable();
             $table->string("type");
             $table->longText("description");
             $table->string("link");
