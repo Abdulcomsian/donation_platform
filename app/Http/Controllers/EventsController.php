@@ -38,12 +38,13 @@ class EventsController extends Controller
         $distinctVenue = $this->eventHandler->eventVenue();
         $eventCategories = $this->eventHandler->eventCategories();
         $filteredEvents = $this->eventHandler->filteredEvent($request);
+       
 
         return view('public.events.index')->with([
                                                   'distinctOrganizer' => $distinctOrganizer , 
                                                   'distinctVenue' => $distinctVenue , 
                                                   'eventCategories' => $eventCategories,
-                                                  'filteredEvents' => $filteredEvents
+                                                  'filteredEvents' => $filteredEvents,
                                                 ]);
        
     }
@@ -51,7 +52,8 @@ class EventsController extends Controller
     public function getEventDetail(Request $request)
     {
         $event = $this->eventHandler->eventDetail($request);
-        return view('public.events.event-details')->with(['event' => $event]);
+        $countries = $this->eventHandler->getCountries();
+        return view('public.events.event-details')->with(['event' => $event , 'countries' => $countries]);
     }
 
     public function createEvent(Request $request){

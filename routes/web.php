@@ -80,7 +80,6 @@ Route::group(['middleware' => ['preventBackHistory', 'auth']], function () {
     });
 
     Route::get("create-mail" , [MailingController::class , 'updateUserMail'])->name('update.mail');
-
     Route::view('/unauthorized' , 'unauthorized')->name('unauthorized');
 });
 

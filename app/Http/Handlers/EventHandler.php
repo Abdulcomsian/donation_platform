@@ -167,6 +167,11 @@ class EventHandler{
         return $event;
     }
 
+    public function getCountries(){
+        $countries = Country::all();
+        return $countries;
+    }
+
     public function eventOrganizer()
     {
         $distinctOrganizer = DB::table('events')->select('organizer')->distinct()->get();

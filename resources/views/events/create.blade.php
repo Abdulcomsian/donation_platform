@@ -343,7 +343,6 @@
                 return;
             }
 
-            console.log(ticketDetail);
             tickets.push(ticketDetail);
             
         })
@@ -353,10 +352,7 @@
             let submitBtn = this.querySelector(".submit-btn");
             let redirectUrl = "{{route('event.created')}}";
             addFormData(url , form , loader , redirectUrl , submitBtn , null );
-        }else{
-            alert(errorFlag);
         }
-
 
     })
 

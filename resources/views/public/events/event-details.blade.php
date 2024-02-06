@@ -62,8 +62,8 @@
             
             <form action="#" class="form-steps" autocomplete="off">
                 <div class="event-det mb-3">
-                    <h3>Lorem ipsum dolor sit amet consectetur</h3>
-                    <p>Saturday 13 January, 2024 6:30 PM  |  <span>Venue Here</span></p>
+                    <h3>{{$event->title}}</h3>
+                    {{\Carbon\Carbon::parse($event->date)->format('l j F, Y')}}, {{\Carbon\Carbon::parse($event->time)->format('g:i A')}}
                 </div>
                 <div class="w-75 mx-auto">
                         <ul class="nav nav-pills progress-bar-tab custom-nav" role="tablist">
@@ -86,54 +86,33 @@
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="pills-gen-info" role="tabpanel" aria-labelledby="pills-gen-info-tab">
                         <div class="tab-data">
-                            <div class="ticket-box">
-                                <div class="ticket-detail">
-                                    <h3>
-                                        Ticket Name
-                                    </h3>
-                                    <p>
-                                        Lorem ipsum dolor sit amet consectetur. Venenatis ornare sit scelerisque sit. Dapibus quisque volutpat varius ante leo
-                                    </p>
-                                    <span>
-                                        Free
-                                    </span>
+                          
+                            @foreach($event->ticket as $ticket)
+                                @if($ticket->users->count() == 0 || ($ticket->users->count() > $ticket->quantity))
+                                <div class="ticket-box">
+                                    <div class="ticket-detail">
+                                        <h3>
+                                           {{$ticket->name}}
+                                        </h3>
+                                        <p>
+                                            {{$ticket->description}}
+                                        </p>
+                                        @if($ticket->is_free)
+                                        <span>
+                                            Free
+                                        </span>
+                                        @else
+                                        <span>
+                                            ${{number_format($ticket->price)}}
+                                        </span>
+                                        @endif
+                                    </div>
+                                    <div class="ticket-count">
+                                        <input type="number" data-ticket-id="{{$ticket->id}}" data-ticket-amount="{{$ticket->amount}}" min="1" max="{{$ticket->quantity - $ticket->users->count()}}" class="form-control" id="basiInput">
+                                    </div>
                                 </div>
-                                <div class="ticket-count">
-                                    <input type="number" class="form-control" id="basiInput">
-                                </div>
-                            </div>
-                            <div class="ticket-box">
-                                <div class="ticket-detail">
-                                    <h3>
-                                        Ticket Name
-                                    </h3>
-                                    <p>
-                                        Lorem ipsum dolor sit amet consectetur. Venenatis ornare sit scelerisque sit. Dapibus quisque volutpat varius ante leo
-                                    </p>
-                                    <span>
-                                        Free
-                                    </span>
-                                </div>
-                                <div class="ticket-count">
-                                    <input type="number" class="form-control" id="basiInput">
-                                </div>
-                            </div>
-                            <div class="ticket-box">
-                                <div class="ticket-detail">
-                                    <h3>
-                                        Ticket Name
-                                    </h3>
-                                    <p>
-                                        Lorem ipsum dolor sit amet consectetur. Venenatis ornare sit scelerisque sit. Dapibus quisque volutpat varius ante leo
-                                    </p>
-                                    <span>
-                                        Free
-                                    </span>
-                                </div>
-                                <div class="ticket-count">
-                                    <input type="number" class="form-control" id="basiInput">
-                                </div>
-                            </div>
+                                @endif
+                            @endforeach
                         </div>
                         <div class="d-flex align-items-start gap-3 mt-4">
                             <span class="sub-total">Sub Total:  <b>$0</b></span>
@@ -248,10 +227,9 @@
                                         <div>
                                             <label for="basiInput" class="form-label">Country</label>
                                             <select class="form-select" aria-label="Default select example" style="width: 80px;">
-                                                <option selected="">United States </option>
-                                                <option value="1">Pakistan1</option>
-                                                <option value="2">Afghanistan</option>
-                                                <option value="3">India</option>
+                                                @foreach($countries as $country)
+                                                <option value="{{$country->id}}">{{$country->name}} </option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>

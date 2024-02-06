@@ -28,6 +28,7 @@ class MailingController extends Controller
         }
                 
         try{
+
             $response = $this->mailingHandler->updateUserMail($request);
             return response()->json($response);
 
