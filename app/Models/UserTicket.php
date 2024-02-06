@@ -12,7 +12,7 @@ class UserTicket extends Model
     
     protected $table = 'user_tickets';
     protected $primaryKey = 'id';
-    protected $fillable = ['user_id' , 'ticket_id'];
+    protected $fillable = ['user_id' , 'ticket_id' , 'quantity' , 'stripe_id'];
 
   
 }
