@@ -239,6 +239,9 @@
     padding: 10px 15px !important;
     text-align: left !important;
 }
+.detail-modal .nav .nav-item:last-child::before{
+  content: none;
+}
 .r-btn{
   background: none;
   border: none;
