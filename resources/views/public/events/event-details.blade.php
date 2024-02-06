@@ -280,6 +280,7 @@
 
         document.addEventListener("click" , async function(e){
             e.preventDefault();
+            
             const { setupIntent, error} = await stripe.confirmCardSetup( '{{$clientSecret}}' , {
                                                                         payment_method : {
                                                                             card : card,
