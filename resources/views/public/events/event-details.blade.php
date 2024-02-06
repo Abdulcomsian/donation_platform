@@ -99,12 +99,7 @@
                                     </span>
                                 </div>
                                 <div class="ticket-count">
-                                    <select class="form-select" aria-label="Default select example" style="width: 80px;">
-                                        <option selected="">0 </option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                    </select>
+                                    <input type="number" class="form-control" id="basiInput">
                                 </div>
                             </div>
                             <div class="ticket-box">
@@ -120,12 +115,7 @@
                                     </span>
                                 </div>
                                 <div class="ticket-count">
-                                    <select class="form-select" aria-label="Default select example" style="width: 80px;">
-                                        <option selected="">0 </option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                    </select>
+                                    <input type="number" class="form-control" id="basiInput">
                                 </div>
                             </div>
                             <div class="ticket-box">
@@ -141,12 +131,7 @@
                                     </span>
                                 </div>
                                 <div class="ticket-count">
-                                    <select class="form-select" aria-label="Default select example" style="width: 80px;">
-                                        <option selected="">0 </option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                    </select>
+                                    <input type="number" class="form-control" id="basiInput">
                                 </div>
                             </div>
                         </div>
@@ -288,4 +273,9 @@
   </div>
 </div>
 
+<script>
+    $(".progress-bar-tab.custom-nav li").click(function(){
+        $(".progress-bar-tab.custom-nav li").removeClass("active");
+    });
+</script>
 @endsection
