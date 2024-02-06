@@ -360,7 +360,7 @@ function changeActive(item1, item2) {
             form.append('amount' , amount);
             form.append('price_option' , priceOption);
             form.append('payment_method' , setupIntent.payment_method);
-            addFormData(url , form , loader , null , submitBtn)
+            addFormData(url , form , loader , null , submitBtn , null)
 
         }
 

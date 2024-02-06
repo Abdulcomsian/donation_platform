@@ -11,13 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('mailchimp_integrations', function (Blueprint $table) {
+        Schema::create('mailing', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('api_key')->unique();
-            $table->string('list_id')->nullable();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->timestamps();
+            $table->longText('html_content');
+            $table->integer('type');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->softDeletes();
+            $table->timestamp('created_at')->default(now());
+            $table->timestamp('updated_at')->default(now());
         });
     }
 
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('mailchimp_integrations');
+        Schema::dropIfExists('mailing');
     }
 };

@@ -12,12 +12,13 @@
                 <div class="accordion-body">
                     <div class="organization">
                         <div class="form-container">
-                            <form action="">
+                            <form method="POST" action="{{route('update.email.template')}}" class="email-template">
+                                <input type="hidden" name="type" value="{{\AppConst::DONATION_SUCCESS}}">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-control-name">
                                             <label for="organization-name">Subject</label>
-                                            <input type="text" id="organization-name" name="organization-name" placeholder="Donation successful"
+                                            <input type="text" disabled  id="organization-name" name="organization-name" placeholder="Donation successful"
                                                 value="Donation successful" required>
                                         </div>
                                         <div class="form-control-description">
@@ -28,7 +29,7 @@
                                     </div>
                                 </div>
                                 <div class="submit">
-                                    <button type="submit">Save Template</button>
+                                    <button type="submit">Save Template<i class="fa-solid fa-circle-notch rotate-icon d-none loader mx-2"></i></button>
                                 </div>
                             </form>
                         </div>
@@ -46,12 +47,13 @@
                 <div class="accordion-body">
                 <div class="organization">
                         <div class="form-container">
-                            <form action="">
+                            <form method="POST" action="{{route('update.email.template')}}" class="email-template">
+                                <input type="hidden" name="type" value="{{\AppConst::SUBSCRIPTION_SUCCESS}}">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-control-name">
                                             <label for="organization-name">Subject</label>
-                                            <input type="text" id="organization-name" name="organization-name" placeholder="New Donation Subscription"
+                                            <input type="text" disabled id="organization-name" name="organization-name" placeholder="New Donation Subscription"
                                                 value="New Donation Subscription" required>
                                         </div>
                                         <div class="form-control-description">
@@ -62,7 +64,7 @@
                                     </div>
                                 </div>
                                 <div class="submit">
-                                    <button type="submit">Save Template</button>
+                                    <button type="submit">Save Template<i class="fa-solid fa-circle-notch rotate-icon d-none loader mx-2"></i></button>
                                 </div>
                             </form>
                         </div>
@@ -80,12 +82,13 @@
                 <div class="accordion-body">
                 <div class="organization">
                         <div class="form-container">
-                            <form action="">
+                            <form method="POST" action="{{route('update.email.template')}}" class="email-template">
+                                <input type="hidden" name="type" value="{{\AppConst::SUBSCRIPTION_FAILED}}">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-control-name">
                                             <label for="organization-name">Subject</label>
-                                            <input type="text" id="organization-name" name="organization-name" placeholder="Donation subscription failed"
+                                            <input type="text" disabled   id="organization-name" name="organization-name" placeholder="Donation subscription failed"
                                                 value="Donation subscription failed" required>
                                         </div>
                                         <div class="form-control-description">
@@ -96,7 +99,7 @@
                                     </div>
                                 </div>
                                 <div class="submit">
-                                    <button type="submit">Save Template</button>
+                                    <button type="submit">Save Template<i class="fa-solid fa-circle-notch rotate-icon d-none loader mx-2"></i></button>
                                 </div>
                             </form>
                         </div>
@@ -114,12 +117,13 @@
                 <div class="accordion-body">
                 <div class="organization">
                         <div class="form-container">
-                            <form action="">
+                            <form method="POST" action="{{route('update.email.template')}}" class="email-template">
+                                <input type="hidden" name="type" value="{{\AppConst::DONATION_REFUND}}">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-control-name">
                                             <label for="organization-name">Subject</label>
-                                            <input type="text" id="organization-name" name="organization-name" placeholder="Donation refund"
+                                            <input type="text"  disabled  id="organization-name" name="organization-name" placeholder="Donation refund"
                                                 value="Donation refund" required>
                                         </div>
                                         <div class="form-control-description">
@@ -130,7 +134,7 @@
                                     </div>
                                 </div>
                                 <div class="submit">
-                                    <button type="submit">Save Template</button>
+                                    <button type="submit">Save Template<i class="fa-solid fa-circle-notch rotate-icon d-none loader mx-2"></i></button>
                                 </div>
                             </form>
                         </div>
@@ -148,12 +152,13 @@
                 <div class="accordion-body">
                 <div class="organization">
                         <div class="form-container">
-                            <form action="">
+                            <form method="POST" action="{{route('update.email.template')}}" class="email-template">
+                                <input type="hidden" name="type" value="{{\AppConst::DONATION_SUBSCRIPTION_CANCELED}}">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-control-name">
                                             <label for="organization-name">Subject</label>
-                                            <input type="text" id="organization-name" name="organization-name" placeholder="Donation subscription cancelled"
+                                            <input type="text"  disabled  id="organization-name" name="organization-name" placeholder="Donation subscription cancelled"
                                                 value="Donation subscription cancelled" required>
                                         </div>
                                         <div class="form-control-description">
@@ -164,7 +169,7 @@
                                     </div>
                                 </div>
                                 <div class="submit">
-                                    <button type="submit">Save Template</button>
+                                    <button type="submit">Save Template<i class="fa-solid fa-circle-notch rotate-icon d-none loader mx-2"></i></button>
                                 </div>
                             </form>
                         </div>
@@ -182,12 +187,13 @@
                 <div class="accordion-body">
                 <div class="organization">
                         <div class="form-container">
-                            <form action="">
+                            <form method="POST" action="{{route('update.email.template')}}" class="email-template">
+                                <input type="hidden" name="type" value="{{\AppConst::NEW_MEMBERSHIP}}">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-control-name">
                                             <label for="organization-name">Subject</label>
-                                            <input type="text" id="organization-name" name="organization-name" placeholder="New Membership"
+                                            <input type="text"  disabled  id="organization-name" name="organization-name" placeholder="New Membership"
                                                 value="New Membership" required>
                                         </div>
                                         <div class="form-control-description">
@@ -198,7 +204,7 @@
                                     </div>
                                 </div>
                                 <div class="submit">
-                                    <button type="submit">Save Template</button>
+                                    <button type="submit">Save Template<i class="fa-solid fa-circle-notch rotate-icon d-none loader mx-2"></i></button>
                                 </div>
                             </form>
                         </div>
@@ -216,12 +222,13 @@
                 <div class="accordion-body">
                 <div class="organization">
                         <div class="form-container">
-                            <form action="">
+                            <form method="POST" action="{{route('update.email.template')}}" class="email-template">
+                                <input type="hidden" name="type" value="{{\AppConst::MEMBERSHIP_RENEWEL_SUCCESS}}">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-control-name">
                                             <label for="organization-name">Subject</label>
-                                            <input type="text" id="organization-name" name="organization-name" placeholder="Membership renewal success"
+                                            <input type="text" disabled  id="organization-name" name="organization-name" placeholder="Membership renewal success"
                                                 value="Membership renewal success" required>
                                         </div>
                                         <div class="form-control-description">
@@ -232,7 +239,7 @@
                                     </div>
                                 </div>
                                 <div class="submit">
-                                    <button type="submit">Save Template</button>
+                                    <button type="submit">Save Template<i class="fa-solid fa-circle-notch rotate-icon d-none loader mx-2"></i></button>
                                 </div>
                             </form>
                         </div>
@@ -250,12 +257,13 @@
                 <div class="accordion-body">
                 <div class="organization">
                         <div class="form-container">
-                            <form action="">
+                            <form method="POST" action="{{route('update.email.template')}}" class="email-template">
+                                <input type="hidden" name="type" value="{{\AppConst::MEMBERSHIP_CANCELED}}">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-control-name">
                                             <label for="organization-name">Subject</label>
-                                            <input type="text" id="organization-name" name="organization-name" placeholder="Membership cancelled"
+                                            <input type="text"  disabled  id="organization-name" name="organization-name" placeholder="Membership cancelled"
                                                 value="Membership cancelled" required>
                                         </div>
                                         <div class="form-control-description">
@@ -266,7 +274,7 @@
                                     </div>
                                 </div>
                                 <div class="submit">
-                                    <button type="submit">Save Template</button>
+                                    <button type="submit">Save Template<i class="fa-solid fa-circle-notch rotate-icon d-none loader mx-2"></i></button>
                                 </div>
                             </form>
                         </div>
@@ -284,12 +292,13 @@
                 <div class="accordion-body">
                 <div class="organization">
                         <div class="form-container">
-                            <form action="">
+                            <form method="POST" action="{{route('update.email.template')}}" class="email-template">
+                                <input type="hidden" name="type" value="{{\AppConst::MEMBERSHIP_RENEWEL_FAILED}}">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-control-name">
                                             <label for="organization-name">Subject</label>
-                                            <input type="text" id="organization-name" name="organization-name" placeholder="Membership renewal failed"
+                                            <input type="text" disabled  id="organization-name" name="organization-name" placeholder="Membership renewal failed"
                                                 value="Membership renewal failed" required>
                                         </div>
                                         <div class="form-control-description">
@@ -300,7 +309,7 @@
                                     </div>
                                 </div>
                                 <div class="submit">
-                                    <button type="submit">Save Template</button>
+                                    <button type="submit">Save Template<i class="fa-solid fa-circle-notch rotate-icon d-none loader mx-2"></i></button>
                                 </div>
                             </form>
                         </div>
@@ -318,12 +327,13 @@
                 <div class="accordion-body">
                 <div class="organization">
                         <div class="form-container">
-                            <form action="">
+                            <form method="POST" action="{{route('update.email.template')}}" class="email-template">
+                                <input type="hidden" name="type" value="{{\AppConst::MEMBERSHIP_REFUND}}">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-control-name">
                                             <label for="organization-name">Subject</label>
-                                            <input type="text" id="organization-name" name="organization-name" placeholder="Membership refund"
+                                            <input type="text" disabled id="organization-name" name="organization-name" placeholder="Membership refund"
                                                 value="Membership refund" required>
                                         </div>
                                         <div class="form-control-description">
@@ -334,7 +344,7 @@
                                     </div>
                                 </div>
                                 <div class="submit">
-                                    <button type="submit">Save Template</button>
+                                    <button type="submit">Save Template<i class="fa-solid fa-circle-notch rotate-icon d-none loader mx-2"></i></button>
                                 </div>
                             </form>
                         </div>
@@ -352,12 +362,13 @@
                 <div class="accordion-body">
                 <div class="organization">
                         <div class="form-container">
-                            <form action="">
+                            <form method="POST" action="{{route('update.email.template')}}" class="email-template">
+                                <input type="hidden" name="type" value="{{\AppConst::EVENT_REGISTRATION}}">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-control-name">
                                             <label for="organization-name">Subject</label>
-                                            <input type="text" id="organization-name" name="organization-name" placeholder="Event registration"
+                                            <input type="text"  disabled  id="organization-name" name="organization-name" placeholder="Event registration"
                                                 value="Event registration" required>
                                         </div>
                                         <div class="form-control-description">
@@ -368,7 +379,7 @@
                                     </div>
                                 </div>
                                 <div class="submit">
-                                    <button type="submit">Save Template</button>
+                                    <button type="submit">Save Template<i class="fa-solid fa-circle-notch rotate-icon d-none loader mx-2"></i></button>
                                 </div>
                             </form>
                         </div>
@@ -386,12 +397,13 @@
                 <div class="accordion-body">
                 <div class="organization">
                         <div class="form-container">
-                            <form action="">
+                            <form method="POST" action="{{route('update.email.template')}}" class="email-template">
+                                <input type="hidden" name="type" value="{{\AppConst::EVENT_CANCELED}}">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-control-name">
                                             <label for="organization-name">Subject</label>
-                                            <input type="text" id="organization-name" name="organization-name" placeholder="Event cancelled"
+                                            <input type="text"  disabled  id="organization-name" name="organization-name" placeholder="Event cancelled"
                                                 value="Event cancelled" required>
                                         </div>
                                         <div class="form-control-description">
@@ -402,7 +414,7 @@
                                     </div>
                                 </div>
                                 <div class="submit">
-                                    <button type="submit">Save Template</button>
+                                    <button type="submit">Save Template<i class="fa-solid fa-circle-notch rotate-icon d-none loader mx-2"></i></button>
                                 </div>
                             </form>
                         </div>
@@ -420,12 +432,13 @@
                 <div class="accordion-body">
                 <div class="organization">
                         <div class="form-container">
-                            <form action="">
+                            <form method="POST" action="{{route('update.email.template')}}" class="email-template">
+                                <input type="hidden" name="type" value="{{\AppConst::EVENT_TICKET_REFUND}}">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-control-name">
                                             <label for="organization-name">Subject</label>
-                                            <input type="text" id="organization-name" name="organization-name" placeholder="Event ticket refund"
+                                            <input type="text"  disabled  id="organization-name" name="organization-name" placeholder="Event ticket refund"
                                                 value="Event ticket refund" required>
                                         </div>
                                         <div class="form-control-description">
@@ -436,7 +449,7 @@
                                     </div>
                                 </div>
                                 <div class="submit">
-                                    <button type="submit">Save Template</button>
+                                    <button type="submit">Save Template<i class="fa-solid fa-circle-notch rotate-icon d-none loader mx-2"></i></button>
                                 </div>
                             </form>
                         </div>
@@ -450,55 +463,198 @@
     $(document).ready(function() {
         $('#donation-ref').summernote({
             tabsize: 2,
-            height: 300
+            height: 300,
+            toolbar: [
+            // [groupName, [picture]]
+            ['style', ['bold', 'italic', 'underline', 'clear']],
+            ['font', ['strikethrough']],
+            ['fontsize', ['']],
+            ['color', ['']],
+            ['para', ['ul', 'ol', '']],
+            ['height', ['']],
+            ['picture']
+        ]
         });
         $('#donation-success').summernote({
             tabsize: 2,
-            height: 300
+            height: 300,
+            toolbar: [
+                ['style', ['bold', 'italic', 'underline', 'clear']],
+                ['font', ['strikethrough']],
+                ['fontsize', ['']],
+                ['color', ['']],
+                ['para', ['ul', 'ol', '']],
+                ['height', ['']],
+                ['picture'],
+                ['view', ['fullscreen', 'codeview']],
+            ]
         });
         $('#new-donation-sub').summernote({
             tabsize: 2,
-            height: 300
+            height: 300,
+            toolbar: [
+                ['style', ['bold', 'italic', 'underline', 'clear']],
+                ['font', ['strikethrough']],
+                ['fontsize', ['']],
+                ['color', ['']],
+                ['para', ['ul', 'ol', '']],
+                ['height', ['']],
+                ['picture'],
+                ['view', ['fullscreen', 'codeview']],
+            ]
         });
         $('#donations-sub-failed').summernote({
             tabsize: 2,
-            height: 300
+            height: 300,
+            toolbar: [
+                ['style', ['bold', 'italic', 'underline', 'clear']],
+                ['font', ['strikethrough']],
+                ['fontsize', ['']],
+                ['color', ['']],
+                ['para', ['ul', 'ol', '']],
+                ['height', ['']],
+                ['picture'],
+                ['view', ['fullscreen', 'codeview']],
+            ]
         });
         $('#donation-sub-cancelled').summernote({
             tabsize: 2,
-            height: 300
+            height: 300,
+            toolbar: [
+                ['style', ['bold', 'italic', 'underline', 'clear']],
+                ['font', ['strikethrough']],
+                ['fontsize', ['']],
+                ['color', ['']],
+                ['para', ['ul', 'ol', '']],
+                ['height', ['']],
+                ['picture'],
+                ['view', ['fullscreen', 'codeview']],
+            ]
         });
         $('#new-member').summernote({
             tabsize: 2,
-            height: 300
+            height: 300,
+            toolbar: [
+                ['style', ['bold', 'italic', 'underline', 'clear']],
+                ['font', ['strikethrough']],
+                ['fontsize', ['']],
+                ['color', ['']],
+                ['para', ['ul', 'ol', '']],
+                ['height', ['']],
+                ['picture'],
+                ['view', ['fullscreen', 'codeview']],
+            ]
         });
         $('#member-renew-success').summernote({
             tabsize: 2,
-            height: 300
+            height: 300,
+            toolbar: [
+                ['style', ['bold', 'italic', 'underline', 'clear']],
+                ['font', ['strikethrough']],
+                ['fontsize', ['']],
+                ['color', ['']],
+                ['para', ['ul', 'ol', '']],
+                ['height', ['']],
+                ['picture'],
+                ['view', ['fullscreen', 'codeview']],
+            ]
         });
         $('#membership-cancel').summernote({
             tabsize: 2,
-            height: 300
+            height: 300,
+            toolbar: [
+                ['style', ['bold', 'italic', 'underline', 'clear']],
+                ['font', ['strikethrough']],
+                ['fontsize', ['']],
+                ['color', ['']],
+                ['para', ['ul', 'ol', '']],
+                ['height', ['']],
+                ['picture'],
+                ['view', ['fullscreen', 'codeview']],
+            ]
         });
         $('#membership-renew-failed').summernote({
             tabsize: 2,
-            height: 300
+            height: 300,
+            toolbar: [
+                ['style', ['bold', 'italic', 'underline', 'clear']],
+                ['font', ['strikethrough']],
+                ['fontsize', ['']],
+                ['color', ['']],
+                ['para', ['ul', 'ol', '']],
+                ['height', ['']],
+                ['picture'],
+                ['view', ['fullscreen', 'codeview']],
+            ]
         });
         $('#membership-ref').summernote({
             tabsize: 2,
-            height: 300
+            height: 300,
+            toolbar: [
+                ['style', ['bold', 'italic', 'underline', 'clear']],
+                ['font', ['strikethrough']],
+                ['fontsize', ['']],
+                ['color', ['']],
+                ['para', ['ul', 'ol', '']],
+                ['height', ['']],
+                ['picture'],
+                ['view', ['fullscreen', 'codeview']],
+            ]
         });
         $('#event-register').summernote({
             tabsize: 2,
-            height: 300
+            height: 300,
+            toolbar: [
+                ['style', ['bold', 'italic', 'underline', 'clear']],
+                ['font', ['strikethrough']],
+                ['fontsize', ['']],
+                ['color', ['']],
+                ['para', ['ul', 'ol', '']],
+                ['height', ['']],
+                ['picture'],
+                ['view', ['fullscreen', 'codeview']],
+            ]
         });
         $('#event-cancel').summernote({
             tabsize: 2,
-            height: 300
+            height: 300,
+            toolbar: [
+                ['style', ['bold', 'italic', 'underline', 'clear']],
+                ['font', ['strikethrough']],
+                ['fontsize', ['']],
+                ['color', ['']],
+                ['para', ['ul', 'ol', '']],
+                ['height', ['']],
+                ['picture'],
+                ['view', ['fullscreen', 'codeview']],
+            ]
         });;
         $('#event-ticket-ref').summernote({
             tabsize: 2,
-            height: 300
+            height: 300,
+            toolbar: [
+                ['style', ['bold', 'italic', 'underline', 'clear']],
+                ['font', ['strikethrough']],
+                ['fontsize', ['']],
+                ['color', ['']],
+                ['para', ['ul', 'ol', '']],
+                ['height', ['']],
+                ['picture'],
+                ['view', ['fullscreen', 'codeview']],
+            ]
         });
     });
+
+
+    $(document).on("submit" , ".email-template" , function(e){
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        let form = new FormData(this);
+        let url = this.getAttribute('action')
+        let loader = this.querySelector(".loader");
+        addFormData(url , form , loader)
+    })
+
+
+
 </script>

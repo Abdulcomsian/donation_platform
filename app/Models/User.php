@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Http\AppConst;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -11,11 +13,12 @@ use Spatie\Permission\Traits\HasRoles;
 use Spatie\Permission\Traits\HasPermissions;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Cashier\Billable;
-use App\Models\{Address , MailchimpIntegration , Donation , EventTicket};
+use App\Models\{Address , MailchimpIntegration , Donation , EventTicket , OrganizationProfile , Mailing};
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable , Billable , HasRoles , HasPermissions;
+    use HasApiTokens, HasFactory, Notifiable , Billable , HasRoles , HasPermissions , SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -32,6 +35,7 @@ class User extends Authenticatable
         'stripe_is_verified',
         'profile_image',
         'logo',
+        'activation_status'
     ];
 
     /**
@@ -61,20 +65,29 @@ class User extends Authenticatable
         });
     }
     
-    public function campaigns(){
+    public function campaigns()
+    {
         return $this->hasMany(Campaign::class , 'user_id' , 'id');
     }
 
-    public function address(){
+    public function address()
+    {
         return $this->morphOne(Address::class , 'addressable');
     }
 
-    public function mailchimp(){
+    public function mailchimp()
+    {
         return $this->hasOne(MailchimpIntegration::class , 'user_id' , 'id');
     }
 
-    public function donations(){
+    public function donations()
+    {
         return $this->hasMany(Donation::class , 'donar_id' , 'id');
+    }
+
+    public function organizationProfile()
+    {
+        return $this->hasOne(OrganizationProfile::class , 'user_id' , 'id');
     }
 
     public function ticket()
@@ -82,4 +95,79 @@ class User extends Authenticatable
         return $this->belongsToMany(EventTicket::class , 'user_ticket' , 'user_id' , 'ticket_id');
     }
 
+    public function event()
+    {
+        return $this->hasMany(Event::class , 'user_id' , 'id');
+    }
+
+ 
+    public function donationSuccessMail()
+    {
+        return $this->hasOne(Mailing::class , 'user_id' , 'id')->where('type' , \AppConst::DONATION_SUCCESS);
+    }
+    
+    public function subscriptionSuccessMail()
+    {
+        return $this->hasOne(Mailing::class , 'user_id' , 'id')->where('type' , \AppConst::SUBSCRIPTION_SUCCESS);;
+    }
+
+    
+    public function subscriptionFailedMail()
+    {
+        return $this->hasOne(Mailing::class , 'user_id' , 'id')->where('type' , \AppConst::SUBSCRIPTION_FAILED);;
+    }
+    
+    public function donationRefundMail()
+    {
+        return $this->hasOne(Mailing::class , 'user_id' , 'id')->where('type' , \AppConst::DONATION_REFUND);;
+    }
+    
+    public function subscriptionCanceledMail()
+    {
+        return $this->hasOne(Mailing::class , 'user_id' , 'id')->where('type' , \AppConst::DONATION_SUBSCRIPTION_CANCELED);;
+    }
+    
+    public function membershipSubscriptionMail()
+    {
+        return $this->hasOne(Mailing::class , 'user_id' , 'id')->where('type' , \AppConst::NEW_MEMBERSHIP);;
+    }
+    
+    public function membershipRenewelMail()
+    {
+        return $this->hasOne(Mailing::class , 'user_id' , 'id')->where('type' , \AppConst::MEMBERSHIP_RENEWEL_SUCCESS);;
+    }
+    
+    public function membershipCanceledMail()
+    {
+        return $this->hasOne(Mailing::class , 'user_id' , 'id')->where('type' , \AppConst::MEMBERSHIP_CANCELED);;
+    }
+   
+    public function membershipRenewelFailedMail()
+    {
+        return $this->hasOne(Mailing::class , 'user_id' , 'id')->where('type' , \AppConst::MEMBERSHIP_RENEWEL_FAILED);;
+    }
+   
+    public function membershipRefundMail()
+    {
+        return $this->hasOne(Mailing::class , 'user_id' , 'id')->where('type' , \AppConst::MEMBERSHIP_REFUND);;
+    }
+   
+    public function eventRegistrationMail()
+    {
+        return $this->hasOne(Mailing::class , 'user_id' , 'id')->where('type' , \AppConst::EVENT_REGISTRATION);;
+    }
+    
+    public function eventCanceledMail()
+    {
+        return $this->hasOne(Mailing::class , 'user_id' , 'id')->where('type' , \AppConst::EVENT_CANCELED);;
+    }
+    
+    public function eventTicketRefundMail()
+    {
+        return $this->hasOne(Mailing::class , 'user_id' , 'id')->where('type' , \AppConst::EVENT_TICKET_REFUND);;
+    }
+
+    
+
+    
 }

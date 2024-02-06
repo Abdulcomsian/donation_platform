@@ -11,6 +11,18 @@
 <link rel="stylesheet" href="{{ asset('assets/css/settings.css') }}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
+<style>
+    .admin .header{
+        position: relative;
+    }
+    .admin .header .add-btn-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+    }
+</style>
 
 @endsection
 
@@ -74,4 +86,58 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('script')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/jquery.dataTables.min.js"></script>
+<script>
+    function importFile(event) {
+        event.preventDefault()
+        let fileSection = event.target.closest(".image-section");
+        fileSection.querySelector(".image").click();
+    }
+
+    function onFileChange(event) {
+        event.preventDefault();
+        const file = event.target.files[0];
+        const fileSection = event.target.closest(".image-section")
+        const element = fileSection.querySelector('.selectFile');
+        element.innerHTML = file.name;
+        element.title = file.name;
+    }
+
+    $(document).on("click" , "#pills-admin-tab" , function(e){
+        loadTable();
+    })
+
+    function loadTable(){
+        let table = document.getElementById("user-table");
+        let url = "{{route('user.list')}}";
+        let columns = [
+                        { data: 'name', name: 'name' },
+                        { data: 'email', name: 'email' },
+                        { data: 'role', name: 'role' },
+                        { data: 'status', name: 'status' },
+                        { data: 'action', name: 'action' },
+                    ];
+        $(table).DataTable({
+            processing: true,
+            serverSide: true,
+            searching: true,
+            bLengthChange: false,
+            bInfo: false,
+            pagingType: 'full_numbers',
+            "bDestroy": true,
+            ajax : {
+                type : 'POST',
+                url : url,
+                data : {
+                    _token : '{{csrf_token()}}',
+                }
+            },
+            columns: columns
+        });  
+    }
+
+</script>
 @endsection

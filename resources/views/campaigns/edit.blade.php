@@ -188,7 +188,7 @@
         form.append('status' , 0 );
         url = '{{route("edit.campaign")}}';
         redirectUrl = "{{route('campaign.updated')}}";
-        addFormData(url , form , loader , redirectUrl , submitBtn );
+        addFormData(url , form , loader , redirectUrl , submitBtn , null);
 
     })
 
@@ -204,7 +204,7 @@
         form.append('status' , 1 );
         url = '{{route("edit.campaign")}}';
         redirectUrl = "{{route('campaign.updated')}}";
-        addFormData(url , form , loader , redirectUrl , publishBtn );
+        addFormData(url , form , loader , redirectUrl , publishBtn , null );
 
     })
 
