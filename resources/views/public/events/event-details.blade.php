@@ -108,7 +108,7 @@
                                         @endif
                                     </div>
                                     <div class="ticket-count">
-                                        <input type="number" data-ticket-id="{{$ticket->id}}" data-ticket-amount="{{$ticket->amount}}" min="1" max="{{$ticket->quantity - $ticket->users->count()}}" class="form-control" id="basiInput">
+                                        <input type="number" data-ticket-id="{{$ticket->id}}" data-ticket-amount="{{$ticket->price}}" min="0" max="{{$ticket->quantity - $ticket->users->count()}}" class="form-control" id="basiInput">
                                     </div>
                                 </div>
                                 @endif
@@ -152,16 +152,32 @@
                                     Provide Your Details
                                 </h3>
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div>
-                                            <label for="basiInput" class="form-label">Name</label>
-                                            <input type="password" class="form-control" id="basiInput">
+                                            <label for="basiInput" class="form-label">First Name</label>
+                                            <input type="text" name="first_name" class="form-control" id="basiInput">
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
+                                        <div>
+                                            <label for="basiInput" class="form-label">Last Name</label>
+                                            <input type="text" name="last_name" class="form-control" id="basiInput">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
                                         <div>
                                             <label for="basiInput" class="form-label">Email</label>
-                                            <input type="password" class="form-control" id="basiInput">
+                                            <input type="email" name="email" class="form-control" id="basiInput">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div>
+                                            <label for="basiInput" class="form-label">Country</label>
+                                            <select class="form-select" name="country" aria-label="Default select example">
+                                                @foreach($countries as $country)
+                                                <option value="{{$country->id}}">{{$country->name}} </option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -169,7 +185,7 @@
                         </div>
                         <div class="d-inline float-end action-bttn gap-3 mt-4">
                             <button type="button" class="btn btn-default text-decoration-none btn-label previestab" data-previous="pills-gen-info-tab"><i class="ri-arrow-left-line label-icon align-middle fs-16 me-2"></i> Back</button>
-                            <button type="button" class="btn btn-success btn-label right ms-auto nexttab nexttab" data-nexttab="pills-success-tab"><i class="ri-arrow-right-line label-icon align-middle fs-16 ms-2"></i>Submit</button>
+                            <button type="button" class="btn btn-success btn-label right ms-auto nexttab nexttab" data-nexttab="pills-success-tab"><i class="ri-arrow-right-line label-icon align-middle fs-16 ms-2"></i>Next</button>
                         </div>
                     </div>
                     <!-- end tab pane -->
@@ -205,7 +221,8 @@
                                     Debit/Credit Card
                                 </h3>
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div id="card-element"></div>
+                                    {{-- <div class="col-md-12">
                                         <div>
                                             <label for="basiInput" class="form-label">Card Number</label>
                                             <input type="text" class="form-control" id="basiInput" placeholder="1234 1234 1234 1234">
@@ -222,23 +239,14 @@
                                             <label for="basiInput" class="form-label">CVC</label>
                                             <input type="text" class="form-control" id="basiInput" placeholder="123">
                                         </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div>
-                                            <label for="basiInput" class="form-label">Country</label>
-                                            <select class="form-select" aria-label="Default select example" style="width: 80px;">
-                                                @foreach($countries as $country)
-                                                <option value="{{$country->id}}">{{$country->name}} </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
+                                    </div> --}}
+                                    
                                 </div>
                             </div>
                         </div>
                         <div class="d-inline float-end action-bttn gap-3 mt-4">
                             <button type="button" class="btn btn-default text-decoration-none btn-label previestab" data-previous="pills-gen-info-tab"><i class="ri-arrow-left-line label-icon align-middle fs-16 me-2"></i> Back</button>
-                            <button type="button" class="btn btn-success btn-label right ms-auto nexttab nexttab" data-nexttab="pills-success-tab"><i class="ri-arrow-right-line label-icon align-middle fs-16 ms-2"></i>Submit</button>
+                            <button type="button" class="btn btn-success btn-label right ms-auto nexttab nexttab" data-nexttab="pills-success-tab"><i class="ri-arrow-right-line label-icon align-middle fs-16 ms-2"></i>Submit<i class="fas fa-circle-notch fa-spin mx-2 d-none submit-loader"></i></button>
                         </div>
                     </div>
                     <!-- end tab pane -->
@@ -255,5 +263,52 @@
     $(".progress-bar-tab.custom-nav li").click(function(){
         $(".progress-bar-tab.custom-nav li").removeClass("active");
     });
+
+    $(document).ready(function(){
+        var stripe = Stripe('{{env("STRIPE_KEY")}}')
+        var card = null;
+
+        createCardElements()
+
+        function createCardElements(){
+            const element = stripe.elements();
+            card = element.create('card')
+            card.mount("#card-element");
+        }
+
+
+        document.addEventListener("click" , async function(e){
+            e.preventDefault();
+            const { setupIntent, error} = await stripe.confirmCardSetup( '{{$clientSecret}}' , {
+                                                                        payment_method : {
+                                                                            card : card,
+                                                                        }
+                                                                });
+            let loader = this.classList.contains("submit-loader") ? this : this.querySelector(".submit-loader");
+            let url = "{{route('purchase.ticket')}}";
+            loader.classList.remove("d-none")
+            $.ajax({
+                type : "POST",
+                url : url,
+                data : {
+                    setupIntent: setupIntent,
+                },
+                success:function(res){
+                    loader.classList.add("d-none")
+                    if(res.status){
+                        Swal.fire({
+                            text: res.msg,
+                            icon: "success"
+                        });
+                    }else{
+                        Swal.fire({ 
+                                    icon: "error", 
+                                    title: "Oops...", text: res.error
+                                });
+                    }
+                }
+            })
+        })
+    })
 </script>
 @endsection

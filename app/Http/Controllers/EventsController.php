@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Handlers\EventHandler;
 use Illuminate\Support\Facades\Validator;
 
+
 class EventsController extends Controller
 {
     protected $eventHandler;
@@ -53,7 +54,9 @@ class EventsController extends Controller
     {
         $event = $this->eventHandler->eventDetail($request);
         $countries = $this->eventHandler->getCountries();
-        return view('public.events.event-details')->with(['event' => $event , 'countries' => $countries]);
+        $setupIntent = $this->eventHandler->getStripeSetupIntent();
+        
+        return view('public.events.event-details')->with(['event' => $event , 'countries' => $countries , 'clientSecret' => $setupIntent->client_secret]);
     }
 
     public function createEvent(Request $request){
@@ -145,6 +148,30 @@ class EventsController extends Controller
             \Toastr::error($e->getMessage() , 'Error!' );
             return redirect()->back();
         }
+
+    }
+
+    public function purchaseEventTicket(Request $request)
+    {
+        $validator = Validator::make($request->all() , [
+            'email' => 'required|email',
+            'country' => 'required|numeric',
+            'name' => 'required|string'
+        ]);
+
+        if($validator->fails()){
+            return response()->json(['status' => false , 'msg' => 'Something Went Wrong' , 'error' => implode( ",", $validator->messages()->all())]);
+        }
+
+        try{
+            $response = $this->eventHandler->purchaseTicket($request);
+            return response()->json($response);
+
+        }catch(\Exception $e){
+            return response()->json(['status' => false , 'msg' => 'Something Went Wrong' , 'error' => $e->getMessage()]);
+        }
+           
+
 
     }
 }

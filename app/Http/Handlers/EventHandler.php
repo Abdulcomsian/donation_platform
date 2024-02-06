@@ -1,8 +1,9 @@
 <?php 
 
 namespace App\Http\Handlers;
-use App\Models\{Event , Country , EventFrequency , EventCategory , EventTicket};
+use App\Models\{Event , Country , EventFrequency , EventCategory , EventTicket , User};
 use Illuminate\Support\Facades\DB;
+use Stripe\{ Stripe , SetupIntent};
 class EventHandler{
 
     public function createEvent($request)
@@ -219,6 +220,43 @@ class EventHandler{
                     ]); 
         
         return $events;
+
+    }
+
+    public function getStripeSetupIntent()
+    {
+        Stripe::setApiKey(env('STRIPE_SECRET'));
+        $setupIntent = SetupIntent::create(['usage' => 'on_session']);
+        return $setupIntent;
+    }
+
+    public function purchaseTicket($request)
+    {
+        $tickets =  json_decode($request->ticket);
+        $first_name = $request->first_name;
+        $last_name = $request->last_name;
+        $email = $request->email;
+        $user = User::where('email' , $email)->first();
+
+        if(!$user){
+            $user = new User;
+            $user->first_name = $first_name;
+            $user->last_name = $last_name;
+            $user->email = $email;
+            $user->save();
+        }
+
+        if(!$user->hasRole('ticket_purchaser'))
+        {
+            $user->assignRole('ticket_purchaser');
+        }
+
+        $purchaseTickets = [];  
+        foreach($tickets as $ticket){
+            $ticketQuantity = $ticket->quantity;
+            $ticketId = $ticket->id;
+            $purchaseTickets[] = ["user_id" => $user->id , ""];
+        }
 
     }
 
