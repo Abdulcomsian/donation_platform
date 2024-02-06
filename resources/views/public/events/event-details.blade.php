@@ -83,15 +83,15 @@
                 </div>
                 <hr>
                 <div class="tab-content">
-                    <div class="tab-pane fade show active" id="pills-gen-info" role="tabpanel" aria-labelledby="pills-gen-info-tab">
+                <div class="tab-pane fade show active" id="tab11" role="tabpanel" aria-labelledby="pills-gen-info-tab">
                         <div class="tab-data">
                           
-                            @foreach($event->ticket as $ticket)
-                                @if($ticket->users->count() == 0 || ($ticket->users->count() > $ticket->quantity))
+                        @foreach($event->ticket as $index => $ticket)
+                            @if($ticket->users->count() == 0 || ($ticket->users->count() > $ticket->quantity))
 
                                 <div class="ticket-box">
                                     <div class="ticket-detail">
-                                        <h3>
+                                        <h3 id="ticketname-{{$index}}">
                                            {{$ticket->name}}
                                         </h3>
                                         <p>
@@ -106,22 +106,26 @@
                                             ${{number_format($ticket->price)}}
                                         </span>
                                         @endif
+                                        <input type="hidden" value="{{number_format($ticket->price)}}" id="ticket_price-{{$index}}" />
                                     </div>
                                     <div class="ticket-count">
-                                        <input type="number" data-ticket-id="{{$ticket->id}}" data-ticket-amount="{{$ticket->price}}" min="0" max="{{$ticket->quantity - $ticket->users->count()}}" class="form-control" id="basiInput">
-                                    </div>
+                                    <input type="number" data-ticket-id="{{$ticket->id}}" data-ticket-amount="{{$ticket->amount}}" min="1" max="{{$ticket->quantity - $ticket->users->count()}}" class="form-control" id="basiInput-{{$index}}" onchange="calc_price()">
+                                </div>
                                 </div>
                                 @endif
                             @endforeach
+                            
+                            <input type="hidden" value="{{$event->ticket}}" id="array_name" />
+                            <input type="hidden" value="{{count($event->ticket)}}" id="tot_iteration" />
                         </div>
                         <div class="d-flex align-items-start gap-3 mt-4">
-                            <span class="sub-total">Sub Total:  <b>$0</b></span>
-                            <button type="button" class="btn btn-success btn-label right ms-auto nexttab nexttab" data-nexttab="pills-info-desc-tab"><i class="ri-arrow-right-line label-icon align-middle fs-16 ms-2"></i>Next</button>
+                            <span class="sub-total">Sub Total: <b id="sub_total">$0</b></span>
+                            <button type="button" class="btn btn-success btn-label right ms-auto first-next"><i class="ri-arrow-right-line label-icon align-middle fs-16 ms-2"></i>Next</button>
                         </div>
                     </div>
                     <!-- end tab pane -->
 
-                    <div class="tab-pane fade" id="pills-info-desc" role="tabpanel" aria-labelledby="pills-info-desc-tab">
+                    <div class="tab-pane fade" id="tab22" role="tabpanel" aria-labelledby="pills-info-desc-tab">
                         <div>
                             <div class="order-summary">
                                 <h3>
@@ -143,7 +147,7 @@
                                             <tr>
                                                 <td></td>
                                                 <td></td>
-                                                <td class="text-end"><b>Sub Total:  $75</b></td>
+                                                <td class="text-end"><b>Sub Total: $<span id="table_sub_total">75</span></b></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -184,13 +188,15 @@
                             </div>
                         </div>
                         <div class="d-inline float-end action-bttn gap-3 mt-4">
-                            <button type="button" class="btn btn-default text-decoration-none btn-label previestab" data-previous="pills-gen-info-tab"><i class="ri-arrow-left-line label-icon align-middle fs-16 me-2"></i> Back</button>
-                            <button type="button" class="btn btn-success btn-label right ms-auto nexttab nexttab" data-nexttab="pills-success-tab"><i class="ri-arrow-right-line label-icon align-middle fs-16 ms-2"></i>Next</button>
+                            <button type="button" class="btn btn-default text-decoration-none btn-label second-previous" data-previous="pills-gen-info-tab"><i class="ri-arrow-left-line label-icon align-middle fs-16 me-2"></i> Back</button>
+                            <div class="d-inline float-end action-bttn gap-3">
+                                <button type="button" class="btn btn-success btn-label right ms-auto second-next"><i class="ri-arrow-right-line label-icon align-middle fs-16 ms-2"></i>Next</button>
+                            </div>
                         </div>
                     </div>
                     <!-- end tab pane -->
 
-                    <div class="tab-pane fade" id="pills-success" role="tabpanel" aria-labelledby="pills-success-tab">
+                    <div class="tab-pane fade" id="tab33" role="tabpanel" aria-labelledby="pills-success-tab">
                         <div>
                             <div class="order-summary">
                                 <h3>
@@ -245,8 +251,8 @@
                             </div>
                         </div>
                         <div class="d-inline float-end action-bttn gap-3 mt-4">
-                            <button type="button" class="btn btn-default text-decoration-none btn-label previestab" data-previous="pills-gen-info-tab"><i class="ri-arrow-left-line label-icon align-middle fs-16 me-2"></i> Back</button>
-                            <button type="button" class="btn btn-success btn-label right ms-auto nexttab nexttab" data-nexttab="pills-success-tab"><i class="ri-arrow-right-line label-icon align-middle fs-16 ms-2"></i>Submit<i class="fas fa-circle-notch fa-spin mx-2 d-none submit-loader"></i></button>
+                            <button type="button" class="btn btn-default text-decoration-none btn-label  third-previous" data-previous="pills-gen-info-tab"><i class="ri-arrow-left-line label-icon align-middle fs-16 me-2"></i> Back</button>
+                            <button type="button" class="btn btn-success btn-label right ms-auto third-next" data-nexttab="pills-success-tab"><i class="ri-arrow-right-line label-icon align-middle fs-16 ms-2"></i>Submit</button>
                         </div>
                     </div>
                     <!-- end tab pane -->
@@ -259,7 +265,46 @@
   </div>
 </div>
 
+<script>
+    $(".second-previous").click(function() {
+        $("#tab22").removeClass("active show");
+        $("#tab11").addClass("active show");
+    });
+    $(".second-next").click(function() {
+        $("#tab22").removeClass("active show");
+        $("#tab33").addClass("active show");
+    });
+    $(".third-previous").click(function() {
+        $("#tab33").removeClass("active show");
+        $("#tab22").addClass("active show");
+    });
+    $(".first-next").click(function() {
+        $("#tab11").removeClass("active show");
+        $("#tab22").addClass("active show");
+    });
+    $(".progress-bar-tab.custom-nav li").click(function() {
+        $(".progress-bar-tab.custom-nav li").removeClass("active");
+    });
 
+    function calc_price() {
+        tot_iteration = $('input[id^="tot_iteration"]').val();
+        var totalval = 0;
+        var arr = $("#array_name").val();
+        var jsonArray = JSON.parse(arr);
+        for (i = 0; i < tot_iteration; i++) {
+            var hidden = $(`input[id^=basiInput` + '-' + i).val();
+            var int_val = $(`input[id^=ticket_price` + '-' + i).val();
+            var ticket_name = $(`ticketname-{{$index}}` + '-' + i).text();
+            totalval = totalval + (hidden * int_val);
+            console.log(ticket_name);
+        }
+        // console.log(totalval);
+        console.log(jsonArray[0]?.name);
+
+        $("#sub_total").text(totalval);
+        $("#table_sub_total").text(totalval);
+    }
+</script>
 <script>
     $(".progress-bar-tab.custom-nav li").click(function(){
         $(".progress-bar-tab.custom-nav li").removeClass("active");
