@@ -276,7 +276,7 @@ class EventHandler{
 
         EventTicket::insert($purchaseTickets);
 
-        
+        return ["status" => true , 'msg' => 'Ticket Purchased Successfully'];
 
     }
 

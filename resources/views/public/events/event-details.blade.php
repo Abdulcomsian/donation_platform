@@ -85,10 +85,24 @@
                 <div class="tab-content">
                 <div class="tab-pane fade show active" id="tab11" role="tabpanel" aria-labelledby="pills-gen-info-tab">
                         <div class="tab-data">
-                          
+                          @php
+                           $tot_ticket = 0;
+                          @endphp
                         @foreach($event->ticket as $index => $ticket)
-                            @if($ticket->users->count() == 0 || ($ticket->users->count() > $ticket->quantity))
+                            @php
+                                $purchasedTickets = 0;
 
+                                if($ticket->users->count()){
+                                    foreach($ticket->users as $user){
+                                        $purchasedTickets += $user->pivot->quantity;
+                                    }
+                                }
+                               
+                            @endphp
+                            @if( $ticket->quantity > $purchasedTickets)
+                                @php
+                                    $tot_ticket = $tot_ticket + 1;
+                                @endphp
                                 <div class="ticket-box">
                                     <div class="ticket-detail">
                                         <h3 id="ticketname-{{$index}}">
@@ -106,17 +120,17 @@
                                             ${{number_format($ticket->price)}}
                                         </span>
                                         @endif
-                                        <input type="hidden" value="{{number_format($ticket->price)}}" id="ticket_price-{{$index}}" />
+                                        <input type="hidden" value="{{number_format($ticket->price)}}" id="ticket_price-{{$tot_ticket-1}}" />
                                     </div>
                                     <div class="ticket-count">
-                                    <input type="number" data-ticket-id="{{$ticket->id}}" data-ticket-amount="{{$ticket->amount}}" min="1" max="{{$ticket->quantity - $ticket->users->count()}}" class="form-control" id="basiInput-{{$index}}" onchange="calc_price()">
+                                    <input type="number" data-ticket-id="{{$ticket->id}}" data-ticket-amount="{{$ticket->price}}" min="1" max="{{$ticket->quantity - $ticket->users->count()}}" class="form-control" id="basiInput-{{$tot_ticket-1}}" onchange="calc_price()">
                                 </div>
                                 </div>
-                                @endif
-                            @endforeach
+                            @endif
+                        @endforeach
                             
                             <input type="hidden" value="{{$event->ticket}}" id="array_name" />
-                            <input type="hidden" value="{{count($event->ticket)}}" id="tot_iteration" />
+                            <input type="hidden" value="{{$tot_ticket}}" id="tot_iteration" />
                         </div>
                         <div class="d-flex align-items-start gap-3 mt-4">
                             <span class="sub-total">Sub Total: <b id="sub_total">$0</b></span>
@@ -133,8 +147,8 @@
                                 </h3>
                                 <div class="table-responsive">
                                     <table class="table align-middle table-nowrap mb-0 px-20">
-                                        <tbody>
-                                            <tr>
+                                        <tbody class="tableBody">
+                                            {{-- <tr>
                                                 <td>Ticket Name</td>
                                                 <td>Qty:  1</td>
                                                 <td class="text-end">$20</td>
@@ -148,7 +162,7 @@
                                                 <td></td>
                                                 <td></td>
                                                 <td class="text-end"><b>Sub Total: $<span id="table_sub_total">75</span></b></td>
-                                            </tr>
+                                            </tr> --}}
                                         </tbody>
                                     </table>
                                 </div>
@@ -179,7 +193,7 @@
                                             <label for="basiInput" class="form-label">Country</label>
                                             <select class="form-select" name="country" aria-label="Default select example">
                                                 @foreach($countries as $country)
-                                                <option value="{{$country->id}}">{{$country->name}} </option>
+                                                    <option value="{{$country->id}}">{{$country->name}} </option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -204,8 +218,8 @@
                                 </h3>
                                 <div class="table-responsive">
                                     <table class="table align-middle table-nowrap mb-0 px-20">
-                                        <tbody>
-                                            <tr>
+                                        <tbody class="tableBody">
+                                            {{-- <tr>
                                                 <td>Ticket Name</td>
                                                 <td>Qty:  1</td>
                                                 <td class="text-end">$20</td>
@@ -219,7 +233,7 @@
                                                 <td></td>
                                                 <td></td>
                                                 <td class="text-end"><b>Sub Total:  $75</b></td>
-                                            </tr>
+                                            </tr> --}}
                                         </tbody>
                                     </table>
                                 </div>
@@ -228,25 +242,6 @@
                                 </h3>
                                 <div class="row">
                                     <div id="card-element"></div>
-                                    {{-- <div class="col-md-12">
-                                        <div>
-                                            <label for="basiInput" class="form-label">Card Number</label>
-                                            <input type="text" class="form-control" id="basiInput" placeholder="1234 1234 1234 1234">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div>
-                                            <label for="basiInput" class="form-label">Expiry Date</label>
-                                            <input type="text" class="form-control" id="basiInput" placeholder="MM / YY">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div>
-                                            <label for="basiInput" class="form-label">CVC</label>
-                                            <input type="text" class="form-control" id="basiInput" placeholder="123">
-                                        </div>
-                                    </div> --}}
-                                    
                                 </div>
                             </div>
                         </div>
@@ -285,26 +280,32 @@
     $(".progress-bar-tab.custom-nav li").click(function() {
         $(".progress-bar-tab.custom-nav li").removeClass("active");
     });
-
     function calc_price() {
         tot_iteration = $('input[id^="tot_iteration"]').val();
-        var totalval = 0;
+        var totalval = parseFloat(0);
         var arr = $("#array_name").val();
         var jsonArray = JSON.parse(arr);
+        $(".tableBody tr").remove();
         for (i = 0; i < tot_iteration; i++) {
             var hidden = $(`input[id^=basiInput` + '-' + i).val();
             var int_val = $(`input[id^=ticket_price` + '-' + i).val();
             var ticket_name = $(`ticketname-{{$index}}` + '-' + i).text();
-            totalval = totalval + (hidden * int_val);
-            console.log(ticket_name);
+            totalval = parseFloat(totalval) + (parseFloat(hidden) * parseFloat(int_val));
+            console.log(hidden, int_val, totalval);
+            if ($(`input[id^=basiInput` + '-' + i).val() === "" || hidden==0) {
+                break;
+            }
+            $(".tableBody").append(`<tr><td>${jsonArray[i]?.name}</td><td>Qty: ${hidden}</td><td class="text-end">$${hidden * int_val}</td></tr>`);
         }
-        // console.log(totalval);
-        console.log(jsonArray[0]?.name);
-
+        $(".tableBody").append(` <tr><td></td>
+                                                <td></td>
+                                                <td class="text-end"><b>Sub Total: $<span id="table_sub_total">${totalval}</span></b></td>
+                                            </tr>`);
         $("#sub_total").text(totalval);
         $("#table_sub_total").text(totalval);
     }
 </script>
+
 <script>
     $(".progress-bar-tab.custom-nav li").click(function(){
         $(".progress-bar-tab.custom-nav li").removeClass("active");

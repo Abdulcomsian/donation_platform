@@ -22,6 +22,6 @@ class EventTicket extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class , 'user_ticket' , 'ticket_id' , 'user_id')->withPivot('quantity');
+        return $this->belongsToMany(User::class , 'user_ticket' , 'ticket_id' , 'user_id')->withPivot('quantity' , 'stripe_id');
     }
 }
