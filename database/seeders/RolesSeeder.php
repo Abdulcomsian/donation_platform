@@ -18,6 +18,7 @@ class RolesSeeder extends Seeder
             ['name' => 'fundraiser'],
             ['name' => 'admin'],
             ['name' => 'donar'],
+            ['name' => 'ticket_purchaser'],
         ];
         Role::insert($roles);
     }

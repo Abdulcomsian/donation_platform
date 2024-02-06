@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Handlers\EventHandler;
 use Illuminate\Support\Facades\Validator;
 
+
 class EventsController extends Controller
 {
     protected $eventHandler;
@@ -38,12 +39,13 @@ class EventsController extends Controller
         $distinctVenue = $this->eventHandler->eventVenue();
         $eventCategories = $this->eventHandler->eventCategories();
         $filteredEvents = $this->eventHandler->filteredEvent($request);
+       
 
         return view('public.events.index')->with([
                                                   'distinctOrganizer' => $distinctOrganizer , 
                                                   'distinctVenue' => $distinctVenue , 
                                                   'eventCategories' => $eventCategories,
-                                                  'filteredEvents' => $filteredEvents
+                                                  'filteredEvents' => $filteredEvents,
                                                 ]);
        
     }
@@ -51,7 +53,10 @@ class EventsController extends Controller
     public function getEventDetail(Request $request)
     {
         $event = $this->eventHandler->eventDetail($request);
-        return view('public.events.event-details')->with(['event' => $event]);
+        $countries = $this->eventHandler->getCountries();
+        $setupIntent = $this->eventHandler->getStripeSetupIntent();
+        
+        return view('public.events.event-details')->with(['event' => $event , 'countries' => $countries , 'clientSecret' => $setupIntent->client_secret]);
     }
 
     public function createEvent(Request $request){
@@ -143,6 +148,30 @@ class EventsController extends Controller
             \Toastr::error($e->getMessage() , 'Error!' );
             return redirect()->back();
         }
+
+    }
+
+    public function purchaseEventTicket(Request $request)
+    {
+        $validator = Validator::make($request->all() , [
+            'email' => 'required|email',
+            'country' => 'required|numeric',
+            'name' => 'required|string'
+        ]);
+
+        if($validator->fails()){
+            return response()->json(['status' => false , 'msg' => 'Something Went Wrong' , 'error' => implode( ",", $validator->messages()->all())]);
+        }
+
+        try{
+            $response = $this->eventHandler->purchaseTicket($request);
+            return response()->json($response);
+
+        }catch(\Exception $e){
+            return response()->json(['status' => false , 'msg' => 'Something Went Wrong' , 'error' => $e->getMessage()]);
+        }
+           
+
 
     }
 }

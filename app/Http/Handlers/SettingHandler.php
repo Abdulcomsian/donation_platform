@@ -6,8 +6,15 @@ use App\Models\{Country, OrganizationProfile, User};
 use Spatie\Permission\Contracts\Role;
 
 class SettingHandler{
+    
     public function getUserDetail(){
-        $user = User::with('organizationProfile')->where('id' , auth()->user()->id)->first();
+        
+        $user = User::with('organizationProfile' , 'donationSuccessMail' , 'subscriptionSuccessMail' , 
+                            'subscriptionFailedMail' , 'donationRefundMail', 'subscriptionCanceledMail',
+                            'membershipSubscriptionMail', 'membershipRenewelMail', 'membershipCanceledMail',
+                            'membershipRenewelFailedMail', 'membershipRefundMail', 'eventRegistrationMail', 
+                            'eventCanceledMail', 'eventTicketRefundMail')
+                        ->where('id' , auth()->user()->id)->first();
         return $user;
     }
 

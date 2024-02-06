@@ -7,7 +7,7 @@
                     <img src="{{ asset('assets/images/Group 10191.png') }}" alt=""> Double the Donation
                 </button>
             </h2>
-            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
                 data-bs-parent="#accordionExample">
                 <div class="accordion-body">
                     <div class="double-donation">
@@ -27,7 +27,7 @@
                                     </div>
 
                                     <div class="form-control-button">
-                                        <button type="submit">Save</button>
+                                        <button type="submit">Save<i class="fas fa-circle-notch fa-spin mx-2 d-none mailchimp-loader"></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -48,12 +48,10 @@
             <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
                 data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                    <strong>This is the second item's accordion body.</strong> It is hidden by default, until the
-                    collapse plugin adds the appropriate classes that we use to style each element. These classes
-                    control the overall appearance, as well as the showing and hiding via CSS transitions. You can
-                    modify any of this with custom CSS or overriding our default variables. It's also worth noting that
-                    just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit
-                    overflow.
+                    <form method="post" action="{{route('integrate.mailchimp')}}" id="mailchimp-form">
+                        <input type="text" name="apikey" id="apikey" placeholder="Add Api Key">
+                        <button type="submit">Add</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -78,3 +76,14 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).on("submit" , "#mailchimp-form" , function(e){
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        let form = new FormData(this);
+        let loader = this.querySelector(".mailchimp-loader");
+        let url = this.getAttribute('action');
+        addFormData(url , form , loader);
+    })
+</script>

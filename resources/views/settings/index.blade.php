@@ -77,8 +77,7 @@
                     <div class="tab-pane fade" id="pills-emails" role="tabpanel" aria-labelledby="pills-emails-tab">
                         @include('settings.emails')
                     </div>
-                    <div class="tab-pane fade" id="pills-integrations" role="tabpanel"
-                        aria-labelledby="pills-integrations-tab">
+                    <div class="tab-pane fade" id="pills-integrations" role="tabpanel" aria-labelledby="pills-integrations-tab">
                         @include('settings.integrations')
                     </div>
                 </div>

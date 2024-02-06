@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{UserController, HomeController, DonationController, CampaignController, DashboardController, EventsController, MailingController, MembershipController, SettingController, StripeController};
+use App\Http\Controllers\{UserController, HomeController, DonationController, CampaignController, DashboardController, EventsController, MailingController, MembershipController, SettingController, StripeController , IntegrationController};
 
 /*
 |--------------------------------------------------------------------------
@@ -58,6 +58,7 @@ Route::group(['middleware' => ['preventBackHistory', 'auth']], function () {
         Route::get("delete-event" , [EventsController::class , 'deleteEvent'])->name('delete.event');
         Route::get('event-created' , [EventsController::class , 'eventCreated'])->name('event.created');
         Route::get('event-updated/{id?}', [EventsController::class, 'eventUpdated'])->name('event.updated');
+        Route::post('purchase-ticket' , [EventsController::class , 'purchaseEventTicket'])->name('purchase.ticket');
     });
 
     Route::group(['prefix' => 'membership'], function () {
@@ -73,6 +74,8 @@ Route::group(['middleware' => ['preventBackHistory', 'auth']], function () {
         Route::post("add-new-user" , [UserController::class , 'addUser'])->name('add.user');
         Route::post("update-role" , [UserController::class , 'updateRole'])->name('update.role');
         Route::post("delete-user" , [UserController::class , 'deleteUser'])->name('delete.user');
+        Route::get('get-mailchimp-lists' , [IntegrationController::class , 'getMailchimpLists']);
+        Route::post('integrate-mailchimp-api' , [IntegrationController::class , 'integrateMailchimp'])->name('integrate.mailchimp');
     });
 
     Route::group(['prefix' => 'email'] , function(){
@@ -80,7 +83,6 @@ Route::group(['middleware' => ['preventBackHistory', 'auth']], function () {
     });
 
     Route::get("create-mail" , [MailingController::class , 'updateUserMail'])->name('update.mail');
-
     Route::view('/unauthorized' , 'unauthorized')->name('unauthorized');
 });
 

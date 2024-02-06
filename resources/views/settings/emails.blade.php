@@ -24,12 +24,12 @@
                                         <div class="form-control-description">
                                             <textarea name="description" id="donation-success"  class="summernote"
                                                 value="Lorem ipsum dolor sit amet consectetur. Eget risus massa semper maecenas bibendum. Morbi volutpat varius vel blandit senectus."
-                                                placeholder="Enter Donation Successful Description"></textarea>
+                                                placeholder="Enter Donation Successful Description">{{isset($user->donationSuccessMail) ? $user->donationSuccessMail->html_content : '' }}</textarea>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="submit">
-                                    <button type="submit">Save Template<i class="fa-solid fa-circle-notch rotate-icon d-none loader mx-2"></i></button>
+                                    <button type="submit">Save Template<i class="fa-solid fa-circle-notch fa-spin rotate-icon d-none loader mx-2"></i></button>
                                 </div>
                             </form>
                         </div>
@@ -59,12 +59,12 @@
                                         <div class="form-control-description">
                                             <textarea name="description" id="new-donation-sub" class="summernote"
                                                 value="Lorem ipsum dolor sit amet consectetur. Eget risus massa semper maecenas bibendum. Morbi volutpat varius vel blandit senectus."
-                                                placeholder="Enter New Donation Subscription Description"></textarea>
+                                                placeholder="Enter New Donation Subscription Description">{{isset($user->subscriptionSuccessMail) ? $user->subscriptionSuccessMail->html_content : '' }}</textarea>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="submit">
-                                    <button type="submit">Save Template<i class="fa-solid fa-circle-notch rotate-icon d-none loader mx-2"></i></button>
+                                    <button type="submit">Save Template<i class="fa-solid fa-circle-notch fa-spin  rotate-icon d-none loader mx-2"></i></button>
                                 </div>
                             </form>
                         </div>
@@ -94,12 +94,12 @@
                                         <div class="form-control-description">
                                             <textarea name="description" id="donations-sub-failed" class="summernote"
                                                 value="Lorem ipsum dolor sit amet consectetur. Eget risus massa semper maecenas bibendum. Morbi volutpat varius vel blandit senectus."
-                                                placeholder="Enter Donation subscription failed Description"></textarea>
+                                                placeholder="Enter Donation subscription failed Description">{{isset($user->subscriptionFailedMail) ? $user->subscriptionFailedMail->html_content : '' }}</textarea>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="submit">
-                                    <button type="submit">Save Template<i class="fa-solid fa-circle-notch rotate-icon d-none loader mx-2"></i></button>
+                                    <button type="submit">Save Template<i class="fa-solid fa-circle-notch  fa-spin rotate-icon d-none loader mx-2"></i></button>
                                 </div>
                             </form>
                         </div>
@@ -129,12 +129,12 @@
                                         <div class="form-control-description">
                                             <textarea name="description" id="donation-ref" class="summernote"
                                                 value="Lorem ipsum dolor sit amet consectetur. Eget risus massa semper maecenas bibendum. Morbi volutpat varius vel blandit senectus."
-                                                placeholder="Enter Donation refund Description"></textarea>
+                                                placeholder="Enter Donation refund Description">{{isset($user->donationRefundMail) ? $user->donationRefundMail->html_content : '' }}</textarea>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="submit">
-                                    <button type="submit">Save Template<i class="fa-solid fa-circle-notch rotate-icon d-none loader mx-2"></i></button>
+                                    <button type="submit">Save Template<i class="fa-solid fa-circle-notch  fa-spin rotate-icon d-none loader mx-2"></i></button>
                                 </div>
                             </form>
                         </div>
@@ -164,12 +164,12 @@
                                         <div class="form-control-description">
                                             <textarea name="description" id="donation-sub-cancelled" class="summernote"
                                                 value="Lorem ipsum dolor sit amet consectetur. Eget risus massa semper maecenas bibendum. Morbi volutpat varius vel blandit senectus."
-                                                placeholder="Enter Donation subscription cancelled Description"></textarea>
+                                                placeholder="Enter Donation subscription cancelled Description">{{isset($user->subscriptionCanceledMail) ? $user->subscriptionCanceledMail->html_content : '' }}</textarea>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="submit">
-                                    <button type="submit">Save Template<i class="fa-solid fa-circle-notch rotate-icon d-none loader mx-2"></i></button>
+                                    <button type="submit">Save Template<i class="fa-solid fa-circle-notch  fa-spin rotate-icon d-none loader mx-2"></i></button>
                                 </div>
                             </form>
                         </div>
@@ -199,12 +199,12 @@
                                         <div class="form-control-description">
                                             <textarea name="description" id="new-member" class="summernote"
                                                 value="Lorem ipsum dolor sit amet consectetur. Eget risus massa semper maecenas bibendum. Morbi volutpat varius vel blandit senectus."
-                                                placeholder="Enter New Membership Description"></textarea>
+                                                placeholder="Enter New Membership Description">{{isset($user->membershipSubscriptionMail) ? $user->membershipSubscriptionMail->html_content : '' }}</textarea>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="submit">
-                                    <button type="submit">Save Template<i class="fa-solid fa-circle-notch rotate-icon d-none loader mx-2"></i></button>
+                                    <button type="submit">Save Template<i class="fa-solid fa-circle-notch  fa-spin rotate-icon d-none loader mx-2"></i></button>
                                 </div>
                             </form>
                         </div>
@@ -234,12 +234,12 @@
                                         <div class="form-control-description">
                                             <textarea name="description" id="member-renew-success" class="summernote"
                                                 value="Lorem ipsum dolor sit amet consectetur. Eget risus massa semper maecenas bibendum. Morbi volutpat varius vel blandit senectus."
-                                                placeholder="Enter Membership renewal success Description"></textarea>
+                                                placeholder="Enter Membership renewal success Description">{{isset($user->membershipRenewelMail) ? $user->membershipRenewelMail->html_content : '' }}</textarea>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="submit">
-                                    <button type="submit">Save Template<i class="fa-solid fa-circle-notch rotate-icon d-none loader mx-2"></i></button>
+                                    <button type="submit">Save Template<i class="fa-solid fa-circle-notch rotate-icon  fa-spin d-none loader mx-2"></i></button>
                                 </div>
                             </form>
                         </div>
@@ -269,12 +269,12 @@
                                         <div class="form-control-description">
                                             <textarea name="description" id="membership-cancel" class="summernote"
                                                 value="Lorem ipsum dolor sit amet consectetur. Eget risus massa semper maecenas bibendum. Morbi volutpat varius vel blandit senectus."
-                                                placeholder="Enter Membership cancelled Description"></textarea>
+                                                placeholder="Enter Membership cancelled Description">{{isset($user->membershipCanceledMail) ? $user->membershipCanceledMail->html_content : '' }}</textarea>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="submit">
-                                    <button type="submit">Save Template<i class="fa-solid fa-circle-notch rotate-icon d-none loader mx-2"></i></button>
+                                    <button type="submit">Save Template<i class="fa-solid fa-circle-notch rotate-icon  fa-spin d-none loader mx-2"></i></button>
                                 </div>
                             </form>
                         </div>
@@ -304,12 +304,12 @@
                                         <div class="form-control-description">
                                             <textarea name="description" id="membership-renew-failed" class="summernote"
                                                 value="Lorem ipsum dolor sit amet consectetur. Eget risus massa semper maecenas bibendum. Morbi volutpat varius vel blandit senectus."
-                                                placeholder="Enter Membership renewal failed Description"></textarea>
+                                                placeholder="Enter Membership renewal failed Description">{{isset($user->membershipRenewelFailedMail) ? $user->membershipRenewelFailedMail->html_content : '' }}</textarea>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="submit">
-                                    <button type="submit">Save Template<i class="fa-solid fa-circle-notch rotate-icon d-none loader mx-2"></i></button>
+                                    <button type="submit">Save Template<i class="fa-solid fa-circle-notch rotate-icon  fa-spin d-none loader mx-2"></i></button>
                                 </div>
                             </form>
                         </div>
@@ -339,12 +339,12 @@
                                         <div class="form-control-description">
                                             <textarea name="description" id="membership-ref" class="summernote"
                                                 value="Lorem ipsum dolor sit amet consectetur. Eget risus massa semper maecenas bibendum. Morbi volutpat varius vel blandit senectus."
-                                                placeholder="Enter Membership refund Description"></textarea>
+                                                placeholder="Enter Membership refund Description">{{isset($user->membershipRefundMail) ? $user->membershipRefundMail->html_content : '' }}</textarea>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="submit">
-                                    <button type="submit">Save Template<i class="fa-solid fa-circle-notch rotate-icon d-none loader mx-2"></i></button>
+                                    <button type="submit">Save Template<i class="fa-solid fa-circle-notch rotate-icon  fa-spin d-none loader mx-2"></i></button>
                                 </div>
                             </form>
                         </div>
@@ -374,12 +374,12 @@
                                         <div class="form-control-description">
                                             <textarea name="description" id="event-register" class="summernote"
                                                 value="Lorem ipsum dolor sit amet consectetur. Eget risus massa semper maecenas bibendum. Morbi volutpat varius vel blandit senectus."
-                                                placeholder="Enter Event registration Description"></textarea>
+                                                placeholder="Enter Event registration Description">{{isset($user->eventRegistrationMail) ? $user->eventRegistrationMail->html_content : '' }}</textarea>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="submit">
-                                    <button type="submit">Save Template<i class="fa-solid fa-circle-notch rotate-icon d-none loader mx-2"></i></button>
+                                    <button type="submit">Save Template<i class="fa-solid fa-circle-notch rotate-icon  fa-spin d-none loader mx-2"></i></button>
                                 </div>
                             </form>
                         </div>
@@ -409,12 +409,12 @@
                                         <div class="form-control-description">
                                             <textarea name="description" id="event-cancel" class="summernote"
                                                 value="Lorem ipsum dolor sit amet consectetur. Eget risus massa semper maecenas bibendum. Morbi volutpat varius vel blandit senectus."
-                                                placeholder="Enter Event cancelled Description"></textarea>
+                                                placeholder="Enter Event cancelled Description">{{isset($user->eventCanceledMail) ? $user->eventCanceledMail->html_content : '' }}</textarea>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="submit">
-                                    <button type="submit">Save Template<i class="fa-solid fa-circle-notch rotate-icon d-none loader mx-2"></i></button>
+                                    <button type="submit">Save Template<i class="fa-solid fa-circle-notch rotate-icon  fa-spin d-none loader mx-2"></i></button>
                                 </div>
                             </form>
                         </div>
@@ -444,12 +444,12 @@
                                         <div class="form-control-description">
                                             <textarea name="description" id="event-ticket-ref" class="summernote"
                                                 value="Lorem ipsum dolor sit amet consectetur. Eget risus massa semper maecenas bibendum. Morbi volutpat varius vel blandit senectus."
-                                                placeholder="Enter Event ticket refund Description"></textarea>
+                                                placeholder="Enter Event ticket refund Description">{{isset($user->eventTicketRefundMail) ? $user->eventTicketRefundMail->html_content : '' }}</textarea>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="submit">
-                                    <button type="submit">Save Template<i class="fa-solid fa-circle-notch rotate-icon d-none loader mx-2"></i></button>
+                                    <button type="submit">Save Template<i class="fa-solid fa-circle-notch rotate-icon  fa-spin d-none loader mx-2"></i></button>
                                 </div>
                             </form>
                         </div>
@@ -465,16 +465,16 @@
             tabsize: 2,
             height: 300,
             toolbar: [
-            // [groupName, [picture]]
-            ['style', ['bold', 'italic', 'underline', 'clear']],
-            ['font', ['strikethrough']],
-            ['fontsize', ['']],
-            ['color', ['']],
-            ['para', ['ul', 'ol', '']],
-            ['height', ['']],
-            ['picture']
-        ]
-        });
+                        ['style', ['bold', 'italic', 'underline', 'clear']],
+                        ['font', ['strikethrough']],
+                        ['fontsize', ['']],
+                        ['color', ['']],
+                        ['para', ['ul', 'ol', '']],
+                        ['height', ['']],
+                        ['picture']
+                    ]
+            });
+
         $('#donation-success').summernote({
             tabsize: 2,
             height: 300,
@@ -487,7 +487,8 @@
                 ['height', ['']],
                 ['picture'],
                 ['view', ['fullscreen', 'codeview']],
-            ]
+            ],
+           code : ""
         });
         $('#new-donation-sub').summernote({
             tabsize: 2,

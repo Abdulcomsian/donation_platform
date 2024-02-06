@@ -364,8 +364,6 @@
             let submitBtn = this.querySelector(".submit-btn");
             let redirectUrl = "{{url( 'events/event-updated' , $event->id )}}";
             addFormData(url , form , loader , redirectUrl , submitBtn , null);
-        }else{
-            alert(errorFlag);
         }
 
 

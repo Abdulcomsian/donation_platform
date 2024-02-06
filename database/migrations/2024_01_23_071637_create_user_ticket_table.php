@@ -17,6 +17,8 @@ return new class extends Migration
             $table->unsignedBigInteger('ticket_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('ticket_id')->references('id')->on('event_tickets');
+            $table->integer('quantity');
+            $table->string('stripe_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -1,7 +1,6 @@
 @extends('public.events.layout.detail')
 
 @section('content')
-
 <div class="detail">
     <div class="container-fluid rectangle">
         <div class="container top">
@@ -62,8 +61,8 @@
             
             <form action="#" class="form-steps" autocomplete="off">
                 <div class="event-det mb-3">
-                    <h3>Lorem ipsum dolor sit amet consectetur</h3>
-                    <p>Saturday 13 January, 2024 6:30 PM  |  <span>Venue Here</span></p>
+                    <h3>{{$event->title}}</h3>
+                    {{\Carbon\Carbon::parse($event->date)->format('l j F, Y')}}, {{\Carbon\Carbon::parse($event->time)->format('g:i A')}}
                 </div>
                 <div class="w-75 mx-auto">
                         <ul class="nav nav-pills progress-bar-tab custom-nav" role="tablist">
@@ -84,80 +83,63 @@
                 </div>
                 <hr>
                 <div class="tab-content">
-                    <div class="tab-pane fade show active" id="pills-gen-info" role="tabpanel" aria-labelledby="pills-gen-info-tab">
+                <div class="tab-pane fade show active" id="tab11" role="tabpanel" aria-labelledby="pills-gen-info-tab">
                         <div class="tab-data">
-                            <div class="ticket-box">
-                                <div class="ticket-detail">
-                                    <h3>
-                                        Ticket Name
-                                    </h3>
-                                    <p>
-                                        Lorem ipsum dolor sit amet consectetur. Venenatis ornare sit scelerisque sit. Dapibus quisque volutpat varius ante leo
-                                    </p>
-                                    <span>
-                                        Free
-                                    </span>
+                          @php
+                           $tot_ticket = 0;
+                          @endphp
+                        @foreach($event->ticket as $index => $ticket)
+                            @php
+                                $purchasedTickets = 0;
+
+                                if($ticket->users->count()){
+                                    foreach($ticket->users as $user){
+                                        $purchasedTickets += $user->pivot->quantity;
+                                    }
+                                }
+                               
+                            @endphp
+                            @if( $ticket->quantity > $purchasedTickets)
+                                @php
+                                    $tot_ticket = $tot_ticket + 1;
+                                @endphp
+                                <div class="ticket-box">
+                                    <div class="ticket-detail">
+                                        <h3 id="ticketname-{{$index}}">
+                                           {{$ticket->name}}
+                                        </h3>
+                                        <p>
+                                            {{$ticket->description}}
+                                        </p>
+                                        @if($ticket->is_free)
+                                        <span>
+                                            Free
+                                        </span>
+                                        @else
+                                        <span>
+                                            ${{number_format($ticket->price)}}
+                                        </span>
+                                        @endif
+                                        <input type="hidden" value="{{number_format($ticket->price)}}" id="ticket_price-{{$tot_ticket-1}}" />
+                                    </div>
+                                    <div class="ticket-count">
+                                    <input type="number" data-ticket-id="{{$ticket->id}}" data-ticket-amount="{{$ticket->price}}" min="1" max="{{$ticket->quantity - $ticket->users->count()}}" class="form-control" id="basiInput-{{$tot_ticket-1}}" onchange="calc_price()">
                                 </div>
-                                <div class="ticket-count">
-                                    <select class="form-select" aria-label="Default select example" style="width: 80px;">
-                                        <option selected="">0 </option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                    </select>
                                 </div>
-                            </div>
-                            <div class="ticket-box">
-                                <div class="ticket-detail">
-                                    <h3>
-                                        Ticket Name
-                                    </h3>
-                                    <p>
-                                        Lorem ipsum dolor sit amet consectetur. Venenatis ornare sit scelerisque sit. Dapibus quisque volutpat varius ante leo
-                                    </p>
-                                    <span>
-                                        Free
-                                    </span>
-                                </div>
-                                <div class="ticket-count">
-                                    <select class="form-select" aria-label="Default select example" style="width: 80px;">
-                                        <option selected="">0 </option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="ticket-box">
-                                <div class="ticket-detail">
-                                    <h3>
-                                        Ticket Name
-                                    </h3>
-                                    <p>
-                                        Lorem ipsum dolor sit amet consectetur. Venenatis ornare sit scelerisque sit. Dapibus quisque volutpat varius ante leo
-                                    </p>
-                                    <span>
-                                        Free
-                                    </span>
-                                </div>
-                                <div class="ticket-count">
-                                    <select class="form-select" aria-label="Default select example" style="width: 80px;">
-                                        <option selected="">0 </option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                    </select>
-                                </div>
-                            </div>
+                            @endif
+                        @endforeach
+                            
+                            <input type="hidden" value="{{$event->ticket}}" id="array_name" />
+                            <input type="hidden" value="{{$tot_ticket}}" id="tot_iteration" />
                         </div>
                         <div class="d-flex align-items-start gap-3 mt-4">
-                            <span class="sub-total">Sub Total:  <b>$0</b></span>
-                            <button type="button" class="btn btn-success btn-label right ms-auto nexttab nexttab" data-nexttab="pills-info-desc-tab"><i class="ri-arrow-right-line label-icon align-middle fs-16 ms-2"></i>Next</button>
+                            <span class="sub-total">Sub Total: <b id="sub_total">$0</b></span>
+                            <button type="button" class="btn btn-success btn-label right ms-auto first-next"><i class="ri-arrow-right-line label-icon align-middle fs-16 ms-2"></i>Next</button>
                         </div>
                     </div>
                     <!-- end tab pane -->
 
-                    <div class="tab-pane fade" id="pills-info-desc" role="tabpanel" aria-labelledby="pills-info-desc-tab">
+                    <div class="tab-pane fade" id="tab22" role="tabpanel" aria-labelledby="pills-info-desc-tab">
                         <div>
                             <div class="order-summary">
                                 <h3>
@@ -165,8 +147,8 @@
                                 </h3>
                                 <div class="table-responsive">
                                     <table class="table align-middle table-nowrap mb-0 px-20">
-                                        <tbody>
-                                            <tr>
+                                        <tbody class="tableBody">
+                                            {{-- <tr>
                                                 <td>Ticket Name</td>
                                                 <td>Qty:  1</td>
                                                 <td class="text-end">$20</td>
@@ -179,8 +161,8 @@
                                             <tr>
                                                 <td></td>
                                                 <td></td>
-                                                <td class="text-end"><b>Sub Total:  $75</b></td>
-                                            </tr>
+                                                <td class="text-end"><b>Sub Total: $<span id="table_sub_total">75</span></b></td>
+                                            </tr> --}}
                                         </tbody>
                                     </table>
                                 </div>
@@ -188,29 +170,47 @@
                                     Provide Your Details
                                 </h3>
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div>
-                                            <label for="basiInput" class="form-label">Name</label>
-                                            <input type="password" class="form-control" id="basiInput">
+                                            <label for="basiInput" class="form-label">First Name</label>
+                                            <input type="text" name="first_name" class="form-control" id="basiInput">
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
+                                        <div>
+                                            <label for="basiInput" class="form-label">Last Name</label>
+                                            <input type="text" name="last_name" class="form-control" id="basiInput">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
                                         <div>
                                             <label for="basiInput" class="form-label">Email</label>
-                                            <input type="password" class="form-control" id="basiInput">
+                                            <input type="email" name="email" class="form-control" id="basiInput">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div>
+                                            <label for="basiInput" class="form-label">Country</label>
+                                            <select class="form-select" name="country" aria-label="Default select example">
+                                                @foreach($countries as $country)
+                                                    <option value="{{$country->id}}">{{$country->name}} </option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="d-inline float-end action-bttn gap-3 mt-4">
-                            <button type="button" class="btn btn-default text-decoration-none btn-label previestab" data-previous="pills-gen-info-tab"><i class="ri-arrow-left-line label-icon align-middle fs-16 me-2"></i> Back</button>
-                            <button type="button" class="btn btn-success btn-label right ms-auto nexttab nexttab" data-nexttab="pills-success-tab"><i class="ri-arrow-right-line label-icon align-middle fs-16 ms-2"></i>Submit</button>
+                            <button type="button" class="btn btn-default text-decoration-none btn-label second-previous" data-previous="pills-gen-info-tab"><i class="ri-arrow-left-line label-icon align-middle fs-16 me-2"></i> Back</button>
+                            <div class="d-inline float-end action-bttn gap-3">
+                                <button type="button" class="btn btn-success btn-label right ms-auto second-next"><i class="ri-arrow-right-line label-icon align-middle fs-16 ms-2"></i>Next</button>
+                            </div>
                         </div>
                     </div>
                     <!-- end tab pane -->
 
-                    <div class="tab-pane fade" id="pills-success" role="tabpanel" aria-labelledby="pills-success-tab">
+                    <div class="tab-pane fade" id="tab33" role="tabpanel" aria-labelledby="pills-success-tab">
                         <div>
                             <div class="order-summary">
                                 <h3>
@@ -218,8 +218,8 @@
                                 </h3>
                                 <div class="table-responsive">
                                     <table class="table align-middle table-nowrap mb-0 px-20">
-                                        <tbody>
-                                            <tr>
+                                        <tbody class="tableBody">
+                                            {{-- <tr>
                                                 <td>Ticket Name</td>
                                                 <td>Qty:  1</td>
                                                 <td class="text-end">$20</td>
@@ -233,7 +233,7 @@
                                                 <td></td>
                                                 <td></td>
                                                 <td class="text-end"><b>Sub Total:  $75</b></td>
-                                            </tr>
+                                            </tr> --}}
                                         </tbody>
                                     </table>
                                 </div>
@@ -241,41 +241,13 @@
                                     Debit/Credit Card
                                 </h3>
                                 <div class="row">
-                                    <div class="col-md-12">
-                                        <div>
-                                            <label for="basiInput" class="form-label">Card Number</label>
-                                            <input type="text" class="form-control" id="basiInput" placeholder="1234 1234 1234 1234">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div>
-                                            <label for="basiInput" class="form-label">Expiry Date</label>
-                                            <input type="text" class="form-control" id="basiInput" placeholder="MM / YY">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div>
-                                            <label for="basiInput" class="form-label">CVC</label>
-                                            <input type="text" class="form-control" id="basiInput" placeholder="123">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div>
-                                            <label for="basiInput" class="form-label">Country</label>
-                                            <select class="form-select" aria-label="Default select example" style="width: 80px;">
-                                                <option selected="">United States </option>
-                                                <option value="1">Pakistan1</option>
-                                                <option value="2">Afghanistan</option>
-                                                <option value="3">India</option>
-                                            </select>
-                                        </div>
-                                    </div>
+                                    <div id="card-element"></div>
                                 </div>
                             </div>
                         </div>
                         <div class="d-inline float-end action-bttn gap-3 mt-4">
-                            <button type="button" class="btn btn-default text-decoration-none btn-label previestab" data-previous="pills-gen-info-tab"><i class="ri-arrow-left-line label-icon align-middle fs-16 me-2"></i> Back</button>
-                            <button type="button" class="btn btn-success btn-label right ms-auto nexttab nexttab" data-nexttab="pills-success-tab"><i class="ri-arrow-right-line label-icon align-middle fs-16 ms-2"></i>Submit</button>
+                            <button type="button" class="btn btn-default text-decoration-none btn-label  third-previous" data-previous="pills-gen-info-tab"><i class="ri-arrow-left-line label-icon align-middle fs-16 me-2"></i> Back</button>
+                            <button type="button" class="btn btn-success btn-label right ms-auto third-next" data-nexttab="pills-success-tab"><i class="ri-arrow-right-line label-icon align-middle fs-16 ms-2"></i>Submit</button>
                         </div>
                     </div>
                     <!-- end tab pane -->
@@ -288,4 +260,102 @@
   </div>
 </div>
 
+<script>
+    $(".second-previous").click(function() {
+        $("#tab22").removeClass("active show");
+        $("#tab11").addClass("active show");
+    });
+    $(".second-next").click(function() {
+        $("#tab22").removeClass("active show");
+        $("#tab33").addClass("active show");
+    });
+    $(".third-previous").click(function() {
+        $("#tab33").removeClass("active show");
+        $("#tab22").addClass("active show");
+    });
+    $(".first-next").click(function() {
+        $("#tab11").removeClass("active show");
+        $("#tab22").addClass("active show");
+    });
+    $(".progress-bar-tab.custom-nav li").click(function() {
+        $(".progress-bar-tab.custom-nav li").removeClass("active");
+    });
+    function calc_price() {
+        tot_iteration = $('input[id^="tot_iteration"]').val();
+        var totalval = parseFloat(0);
+        var arr = $("#array_name").val();
+        var jsonArray = JSON.parse(arr);
+        $(".tableBody tr").remove();
+        for (i = 0; i < tot_iteration; i++) {
+            var hidden = $(`input[id^=basiInput` + '-' + i).val();
+            var int_val = $(`input[id^=ticket_price` + '-' + i).val();
+            var ticket_name = $(`ticketname-{{$index}}` + '-' + i).text();
+            totalval = parseFloat(totalval) + (parseFloat(hidden) * parseFloat(int_val));
+            console.log(hidden, int_val, totalval);
+            if ($(`input[id^=basiInput` + '-' + i).val() === "" || hidden==0) {
+                break;
+            }
+            $(".tableBody").append(`<tr><td>${jsonArray[i]?.name}</td><td>Qty: ${hidden}</td><td class="text-end">$${hidden * int_val}</td></tr>`);
+        }
+        $(".tableBody").append(` <tr><td></td>
+                                                <td></td>
+                                                <td class="text-end"><b>Sub Total: $<span id="table_sub_total">${totalval}</span></b></td>
+                                            </tr>`);
+        $("#sub_total").text(totalval);
+        $("#table_sub_total").text(totalval);
+    }
+</script>
+
+<script>
+    $(".progress-bar-tab.custom-nav li").click(function(){
+        $(".progress-bar-tab.custom-nav li").removeClass("active");
+    });
+
+    $(document).ready(function(){
+        var stripe = Stripe('{{env("STRIPE_KEY")}}')
+        var card = null;
+
+        createCardElements()
+
+        function createCardElements(){
+            const element = stripe.elements();
+            card = element.create('card')
+            card.mount("#card-element");
+        }
+
+        document.addEventListener("click" , async function(e){
+            e.preventDefault();
+
+            const { setupIntent, error} = await stripe.confirmCardSetup( '{{$clientSecret}}' , {
+                                                                        payment_method : {
+                                                                            card : card,
+                                                                        }
+                                                                });
+            let loader = this.classList.contains("submit-loader") ? this : this.querySelector(".submit-loader");
+            let url = "{{route('purchase.ticket')}}";
+            loader.classList.remove("d-none")
+            $.ajax({
+                type : "POST",
+                url : url,
+                data : {
+                    setupIntent: setupIntent,
+                },
+                success:function(res){
+                    loader.classList.add("d-none")
+                    if(res.status){
+                        Swal.fire({
+                            text: res.msg,
+                            icon: "success"
+                        });
+                    }else{
+                        Swal.fire({ 
+                                    icon: "error", 
+                                    title: "Oops...", text: res.error
+                                });
+                    }
+                }
+            })
+        })
+    })
+</script>
 @endsection
