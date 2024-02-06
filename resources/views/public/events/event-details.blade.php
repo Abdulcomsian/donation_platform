@@ -89,6 +89,7 @@
                           
                             @foreach($event->ticket as $ticket)
                                 @if($ticket->users->count() == 0 || ($ticket->users->count() > $ticket->quantity))
+
                                 <div class="ticket-box">
                                     <div class="ticket-detail">
                                         <h3>

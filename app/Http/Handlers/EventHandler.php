@@ -3,7 +3,7 @@
 namespace App\Http\Handlers;
 use App\Models\{Event , Country , EventFrequency , EventCategory , EventTicket , User};
 use Illuminate\Support\Facades\DB;
-use Stripe\{ Stripe , SetupIntent};
+use Stripe\{ Stripe , SetupIntent , PaymentIntent};
 class EventHandler{
 
     public function createEvent($request)
@@ -237,6 +237,7 @@ class EventHandler{
         $last_name = $request->last_name;
         $email = $request->email;
         $user = User::where('email' , $email)->first();
+        $subTotal = $request->subtotal;
 
         if(!$user){
             $user = new User;
@@ -251,12 +252,31 @@ class EventHandler{
             $user->assignRole('ticket_purchaser');
         }
 
-        $purchaseTickets = [];  
+        $intent = null;
+
+        if($subTotal > 0)
+        {
+            $intent = PaymentIntent::create([
+                            'amount' => $subTotal * 100,
+                            'currency' => 'usd',
+                            'payment_method' => $request->payment_method_id,
+                            'confirm' => true,
+                            'off_session' => true,
+                        ]);
+
+        }
+
+        $purchaseTickets = []; 
+
         foreach($tickets as $ticket){
             $ticketQuantity = $ticket->quantity;
             $ticketId = $ticket->id;
-            $purchaseTickets[] = ["user_id" => $user->id , ""];
+            $purchaseTickets[] = ["user_id" => $user->id , "ticket_id" => $ticketId , "quantity" => $ticketQuantity , "stripe_id" => isset($intent) ? $intent->id : null];
         }
+
+        EventTicket::insert($purchaseTickets);
+
+        
 
     }
 
