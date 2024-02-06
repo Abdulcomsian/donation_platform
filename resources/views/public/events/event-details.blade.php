@@ -293,8 +293,44 @@
         // console.log(totalval);
         console.log(jsonArray);
 
+
         $("#sub_total").text(totalval);
         $("#table_sub_total").text(totalval);
     }
+
+    document.addEventListener("click" , async function(e){
+            e.preventDefault();
+            
+            const { setupIntent, error} = await stripe.confirmCardSetup( '{{$clientSecret}}' , {
+                                                                        payment_method : {
+                                                                            card : card,
+                                                                        }
+                                                                });
+            let loader = this.classList.contains("submit-loader") ? this : this.querySelector(".submit-loader");
+            let url = "{{route('purchase.ticket')}}";
+            loader.classList.remove("d-none")
+            $.ajax({
+                type : "POST",
+                url : url,
+                data : {
+                    setupIntent: setupIntent,
+                },
+                success:function(res){
+                    loader.classList.add("d-none")
+                    if(res.status){
+                        Swal.fire({
+                            text: res.msg,
+                            icon: "success"
+                        });
+                    }else{
+                        Swal.fire({ 
+                                    icon: "error", 
+                                    title: "Oops...", text: res.error
+                                });
+                    }
+                }
+            })
+        })
+
 </script>
 @endsection
