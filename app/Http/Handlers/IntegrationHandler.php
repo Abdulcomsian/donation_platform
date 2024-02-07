@@ -42,12 +42,15 @@ class IntegrationHandler{
 
         $lists = $mailchimp->lists->getAllLists()->lists;
 
-        MailchimpIntegration::create([
+        MailchimpIntegration::updateOrCreate(
+            ['user_id' => auth()->user()->id],
+            [
             'user_id' => auth()->user()->id,
             'list_id' => $lists[0]->id,
             'api_key' => $apiKey,
             'name' => $lists[0]->name
-        ]);
+            ]
+    );
 
         return ["status" => true , "msg" => "Mailchimp Integrated Successfully"];
 

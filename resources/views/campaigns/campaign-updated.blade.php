@@ -30,17 +30,17 @@
     <div class="url-container">
         <div class="heading">Share Your Campaign URL</div>
         <div class="url">
-            <a href="" id="textToCopy">https://donation.donation.com/name/campaign/donation</a>
+            <a href="{{url('donate-now' , $campaignId)}}" id="textToCopy">{{url('donate-now' , $campaignId)}}</a>
         </div>
         <div class="action-container">
             <button class="copy" onclick="copyText()"><img src="{{ asset('assets/images/copy-outline.png') }}" alt="">
                 Copy Link</button>
-            <a class="view" href=""><img src="{{ asset('assets/images/eye-outline.png') }}" alt=""> View Page</a>
+            <a class="view" href="{{url('donate-now' , $campaignId)}}"><img src="{{ asset('assets/images/eye-outline.png') }}" alt=""> View Page</a>
         </div>
     </div>
 
     <div class="share-actions">
-        <a class="edit" href=""><img src="{{ asset('assets/images/bxs_edit.png') }}" alt="">Edit</a>
+        <a class="edit" href="{{url('campaigns/edit-campaign' , $campaignId)}}""><img src="{{ asset('assets/images/bxs_edit.png') }}" alt="">Edit</a>
         <a class="share" href=""><img src="{{ asset('assets/images/share-social-outline.png') }}" alt="">Share</a>
     </div>
 </div>
@@ -103,17 +103,17 @@
     <div class="url-container">
         <div class="heading">Share Your Campaign URL</div>
         <div class="url">
-            <a href="" id="textToCopy">https://donation.donation.com/name/campaign/donation</a>
+            <a href="{{url('donate-now' , $campaignId)}}" id="textToCopy">{{url('donate-now' , $campaignId)}}</a>
         </div>
         <div class="action-container">
             <button class="copy" onclick="copyText()"><img src="{{ asset('assets/images/copy-outline.png') }}" alt="">
                 Copy Link</button>
-            <a class="view" href=""><img src="{{ asset('assets/images/eye-outline.png') }}" alt=""> View Page</a>
+            <a class="view" href="{{url('donate-now' , $campaignId)}}"><img src="{{ asset('assets/images/eye-outline.png') }}" alt=""> View Page</a>
         </div>
     </div>
 
     <div class="share-actions">
-        <a class="edit" href=""><img src="{{ asset('assets/images/bxs_edit.png') }}" alt="">Edit</a>
+        <a class="edit" href="{{url('campaigns/edit-campaign' , $campaignId)}}"><img src="{{ asset('assets/images/bxs_edit.png') }}" alt="">Edit</a>
         <a class="share" href=""><img src="{{ asset('assets/images/share-social-outline.png') }}" alt="">Share</a>
     </div>
 </div>

@@ -21,7 +21,7 @@
                         }
 
                     if(redirectUrl != null){
-                        window.location.href = redirectUrl;
+                        window.location.href = res.paramId ? redirectUrl+"/"+res.paramId : redirectUrl;;
 
                     }else{
                         Swal.fire({
@@ -56,7 +56,7 @@
                         }
 
                     if(redirectUrl != null){
-                        window.location.href = redirectUrl;
+                        window.location.href = res.paramId ? redirectUrl+"/"+res.paramId : redirectUrl;
 
                     }else{
                         Swal.fire({

@@ -26,8 +26,6 @@ class IntegrationController extends Controller
     public function integrateMailchimp(Request $request)
     {
         $validator = Validator::make($request->all() , [
-                                    'id' => 'required|numeric',
-                                    'name' => 'required|string',
                                     'apiKey' => 'required|string'
                                 ]);
         

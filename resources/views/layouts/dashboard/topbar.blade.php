@@ -3,7 +3,7 @@
         <button class="toggle-open" onclick="toggleSidebarOpen(event)">
             <img src="{{ asset('assets/images/chevron-down-sharp.png') }}" alt="">
         </button>
-        <div class="search">
+        <div class="search d-none">
             <div class="icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                     <path fill-rule="evenodd" clip-rule="evenodd"
@@ -56,6 +56,7 @@
                 </li>
             </ul>
         </div>
+       @if(auth()->check()) 
         <div class="items">
             <div class="notification">
                 <div class="notification-circle">
@@ -71,9 +72,9 @@
                     <div class="profile-section">
                         <div class="profile-info">
                             <div class="profile-icon">
-                                <img src="{{ asset('assets/images/Ellipse 3.png') }}" alt="">
+                                <img src="{{ isset(auth()->user()->profile_image) ? asset('assets/uploads/profile_image').'/'.auth()->user()->profile_image : asset('assets/images/human-profile.png') }}" alt="">
                             </div>
-                            <div class="profile-name">Esther</div>
+                            <div class="profile-name">{{auth()->user()->first_name}}</div>
                         </div>
                     </div>
                     </a>
@@ -91,6 +92,7 @@
                     </ul>
                 </li>
         </div>
+        @endif
     </div>
 </div>
 

@@ -115,11 +115,11 @@
                 <div class="col-md-5">
                     <div class="form-control campaign-goal @if($campaign->campaign_goal == 0) d-none @endif">
                         <label for="feeRecovery">Fee Recovery</label>
-                        <select name="fee_recovery" id="feeRecovery" value="{{$campaign->fee_recovery}}">
+                        <select name="fee_recovery" id="feeRecovery">
                             <option value="">Select Fee Recovery</option>
-                            <option value="disable">Disable</option>
-                            <option value="optional">Optional</option>
-                            <option value="required">Required</option>
+                            <option value="disable" @if($campaign->fee_recovery == "disable") selected @endif>Disable</option>
+                            <option value="optional" @if($campaign->fee_recovery == "optional") selected @endif>Optional</option>
+                            <option value="required" @if($campaign->fee_recovery == "required" ) selected @endif>Required</option>
                         </select>
                     </div>
                 </div>
@@ -187,7 +187,7 @@
         form.append("frequency" , frequency);
         form.append('status' , 0 );
         url = '{{route("edit.campaign")}}';
-        redirectUrl = "{{route('campaign.updated')}}";
+        redirectUrl = "{{url('campaigns/campaign-updated')}}";
         addFormData(url , form , loader , redirectUrl , submitBtn , null);
 
     })
@@ -203,7 +203,7 @@
         form.append("frequency" , frequency);
         form.append('status' , 1 );
         url = '{{route("edit.campaign")}}';
-        redirectUrl = "{{route('campaign.updated')}}";
+        redirectUrl = "{{url('campaigns/campaign-updated')}}";
         addFormData(url , form , loader , redirectUrl , publishBtn , null );
 
     })

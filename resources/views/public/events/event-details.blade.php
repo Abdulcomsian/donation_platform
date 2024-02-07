@@ -191,7 +191,7 @@
                                     <div class="col-md-12">
                                         <div>
                                             <label for="basiInput" class="form-label">Country</label>
-                                            <select class="form-select" name="country" aria-label="Default select example">
+                                            <select class="form-select" name="country" id="country" aria-label="Default select example">
                                                 @foreach($countries as $country)
                                                     <option value="{{$country->id}}">{{$country->name}} </option>
                                                 @endforeach
@@ -247,7 +247,7 @@
                         </div>
                         <div class="d-inline float-end action-bttn gap-3 mt-4">
                             <button type="button" class="btn btn-default text-decoration-none btn-label  third-previous" data-previous="pills-gen-info-tab"><i class="ri-arrow-left-line label-icon align-middle fs-16 me-2"></i> Back</button>
-                            <button type="button" class="btn btn-success btn-label right ms-auto third-next" data-nexttab="pills-success-tab"><i class="ri-arrow-right-line label-icon align-middle fs-16 ms-2"></i>Submit</button>
+                            <button type="button" class="btn btn-success btn-label right ms-auto third-next submit-form" data-nexttab="pills-success-tab">Submit<i class="fas fa-circle-notch fa-spin mx-2 d-none submit-loader"></i></button>
                         </div>
                     </div>
                     <!-- end tab pane -->
@@ -361,65 +361,90 @@
             card.mount("#card-element");
         }
 
-        document.addEventListener("click" , async function(e){
+        document.querySelector(".submit-form").addEventListener("click" , async function(e){
             e.preventDefault();
             tot_iteration = $('input[id^="tot_iteration"]').val();
             var totalval = parseFloat(0);
             var arr = $("#array_name").val();
             var jsonArray = JSON.parse(arr);
-           const array = [];
+            let loader = this.classList.contains("submit-loader") ? this : this.querySelector(".submit-loader");
+            loader.classList.remove("d-none")
+            const array = [];
                 // ticket = tickets : [
-                    for (i = 0; i < tot_iteration; i++) {
-                        var hidden = $(`input[id^=basiInput` + '-' + i).val();
-                        var ticket_id = $(`input[id^=basiInput` + '-' + i).attr("data-ticket-id");
-                       array.push({
-                            id : ticket_id,
-                            quantity : hidden,
-                        });
-                   
-                        
-                    }
-                // ];
+            for (i = 0; i < tot_iteration; i++) {
+                let ticket_quantity = $(`input[id^=basiInput` + '-' + i).val();
+                let ticket_id = $(`input[id^=basiInput` + '-' + i).attr("data-ticket-id");
+                
+         
+                if(ticket_quantity > 0){
+                    array.push({
+                        id : ticket_id,
+                        quantity : ticket_quantity,
+                    });
+
+                }
             
-            const obj={
+            }
+
+
+            if(array.length == 0){
+                Swal.fire({ 
+                            icon: "error", 
+                            title: "Oops...", 
+                            text: "Please Add Atleast One Ticket"
+                        });
+                return;
+            }
+            
+            const data = {
                 email:$("#email").val(), 
                 first_name :$("#first_name").val(), 
                 last_name :$("#last_name").val(),
+                country : $("#country").val(),
                 subtotal:$("#table_sub_total").html(),
-                tickets : [
-                    array
-                ]
-            };
-            console.log(obj);
+                tickets : array,
+                _token : "{{csrf_token()}}"
+            }
+
             const { setupIntent, error} = await stripe.confirmCardSetup( '{{$clientSecret}}' , {
                                                                         payment_method : {
                                                                             card : card,
                                                                         }
                                                                 });
-            let loader = this.classList.contains("submit-loader") ? this : this.querySelector(".submit-loader");
-            let url = "{{route('purchase.ticket')}}";
-            loader.classList.remove("d-none")
-            $.ajax({
-                type : "POST",
-                url : url,
-                data : {
-                    setupIntent: setupIntent,
-                },
-                success:function(res){
-                    loader.classList.add("d-none")
-                    if(res.status){
-                        Swal.fire({
-                            text: res.msg,
-                            icon: "success"
-                        });
-                    }else{
-                        Swal.fire({ 
-                                    icon: "error", 
-                                    title: "Oops...", text: res.error
-                                });
+            if(setupIntent){
+
+                let url = "{{route('purchase.ticket')}}";
+                
+                $.ajax({
+                    type : "POST",
+                    url : url,
+                    data : {
+                        paymentMethod: setupIntent.payment_method,
+                        ...data
+                    },
+                    success:function(res){
+                        loader.classList.add("d-none")
+                        if(res.status){
+                            Swal.fire({
+                                text: res.msg,
+                                icon: "success"
+                            });
+                        }else{
+                            Swal.fire({ 
+                                icon: "error", 
+                                title: "Oops...", 
+                                text: res.error
+                            });
+                        }
                     }
-                }
-            })
+                })
+            }else{
+                            Swal.fire({ 
+                                        icon: "error", 
+                                        title: "Oops...", 
+                                        text: error.message
+                                    });
+            }
         })
     })
 

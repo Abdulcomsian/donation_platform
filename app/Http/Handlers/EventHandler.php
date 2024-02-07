@@ -1,7 +1,7 @@
 <?php 
 
 namespace App\Http\Handlers;
-use App\Models\{Event , Country , EventFrequency , EventCategory , EventTicket , User};
+use App\Models\{Event , Country , EventFrequency , EventCategory , EventTicket , User, UserTicket};
 use Illuminate\Support\Facades\DB;
 use Stripe\{ Stripe , SetupIntent , PaymentIntent};
 class EventHandler{
@@ -51,7 +51,7 @@ class EventHandler{
             $newTicket->save();
         }
 
-        return ['status' => true , 'msg' => 'Event Created Successfully'];
+        return ['status' => true , 'msg' => 'Event Created Successfully' , 'paramId' => $event->id];
     }
 
     public function editEvent($request)
@@ -86,9 +86,14 @@ class EventHandler{
         {
             if(isset($ticket->id) && !empty($ticket->id)){
 
-                $prevTicket = EventTicket::with('users')->where('event_id' , $ticket->id)->first();
+                $prevTicket = EventTicket::with('users')->where('id' , $ticket->id)->first();
 
-                if($ticket->quantity < $prevTicket->users->count()){
+                $purchasedTickets = 0;
+                foreach($prevTicket->users as $ticketPurchaser){
+                    $purchasedTickets += $ticketPurchaser->pivot->quantity;
+                }
+
+                if($ticket->quantity < $purchasedTickets){
                     DB::rollBack();
                     return ['status' => false , 'msg' => 'Already Ticket Sold More Then Quantity'];
                 }
@@ -130,7 +135,7 @@ class EventHandler{
 
         DB::commit();
 
-        return ['status' => true , 'msg' => 'Event Updated Successfully'];
+        return ['status' => true , 'msg' => 'Event Updated Successfully' , 'paramId' => $event->id];
 
     }
 
@@ -232,10 +237,12 @@ class EventHandler{
 
     public function purchaseTicket($request)
     {
-        $tickets =  json_decode($request->ticket);
+        $tickets =  $request->tickets;
         $first_name = $request->first_name;
         $last_name = $request->last_name;
         $email = $request->email;
+
+
         $user = User::where('email' , $email)->first();
         $subTotal = $request->subtotal;
 
@@ -256,25 +263,35 @@ class EventHandler{
 
         if($subTotal > 0)
         {
-            $intent = PaymentIntent::create([
-                            'amount' => $subTotal * 100,
-                            'currency' => 'usd',
-                            'payment_method' => $request->payment_method_id,
-                            'confirm' => true,
-                            'off_session' => true,
-                        ]);
+            Stripe::setApiKey(env('STRIPE_SECRET'));
 
+            if(!$user->hasStripeId())
+            {
+                $user->createAsStripeCustomer();
+            }
+
+            $user->updateDefaultPaymentMethod($request->paymentMethod);
+
+            $intent = PaymentIntent::create([
+                'amount' => $subTotal * 100,
+                'currency' => 'usd',
+                'customer' => $user->stripe_id,
+                'payment_method' => $request->paymentMethod,
+                'description' => 'Donation Platform Ticket Charge',
+                'confirmation_method' => 'automatic', 
+            ]);
+    
         }
 
         $purchaseTickets = []; 
 
         foreach($tickets as $ticket){
-            $ticketQuantity = $ticket->quantity;
-            $ticketId = $ticket->id;
+            $ticketQuantity = $ticket['quantity'];
+            $ticketId = $ticket['id'];
             $purchaseTickets[] = ["user_id" => $user->id , "ticket_id" => $ticketId , "quantity" => $ticketQuantity , "stripe_id" => isset($intent) ? $intent->id : null];
         }
 
-        EventTicket::insert($purchaseTickets);
+        UserTicket::insert($purchaseTickets);
 
         return ["status" => true , 'msg' => 'Ticket Purchased Successfully'];
 

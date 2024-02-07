@@ -21,6 +21,7 @@ Route::get('/', [App\Http\Controllers\Auth\LoginController::class, 'showLoginFor
 
 Route::group(['middleware' => ['preventBackHistory', 'auth']], function () {
     Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+    Route::post('/upload-organization-logo' , [DashboardController::class , 'uploadLogo'])->name('upload.logo');
     Route::get('/logout-user', [UserController::class, 'logoutUser'])->name('logout.user');
     
     Route::group(['prefix' => 'donations'] , function(){
@@ -39,8 +40,8 @@ Route::group(['middleware' => ['preventBackHistory', 'auth']], function () {
         Route::get('/edit-campaign/{id}', [CampaignController::class, 'editCampaignForm'])->name('campaign.edit.form');
         Route::get('/delete-campaign/{id}' , [CampaignController::class ,'deleteCampaign'])->name('delete.campaign');
         Route::post('/edit-campaign', [CampaignController::class, 'editCampaign'])->name('edit.campaign');
-        Route::get('/campaign-created', [CampaignController::class, 'campaignCreated'])->name('campaign.created');
-        Route::get('/campaign-updated', [CampaignController::class, 'campaignUpdated'])->name('campaign.updated');
+        Route::get('/campaign-created/{campaignId}', [CampaignController::class, 'campaignCreated'])->name('campaign.created');
+        Route::get('/campaign-updated/{campaignId}', [CampaignController::class, 'campaignUpdated'])->name('campaign.updated');
     });
 
     Route::get('/connect' , [StripeController::class , 'connectStripe'])->name('connect.with.stripe');
@@ -56,8 +57,8 @@ Route::group(['middleware' => ['preventBackHistory', 'auth']], function () {
         Route::post("create-event" , [EventsController::class , 'createEvent'])->name('create.event');
         Route::post("edit-event" , [EventsController::class , 'editEvent'])->name('edit.event');
         Route::get("delete-event" , [EventsController::class , 'deleteEvent'])->name('delete.event');
-        Route::get('event-created' , [EventsController::class , 'eventCreated'])->name('event.created');
-        Route::get('event-updated/{id?}', [EventsController::class, 'eventUpdated'])->name('event.updated');
+        Route::get('event-created/{eventId}' , [EventsController::class , 'eventCreated'])->name('event.created');
+        Route::get('event-updated/{eventId}', [EventsController::class, 'eventUpdated'])->name('event.updated');
         Route::post('purchase-ticket' , [EventsController::class , 'purchaseEventTicket'])->name('purchase.ticket');
     });
 

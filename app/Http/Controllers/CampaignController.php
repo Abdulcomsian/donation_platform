@@ -35,14 +35,16 @@ class CampaignController extends Controller
         return view('campaigns.edit')->with(['campaign' => $campaign]);
     }
 
-    public function campaignCreated()
+    public function campaignCreated(Request $request)
     {
-        return view('campaigns.campaign-created'); 
+        $campaignId = $request->campaignId;
+        return view('campaigns.campaign-created')->with(['campaignId' => $campaignId]); 
     }
 
-    public function campaignUpdated()
+    public function campaignUpdated(Request $request)
     {
-        return view('campaigns.campaign-updated'); 
+        $campaignId = $request->campaignId;
+        return view('campaigns.campaign-updated')->with(['campaignId' => $campaignId]); 
     }
 
     public function createCampaign(Request $request){

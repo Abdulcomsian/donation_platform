@@ -47,9 +47,7 @@ class CampaignHandler{
 
         CampaignPriceOption::insert($priceOptionsList);
 
-
-
-        return ['status' => true , 'msg' => 'Campaign Created Successfully'];
+        return ['status' => true , 'msg' => 'Campaign Created Successfully' , 'paramId' => $campaign->id];
     }
 
 
@@ -99,7 +97,7 @@ class CampaignHandler{
 
 
 
-        return ['status' => true , 'msg' => 'Campaign Updated Successfully'];
+        return ['status' => true , 'msg' => 'Campaign Updated Successfully' , 'paramId' => $campaign->id];
     }
 
     public function getCampaignWithId($id){

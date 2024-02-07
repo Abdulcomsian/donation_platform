@@ -27,7 +27,7 @@
                                     </div>
 
                                     <div class="form-control-button">
-                                        <button type="submit">Save<i class="fas fa-circle-notch fa-spin mx-2 d-none mailchimp-loader"></i></button>
+                                        <button type="submit">Save</button>
                                     </div>
                                 </div>
                             </div>
@@ -49,8 +49,8 @@
                 data-bs-parent="#accordionExample">
                 <div class="accordion-body">
                     <form method="post" action="{{route('integrate.mailchimp')}}" id="mailchimp-form">
-                        <input type="text" name="apikey" id="apikey" placeholder="Add Api Key">
-                        <button type="submit">Add</button>
+                        <input type="text" name="apiKey" id="apikey" placeholder="Add Api Key">
+                        <button type="submit">Add<i class="fas fa-circle-notch fa-spin mx-2 d-none mailchimp-loader"></i></button>
                     </form>
                 </div>
             </div>
@@ -84,6 +84,7 @@
         let form = new FormData(this);
         let loader = this.querySelector(".mailchimp-loader");
         let url = this.getAttribute('action');
+        console.log(this);
         addFormData(url , form , loader);
     })
 </script>

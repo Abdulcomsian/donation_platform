@@ -112,7 +112,7 @@ class UserHandler{
     }
 
 
-    function addNewUser($request){
+    public function addNewUser($request){
         $firstName = $request->first_name;
         $lastName = $request->last_name;
         $email = $request->email;
@@ -133,7 +133,7 @@ class UserHandler{
 
     }
 
-    function changeUserRole($request){
+    public function changeUserRole($request){
         $role = $request->role;
         $userId = $request->userId;
         $user = User::where('id' , $userId)->first();
@@ -150,12 +150,21 @@ class UserHandler{
 
     }
 
-    function deleteUser($request)
+    public function deleteUser($request)
     {
         $userId = $request->userId;
         User::where('id' , $userId)->delete();
         return ['status' => true , 'msg' => 'User Deleted Successfully'];
     }
+
+    public function getUserDetail()
+    {
+        $userId = auth()->user()->id;
+        $user = User::with('organizationProfile')->where('id' , $userId)->first();
+        return $user;
+    }
+
+
 
 
 }
