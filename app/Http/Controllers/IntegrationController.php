@@ -38,7 +38,7 @@ class IntegrationController extends Controller
             return response()->json($response);
 
         }catch(\Exception $e){
-            return response()->json(['status' => false , 'msg' => 'Something Went Wrong' , 'error' => $e->getMessage()]);
+            return response()->json(['status' => false , 'msg' => 'Something Went Wrong' , 'error' => 'You have entered wrong apikey, please check again']);
         }
     }
 }
