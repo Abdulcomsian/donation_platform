@@ -123,7 +123,7 @@
                                         <input type="hidden" value="{{number_format($ticket->price)}}" id="ticket_price-{{$tot_ticket-1}}" />
                                     </div>
                                     <div class="ticket-count">
-                                    <input type="number" data-ticket-id="{{$ticket->id}}" data-ticket-amount="{{$ticket->price}}" min="1" max="{{$ticket->quantity - $ticket->users->count()}}" class="form-control" id="basiInput-{{$tot_ticket-1}}" onchange="calc_price()">
+                                    <input type="number" value="0" data-ticket-id="{{$ticket->id}}" data-ticket-amount="{{$ticket->price}}" min="1" max="{{$ticket->quantity - $ticket->users->count()}}" class="form-control" id="basiInput-{{$tot_ticket-1}}" onchange="calc_price()">
                                 </div>
                                 </div>
                             @endif
@@ -173,19 +173,19 @@
                                     <div class="col-md-4">
                                         <div>
                                             <label for="basiInput" class="form-label">First Name</label>
-                                            <input type="text" name="first_name" class="form-control" id="basiInput">
+                                            <input type="text" required name="first_name" class="form-control required-field" id="basiInput">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div>
                                             <label for="basiInput" class="form-label">Last Name</label>
-                                            <input type="text" name="last_name" class="form-control" id="basiInput">
+                                            <input type="text" name="last_name" class="form-control required-field" id="basiInput">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div>
                                             <label for="basiInput" class="form-label">Email</label>
-                                            <input type="email" name="email" class="form-control" id="basiInput">
+                                            <input type="email" name="email" class="form-control required-field" id="basiInput">
                                         </div>
                                     </div>
                                     <div class="col-md-12">
@@ -204,7 +204,7 @@
                         <div class="d-inline float-end action-bttn gap-3 mt-4">
                             <button type="button" class="btn btn-default text-decoration-none btn-label second-previous" data-previous="pills-gen-info-tab"><i class="ri-arrow-left-line label-icon align-middle fs-16 me-2"></i> Back</button>
                             <div class="d-inline float-end action-bttn gap-3">
-                                <button type="button" class="btn btn-success btn-label right ms-auto second-next"><i class="ri-arrow-right-line label-icon align-middle fs-16 ms-2"></i>Next</button>
+                                <button type="button"  class="btn btn-success btn-label right ms-auto second-next"><i class="ri-arrow-right-line label-icon align-middle fs-16 ms-2 "></i>Next</button>
                             </div>
                         </div>
                     </div>
@@ -265,9 +265,42 @@
         $("#tab22").removeClass("active show");
         $("#tab11").addClass("active show");
     });
-    $(".second-next").click(function() {
-        $("#tab22").removeClass("active show");
-        $("#tab33").addClass("active show");
+    $(".second-next").click(function(e) {
+        e.preventDefault();
+        const err = [];
+        const requiredFields = document.querySelectorAll('.required-field');
+        requiredFields.forEach(element => {
+            element.classList.remove('is-invalid')
+            if(element.value === ''){
+                const errorObj = {};
+                errorObj[element.getAttribute('name')] = `${element.getAttribute('name')} is Required`
+                err.push(errorObj)
+                return
+            }
+            if(element.type == 'email'){
+                var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+                if(!regex.test(element.value)){
+                    const errorObj = {};
+                    errorObj[element.getAttribute('name')] = `${element.getAttribute('name')} is Required`
+                    err.push(errorObj)
+                    return
+                }
+            }
+          
+        })
+        if(err.length === 0){
+                // document.querySelector('.founder-form').submit()
+                $("#tab22").removeClass("active show");
+                $("#tab33").addClass("active show");
+            }else{
+                displayErrors(err)
+
+            }
+      
+            // $("#tab22").removeClass("active show");
+            // $("#tab33").addClass("active show");
+      
+        
     });
     $(".third-previous").click(function() {
         $("#tab33").removeClass("active show");
@@ -290,11 +323,16 @@
             var hidden = $(`input[id^=basiInput` + '-' + i).val();
             var int_val = $(`input[id^=ticket_price` + '-' + i).val();
             var ticket_name = $(`ticketname-{{$index}}` + '-' + i).text();
-            totalval = parseFloat(totalval) + (parseFloat(hidden) * parseFloat(int_val));
-            console.log(hidden, int_val, totalval);
-            if ($(`input[id^=basiInput` + '-' + i).val() === "" || hidden==0) {
-                break;
+           
+            if ($(`input[id^=basiInput` + '-' + i).val() === "" || hidden<=0) {
+                $(`input[id^=basiInput` + '-' + i).val(0);
+                continue;
             }
+            if(parseInt(hidden) > $(`input[id^=basiInput` + '-' + i).attr('max')){
+                $(`input[id^=basiInput` + '-' + i).val($(`input[id^=basiInput` + '-' + i).attr('max'));
+            }
+            totalval = parseFloat(totalval) + (parseFloat(hidden) * parseFloat(int_val));
+            // console.log(hidden, int_val, totalval, i);
             $(".tableBody").append(`<tr><td>${jsonArray[i]?.name}</td><td>Qty: ${hidden}</td><td class="text-end">$${hidden * int_val}</td></tr>`);
         }
         $(".tableBody").append(` <tr><td></td>
@@ -357,5 +395,17 @@
             })
         })
     })
+
+
+   
+    function displayErrors(errors){
+        const ErrorKeys = [];
+        for(let [index, key] of errors.entries()){
+            const [inputNameProp, inputNameValue] = Object.entries(key);
+            const erroredInput = document.querySelector(`input[name="${inputNameProp[0]}"]`);erroredInput.classList.add('is-invalid')
+            erroredInput.setAttribute('required', true)
+            if(index === 0) erroredInput.focus();
+        }
+    }
 </script>
 @endsection
