@@ -371,8 +371,9 @@
                 // ticket = tickets : [
                     for (i = 0; i < tot_iteration; i++) {
                         var hidden = $(`input[id^=basiInput` + '-' + i).val();
+                        var ticket_id = $(`input[id^=basiInput` + '-' + i).attr("data-ticket-id");
                        array.push({
-                            id : '123',
+                            id : ticket_id,
                             quantity : hidden,
                         });
                    
