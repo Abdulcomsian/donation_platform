@@ -173,19 +173,19 @@
                                     <div class="col-md-4">
                                         <div>
                                             <label for="basiInput" class="form-label">First Name</label>
-                                            <input type="text" required name="first_name" class="form-control required-field" id="basiInput">
+                                            <input type="text" required name="first_name" class="form-control required-field" id="first_name">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div>
                                             <label for="basiInput" class="form-label">Last Name</label>
-                                            <input type="text" name="last_name" class="form-control required-field" id="basiInput">
+                                            <input type="text" name="last_name" class="form-control required-field" id="last_name">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div>
                                             <label for="basiInput" class="form-label">Email</label>
-                                            <input type="email" name="email" class="form-control required-field" id="basiInput">
+                                            <input type="email" name="email" class="form-control required-field" id="email">
                                         </div>
                                     </div>
                                     <div class="col-md-12">
@@ -363,7 +363,33 @@
 
         document.addEventListener("click" , async function(e){
             e.preventDefault();
-
+            tot_iteration = $('input[id^="tot_iteration"]').val();
+            var totalval = parseFloat(0);
+            var arr = $("#array_name").val();
+            var jsonArray = JSON.parse(arr);
+           const array = [];
+                // ticket = tickets : [
+                    for (i = 0; i < tot_iteration; i++) {
+                        var hidden = $(`input[id^=basiInput` + '-' + i).val();
+                       array.push({
+                            id : '123',
+                            quantity : hidden,
+                        });
+                   
+                        
+                    }
+                // ];
+            
+            const obj={
+                email:$("#email").val(), 
+                first_name :$("#first_name").val(), 
+                last_name :$("#last_name").val(),
+                subtotal:$("#table_sub_total").html(),
+                tickets : [
+                    array
+                ]
+            };
+            console.log(obj);
             const { setupIntent, error} = await stripe.confirmCardSetup( '{{$clientSecret}}' , {
                                                                         payment_method : {
                                                                             card : card,
