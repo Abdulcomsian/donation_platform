@@ -77,7 +77,7 @@ class UserSeeder extends Seeder
         $user3->password = Hash::make("nouman123");
         $user3->save();
 
-        $user3->assignRole('non_profit_organization');
+        $user3->assignRole('owner');
 
         Address::create([
             'country_id' => 2,

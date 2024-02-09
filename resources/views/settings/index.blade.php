@@ -46,11 +46,13 @@
                             data-bs-target="#pills-organization" type="button" role="tab"
                             aria-controls="pills-organization" aria-selected="false">Organization</button>
                     </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="pills-admin-tab" data-bs-toggle="pill"
-                            data-bs-target="#pills-admin" type="button" role="tab" aria-controls="pills-admin"
-                            aria-selected="false">Admin</button>
-                    </li>
+                    @if(auth()->user()->hasRole('organization_admin') || auth()->user()->hasRole('owner') ) 
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="pills-admin-tab" data-bs-toggle="pill"
+                                data-bs-target="#pills-admin" type="button" role="tab" aria-controls="pills-admin"
+                                aria-selected="false">Admin</button>
+                        </li>
+                    @endif
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="pills-emails-tab" data-bs-toggle="pill"
                             data-bs-target="#pills-emails" type="button" role="tab" aria-controls="pills-emails"
@@ -71,9 +73,11 @@
                         aria-labelledby="pills-organization-tab">
                         @include('settings.organization')
                     </div>
-                    <div class="tab-pane fade" id="pills-admin" role="tabpanel" aria-labelledby="pills-admin-tab">
-                        @include('settings.admin')
-                    </div>
+                    @if(auth()->user()->hasRole('organization_admin') || auth()->user()->hasRole('owner') ) 
+                        <div class="tab-pane fade" id="pills-admin" role="tabpanel" aria-labelledby="pills-admin-tab">
+                            @include('settings.admin')
+                        </div>
+                    @endif
                     <div class="tab-pane fade" id="pills-emails" role="tabpanel" aria-labelledby="pills-emails-tab">
                         @include('settings.emails')
                     </div>
@@ -111,7 +115,7 @@
 
     function loadTable(){
         let table = document.getElementById("user-table");
-        let url = "{{route('user.list')}}";
+        let url = "{{route('organization.admin.list')}}";
         let columns = [
                         { data: 'name', name: 'name' },
                         { data: 'email', name: 'email' },

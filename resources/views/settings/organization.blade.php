@@ -10,7 +10,7 @@
                     <div class="form-control-type">
                         <label for="type">Organization Type</label>
                         <select name="type" id="type" required>
-                            <option value="" @if(!auth()->user()->hasRole('non_profit_organization') && !auth()->user()->hasRole('fundraiser') )selected @endif disabled>Select Organization</option>
+                            <option value="" @if(!auth()->user()->hasRole('OWNER') && !auth()->user()->hasRole('fundraiser') )selected @endif disabled>Select Organization</option>
                             @foreach($roles as $role)
                             <option value="{{$role->name}}" @if(($user->organizationProfile) && $user->organizationProfile->type == $role->name ) selected @endif>{{ucfirst(str_replace('_' , " " , $role->name))}}</option>
                             @endforeach

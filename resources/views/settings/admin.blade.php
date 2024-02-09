@@ -1,10 +1,10 @@
 <div class="admin">
     <div class="header">
-        
+        @if(auth()->user()->hasRole('owner'))
         <div class="add-btn-container">
-            <button type="button" data-bs-toggle="modal" data-bs-target="#add-user-modal"><span>+</span>&nbsp;Add
-                User</button>
+            <button type="button" data-bs-toggle="modal" data-bs-target="#add-user-modal"><span>+</span>&nbsp;Add User</button>
         </div>
+        @endif
     </div>
 
     <div class="data-table">
@@ -231,7 +231,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-container">
-                        <form method="POST" action="{{route('add.user')}}" id="user-form">
+                        <form method="POST" action="{{route('add.organization.admin')}}" id="user-form">
                             <div class="form-control-name">
                                 <label for="userName">First Name</label>
                                 <input type="text" id="userName" placeholder="" name="first_name" required>
@@ -246,8 +246,7 @@
                                     <input type="email" id="email" name="email" placeholder="johndoe@gmail.com" required>
                                     <select name="role" id="role" required>
 
-                                        <option value="{{\AppConst::NON_PROFIT_ORGANIZATION}}">Non profit organization</option>
-                                        <option value="{{\AppConst::FUNDRAISER}}">Fundraiser</option>
+                                        <option value="{{\AppConst::ORGANIZATION_ADMIN}}">Admin</option>
                                     </select>
                                 </div>
                             </div>

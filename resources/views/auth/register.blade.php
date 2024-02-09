@@ -368,7 +368,7 @@
 
     function updateType(item1 , item2){
         if(item1 == 'form-item-2'){
-            document.querySelector('input[name="type"]').value = '{{AppConst::NON_PROFIT_ORGANIZATION}}';
+            document.querySelector('input[name="type"]').value = '{{AppConst::OWNER}}';
         }else{
             document.querySelector('input[name="type"]').value = '{{AppConst::FUNDRAISER}}';
         }

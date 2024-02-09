@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Handlers;
-use App\Models\User;
-use Illuminate\Support\Facades\DB;
+
+use App\Models\{ User , OrganizationAdmin};
+use Illuminate\Support\Facades\{ DB , Hash , Crypt};
 use Yajra\DataTables\Facades\DataTables;
 
 class UserHandler{
@@ -44,22 +45,23 @@ class UserHandler{
         return $recurringDonarCount;
     }
 
-    public function userList()
+    public function adminList()
     {
-        // dd(User::with('roles')
-        // ->whereDoesntHave('roles', function ($query) {
-        //     $query->whereIn('name', ['admin', 'donor']);
-        // })
-        // ->orderBy('id', 'desc')
-        // ->get());
-        $users = User::with('roles')->whereDoesntHave('roles' , function($query){
-                                            $query->whereIn('name' , ['admin' , 'donor']);
-                                        })
-                                        ->orderBy('id' , 'desc')
-                                        ->get();
+        
+        
+        $user =  User::with('organizationProfile' , 'organizationAdmin')->where('id' , auth()->user()->id)->first();
+        $organizationId = []; 
+        $user->organizationProfile ? $organizationId[] = $user->organizationProfile->id : $organizationId = $user->organizationAdmin->pluck('id')->toArray();
+
+
+        $users = User::with('roles')
+                    ->whereHas('organizationAdmin' , function($query) use ($organizationId){
+                                    $query->whereIn('organization_id' , $organizationId);
+                    })
+                    ->where('id' , '!=' , auth()->user()->id)->get();
                                         
 
-        $roles = DB::table('roles')->whereIn( 'name' , ['fundraiser' , 'non_profit_organization'])->get();
+        $roles = DB::table('roles')->whereIn( 'name' , ['organization_admin'])->get();
 
 
         return DataTables::of($users)
@@ -72,7 +74,7 @@ class UserHandler{
               ->addColumn('role' , function($user) use ($roles){
                 $html = '<select name="role" class="role  form-control add-arrow" data-user-id="'.$user->id.'">';
                 $currentRole = $user->roles->first(function($role){
-                    if(in_array($role->name , ['fundraiser' , 'non_profit_organization'])){
+                    if(in_array($role->name , ['organization_admin'])){
                         return $role;
                     }
                 });
@@ -112,24 +114,28 @@ class UserHandler{
     }
 
 
-    public function addNewUser($request){
+    public function addNewAdmin($request){
         $firstName = $request->first_name;
         $lastName = $request->last_name;
         $email = $request->email;
         $role = $request->role;
-
-
         $user  = new User;
         $user->first_name = $firstName;
         $user->last_name = $lastName;
         $user->email = $email;
+        $user->activation_status = \AppConst::PENDING;
+
+        $organizationOwner = User::with('organizationProfile')->where('id' , auth()->user()->id)->first();
 
         if($user->save())
         {
-            $role == \AppConst::NON_PROFIT_ORGANIZATION ? $user->assignRole('non_profit_organization') : $user->assignRole('fundraiser');
+            $role == \AppConst::ORGANIZATION_ADMIN ? $user->assignRole('organization_admin') : $user->assignRole('fundraiser');
+            OrganizationAdmin::create([ 'organization_id' => $organizationOwner->organizationProfile->id , 'user_id' => $user->id]);
+            $user->assignRole('organization_admin');
+            \Mail::to($user->email)->send(new \App\Mail\OrganizationInvitationMail($user->id));
         }
 
-        return ['status' => true , 'msg' => 'User Created Successfully'];
+        return ['status' => true , 'msg' => 'Admin added successfully and invitation has been sent to user'];
 
     }
 
@@ -138,11 +144,11 @@ class UserHandler{
         $userId = $request->userId;
         $user = User::where('id' , $userId)->first();
         
-        if($role == 'non_profit_organization'){
+        if($role == 'owner'){
             $user->removeRole('fundraiser');
             $user->assignRole($role);
         }else{
-            $user->removeRole('non_profit_organization');
+            $user->removeRole('owner');
             $user->assignRole($role);
         }
 
@@ -162,6 +168,15 @@ class UserHandler{
         $userId = auth()->user()->id;
         $user = User::with('organizationProfile')->where('id' , $userId)->first();
         return $user;
+    }
+
+    public function setInvitationUserPassword($request)
+    {
+        $id = Crypt::decrypt($request->user_id);
+        $password = Hash::make($request->password);
+        User::where('id' , $id)->update(['password' => $password]);
+        \Toastr::success('Your password has been reset please verify' , 'Success' );
+        return redirect()->route('login');
     }
 
 

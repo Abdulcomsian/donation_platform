@@ -63,7 +63,7 @@ class SettingHandler{
 
     public function roles()
     {
-        return DB::table('roles')->whereIn( 'name', ['non_profit_organization' , 'fundraiser'])->get();
+        return DB::table('roles')->whereIn( 'name', ['OWNER' , 'fundraiser'])->get();
     }
 
     public function updateOrganization($request)

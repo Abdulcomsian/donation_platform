@@ -101,6 +101,7 @@ class DonationHandler{
         $amount = isset($request->frequency) ? PriceOption::where('id' , $request->price_option)->first()->amount : $request->amount;
         $connectedAccountId = Campaign::with('user')->where('id' , $campaignId)->first()->user->stripe_connected_id;
         
+
         $transfer = Transfer::create([
             'amount' => $amount * 100,
             'currency' => 'usd',
@@ -129,16 +130,18 @@ class DonationHandler{
                     $mailchimp->addSubscriber($campaignCreator->mailchimp->list_id , $request->email);
                 }
             }
+
+
     
     
             if($donarId){
                 return ['status' => true , 'msg' => 'Donation added successfully'];
             }else{
-                return ['status' => false , 'msg' => 'Something went wrong while adding donation'];
+                return ['status' => false , 'error' => 'Something Went Wrong' , 'msg' => 'Something went wrong while adding donation'];
             }
 
         }else{
-            return ['status' => false , 'msg' => 'Something went wrong while adding donation'];
+            return ['status' => false  , 'error' => 'Something Went Wrong' ,  'msg' => 'Something went wrong while adding donation'];
         }
 
 

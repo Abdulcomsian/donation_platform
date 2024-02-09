@@ -5,9 +5,10 @@ namespace App\Http;
 class AppConst{
 
     //reference table users
-    public const NON_PROFIT_ORGANIZATION = 1;
+    public const OWNER = 1;
     public const FUNDRAISER = 2;
     public const ADMIN = 3;
+    public const ORGANIZATION_ADMIN = 4;
     public const DONAR = 4;
     public const PENDING = 0; 
     public const ACTIVATED = 1;
@@ -29,7 +30,7 @@ class AppConst{
     public const CONTINUE = 1;
 
 
-    //reference table mailing
+    //reference table mailing and also use for template email
     public const DONATION_SUCCESS = 0;
     public const SUBSCRIPTION_SUCCESS = 1;
     public const SUBSCRIPTION_FAILED = 2;
@@ -43,6 +44,8 @@ class AppConst{
     public const EVENT_REGISTRATION = 10;
     public const EVENT_CANCELED = 11;
     public const EVENT_TICKET_REFUND = 12;
+
+
 
     
 }

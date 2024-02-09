@@ -71,8 +71,8 @@ Route::group(['middleware' => ['preventBackHistory', 'auth']], function () {
         Route::post("change-profile-setting",[SettingController::class , 'changeProfileSettings'])->name('change.profile');
         Route::post("change-password" , [SettingController::class , 'changePassword'])->name('change.password');
         Route::post("update-orgainzation" , [SettingController::class , 'updateOrganization'])->name('update.organization');
-        Route::post("get-user-list" , [UserController::class , 'getUserList'])->name('user.list');
-        Route::post("add-new-user" , [UserController::class , 'addUser'])->name('add.user');
+        Route::post("get-organization-admin-list" , [UserController::class , 'getOrganizationAdminList'])->name('organization.admin.list');
+        Route::post("add-organization-admin" , [UserController::class , 'addOrganizationAdmin'])->name('add.organization.admin');
         Route::post("update-role" , [UserController::class , 'updateRole'])->name('update.role');
         Route::post("delete-user" , [UserController::class , 'deleteUser'])->name('delete.user');
         Route::get('get-mailchimp-lists' , [IntegrationController::class , 'getMailchimpLists']);
@@ -93,6 +93,8 @@ Route::get('event-detail/{id}', [EventsController::class, 'getEventDetail'])->na
 Route::get('donate-now/{campaign_id}', [DonationController::class, "getDonationForm"])->name('get.donation.form');
 Route::post('add-donation' , [DonationController::class , 'addDonation'])->name('add.donation');
 Route::post('get-cities-list' , [HomeController::class , 'getCitiesList'])->name('get.country.cities');
+Route::get('invite-link/{id}' , [UserController::class , 'invitationPasswordReset'])->name('invitation.password.reset');
+Route::post('set-invitation-password' , [UserController::class , 'setInvitationPassword'])->name('set.invitation.password');
 
 
 // Route::any('{any}', function () {

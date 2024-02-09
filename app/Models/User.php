@@ -13,7 +13,7 @@ use Spatie\Permission\Traits\HasRoles;
 use Spatie\Permission\Traits\HasPermissions;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Cashier\Billable;
-use App\Models\{Address , MailchimpIntegration , Donation , EventTicket , OrganizationProfile , Mailing};
+use App\Models\{Address , MailchimpIntegration , Donation , EventTicket , OrganizationProfile , Mailing  };
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
@@ -100,6 +100,10 @@ class User extends Authenticatable
         return $this->hasMany(Event::class , 'user_id' , 'id');
     }
 
+    public function organizationAdmin()
+    {
+        return $this->belongsToMany(OrganizationProfile::class , 'organization_admin' , 'user_id' , 'organization_id');
+    }
  
     public function donationSuccessMail()
     {
@@ -110,7 +114,6 @@ class User extends Authenticatable
     {
         return $this->hasOne(Mailing::class , 'user_id' , 'id')->where('type' , \AppConst::SUBSCRIPTION_SUCCESS);;
     }
-
     
     public function subscriptionFailedMail()
     {

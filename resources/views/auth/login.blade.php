@@ -5,6 +5,9 @@
 @endsection
 
 @section('content')
+@if(session('toastr'))
+{!! session('toastr') !!}
+@endif
 <div class="login row">
     <div class="section-left col-md-7">
         <div class="section-1">
@@ -16,7 +19,7 @@
                     @csrf
                     <div class="form-control">
                         <label for="email">Email</label>
-                        <input type="email" id="email" name="email" placeholder="Your email address" required>
+                        <input type="email" id="email" value="{{old("email")}}" name="email" placeholder="Your email address" required>
                         @error('email')
                             <p><strong class="text-danger">{{$message}}</strong></p>
                         @enderror
