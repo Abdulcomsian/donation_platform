@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{UserController, HomeController, DonationController, CampaignController, DashboardController, EventsController, MailingController, MembershipController, SettingController, StripeController , IntegrationController};
+use App\Http\Controllers\{UserController, HomeController, DonationController, CampaignController, DashboardController, EventsController, MailingController, MembershipController, SettingController, StripeController , IntegrationController, PlanController};
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +35,7 @@ Route::group(['middleware' => ['preventBackHistory', 'auth']], function () {
     // Route::get('/donations', [DonationController::class, 'donations'])->name('donations');
     Route::group(['prefix' => 'campaigns'], function () {
         Route::get('/', [CampaignController::class, 'campaign'])->name('campaigns');
-        Route::get('/create-campaign', [CampaignController::class, 'getCampaignForm'])->name('campaign.create.form');
+        Route::get('/create-campaign', [CampaignController::class, 'getCampaignForm'])->name('campaign.create.form')->middleware(['authenticate.connected.account']);
         Route::post('create-campaign', [CampaignController::class, 'createCampaign'])->name('create.campaign');
         Route::get('/edit-campaign/{id}', [CampaignController::class, 'editCampaignForm'])->name('campaign.edit.form');
         Route::get('/delete-campaign/{id}' , [CampaignController::class ,'deleteCampaign'])->name('delete.campaign');
@@ -52,7 +52,7 @@ Route::group(['middleware' => ['preventBackHistory', 'auth']], function () {
 
     Route::group(['prefix' => 'events'], function () {
         Route::get("/", [EventsController::class, 'getEventList'])->name('events');
-        Route::get("/create-event", [EventsController::class, 'getEventForm'])->name('event.create.form');
+        Route::get("/create-event", [EventsController::class, 'getEventForm'])->name('event.create.form')->middleware(['authenticate.connected.account']);;
         Route::get('edit-event/{id}' , [EventsController::class , 'editEventForm'])->name('edit.event');
         Route::post("create-event" , [EventsController::class , 'createEvent'])->name('create.event');
         Route::post("edit-event" , [EventsController::class , 'editEvent'])->name('edit.event');
@@ -79,6 +79,12 @@ Route::group(['middleware' => ['preventBackHistory', 'auth']], function () {
         Route::post('integrate-mailchimp-api' , [IntegrationController::class , 'integrateMailchimp'])->name('integrate.mailchimp');
     });
 
+    Route::group(['prefix' => 'plans'] , function(){
+        Route::post('create-plan' , [PlanController::class , 'createPlan'])->name('create.plan');
+        Route::post('plan-list' , [PlanController::class , 'planList'])->name('plan.list');
+        Route::post('delete-plan' , [PlanController::class , 'deletePlan'])->name('delete.plan');
+    });
+
     Route::group(['prefix' => 'email'] , function(){
         Route::post('update-template' , [MailingController::class , 'updateUserMail'])->name('update.email.template');
     });
@@ -95,6 +101,11 @@ Route::post('add-donation' , [DonationController::class , 'addDonation'])->name(
 Route::post('get-cities-list' , [HomeController::class , 'getCitiesList'])->name('get.country.cities');
 Route::get('invite-link/{id}' , [UserController::class , 'invitationPasswordReset'])->name('invitation.password.reset');
 Route::post('set-invitation-password' , [UserController::class , 'setInvitationPassword'])->name('set.invitation.password');
+
+
+
+//public links for mailing-template
+
 
 
 // Route::any('{any}', function () {

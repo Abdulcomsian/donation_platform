@@ -18,4 +18,6 @@ class PriceOption extends Model
         return $this->belongTo(Campaign::class , 'campaign_id' , 'id');
     }
 
+
+
 }

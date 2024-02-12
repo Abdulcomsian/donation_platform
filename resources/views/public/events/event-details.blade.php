@@ -170,6 +170,7 @@
                                     Provide Your Details
                                 </h3>
                                 <div class="row">
+                                    <input type="hidden" name="event_id" id="event_id" value="{{$event->id}}">
                                     <div class="col-md-4">
                                         <div>
                                             <label for="basiInput" class="form-label">First Name</label>
@@ -401,6 +402,7 @@
                 first_name :$("#first_name").val(), 
                 last_name :$("#last_name").val(),
                 country : $("#country").val(),
+                event_id : $("#event_id").val(),
                 subtotal:$("#table_sub_total").html(),
                 tickets : array,
                 _token : "{{csrf_token()}}"

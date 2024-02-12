@@ -3,7 +3,7 @@
 namespace App\Http\Handlers;
 use App\Models\{Event , Country , EventFrequency , EventCategory , EventTicket , User, UserTicket};
 use Illuminate\Support\Facades\DB;
-use Stripe\{ Stripe , SetupIntent , PaymentIntent};
+use Stripe\{ Stripe , SetupIntent , PaymentIntent , Transfer};
 class EventHandler{
 
     public function createEvent($request)
@@ -241,6 +241,7 @@ class EventHandler{
         $first_name = $request->first_name;
         $last_name = $request->last_name;
         $email = $request->email;
+        $eventId = $request->event_id;
 
 
         $user = User::where('email' , $email)->first();
@@ -259,27 +260,37 @@ class EventHandler{
             $user->assignRole('ticket_purchaser');
         }
 
-        $intent = null;
+        $transfer = null;
 
         if($subTotal > 0)
         {
             Stripe::setApiKey(env('STRIPE_SECRET'));
 
-            if(!$user->hasStripeId())
-            {
-                $user->createAsStripeCustomer();
-            }
+            $connectedAccountId = Event::with('user')->where('id' , $eventId)->first()->user->stripe_connected_id;
+        
 
-            $user->updateDefaultPaymentMethod($request->paymentMethod);
-
-            $intent = PaymentIntent::create([
+            $transfer = Transfer::create([
                 'amount' => $subTotal * 100,
                 'currency' => 'usd',
-                'customer' => $user->stripe_id,
-                'payment_method' => $request->paymentMethod,
-                'description' => 'Donation Platform Ticket Charge',
-                'confirmation_method' => 'automatic', 
+                'destination' => $connectedAccountId,
             ]);
+
+            \Helper::sendMail(\AppConst::EVENT_REGISTRATION , $request->email);
+            // if(!$user->hasStripeId())
+            // {
+            //     $user->createAsStripeCustomer();
+            // }
+
+            // $user->updateDefaultPaymentMethod($request->paymentMethod);
+
+            // $intent = PaymentIntent::create([
+            //     'amount' => $subTotal * 100,
+            //     'currency' => 'usd',
+            //     'customer' => $user->stripe_id,
+            //     'payment_method' => $request->paymentMethod,
+            //     'description' => 'Donation Platform Ticket Charge',
+            //     'confirmation_method' => 'automatic', 
+            // ]);
     
         }
 
@@ -288,7 +299,7 @@ class EventHandler{
         foreach($tickets as $ticket){
             $ticketQuantity = $ticket['quantity'];
             $ticketId = $ticket['id'];
-            $purchaseTickets[] = ["user_id" => $user->id , "ticket_id" => $ticketId , "quantity" => $ticketQuantity , "stripe_id" => isset($intent) ? $intent->id : null];
+            $purchaseTickets[] = ["user_id" => $user->id , "ticket_id" => $ticketId , "quantity" => $ticketQuantity , "stripe_id" => isset($transfer) ? $transfer->id : null];
         }
 
         UserTicket::insert($purchaseTickets);

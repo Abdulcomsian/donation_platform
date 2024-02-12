@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\{ Campaign , PlatformPercentage , User ,PriceOption};
+use App\Models\{ Campaign , PlatformPercentage , User ,PriceOption , Plan};
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Donation extends Model
@@ -13,7 +13,7 @@ class Donation extends Model
 
     protected $table = 'donations';
     protected $primaryKey = 'id';
-    protected $fillable = [ 'percentage_id' , 'campaign_id' , 'donar_id' , 'price_option_id' , 'status' , 'amount' , 'transfer_id'];
+    protected $fillable = [ 'percentage_id' , 'plan_id' , 'campaign_id' , 'donar_id' , 'price_option_id' , 'status' , 'amount' , 'transfer_id'];
 
     public function campaign(){
         return $this->belongsTo(Campaign::class , 'campaign_id' , 'id');
@@ -29,6 +29,10 @@ class Donation extends Model
 
     public function price(){
         return $this->belongsTo(PriceOption::class , 'price_option_id' , 'id');
+    }
+
+    public function plan(){
+        return $this->belongsTo(Plan::class , 'plan_id' , 'id');
     }
 
 

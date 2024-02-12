@@ -25,9 +25,9 @@
                         <div class="amount-item">
                             <label for="amount">Select or Enter Amount</label>
                             <div class="row static-amount">
-                                @foreach($campaign->priceOptions as $price)
+                                @foreach($userPlans as $plan)
                                 <div class="col-md-3 donation-amount-box">
-                                    <div class="item donation-amount" data-donation-amount="{{$price->amount}}" data-price-option-id="{{$price->id}}">{{$price->amount}}</div>
+                                    <div class="item donation-amount" data-donation-amount="{{$plan->amount}}" data-plan-id="{{$plan->id}}">{{$plan->amount}}</div>
                                 </div>
                                 @endforeach
                             </div>
@@ -266,12 +266,12 @@ function changeActive(item1, item2) {
 
     function checkRecurringOption(){
         let errors = null;
-        let amount = priceOption = null; 
+        let amount = plan = null; 
         let recurring = document.getElementById("recurring");
         if(recurring.classList.contains("active")){
-            let activePriceOption = document.querySelector(".donation-amount-box.active");
+            let activePlan = document.querySelector(".donation-amount-box.active");
             let frequency = document.querySelector(".frequency-select");
-            activePriceOption === null ? errors = "Please select price option for recursive transaction" : priceOption = activePriceOption.querySelector(".donation-amount").dataset.priceOptionId;
+            activePlan === null ? errors = "Please select plan for recursive transaction" : plan = activePlan.querySelector(".donation-amount").dataset.planId;
             frequency.value == "" && (errors = "Please select plan");
         }else{
             let chargeAmount = document.getElementById("amount");
@@ -358,7 +358,7 @@ function changeActive(item1, item2) {
             let loader = document.querySelector(".submit-loader");
             let submitBtn = this.querySelector(".donate.donate-btn");
             form.append('amount' , amount);
-            form.append('price_option' , priceOption);
+            form.append('plan_id' , plan);
             form.append('payment_method' , setupIntent.payment_method);
             addFormData(url , form , loader , null , submitBtn , null)
 
