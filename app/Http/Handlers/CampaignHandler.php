@@ -108,9 +108,9 @@ class CampaignHandler{
     public function getCampaignList(){
         $campaigns = null;
         if(auth()->user()->hasRole('admin')){
-            $campaigns = Campaign::orderBy('id' , 'desc')->paginate(10);
+            $campaigns = Campaign::with('donations.plan')->orderBy('id' , 'desc')->paginate(10);
         }else{
-            $campaigns = Campaign::where('user_id' , auth()->user()->id)->orderBy('id' , 'desc')->paginate(10);
+            $campaigns = Campaign::with('donations.plan')->where('user_id' , auth()->user()->id)->orderBy('id' , 'desc')->paginate(10);
         }
         return $campaigns;
     }

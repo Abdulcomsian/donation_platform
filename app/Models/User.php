@@ -13,9 +13,8 @@ use Spatie\Permission\Traits\HasRoles;
 use Spatie\Permission\Traits\HasPermissions;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Cashier\Billable;
-use App\Models\{Address , MailchimpIntegration , Donation , EventTicket , OrganizationProfile , Mailing  };
+use App\Models\{Address , MailchimpIntegration , Donation , EventTicket , OrganizationProfile , Mailing , MembershipPlan };
 use Illuminate\Database\Eloquent\SoftDeletes;
-
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable , Billable , HasRoles , HasPermissions , SoftDeletes;
@@ -100,74 +99,89 @@ class User extends Authenticatable
         return $this->hasMany(Event::class , 'user_id' , 'id');
     }
 
+    public function annuallyMembershipPlan()
+    {
+        return $this->hasMany(MembershipPlan::class , 'user_id' , 'id')->where('type' , AppConst::ANNUALLY_PLAN);
+    }
+
+    public function monthlyMembershipPlan()
+    {
+        return $this->hasMany(MembershipPlan::class , 'user_id' , 'id')->where('type' , AppConst::MONTHLY_PLAN);
+    }
+
+    public function subscriptionPlans()
+    {
+        return $this->belongsToMany(MembershipPlan::class , 'membership_subscribers' , 'member_id' , 'plan_id')->withPivot('subscription_id');
+    }
+
     public function organizationAdmin()
     {
         return $this->belongsToMany(OrganizationProfile::class , 'organization_admin' , 'user_id' , 'organization_id');
     }
  
     public function donationSuccessMail()
-    {
-        return $this->hasOne(Mailing::class , 'user_id' , 'id')->where('type' , \AppConst::DONATION_SUCCESS);
+    { 
+        return $this->hasOne(Mailing::class , 'user_id' , 'id')->where('type' , AppConst::DONATION_SUCCESS);
     }
     
     public function subscriptionSuccessMail()
     {
-        return $this->hasOne(Mailing::class , 'user_id' , 'id')->where('type' , \AppConst::SUBSCRIPTION_SUCCESS);;
+        return $this->hasOne(Mailing::class , 'user_id' , 'id')->where('type' , AppConst::SUBSCRIPTION_SUCCESS);;
     }
     
     public function subscriptionFailedMail()
     {
-        return $this->hasOne(Mailing::class , 'user_id' , 'id')->where('type' , \AppConst::SUBSCRIPTION_FAILED);;
+        return $this->hasOne(Mailing::class , 'user_id' , 'id')->where('type' , AppConst::SUBSCRIPTION_FAILED);;
     }
     
     public function donationRefundMail()
     {
-        return $this->hasOne(Mailing::class , 'user_id' , 'id')->where('type' , \AppConst::DONATION_REFUND);;
+        return $this->hasOne(Mailing::class , 'user_id' , 'id')->where('type' , AppConst::DONATION_REFUND);;
     }
     
     public function subscriptionCanceledMail()
     {
-        return $this->hasOne(Mailing::class , 'user_id' , 'id')->where('type' , \AppConst::DONATION_SUBSCRIPTION_CANCELED);;
+        return $this->hasOne(Mailing::class , 'user_id' , 'id')->where('type' , AppConst::DONATION_SUBSCRIPTION_CANCELED);;
     }
     
     public function membershipSubscriptionMail()
     {
-        return $this->hasOne(Mailing::class , 'user_id' , 'id')->where('type' , \AppConst::NEW_MEMBERSHIP);;
+        return $this->hasOne(Mailing::class , 'user_id' , 'id')->where('type' , AppConst::NEW_MEMBERSHIP);;
     }
     
     public function membershipRenewelMail()
     {
-        return $this->hasOne(Mailing::class , 'user_id' , 'id')->where('type' , \AppConst::MEMBERSHIP_RENEWEL_SUCCESS);;
+        return $this->hasOne(Mailing::class , 'user_id' , 'id')->where('type' , AppConst::MEMBERSHIP_RENEWEL_SUCCESS);;
     }
     
     public function membershipCanceledMail()
     {
-        return $this->hasOne(Mailing::class , 'user_id' , 'id')->where('type' , \AppConst::MEMBERSHIP_CANCELED);;
+        return $this->hasOne(Mailing::class , 'user_id' , 'id')->where('type' , AppConst::MEMBERSHIP_CANCELED);;
     }
    
     public function membershipRenewelFailedMail()
     {
-        return $this->hasOne(Mailing::class , 'user_id' , 'id')->where('type' , \AppConst::MEMBERSHIP_RENEWEL_FAILED);;
+        return $this->hasOne(Mailing::class , 'user_id' , 'id')->where('type' , AppConst::MEMBERSHIP_RENEWEL_FAILED);;
     }
    
     public function membershipRefundMail()
     {
-        return $this->hasOne(Mailing::class , 'user_id' , 'id')->where('type' , \AppConst::MEMBERSHIP_REFUND);;
+        return $this->hasOne(Mailing::class , 'user_id' , 'id')->where('type' , AppConst::MEMBERSHIP_REFUND);;
     }
    
     public function eventRegistrationMail()
     {
-        return $this->hasOne(Mailing::class , 'user_id' , 'id')->where('type' , \AppConst::EVENT_REGISTRATION);;
+        return $this->hasOne(Mailing::class , 'user_id' , 'id')->where('type' , AppConst::EVENT_REGISTRATION);;
     }
     
     public function eventCanceledMail()
     {
-        return $this->hasOne(Mailing::class , 'user_id' , 'id')->where('type' , \AppConst::EVENT_CANCELED);;
+        return $this->hasOne(Mailing::class , 'user_id' , 'id')->where('type' , AppConst::EVENT_CANCELED);;
     }
     
     public function eventTicketRefundMail()
     {
-        return $this->hasOne(Mailing::class , 'user_id' , 'id')->where('type' , \AppConst::EVENT_TICKET_REFUND);;
+        return $this->hasOne(Mailing::class , 'user_id' , 'id')->where('type' , AppConst::EVENT_TICKET_REFUND);;
     }
 
     

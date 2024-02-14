@@ -47,5 +47,9 @@ class AppConst{
 
 
 
+    //reference table membership_plan
+    public const MONTHLY_PLAN = 1;
+    public const ANNUALLY_PLAN = 2;
+
     
 }

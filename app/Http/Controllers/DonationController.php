@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Handlers\CampaignHandler;
 use Illuminate\Http\Request;
 use App\Http\Handlers\DonationHandler;
+use App\Models\Campaign;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
-use Stripe\SetupIntent;
+use Stripe\{SetupIntent , Account};
 use Stripe\Stripe;
 
 
@@ -58,11 +59,14 @@ class DonationController extends Controller
         try{
             $campaignId = $request->campaign_id;
             [$campaign , $countries , $userPlans] = $this->donationHandler->getCampaignDonation($campaignId);
+            $connectedId  = $this->donationHandler->getConnectedId($campaignId);
             Stripe::setApiKey(env('STRIPE_SECRET'));
-            $setupIntent = SetupIntent::create(['usage' => 'on_session']);
-            return view('public.donate.card')->with(['campaign' => $campaign , 'countries' => $countries , 'clientSecret' => $setupIntent->client_secret , 'userPlans' => $userPlans]);
+            // $account = Account::retrieve('acct_1OironBUcsb6xhsC');
+            $setupIntent = SetupIntent::create(['usage' => 'on_session'] , ['stripe_account' => $connectedId]);
+            return view('public.donate.card')->with(['campaign' => $campaign , 'countries' => $countries , 'clientSecret' => $setupIntent->client_secret ,'userPlans' => $userPlans , 'connectedId' => $connectedId]);
             
         }catch(\Exception $e){
+            dd($e->getMessage());
             return redirect()->back();
         }
     }

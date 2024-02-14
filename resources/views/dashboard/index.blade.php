@@ -268,9 +268,9 @@
                         @php
                         $donationAmount = $totalAmount = 0;
                         
-                        if($donation->price){
-                                $donationAmount += $donation->platformPercentage->percentage > 0 ?  (($donation->price->amount) - (($donation->platformPercentage->percentage / 100) * $donation->price->amount)) : $donation->price->amount;
-                                $totalAmount +=  $donation->price->amount;
+                        if($donation->plan){
+                                $donationAmount += $donation->platformPercentage->percentage > 0 ?  (($donation->plan->amount) - (($donation->platformPercentage->percentage / 100) * $donation->plan->amount)) : 0;
+                                $totalAmount +=  $donation->plan->amount;
                             }else{
                                 $donationAmount += $donation->platformPercentage->percentage > 0 ?  (($donation->amount) - (($donation->platformPercentage->percentage / 100) * $donation->amount)) : $donation->amount;
                                 $totalAmount += $donation->amount;

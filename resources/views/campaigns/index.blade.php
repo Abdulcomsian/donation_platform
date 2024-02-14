@@ -74,7 +74,15 @@
                                             fill="#CBCBCB" />
                                     </svg>
                                 </div>
-                                <div class="text">{{number_format($campaign->donations->sum('amount'))}} Raised</div>
+                                @php
+                                    $raisedAmount = 0;
+                                    foreach ($campaign->donations as $index => $donation) {
+                                        $raisedAmount += isset($donation->plan_id) ? $donation->plan->amount : $donation->amount;
+                                    }
+
+                                @endphp
+
+                                <div class="text">{{number_format($raisedAmount)}} Raised</div>
                             </div>
                         </div>
                     </div>
@@ -86,12 +94,9 @@
                             @if($campaign->campaign_goal)
                             <div class="progress-bar-element">
                                 @php
-                                $progress = null;
-                                if($campaign->donations->sum('amount') > 0){
-                                $progress = $campaign->donations->sum('amount') > $campaign->amount ? 100 :
-                                ceil((($campaign->donations->sum('amount'))/$campaign->amount) * 100) ;
-                                }else{
                                 $progress = 0;
+                                if($raisedAmount > 0){
+                                    $progress = $raisedAmount > $campaign->amount ? 100 : ceil((($raisedAmount)/$campaign->amount) * 100) ;
                                 }
                                 @endphp
                                 <progress id="fileProgress" value="{{$progress == 0 ? 1 : $progress}}"

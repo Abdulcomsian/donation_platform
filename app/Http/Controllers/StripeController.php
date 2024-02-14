@@ -19,7 +19,7 @@ class StripeController extends Controller
         try{
             if(!$user->hasStripeId())
             {
-                $user->createAsStripeCustomer([ 'name' =>'Shakir Faisal' , 'email' => 'shakirfaisalktk873@gmail.com']);
+                $user->createAsStripeCustomer();
                 \Toastr::success('User Connected Successfully' , 'Success!');
                 return redirect()->back();
             }else{
@@ -60,7 +60,14 @@ class StripeController extends Controller
 
         $redirectUrl  = route('stripe.connect.callback');
     
-        $account =   Account::create(['type' => 'express']);
+        // $account =   Account::create(['type' => 'express']);
+
+        $account =   Account::create(['type' => 'custom' , 
+                                        'capabilities' => [
+                                            'card_payments' => ['requested' => true],
+                                            'transfers' => ['requested' => true],
+                                        ]
+                                    ]);
     
         if($account){
             $user = User::where('id' , auth()->user()->id)->first();
@@ -86,10 +93,12 @@ class StripeController extends Controller
    }
 
    public function handleConnectCallback(){
-
+   
     $account = Account::retrieve(auth()->user()->stripe_connected_id);
-    
-    if($account->payouts_enabled && $account->charges_enabled){
+    // dd($account , $account->payouts_enabled , $account->charges_enabled );
+
+    // $account->payouts_enabled && $account->charges_enabled
+    if($account->charges_enabled){
         $user = User::where('id' , auth()->user()->id)->first();
         $user->stripe_is_verified = 1;
         $user->save();

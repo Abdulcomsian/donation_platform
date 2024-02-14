@@ -18,7 +18,7 @@ class EventMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct($eventType)
+    public function __construct($eventType , $userId)
     {
         $this->eventType = $eventType;
         $this->user = User::with(
@@ -26,7 +26,7 @@ class EventMail extends Mailable
                                 'subscriptionCanceledMail' , 'membershipSubscriptionMail' , 'membershipRenewelMail' , 'membershipCanceledMail',
                                 'membershipRenewelFailedMail' , 'membershipRefundMail' , 'eventRegistrationMail' , 'eventCanceledMail' , 'eventTicketRefundMail'   
                             )
-                            ->where('id' , auth()->user()->id)
+                            ->where('id' , $userId)
                             ->first(); 
     }
 

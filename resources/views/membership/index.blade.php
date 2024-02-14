@@ -39,9 +39,34 @@
                         <div class="heading">
                             Monthly Memberships
                         </div>
-
+                        
                         <div class="form-container" id="monthly">
+                            @foreach($monthlyPlans as $plan)
+                            <div class="tier wrapper-element monthly-plan">
+                                <input type="hidden" name="plan_id" value="{{$plan_id}}" readonly>
+                                <div class="name">
+                                    <input type="text" id="name" name="name" placeholder="Tier Name" value="{{$plan->name}}" readonly>
+                                </div>
+
+                                <div class="currency-input">
+                                    <span>$</span>
+                                    <input type="number" step="0.01" inputmode="decimal" name="amount" value="{{$plan->amount}}" min="0" readonly placeholder="0">
+                                </div>
+
+                                <div class="remove" onclick="removeMontlyTier(event)">
+                                    <button type="button">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none">
+                                            <path
+                                                d="M13.0436 11.5919L17.3112 15.8595C17.5137 16.0616 17.6277 16.336 17.6279 16.6222C17.6282 16.9084 17.5147 17.1829 17.3125 17.3855C17.1104 17.588 16.836 17.7019 16.5498 17.7022C16.2636 17.7024 15.9891 17.589 15.7865 17.3868L11.519 13.1192L7.25138 17.3868C7.04884 17.5893 6.77414 17.7031 6.48771 17.7031C6.20128 17.7031 5.92658 17.5893 5.72404 17.3868C5.5215 17.1843 5.40771 16.9096 5.40771 16.6231C5.40771 16.3367 5.5215 16.062 5.72404 15.8595L9.99162 11.5919L5.72404 7.3243C5.5215 7.12176 5.40771 6.84706 5.40771 6.56063C5.40771 6.2742 5.5215 5.9995 5.72404 5.79696C5.92658 5.59442 6.20128 5.48064 6.48771 5.48064C6.77414 5.48064 7.04884 5.59442 7.25138 5.79696L11.519 10.0645L15.7865 5.79696C15.9891 5.59442 16.2638 5.48064 16.5502 5.48064C16.8366 5.48064 17.1113 5.59442 17.3139 5.79696C17.5164 5.9995 17.6302 6.2742 17.6302 6.56063C17.6302 6.84706 17.5164 7.12176 17.3139 7.3243L13.0436 11.5919Z"
+                                                fill="#949494" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            @endforeach
                             <div class="tier wrapper-element">
+                                
                                 <div class="name">
                                     <input type="text" id="name" name="name" placeholder="Tier Name">
                                 </div>
@@ -76,6 +101,33 @@
                         </div>
 
                         <div class="form-container" id="annualy">
+
+                            @foreach($annuallyPlans as $plan)
+                            <div class="tier wrapper-element annually-plan">
+                                <input type="hidden" name="plan_id" value="{{$plan_id}}" readonly>
+                                <div class="name">
+                                    <input type="text" id="name" name="name" placeholder="Tier Name" value="{{$plan->name}}" readonly>
+                                </div>
+
+                                <div class="currency-input">
+                                    <span>$</span>
+                                    <input type="number" step="0.01" inputmode="decimal" name="amount" min="0" placeholder="0" value="{{$plan->amount}}" readonly>
+                                </div>
+
+                                <div class="remove" onclick="removeAnnualyTier(event)">
+                                    <button type="button delete-plan-btn" data-plan-id="{{$plan->id}}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none">
+                                            <path
+                                                d="M13.0436 11.5919L17.3112 15.8595C17.5137 16.0616 17.6277 16.336 17.6279 16.6222C17.6282 16.9084 17.5147 17.1829 17.3125 17.3855C17.1104 17.588 16.836 17.7019 16.5498 17.7022C16.2636 17.7024 15.9891 17.589 15.7865 17.3868L11.519 13.1192L7.25138 17.3868C7.04884 17.5893 6.77414 17.7031 6.48771 17.7031C6.20128 17.7031 5.92658 17.5893 5.72404 17.3868C5.5215 17.1843 5.40771 16.9096 5.40771 16.6231C5.40771 16.3367 5.5215 16.062 5.72404 15.8595L9.99162 11.5919L5.72404 7.3243C5.5215 7.12176 5.40771 6.84706 5.40771 6.56063C5.40771 6.2742 5.5215 5.9995 5.72404 5.79696C5.92658 5.59442 6.20128 5.48064 6.48771 5.48064C6.77414 5.48064 7.04884 5.59442 7.25138 5.79696L11.519 10.0645L15.7865 5.79696C15.9891 5.59442 16.2638 5.48064 16.5502 5.48064C16.8366 5.48064 17.1113 5.59442 17.3139 5.79696C17.5164 5.9995 17.6302 6.2742 17.6302 6.56063C17.6302 6.84706 17.5164 7.12176 17.3139 7.3243L13.0436 11.5919Z"
+                                                fill="#949494" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            @endforeach
+
+
                             <div class="tier wrapper-element">
                                 <div class="name">
                                     <input type="text" id="name" name="name" placeholder="Tier Name">
@@ -106,9 +158,9 @@
                     </div>
 
                     <div class="submit-container">
-                        <div class="create">
+                        {{-- <div class="create">
                             <button type="submit">Create Membership Campaign</button>
-                        </div>
+                        </div> --}}
                         <div class="save">
                             <button type="submit">Save</button>
                         </div>

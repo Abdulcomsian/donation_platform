@@ -20,6 +20,7 @@ class RolesSeeder extends Seeder
             ['name' => 'admin'],
             ['name' => 'donar'],
             ['name' => 'ticket_purchaser'],
+            ['name' => 'membership_subscriber'],
         ];
         Role::insert($roles);
     }

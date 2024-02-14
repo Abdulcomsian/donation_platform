@@ -6,9 +6,9 @@ use App\Mail\EventMail;
 
 class Helper{
 
-    public static function sendMail($eventType ,  $email)
+    public static function sendMail($eventType ,  $email , $userId)
     {
-        Mail::to($email)->send(new EventMail($eventType));
+        Mail::to($email)->send(new EventMail($eventType , $userId));
     }
 
 }

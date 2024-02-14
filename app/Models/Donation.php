@@ -13,7 +13,7 @@ class Donation extends Model
 
     protected $table = 'donations';
     protected $primaryKey = 'id';
-    protected $fillable = [ 'percentage_id' , 'plan_id' , 'campaign_id' , 'donar_id' , 'price_option_id' , 'status' , 'amount' , 'transfer_id'];
+    protected $fillable = [ 'percentage_id' , 'plan_id' , 'campaign_id' , 'donar_id' , 'price_option_id' , 'status' , 'amount' , 'payment_id'];
 
     public function campaign(){
         return $this->belongsTo(Campaign::class , 'campaign_id' , 'id');
