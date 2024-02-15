@@ -177,7 +177,7 @@
                         </div>
                         <div class="right-text">
                             <div class="top">Total Sold Tickets</div>
-                            <div class="bottom">50</div>
+                            <div class="bottom">{{$purchaseTicketCount}}</div>
                         </div>
                     </div>
                     <div class="right">
@@ -266,18 +266,18 @@
                         </td>
                         @endif
                         @php
-                        $donationAmount = $totalAmount = 0;
+                        $feeAmount = $totalAmount = 0;
                         
                         if($donation->plan){
-                                $donationAmount += $donation->platformPercentage->percentage > 0 ?  (($donation->plan->amount) - (($donation->platformPercentage->percentage / 100) * $donation->plan->amount)) : 0;
+                                $feeAmount += $donation->platformPercentage->percentage > 0 ?  (($donation->plan->amount) - (($donation->platformPercentage->percentage / 100) * $donation->plan->amount)) : 0;
                                 $totalAmount +=  $donation->plan->amount;
                             }else{
-                                $donationAmount += $donation->platformPercentage->percentage > 0 ?  (($donation->amount) - (($donation->platformPercentage->percentage / 100) * $donation->amount)) : $donation->amount;
+                                $feeAmount += $donation->platformPercentage->percentage > 0 ?  (($donation->amount) - (($donation->platformPercentage->percentage / 100) * $donation->amount)) : 0;
                                 $totalAmount += $donation->amount;
                             }
                         @endphp
                         <td class="amount">${{ceil($totalAmount)}}</td>
-                        <td class="fee-recoverd">${{ceil($donationAmount)}}</td>
+                        <td class="fee-recoverd">${{ceil($feeAmount)}}</td>
                         @php
                             $date = \Carbon\Carbon::create($donation->created_at);
                         @endphp

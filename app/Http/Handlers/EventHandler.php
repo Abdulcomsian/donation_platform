@@ -275,7 +275,7 @@ class EventHandler{
                 'destination' => $connectedAccountId,
             ]);
 
-            \Helper::sendMail(\AppConst::EVENT_REGISTRATION , $request->email);
+            \Helper::sendMail(\AppConst::EVENT_REGISTRATION , $request->email , $user->id);
             // if(!$user->hasStripeId())
             // {
             //     $user->createAsStripeCustomer();
@@ -312,4 +312,30 @@ class EventHandler{
     {
         
     }
+
+    public function totalTicketCount()
+    {
+        $eventTicketCount = 0;
+        $query = EventTicket::query();
+
+        $query->when(!auth()->user()->hasRole('admin') , function($query1) {
+            $query1->whereHas('event' , function($query2){
+                $query2->where('user_id' , auth()->user()->id); 
+            });
+        });
+
+        $eventTickets = $query->with('users')->get();
+
+        foreach($eventTickets as $ticket)
+        {
+            foreach($ticket->users as $user)
+            {
+                $eventTicketCount += $user->pivot->quantity;
+            }
+        }
+        
+        return $eventTicketCount;
+
+    }
+
 }

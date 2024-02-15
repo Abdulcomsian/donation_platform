@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use App\Http\AppConst;
 use Illuminate\Database\Seeder;
-use App\Models\{User , Address};
+use App\Models\{User , Address , OrganizationProfile};
 use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
@@ -76,6 +76,8 @@ class UserSeeder extends Seeder
         $user3->email = "mnoumanb@gmail.com";
         $user3->password = Hash::make("nouman123");
         $user3->save();
+
+        OrganizationProfile::create([ 'name' => 'org1' , 'user_id' => $user3->id ]);
 
         $user3->assignRole('owner');
 

@@ -2,7 +2,10 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{UserController, HomeController, DonationController, CampaignController, DashboardController, EventsController, MailingController, MembershipController, SettingController, StripeController , IntegrationController, PlanController};
+use App\Http\Controllers\{
+                            UserController, HomeController, DonationController, CampaignController, 
+                            DashboardController, EventsController, MailingController, MembershipController, 
+                            SettingController, StripeController , IntegrationController, PlanController};
 
 /*
 |--------------------------------------------------------------------------
@@ -64,6 +67,8 @@ Route::group(['middleware' => ['preventBackHistory', 'auth']], function () {
 
     Route::group(['prefix' => 'membership'], function () {
         Route::get("/", [MembershipController::class, 'membership'])->name('membership');
+        Route::post('delete-membership-plan' , [MembershipController::class , 'removeMembership'])->name('delete.membership');
+        Route::post('create-membership-plan' , [MembershipController::class , 'createMembershipPlan'])->name('create.membership');
     });
 
     Route::group(['prefix' => 'settings'], function () {
@@ -101,12 +106,12 @@ Route::post('add-donation' , [DonationController::class , 'addDonation'])->name(
 Route::post('get-cities-list' , [HomeController::class , 'getCitiesList'])->name('get.country.cities');
 Route::get('invite-link/{id}' , [UserController::class , 'invitationPasswordReset'])->name('invitation.password.reset');
 Route::post('set-invitation-password' , [UserController::class , 'setInvitationPassword'])->name('set.invitation.password');
+Route::get('membership-list/{id}' , [MembershipController::class , 'getMembershipList'])->name('get.membership.list');
+Route::post('subscribe-membership' , [MembershipController::class , 'subscribeMembership'])->name('subscribe.membership');
 
 
 
 //public links for mailing-template
-
-
 Route::get('donation-success' , [MailingController::class , 'donationSuccess']);
 Route::get('subscription-success' , [MailingController::class , 'subscriptionSuccess']);
 Route::get('subscription-failed' , [MailingController::class , 'subscriptionFailed']);

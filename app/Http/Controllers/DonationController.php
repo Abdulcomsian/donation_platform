@@ -66,7 +66,6 @@ class DonationController extends Controller
             return view('public.donate.card')->with(['campaign' => $campaign , 'countries' => $countries , 'clientSecret' => $setupIntent->client_secret ,'userPlans' => $userPlans , 'connectedId' => $connectedId]);
             
         }catch(\Exception $e){
-            dd($e->getMessage());
             return redirect()->back();
         }
     }

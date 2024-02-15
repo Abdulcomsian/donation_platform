@@ -364,7 +364,7 @@ class DonationHandler{
 
         $query = Donation::query();
 
-        $query->with('price' , 'platformPercentage');
+        $query->with('plan' , 'platformPercentage');
         
         $query->when(!auth()->user()->hasRole('admin') , function($query){
             $query->whereHas('campaign' , function($query1){
@@ -397,10 +397,11 @@ class DonationHandler{
         $donations = $query->get();
 
         $recievedAmount = $totalAmount = 0;
+
         foreach($donations as $donation){
-            if($donation->price){
-                $totalAmount += $donation->price->amount;
-                $recievedAmount += ($donation->price->amount - (($donation->platformPercentage->percentage /100 ) * $donation->price->amount));
+            if($donation->plan){
+                $totalAmount += $donation->plan->amount;
+                $recievedAmount += ($donation->plan->amount - (($donation->platformPercentage->percentage /100 ) * $donation->plan->amount));
             }else{
                 $totalAmount += $donation->amount;
                 $recievedAmount += ($donation->amount - (($donation->platformPercentage->percentage /100 ) * $donation->amount));

@@ -2,23 +2,28 @@
 
 namespace App\Http\Handlers;
 
-use App\Models\{ User , OrganizationAdmin};
+use App\Models\{ User , OrganizationAdmin , MembershipPlan};
 use Illuminate\Support\Facades\{ DB , Hash , Crypt};
 use Yajra\DataTables\Facades\DataTables;
+
 
 class UserHandler{
 
     public function latestMemberCount()
     {
+        
         $query = User::query();
-
+        
         $query->when(!auth()->user()->hasRole('admin') , function($query){
-            $query->whereHas('donations' , function($query1){
-                $query1->whereHas('campaign' , function($query2){
-                    $query2->where('user_id' , auth()->user()->id);
-                });
+            $query->whereHas('subscriptionPlans' , function($query){
+                $query->where('user_id' , auth()->user()->id);
             });
         });
+
+        $query->when(auth()->user()->hasRole('admin') , function($query){
+            $query->whereHas('subscriptionPlans');
+        });
+
         $newMemebersCount = $query->where(DB::raw('created_at') , '>=' , now()->firstOfMonth())->count();
 
 
@@ -61,7 +66,7 @@ class UserHandler{
                     ->where('id' , '!=' , auth()->user()->id)->get();
                                         
 
-        $roles = DB::table('roles')->whereIn( 'name' , ['organization_admin'])->get();
+        $roles = DB::table('roles')->whereIn( 'name' , ['organization_admin' , 'fundraiser'])->get();
 
 
         return DataTables::of($users)
@@ -72,12 +77,15 @@ class UserHandler{
                 return $user->email;
               })
               ->addColumn('role' , function($user) use ($roles){
+               
                 $html = '<select name="role" class="role  form-control add-arrow" data-user-id="'.$user->id.'">';
                 $currentRole = $user->roles->first(function($role){
-                    if(in_array($role->name , ['organization_admin'])){
+                    if(in_array($role->name , ['organization_admin' , 'fundraiser'])){
                         return $role;
                     }
                 });
+                
+
                 foreach($roles as $role){
                     $roleName = ucfirst(str_replace("_" , " ", $role->name));
                     $attribute = $currentRole->name == $role->name  ? 'selected' : '';
@@ -131,7 +139,6 @@ class UserHandler{
         {
             $role == \AppConst::ORGANIZATION_ADMIN ? $user->assignRole('organization_admin') : $user->assignRole('fundraiser');
             OrganizationAdmin::create([ 'organization_id' => $organizationOwner->organizationProfile->id , 'user_id' => $user->id]);
-            $user->assignRole('organization_admin');
             \Mail::to($user->email)->send(new \App\Mail\OrganizationInvitationMail($user->id));
         }
 
@@ -144,11 +151,11 @@ class UserHandler{
         $userId = $request->userId;
         $user = User::where('id' , $userId)->first();
         
-        if($role == 'owner'){
+        if($role == 'organization_admin'){
             $user->removeRole('fundraiser');
             $user->assignRole($role);
         }else{
-            $user->removeRole('owner');
+            $user->removeRole('organization_admin');
             $user->assignRole($role);
         }
 

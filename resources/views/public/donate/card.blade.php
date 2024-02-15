@@ -49,6 +49,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                @if($userPlans->count() > 0)
                                 <div class="col-md-6">
                                     <div class="type" id="recurring" onclick="changeActive('recurring', 'oneTime')">
                                         <div class="text">Recurring</div>
@@ -57,9 +58,11 @@
                                         </div>
                                     </div>
                                 </div>
+                                @endif
                             </div>
                         </div>
     
+                        @if($userPlans->count() > 0)
                         <div class="container-fluid recurring-box d-none">
                             <div class="row">
                                     <div class="col-12 p-0 mt-4">
@@ -72,6 +75,7 @@
                                     </div>
                             </div>
                         </div>
+                        @endif
     
                         <div class="donate-btn">
                             <button class="toggle-donation" type="button">Continue</button>

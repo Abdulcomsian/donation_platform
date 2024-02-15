@@ -12,6 +12,6 @@ class MembershipSubscriber extends Model
 
     protected $table = 'membership_subscribers';
     protected $primaryKey = 'id';
-    protected $fillable = [ 'user_id', 'plan_id' , 'subscription_id'];
+    protected $fillable = [ 'member_id', 'plan_id' , 'subscription_id'];
 
 }

@@ -46,7 +46,7 @@ class UserController extends Controller
             $response = $this->userHandler->addNewAdmin($request);
             return response()->json($response);
         }catch(\Exception $e){
-            return response()->json(['status' => false , 'msg' => 'Something Went Wrong' , 'error' => $e->getMessage()]);
+            return response()->json(['status' => false , 'msg' => 'Something Went Wrong' , 'error' => $e->getMessage() , 'line' => $e->getLine()]);
         }
 
     }

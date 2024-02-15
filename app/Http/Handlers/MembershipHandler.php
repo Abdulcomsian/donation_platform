@@ -4,13 +4,15 @@ namespace App\Http\Handlers;
 
 use App\Http\AppConst;
 use App\Models\{MembershipPlan, MembershipSubscriber, User};
-use Stripe\{Stripe , Product , Price , StripeClient};
-
+use Stripe\{Stripe , Product , Price , StripeClient , SetupIntent};
+use Illuminate\Support\Facades\Crypt;
+use App\Jobs\MailingJob;
 class MembershipHandler{
 
     public function createMembershipPlan($request)
     {
-        $plans = $request->plan;
+        $plans = $request->plans;
+        $type = $request->type;
         // $type = $request->type;
         // $amount = $request->amount;
         // $name = $request->name;
@@ -85,16 +87,17 @@ class MembershipHandler{
 
     public function subscribeUserInPlan($request)
     {
-        $planId = $request->planId;
+        $planId = $request->plan;
         $stripe = new StripeClient(env('STRIPE_SECRET'));
         $membershipPlan = MembershipPlan::with('user')->where('id' , $planId)->first();
          
         $options = ['stripe_account' => $membershipPlan->user->stripe_connected_id];
 
+
         $customer = $stripe->customers->create([
             'email' => $request->email,
             'description' => 'membership creating for donation platform'
-        ]);
+        ], $options);
 
         $stripe->paymentMethods->attach(
                     $request->payment_method,
@@ -123,10 +126,14 @@ class MembershipHandler{
         {
             $user = $this->createPlanMember($request);
             MembershipSubscriber::create([
-                'user_id' => $user->id,
+                'member_id' => $user->id,
                 'plan_id' => $membershipPlan->id,
                 'subscription_id' => $subscription->id
             ]);
+            
+            dispatch(new MailingJob(\AppConst::NEW_MEMBERSHIP , $user->email , $user->id));
+
+            return ['status' => true , 'msg' => 'Member added successfully'];
         }
 
     }
@@ -137,8 +144,12 @@ class MembershipHandler{
 
         if(!$user){
             $user = User::create([
+                'first_name' => $request->first_name,
+                'last_name' => $request->last_name,
                 'email' => $request->email
             ]);
+
+            
         }
 
         if(!$user->hasRole('membership_subscriber'))
@@ -146,6 +157,21 @@ class MembershipHandler{
             $user->assignRole('membership_subscriber');
         }
 
+       
         return $user;
+    }
+
+    public function getMembershipPlanList($request)
+    {
+        $id = Crypt::decrypt($request->id);
+        $membershipPlans = User::with('monthlyMembershipPlan' , 'annuallyMembershipPlan')->where('id' , $id)->first();
+        return $membershipPlans;
+    }
+
+    public function createSetupIntent($connectedAccountId)
+    {
+        Stripe::setApiKey(env('STRIPE_SECRET'));
+        $setupIntent = SetupIntent::create(['usage' => 'on_session'] , ['stripe_account' => $connectedAccountId]);
+        return $setupIntent;
     }
 } 
