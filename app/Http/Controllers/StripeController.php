@@ -58,7 +58,7 @@ class StripeController extends Controller
    public function stripeHostedOnboarding(){
     try{
 
-        $redirectUrl  = route('stripe.connect.callback');
+        $redirectUrl  = route('dashboard');
     
         // $account =   Account::create(['type' => 'express']);
 

@@ -19,7 +19,7 @@
 <div class="membership">
     <div class="header">
         <div class="heading">
-            Membership
+            Membership <a href="{{url('membership-list' , Crypt::encrypt(auth()->user()->id) )}}" class="btn-btn-primary">Share</a>
         </div>
         <div class="description">
             <div class="row">
@@ -42,8 +42,8 @@
                         
                         <div class="form-container" id="monthly">
                             @foreach($monthlyPlans as $plan)
-                            <div class="tier wrapper-element monthly-plan">
-                                <input type="hidden" name="plan_id" value="{{$plan_id}}" readonly>
+                            <div class="tier monthly-tier wrapper-element monthly-saved-tier">
+                                <input type="hidden" name="plan_id" value="{{$plan->id}}" readonly>
                                 <div class="name">
                                     <input type="text" id="name" name="name" placeholder="Tier Name" value="{{$plan->name}}" readonly>
                                 </div>
@@ -53,8 +53,8 @@
                                     <input type="number" step="0.01" inputmode="decimal" name="amount" value="{{$plan->amount}}" min="0" readonly placeholder="0">
                                 </div>
 
-                                <div class="remove" onclick="removeMontlyTier(event)">
-                                    <button type="button">
+                                <div class="remove">
+                                    <button type="button" onclick="removeMontlyTier(event , 1)" data-plan-id="{{$plan->id}}">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             viewBox="0 0 24 24" fill="none">
                                             <path
@@ -65,7 +65,9 @@
                                 </div>
                             </div>
                             @endforeach
-                            <div class="tier wrapper-element">
+
+                            @if($monthlyPlans->count() < 3)
+                            <div class="tier monthly-tier wrapper-element">
                                 
                                 <div class="name">
                                     <input type="text" id="name" name="name" placeholder="Tier Name">
@@ -77,8 +79,8 @@
                                         placeholder="0">
                                 </div>
 
-                                <div class="remove" onclick="removeMontlyTier(event)">
-                                    <button type="button">
+                                <div class="remove">
+                                    <button type="button" onclick="removeMontlyTier(event)">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             viewBox="0 0 24 24" fill="none">
                                             <path
@@ -88,10 +90,20 @@
                                     </button>
                                 </div>
                             </div>
+                            @endif
                         </div>
 
                         <div class="add-new">
                             <button type="button" onclick="addNewMonthlyTier(event)"><span>+</span>Add Tier</button>
+                        </div>
+
+                        <div class="submit-container">
+                            {{-- <div class="create">
+                                <button type="submit">Create Membership Campaign</button>
+                            </div> --}}
+                            <div class="save">
+                                <button type="button" class="monthly-save-btn">Save <i class="fas fa-circle-notch fa-spin mx-2 d-none loader"></i></button>
+                            </div>
                         </div>
                     </div>
 
@@ -103,8 +115,8 @@
                         <div class="form-container" id="annualy">
 
                             @foreach($annuallyPlans as $plan)
-                            <div class="tier wrapper-element annually-plan">
-                                <input type="hidden" name="plan_id" value="{{$plan_id}}" readonly>
+                            <div class="tier annually-tier wrapper-element annually-saved-tier">
+                                <input type="hidden" name="plan_id" value="{{$plan->id}}" readonly>
                                 <div class="name">
                                     <input type="text" id="name" name="name" placeholder="Tier Name" value="{{$plan->name}}" readonly>
                                 </div>
@@ -114,8 +126,8 @@
                                     <input type="number" step="0.01" inputmode="decimal" name="amount" min="0" placeholder="0" value="{{$plan->amount}}" readonly>
                                 </div>
 
-                                <div class="remove" onclick="removeAnnualyTier(event)">
-                                    <button type="button delete-plan-btn" data-plan-id="{{$plan->id}}">
+                                <div class="remove">
+                                    <button type="button" onclick="removeAnnualyTier(event , 1)"  data-plan-id="{{$plan->id}}">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             viewBox="0 0 24 24" fill="none">
                                             <path
@@ -127,8 +139,8 @@
                             </div>
                             @endforeach
 
-
-                            <div class="tier wrapper-element">
+                            @if($annuallyPlans->count() < 3)
+                            <div class="tier annually-tier wrapper-element">
                                 <div class="name">
                                     <input type="text" id="name" name="name" placeholder="Tier Name">
                                 </div>
@@ -139,8 +151,8 @@
                                         placeholder="0">
                                 </div>
 
-                                <div class="remove" onclick="removeAnnualyTier(event)">
-                                    <button type="button">
+                                <div class="remove"
+                                    <button type="button" onclick="removeAnnualyTier(event)">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             viewBox="0 0 24 24" fill="none">
                                             <path
@@ -150,6 +162,7 @@
                                     </button>
                                 </div>
                             </div>
+                            @endif
                         </div>
 
                         <div class="add-new">
@@ -162,7 +175,7 @@
                             <button type="submit">Create Membership Campaign</button>
                         </div> --}}
                         <div class="save">
-                            <button type="submit">Save</button>
+                            <button type="button" class="annually-save-button">Save<i class="fas fa-circle-notch fa-spin mx-2 d-none loader"></i></button>
                         </div>
                     </div>
                 </div>
@@ -172,11 +185,54 @@
 </div>
 
 <script>
+    
+
+    function removeMontlyTier(event , saveTier = null) {
+        event.preventDefault();
+        saveTier ? removeSaveTier(event , 1) : removeTier(event);
+    }
+
+    function removeAnnualyTier(event , saveTier = null) {
+        event.preventDefault();
+        saveTier ? removeSaveTier(event , 2) : removeTier(event);
+    }
+
+
+    function removeTier(event)
+    {
+        event.target.closest('.wrapper-element').remove();
+    }
+
+    function removeSaveTier(event , type)
+    {
+        let element = event.target.classList.contains("button") ? event.target : event.target.closest("button");
+        let planId = element.dataset.planId;
+        let url = "{{route('delete.membership')}}";
+        let data = {planId : planId , type : type};
+        console.log(planId);
+        console.log(data);
+        let confirmationHeader = "Are you sure you want to delete this plan";
+        let confirmationTextBtn = "Delete";
+        let confirmationText = "By deleting this plan all the data for this plan has been lost."
+        confirmationUpdate(data , url , [ confirmationHeader , confirmationTextBtn , confirmationText] , null , ()=>removeTier(event));
+    }
+
     function addNewMonthlyTier(event) {
         event.preventDefault();
 
+        let totalMonthlyTier = document.querySelectorAll(".monthly-tier").length;
+
+        if(totalMonthlyTier == 3){
+            Swal.fire({
+                        icon: "error",
+                        title: 'Maximum 3 plans are allowed',
+                    });
+            return;
+        }
+
+
         var newDiv = document.createElement('div');
-        newDiv.className = 'tier wrapper-element';
+        newDiv.className = 'tier monthly-tier wrapper-element';
 
         newDiv.innerHTML = `                                <div class="name">
                                     <input type="text" id="name" name="name" placeholder="Tier Name">
@@ -202,18 +258,23 @@
         document.getElementById('monthly').appendChild(newDiv)
     }
 
-    function removeMontlyTier(event) {
-        event.preventDefault();
-        event.target.closest('.wrapper-element').remove();
-    }
-
     function addNewAnnualTier(event) {
         event.preventDefault();
 
-        var newDiv = document.createElement('div');
-        newDiv.className = 'tier wrapper-element';
+        let totalAnnuallyTier = document.querySelectorAll(".annually-tier").length;
 
-        newDiv.innerHTML = `                                <div class="name">
+        if(totalAnnuallyTier == 3){
+            Swal.fire({
+                        icon: "error",
+                        title: 'Maximum 3 plans are allowed',
+                    });
+            return;
+        }
+
+        var newDiv = document.createElement('div');
+        newDiv.className = 'tier annually-tier wrapper-element';
+
+        newDiv.innerHTML = `    <div class="name">
                                     <input type="text" id="name" name="name" placeholder="Tier Name">
                                 </div>
 
@@ -237,9 +298,67 @@
         document.getElementById('annualy').appendChild(newDiv)
     }
 
-    function removeAnnualyTier(event) {
-        event.preventDefault();
-        event.target.closest('.wrapper-element').remove();
+    document.querySelectorAll(".monthly-save-btn , .annually-save-button").forEach( button => {
+        
+        button.addEventListener("click" , function(event){
+            event.preventDefault();
+            let tier = this.classList.contains("monthly-save-btn") ?  document.querySelectorAll(".monthly-tier:not(.monthly-saved-tier)") : document.querySelectorAll(".annually-tier:not(.annually-saved-tier)");
+            let loader = this.querySelector(".loader");
+
+            if(tier.length == 0){
+                Swal.fire({
+                            icon: "error",
+                            title: 'Maximum add atleast one plan',
+                        });
+                return;
+            }
+
+            let check = [null , undefined , ''];
+            let type = this.classList.contains("monthly-save-btn") ? 1 : 2;
+            let error = [];
+            let plans = [];
+            tier.forEach(tier =>{
+                let name = tier.querySelector('input[name="name"]').value;
+                let amount = tier.querySelector('input[name="amount"]').value;
+                if(check.includes(name.trim())){
+                    error.push("Please add name");
+                }
+
+                if(check.includes(amount.trim()) || parseFloat(amount) <= 0 ){
+                    error.push("Amount must be required and greater the 0 ");
+                }
+
+                if(error.length > 0){
+                    return;
+                }else{
+                    plans.push({name : name , amount : amount , type : type});   
+                }
+
+            });
+
+            if(error.length > 0){
+                let errorMsg = error.join(", ");
+                Swal.fire({
+                            icon: "error",
+                            text: errorMsg,
+                        });
+                return;
+            }
+
+
+            let url = "{{route('create.membership')}}";
+            let data = { plans : plans, type : type };
+            updateData(data , url , loader , null , reloadPage)
+
+        })
+        
+    });
+
+    function reloadPage()
+    {
+        location.reload();
     }
+
+    
 </script>
 @endsection
