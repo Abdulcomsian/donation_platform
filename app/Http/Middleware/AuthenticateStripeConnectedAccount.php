@@ -15,7 +15,7 @@ class AuthenticateStripeConnectedAccount
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(auth()->user()->stripe_connected_id){
+        if(auth()->user()->stripe_connected_id && auth()->user()->stripe_is_verified){
             return $next($request);
         }
 
