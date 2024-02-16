@@ -95,6 +95,7 @@ class StripeController extends Controller
    public function handleConnectCallback(){
    
     $account = Account::retrieve(auth()->user()->stripe_connected_id);
+
     // dd($account , $account->payouts_enabled , $account->charges_enabled );
 
     // $account->payouts_enabled && $account->charges_enabled
