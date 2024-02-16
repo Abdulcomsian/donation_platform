@@ -86,7 +86,12 @@
                                 @php
                                     $soldTicketCount = 0;
                                     foreach($event->ticket as $ticket){
-                                        $soldTicketCount += $ticket->users->count();
+                                        if($ticket->users->count() > 0){
+                                            foreach($ticket->users as $ticketPurchaser){
+                                                $soldTicketCount += $ticketPurchaser->quantity;
+                                            }
+                                        }
+
                                     }
                                 @endphp
                                 <div class="text">{{$soldTicketCount}} Tickets Sold</div>

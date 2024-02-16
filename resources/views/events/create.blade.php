@@ -350,7 +350,7 @@
             let url = "{{route('create.event')}}";
             form.append('tickets' , JSON.stringify(tickets));
             let submitBtn = this.querySelector(".submit-btn");
-            let redirectUrl = "{{route('event.created')}}";
+            let redirectUrl = "{{url('events/event-created')}}";
             addFormData(url , form , loader , redirectUrl , submitBtn , null );
         }
 

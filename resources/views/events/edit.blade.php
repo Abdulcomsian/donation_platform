@@ -362,7 +362,7 @@
             let url = "{{route('edit.event')}}";
             form.append('tickets' , JSON.stringify(tickets));
             let submitBtn = this.querySelector(".submit-btn");
-            let redirectUrl = "{{url( 'events/event-updated' , $event->id )}}";
+            let redirectUrl = "{{url( 'events/event-updated')}}";
             addFormData(url , form , loader , redirectUrl , submitBtn , null);
         }
 

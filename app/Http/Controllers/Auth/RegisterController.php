@@ -68,12 +68,12 @@ class RegisterController extends Controller
             'type' => ['required', 'numeric'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'organization_name' => [Rule::requiredIf($data['type'] == AppConst::NON_PROFIT_ORGANIZATION) , 'string' , 'max:255'],
-            'organization_type' => [Rule::requiredIf($data['type'] == AppConst::NON_PROFIT_ORGANIZATION) , 'string' , 'max:255'],
-            'organization_description' => [Rule::requiredIf($data['type'] == AppConst::NON_PROFIT_ORGANIZATION) , 'string' , 'max:255'],
-            'organization_website' => [Rule::requiredIf($data['type'] == AppConst::NON_PROFIT_ORGANIZATION) , 'string' , 'max:255'],
-            'organization_phone' => [Rule::requiredIf($data['type'] == AppConst::NON_PROFIT_ORGANIZATION) , 'string' , 'max:255'],
-            'platform' => [Rule::requiredIf($data['type'] == AppConst::NON_PROFIT_ORGANIZATION) , 'string' , 'max:255'],
+            'organization_name' => [Rule::requiredIf($data['type'] == AppConst::OWNER) , 'string' , 'max:255'],
+            'organization_type' => [Rule::requiredIf($data['type'] == AppConst::OWNER) , 'string' , 'max:255'],
+            'organization_description' => [Rule::requiredIf($data['type'] == AppConst::OWNER) , 'string' , 'max:255'],
+            'organization_website' => [Rule::requiredIf($data['type'] == AppConst::OWNER) , 'string' , 'max:255'],
+            'organization_phone' => [Rule::requiredIf($data['type'] == AppConst::OWNER) , 'string' , 'max:255'],
+            'platform' => [Rule::requiredIf($data['type'] == AppConst::OWNER) , 'string' , 'max:255'],
         ]);
         // return Validator::make($data, [
         //     'first_name' => ['required', 'string', 'max:255'],
@@ -100,7 +100,7 @@ class RegisterController extends Controller
         $user->password = Hash::make($data['password']);
         $user->save();
         
-        if(!is_null($data['country'])){
+        if(array_key_exists('country' , $data )){
             Address::create([
                 'country_id' => $data['country'],
                 'addressable_id' => $user->id,
@@ -108,9 +108,9 @@ class RegisterController extends Controller
             ]);
         }
         
-        $data['type'] == AppConst::NON_PROFIT_ORGANIZATION ? $user->assignRole('non_profit_organization') : $user->assignRole('fundraiser');
+        $data['type'] == AppConst::OWNER ? $user->assignRole('owner') : $user->assignRole('fundraiser');
         
-        if($data['type'] == AppConst::NON_PROFIT_ORGANIZATION){
+        if($data['type'] == AppConst::OWNER){
 
             OrganizationProfile::create([
                 'name' => $data['organization_name'],

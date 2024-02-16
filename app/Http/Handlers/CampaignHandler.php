@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Handlers;
-use App\Models\{Campaign , CampaignFrequency , CampaignPriceOption , PriceOption , Donation} ;
+use App\Models\{Campaign , CampaignFrequency , CampaignPriceOption , PriceOption , Donation , Plan} ;
 
 class CampaignHandler{
 
@@ -39,17 +39,16 @@ class CampaignHandler{
            $campaignfrequency->save();
         }
 
-        $priceOptions = PriceOption::select('id')->get()->pluck('id')->toArray();
-        $priceOptionsList= [];
-        foreach($priceOptions as $option){
-            $priceOptionsList[] = ['campaign_id' => $campaign->id , 'price_option_id' => $option];
-        }   
+        // $priceOptions = PriceOption::select('id')->get()->pluck('id')->toArray();
+        // // $priceOptions = Plan::orderBy('id' , 'asc')->pluck('amount')->toArray();
+        // $priceOptionsList= [];
+        // foreach($priceOptions as $option){
+        //     $priceOptionsList[] = ['campaign_id' => $campaign->id , 'price_option_id' => $option];
+        // }   
 
-        CampaignPriceOption::insert($priceOptionsList);
+        // CampaignPriceOption::insert($priceOptionsList);
 
-
-
-        return ['status' => true , 'msg' => 'Campaign Created Successfully'];
+        return ['status' => true , 'msg' => 'Campaign Created Successfully' , 'paramId' => $campaign->id];
     }
 
 
@@ -99,7 +98,7 @@ class CampaignHandler{
 
 
 
-        return ['status' => true , 'msg' => 'Campaign Updated Successfully'];
+        return ['status' => true , 'msg' => 'Campaign Updated Successfully' , 'paramId' => $campaign->id];
     }
 
     public function getCampaignWithId($id){
@@ -109,9 +108,9 @@ class CampaignHandler{
     public function getCampaignList(){
         $campaigns = null;
         if(auth()->user()->hasRole('admin')){
-            $campaigns = Campaign::orderBy('id' , 'desc')->paginate(10);
+            $campaigns = Campaign::with('donations.plan')->orderBy('id' , 'desc')->paginate(10);
         }else{
-            $campaigns = Campaign::where('user_id' , auth()->user()->id)->orderBy('id' , 'desc')->paginate(10);
+            $campaigns = Campaign::with('donations.plan')->where('user_id' , auth()->user()->id)->orderBy('id' , 'desc')->paginate(10);
         }
         return $campaigns;
     }

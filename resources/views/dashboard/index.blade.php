@@ -23,17 +23,22 @@
         <div class="left">
             <input type="file" class="d-none" name="file" id="file">
             <div class="upload" onclick="importFile(event)">
-                <div class="icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="7 7 35 35" fill="none">
-                        <path d="M29.1176 21.3503L24.8061 17.1268L20.4946 21.3503" stroke="#949494" stroke-width="1.5"
-                            stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M24.8057 27.3834V18.1827" stroke="#949494" stroke-width="1.5" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                        <path d="M33.7784 25.3291V28.9204V32.5116H15.8335V25.3291" stroke="#949494" stroke-width="1.5"
-                            stroke-linecap="round" />
-                    </svg>
-                </div>
-                <div class="text">Upload <br /> Logo</div>
+
+                @if($userDetail->organizationProfile && $userDetail->organizationProfile->logo_link)
+                    <img src="{{asset('assets/uploads/profile_image').'/'.$userDetail->organizationProfile->logo_link}}" alt="">
+                @else
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="7 7 35 35" fill="none">
+                            <path d="M29.1176 21.3503L24.8061 17.1268L20.4946 21.3503" stroke="#949494" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M24.8057 27.3834V18.1827" stroke="#949494" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M33.7784 25.3291V28.9204V32.5116H15.8335V25.3291" stroke="#949494" stroke-width="1.5"
+                                stroke-linecap="round" />
+                        </svg>
+                    </div>
+                    <div class="text">Upload <br /> Logo</div>
+                @endif
             </div>
             <div class="heading">
                 <span class="welcome">Welcome, Esther!</span>
@@ -172,7 +177,7 @@
                         </div>
                         <div class="right-text">
                             <div class="top">Total Sold Tickets</div>
-                            <div class="bottom">50</div>
+                            <div class="bottom">{{$purchaseTicketCount}}</div>
                         </div>
                     </div>
                     <div class="right">
@@ -261,18 +266,18 @@
                         </td>
                         @endif
                         @php
-                        $donationAmount = $totalAmount = 0;
+                        $feeAmount = $totalAmount = 0;
                         
-                        if($donation->price){
-                                $donationAmount += $donation->platformPercentage->percentage > 0 ?  (($donation->price->amount) - (($donation->platformPercentage->percentage / 100) * $donation->price->amount)) : $donation->price->amount;
-                                $totalAmount +=  $donation->price->amount;
+                        if($donation->plan){
+                                $feeAmount += $donation->platformPercentage->percentage > 0 ?  (($donation->plan->amount) - (($donation->platformPercentage->percentage / 100) * $donation->plan->amount)) : 0;
+                                $totalAmount +=  $donation->plan->amount;
                             }else{
-                                $donationAmount += $donation->platformPercentage->percentage > 0 ?  (($donation->amount) - (($donation->platformPercentage->percentage / 100) * $donation->amount)) : $donation->amount;
+                                $feeAmount += $donation->platformPercentage->percentage > 0 ?  (($donation->amount) - (($donation->platformPercentage->percentage / 100) * $donation->amount)) : 0;
                                 $totalAmount += $donation->amount;
                             }
                         @endphp
                         <td class="amount">${{ceil($totalAmount)}}</td>
-                        <td class="fee-recoverd">${{ceil($donationAmount)}}</td>
+                        <td class="fee-recoverd">${{ceil($feeAmount)}}</td>
                         @php
                             $date = \Carbon\Carbon::create($donation->created_at);
                         @endphp
@@ -290,6 +295,36 @@
         file.click();
 
     }
+
+    document.querySelector("#file").addEventListener("change" , function(e){
+        e.preventDefault();
+        let file = this.files[0];
+        let form = new FormData();
+        form.append('file' , file)
+        form.append("_token" , "{{csrf_token()}}");
+        $.ajax({
+            type: "POST",
+            url  : "{{route('upload.logo')}}",
+            processData : false,
+            contentType : false,
+            data : form,
+            success: function(res){
+                if(res.status){
+                    Swal.fire({
+                            text: res.msg,
+                            icon: "success"
+                        });
+                    loacation.reload();
+                }else{
+                    Swal.fire({
+                        icon: "error",
+                        title: res.msg,
+                        text: res.error,
+                    });
+                }
+            }
+        })
+    })
 
     
 

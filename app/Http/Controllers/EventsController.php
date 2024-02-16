@@ -120,20 +120,21 @@ class EventsController extends Controller
             return response()->json($response);
 
         }catch(\Exception $e){
+            dd($e->getMessage() , $e->getLine());
             return response()->json(['status' => false , 'msg' => 'Something Went Wrong' , 'error' => $e->getMessage()]);
         }
              
     }
 
-    public function eventCreated(){
-        return view('events.success');
+    public function eventCreated(Request $request){
+        $eventId = $request->eventId;
+        return view('events.success')->with(['eventId' => $eventId]);
     }
 
     public function eventUpdated(Request $request){
-        return view('events.successful-updated')->with(['event_id' => $request->id ?? null]);
+        $eventId = $request->eventId;
+        return view('events.successful-updated')->with(['eventId' => $eventId]);
     }
-
-
 
     public function deleteEvent(Request $request){
         
@@ -156,8 +157,10 @@ class EventsController extends Controller
         $validator = Validator::make($request->all() , [
             'email' => 'required|email',
             'country' => 'required|numeric',
-            'name' => 'required|string'
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
         ]);
+
 
         if($validator->fails()){
             return response()->json(['status' => false , 'msg' => 'Something Went Wrong' , 'error' => implode( ",", $validator->messages()->all())]);
@@ -168,7 +171,7 @@ class EventsController extends Controller
             return response()->json($response);
 
         }catch(\Exception $e){
-            return response()->json(['status' => false , 'msg' => 'Something Went Wrong' , 'error' => $e->getMessage()]);
+            return response()->json(['status' => false , 'msg' => 'Something Went Wrong' , 'error' => $e->getMessage() , 'errorLine' => $e->getLine()]);
         }
            
 

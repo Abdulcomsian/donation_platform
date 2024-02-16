@@ -25,9 +25,9 @@
                         <div class="amount-item">
                             <label for="amount">Select or Enter Amount</label>
                             <div class="row static-amount">
-                                @foreach($campaign->priceOptions as $price)
+                                @foreach($userPlans as $plan)
                                 <div class="col-md-3 donation-amount-box">
-                                    <div class="item donation-amount" data-donation-amount="{{$price->amount}}" data-price-option-id="{{$price->id}}">{{$price->amount}}</div>
+                                    <div class="item donation-amount" data-donation-amount="{{$plan->amount}}" data-plan-id="{{$plan->id}}">{{$plan->amount}}</div>
                                 </div>
                                 @endforeach
                             </div>
@@ -49,6 +49,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                @if($userPlans->count() > 0)
                                 <div class="col-md-6">
                                     <div class="type" id="recurring" onclick="changeActive('recurring', 'oneTime')">
                                         <div class="text">Recurring</div>
@@ -57,9 +58,11 @@
                                         </div>
                                     </div>
                                 </div>
+                                @endif
                             </div>
                         </div>
     
+                        @if($userPlans->count() > 0)
                         <div class="container-fluid recurring-box d-none">
                             <div class="row">
                                     <div class="col-12 p-0 mt-4">
@@ -72,6 +75,7 @@
                                     </div>
                             </div>
                         </div>
+                        @endif
     
                         <div class="donate-btn">
                             <button class="toggle-donation" type="button">Continue</button>
@@ -80,15 +84,20 @@
                         <div class="progress-container">
                             @php
                                 $percentage = 1;
+                                $donationAmount = 0;
                                 if($campaign->donations->count()){
-                                    $percentage = ($campaign->donations->sum('amount') / $campaign->amount) * 100;
+                                    foreach($campaign->donations as $donation){
+                                        // $percentage = ($campaign->donations->sum('amount') / $campaign->amount) * 100;
+                                        $donationAmount += isset($donation->plan) ? $donation->plan->amount : $donation->amount;
+                                    }
+                                    $percentage = ($donationAmount / $campaign->amount) * 100;
                                 } 
                            @endphp
     
                             <div class="progress-bar-element">
                                 <progress value="{{$percentage}}" max="100"></progress>
                             </div>
-                            <div class="text">${{ceil($campaign->donations->sum('amount'))}}/{{ceil($campaign->amount)}}</div>
+                            <div class="text">${{ceil($donationAmount)}}/{{ceil($campaign->amount)}}</div>
                         </div>
                         @endif
                     </div>
@@ -197,7 +206,8 @@ function changeActive(item1, item2) {
     }
 
     $(document).ready(function(){
-        var stripe = Stripe('{{env("STRIPE_KEY")}}')
+        var stripe = Stripe('{{env("STRIPE_KEY")}}' , { 'stripeAccount' : '{{$connectedId}}'})
+        
         var card = null;
 
         createCardElements()
@@ -208,9 +218,7 @@ function changeActive(item1, item2) {
             card.mount("#card-element");
         }
 
-        async function confirmCardPayment(){
-            
-        }
+    
 
     
 
@@ -266,12 +274,12 @@ function changeActive(item1, item2) {
 
     function checkRecurringOption(){
         let errors = null;
-        let amount = priceOption = null; 
+        let amount = plan = null; 
         let recurring = document.getElementById("recurring");
         if(recurring.classList.contains("active")){
-            let activePriceOption = document.querySelector(".donation-amount-box.active");
+            let activePlan = document.querySelector(".donation-amount-box.active");
             let frequency = document.querySelector(".frequency-select");
-            activePriceOption === null ? errors = "Please select price option for recursive transaction" : priceOption = activePriceOption.querySelector(".donation-amount").dataset.priceOptionId;
+            activePlan === null ? errors = "Please select plan for recursive transaction" : plan = activePlan.querySelector(".donation-amount").dataset.planId;
             frequency.value == "" && (errors = "Please select plan");
         }else{
             let chargeAmount = document.getElementById("amount");
@@ -308,7 +316,10 @@ function changeActive(item1, item2) {
         let country = document.getElementById("country").value;
         let city = document.getElementById("city").value;
         let amount = document.getElementById("amount").value;
+        let loader = document.querySelector(".submit-loader");
         
+
+        loader.classList.remove("d-none");
 
         let fields = {
                 'First_name' : firstName,
@@ -334,6 +345,7 @@ function changeActive(item1, item2) {
                     title: "Oops...",
                     text: errors+=".",
                 });
+                loader.classList.add("d-none");
                 return;
         }
 
@@ -348,17 +360,17 @@ function changeActive(item1, item2) {
             Swal.fire({
                 icon: "error",
                 title: "Oops...",
-                text: error,
+                text: error.message,
             });
+            loader.classList.remove("d-none");
             return;
         }else{
 
             
             let url = this.getAttribute('action');
-            let loader = document.querySelector(".submit-loader");
             let submitBtn = this.querySelector(".donate.donate-btn");
             form.append('amount' , amount);
-            form.append('price_option' , priceOption);
+            form.append('plan_id' , plan);
             form.append('payment_method' , setupIntent.payment_method);
             addFormData(url , form , loader , null , submitBtn , null)
 

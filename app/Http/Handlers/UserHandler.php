@@ -1,23 +1,29 @@
 <?php
 
 namespace App\Http\Handlers;
-use App\Models\User;
-use Illuminate\Support\Facades\DB;
+
+use App\Models\{ User , OrganizationAdmin , MembershipPlan};
+use Illuminate\Support\Facades\{ DB , Hash , Crypt};
 use Yajra\DataTables\Facades\DataTables;
+
 
 class UserHandler{
 
     public function latestMemberCount()
     {
+        
         $query = User::query();
-
+        
         $query->when(!auth()->user()->hasRole('admin') , function($query){
-            $query->whereHas('donations' , function($query1){
-                $query1->whereHas('campaign' , function($query2){
-                    $query2->where('user_id' , auth()->user()->id);
-                });
+            $query->whereHas('subscriptionPlans' , function($query){
+                $query->where('user_id' , auth()->user()->id);
             });
         });
+
+        $query->when(auth()->user()->hasRole('admin') , function($query){
+            $query->whereHas('subscriptionPlans');
+        });
+
         $newMemebersCount = $query->where(DB::raw('created_at') , '>=' , now()->firstOfMonth())->count();
 
 
@@ -44,22 +50,23 @@ class UserHandler{
         return $recurringDonarCount;
     }
 
-    public function userList()
+    public function adminList()
     {
-        // dd(User::with('roles')
-        // ->whereDoesntHave('roles', function ($query) {
-        //     $query->whereIn('name', ['admin', 'donor']);
-        // })
-        // ->orderBy('id', 'desc')
-        // ->get());
-        $users = User::with('roles')->whereDoesntHave('roles' , function($query){
-                                            $query->whereIn('name' , ['admin' , 'donor']);
-                                        })
-                                        ->orderBy('id' , 'desc')
-                                        ->get();
+        
+        
+        $user =  User::with('organizationProfile' , 'organizationAdmin')->where('id' , auth()->user()->id)->first();
+        $organizationId = []; 
+        $user->organizationProfile ? $organizationId[] = $user->organizationProfile->id : $organizationId = $user->organizationAdmin->pluck('id')->toArray();
+
+
+        $users = User::with('roles')
+                    ->whereHas('organizationAdmin' , function($query) use ($organizationId){
+                                    $query->whereIn('organization_id' , $organizationId);
+                    })
+                    ->where('id' , '!=' , auth()->user()->id)->get();
                                         
 
-        $roles = DB::table('roles')->whereIn( 'name' , ['fundraiser' , 'non_profit_organization'])->get();
+        $roles = DB::table('roles')->whereIn( 'name' , ['organization_admin' , 'fundraiser'])->get();
 
 
         return DataTables::of($users)
@@ -70,12 +77,15 @@ class UserHandler{
                 return $user->email;
               })
               ->addColumn('role' , function($user) use ($roles){
+               
                 $html = '<select name="role" class="role  form-control add-arrow" data-user-id="'.$user->id.'">';
                 $currentRole = $user->roles->first(function($role){
-                    if(in_array($role->name , ['fundraiser' , 'non_profit_organization'])){
+                    if(in_array($role->name , ['organization_admin' , 'fundraiser'])){
                         return $role;
                     }
                 });
+                
+
                 foreach($roles as $role){
                     $roleName = ucfirst(str_replace("_" , " ", $role->name));
                     $attribute = $currentRole->name == $role->name  ? 'selected' : '';
@@ -112,37 +122,40 @@ class UserHandler{
     }
 
 
-    function addNewUser($request){
+    public function addNewAdmin($request){
         $firstName = $request->first_name;
         $lastName = $request->last_name;
         $email = $request->email;
         $role = $request->role;
-
-
         $user  = new User;
         $user->first_name = $firstName;
         $user->last_name = $lastName;
         $user->email = $email;
+        $user->activation_status = \AppConst::PENDING;
+
+        $organizationOwner = User::with('organizationProfile')->where('id' , auth()->user()->id)->first();
 
         if($user->save())
         {
-            $role == \AppConst::NON_PROFIT_ORGANIZATION ? $user->assignRole('non_profit_organization') : $user->assignRole('fundraiser');
+            $role == \AppConst::ORGANIZATION_ADMIN ? $user->assignRole('organization_admin') : $user->assignRole('fundraiser');
+            OrganizationAdmin::create([ 'organization_id' => $organizationOwner->organizationProfile->id , 'user_id' => $user->id]);
+            \Mail::to($user->email)->send(new \App\Mail\OrganizationInvitationMail($user->id));
         }
 
-        return ['status' => true , 'msg' => 'User Created Successfully'];
+        return ['status' => true , 'msg' => 'Admin added successfully and invitation has been sent to user'];
 
     }
 
-    function changeUserRole($request){
+    public function changeUserRole($request){
         $role = $request->role;
         $userId = $request->userId;
         $user = User::where('id' , $userId)->first();
         
-        if($role == 'non_profit_organization'){
+        if($role == 'organization_admin'){
             $user->removeRole('fundraiser');
             $user->assignRole($role);
         }else{
-            $user->removeRole('non_profit_organization');
+            $user->removeRole('organization_admin');
             $user->assignRole($role);
         }
 
@@ -150,12 +163,30 @@ class UserHandler{
 
     }
 
-    function deleteUser($request)
+    public function deleteUser($request)
     {
         $userId = $request->userId;
         User::where('id' , $userId)->delete();
         return ['status' => true , 'msg' => 'User Deleted Successfully'];
     }
+
+    public function getUserDetail()
+    {
+        $userId = auth()->user()->id;
+        $user = User::with('organizationProfile')->where('id' , $userId)->first();
+        return $user;
+    }
+
+    public function setInvitationUserPassword($request)
+    {
+        $id = Crypt::decrypt($request->user_id);
+        $password = Hash::make($request->password);
+        User::where('id' , $id)->update(['password' => $password]);
+        \Toastr::success('Your password has been reset please verify' , 'Success' );
+        return redirect()->route('login');
+    }
+
+
 
 
 }

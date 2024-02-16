@@ -188,7 +188,7 @@
         form.append("frequency" , frequency);
         form.append('status' , 0 );
         url = '{{route("create.campaign")}}';
-        redirectUrl = "{{route('campaign.created')}}";
+        redirectUrl = "{{url('campaigns/campaign-created')}}";
         addFormData(url , form , loader , redirectUrl , submitBtn , null);
 
     })
@@ -204,7 +204,7 @@
         form.append("frequency" , frequency);
         form.append('status' , 1 );
         url = '{{route("create.campaign")}}';
-        redirectUrl = "{{route('campaign.created')}}";
+        redirectUrl = "{{url('campaigns/campaign-created')}}";
         addFormData(url , form , loader , redirectUrl , publishBtn , null);
 
     })

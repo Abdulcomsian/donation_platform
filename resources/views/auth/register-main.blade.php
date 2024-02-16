@@ -355,7 +355,7 @@
 
     function updateType(item1 , item2){
         if(item1 == 'form-item-2'){
-            document.querySelector('input[name="type"]').value = '{{AppConst::NON_PROFIT_ORGANIZATION}}';
+            document.querySelector('input[name="type"]').value = '{{AppConst::OWNER}}';
         }else{
             document.querySelector('input[name="type"]').value = '{{AppConst::FUNDRAISER}}';
         }
@@ -366,7 +366,7 @@
         let type =document.querySelector('input[name="type"]').value;
         document.querySelectorAll(".dash")[0].classList.add("active")
         document.querySelectorAll(".dash")[1].classList.add("active")
-        document.querySelector('input[name="type"]').value == '{{AppConst::NON_PROFIT_ORGANIZATION}}' ? document.querySelector("#organizer-form").classList.remove("d-none") : document.querySelector("#fundraiser-form").classList.remove("d-none");
+        document.querySelector('input[name="type"]').value == '{{AppConst::OWNER}}' ? document.querySelector("#organizer-form").classList.remove("d-none") : document.querySelector("#fundraiser-form").classList.remove("d-none");
         document.querySelector('#type-select-section').classList.add("d-none"); 
     }
   

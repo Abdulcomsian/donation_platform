@@ -63,7 +63,7 @@ class SettingHandler{
 
     public function roles()
     {
-        return DB::table('roles')->whereIn( 'name', ['non_profit_organization' , 'fundraiser'])->get();
+        return DB::table('roles')->whereIn( 'name', ['OWNER' , 'fundraiser'])->get();
     }
 
     public function updateOrganization($request)
@@ -84,5 +84,23 @@ class SettingHandler{
         );
 
         return ['status' => true , 'msg' => 'Organization Profile Updated Successfully'];
+    }
+
+    public function updateOrganizationLogo($request){
+        if($request->hasFile('file')){
+            $file = $request->file('file');
+            $filename =  strtotime(now()).str_replace(" ", "-" ,$file->getClientOriginalName());
+            $file->move(public_path('assets/uploads/profile_image') , $filename);
+
+            OrganizationProfile::updateOrCreate(
+                ['user_id' => auth()->user()->id],
+                ['user_id' => auth()->user()->id , 'logo_link' => $filename]
+            );
+
+            return ['status' => true , 'msg' => 'Organization logo updated successfully'];
+
+        }else{
+            return ['status' => false , 'msg' => 'Something Went Wrong' , 'error' => 'Please Add A File'];
+        }
     }
 }

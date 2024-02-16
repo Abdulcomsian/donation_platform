@@ -71,10 +71,11 @@
                                     </svg>
                                 </div>
                             </div>
+                            @if(auth()->check())
                             <div class="profile-section">
                                 <div class="profile-info">
                                     <div class="profile-icon">
-                                        <img src="{{ asset('assets/images/Ellipse 3 (1).png') }}" alt="">
+                                        <img src="{{ auth()->user()->profile_image ? asset('assets/uploads').'/'.auth()->user()->profile_image : asset('assets/images/human-profile.png') }}" alt="">
                                     </div>
                                     <div class="profile-name">{{ auth()->user()->first_name }}</div>
                                     <div class="caret-drop">
@@ -87,6 +88,7 @@
                                     </div>
                                 </div>
                             </div>
+                            @endif
                         </div>
                     </div>
                     @endif

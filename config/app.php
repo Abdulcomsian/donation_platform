@@ -190,6 +190,7 @@ return [
         'AppConst' => App\Http\AppConst::class,
         'Toastr' => Yoeunes\Toastr\Facades\Toastr::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'Helper' => App\Http\Helper::class,
     ])->toArray(),
 
 ];

@@ -46,11 +46,13 @@
                             data-bs-target="#pills-organization" type="button" role="tab"
                             aria-controls="pills-organization" aria-selected="false">Organization</button>
                     </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="pills-admin-tab" data-bs-toggle="pill"
-                            data-bs-target="#pills-admin" type="button" role="tab" aria-controls="pills-admin"
-                            aria-selected="false">Admin</button>
-                    </li>
+                    @if(auth()->user()->hasRole('organization_admin') || auth()->user()->hasRole('owner') ) 
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="pills-admin-tab" data-bs-toggle="pill"
+                                data-bs-target="#pills-admin" type="button" role="tab" aria-controls="pills-admin"
+                                aria-selected="false">Admin</button>
+                        </li>
+                    @endif
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="pills-emails-tab" data-bs-toggle="pill"
                             data-bs-target="#pills-emails" type="button" role="tab" aria-controls="pills-emails"
@@ -61,6 +63,11 @@
                             data-bs-target="#pills-integrations" type="button" role="tab"
                             aria-controls="pills-integrations" aria-selected="false">Integrations</button>
                     </li>
+                    @if(auth()->user()->stripe_connected_id)
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-plan-tab" data-bs-toggle="pill" data-bs-target="#pills-plan" type="button" role="tab" aria-controls="pills-plan" aria-selected="false">Plans</button>
+                    </li>
+                    @endif
                 </ul>
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="pills-profile" role="tabpanel"
@@ -71,15 +78,22 @@
                         aria-labelledby="pills-organization-tab">
                         @include('settings.organization')
                     </div>
-                    <div class="tab-pane fade" id="pills-admin" role="tabpanel" aria-labelledby="pills-admin-tab">
-                        @include('settings.admin')
-                    </div>
+                    @if(auth()->user()->hasRole('organization_admin') || auth()->user()->hasRole('owner') ) 
+                        <div class="tab-pane fade" id="pills-admin" role="tabpanel" aria-labelledby="pills-admin-tab">
+                            @include('settings.admin')
+                        </div>
+                    @endif
                     <div class="tab-pane fade" id="pills-emails" role="tabpanel" aria-labelledby="pills-emails-tab">
                         @include('settings.emails')
                     </div>
-                    <div class="tab-pane fade" id="pills-integrations" role="tabpanel"
-                        aria-labelledby="pills-integrations-tab">
+                    <div class="tab-pane fade" id="pills-integrations" role="tabpanel" aria-labelledby="pills-integrations-tab">
                         @include('settings.integrations')
+                    </div>
+                    {{-- <div class="tab-pane fade" id="pills-integrations" role="tabpanel" aria-labelledby="pills-integrations-tab">
+                        @include('settings.integrations')
+                    </div> --}}
+                    <div class="tab-pane fade" id="pills-plan" role="tabpanel" aria-labelledby="pills-plan-tab">
+                        @include('settings.plan')
                     </div>
                 </div>
             </div>
@@ -110,9 +124,41 @@
         loadTable();
     })
 
+    $(document).on("click" , "#pills-plan-tab" , function(e){
+        loadPlanTable();
+    })
+
+
+    function loadPlanTable(){
+        let table = document.getElementById("plan-table");
+        let url = "{{route('plan.list')}}";
+        let columns = [
+                        { data: 'name', name: 'name' },
+                        { data: 'amount', name: 'amount' },
+                        { data: 'action', name: 'action' },
+                    ];
+        $(table).DataTable({
+            processing: true,
+            serverSide: true,
+            searching: true,
+            bLengthChange: false,
+            bInfo: false,
+            pagingType: 'full_numbers',
+            "bDestroy": true,
+            ajax : {
+                type : 'POST',
+                url : url,
+                data : {
+                    _token : '{{csrf_token()}}',
+                }
+            },
+            columns: columns
+        });  
+    }
+
     function loadTable(){
         let table = document.getElementById("user-table");
-        let url = "{{route('user.list')}}";
+        let url = "{{route('organization.admin.list')}}";
         let columns = [
                         { data: 'name', name: 'name' },
                         { data: 'email', name: 'email' },

@@ -21,7 +21,7 @@
                         }
 
                     if(redirectUrl != null){
-                        window.location.href = redirectUrl;
+                        window.location.href = res.paramId ? redirectUrl+"/"+res.paramId : redirectUrl;;
 
                     }else{
                         Swal.fire({
@@ -41,7 +41,10 @@
     }
 
 
-    function updateData(data , url , redirectUrl , fn =null){
+    function updateData(data , url , loader = null , redirectUrl = null , fn =null){
+        if(loader){
+            loader.classList.remove("d-none");
+        }
         $.ajax({
             url : url,
             type : 'POST',
@@ -55,8 +58,12 @@
                             fn();
                         }
 
+                    if(loader){
+                        loader.classList.add("d-none");
+                    }
+
                     if(redirectUrl != null){
-                        window.location.href = redirectUrl;
+                        window.location.href = res.paramId ? redirectUrl+"/"+res.paramId : redirectUrl;
 
                     }else{
                         Swal.fire({

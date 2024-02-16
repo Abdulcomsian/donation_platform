@@ -30,17 +30,17 @@
     <div class="url-container">
         <div class="heading">Share Your Campaign URL</div>
         <div class="url">
-            <a href="" id="textToCopy">https://donation.donation.com/name/campaign/donation</a>
+            <a href="{{url('event-detail' , $eventId)}}" id="textToCopy">{{url('event-detail' , $eventId)}}</a>
         </div>
         <div class="action-container">
             <button class="copy" onclick="copyText()"><img src="{{ asset('assets/images/copy-outline.png') }}" alt="">
                 Copy Link</button>
-            <a class="view" href=""><img src="{{ asset('assets/images/eye-outline.png') }}" alt=""> View Page</a>
+            <a class="view" href="{{url('event-detail' , $eventId)}}"><img src="{{ asset('assets/images/eye-outline.png') }}" alt=""> View Page</a>
         </div>
     </div>
 
     <div class="share-actions">
-        <a class="edit" href=""><img src="{{ asset('assets/images/bxs_edit.png') }}" alt="">Edit</a>
+        <a class="edit" href="{{url('events/edit-event' , $eventId)}}"><img src="{{ asset('assets/images/bxs_edit.png') }}" alt="">Edit</a>
         <button class="share" type="button" data-bs-toggle="modal" data-bs-target="#share-link-modal">
             <img src="{{ asset('assets/images/share-social-outline.png') }}" alt="">Share
         </button>
@@ -69,7 +69,7 @@
 
 <script>
     function replaceMarkUp() {
-        let iframeContent = '<iframe width="560" height="315" src="https://www.donation.com/embed/v_Gq5Gtd9V4?si=eh6x9MxeC87A1zxb" title="Donation Widget box" frameborder="0" allow="accelerometer; auto; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+        let iframeContent = '<iframe width="560" height="315" src="{{url('event-detail' , $eventId)}}" title="Donation Widget box" frameborder="0" allow="accelerometer; auto; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
         
         iframeContent = iframeContent.replace(/</g, '&lt;');
         iframeContent = iframeContent.replace(/>/g, '&gt;');

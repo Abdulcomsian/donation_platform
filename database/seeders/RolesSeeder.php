@@ -14,11 +14,13 @@ class RolesSeeder extends Seeder
     public function run(): void
     {
         $roles = [
-            ['name' => 'non_profit_organization'],
+            ['name' => 'owner'],
+            ['name' => 'organization_admin'],
             ['name' => 'fundraiser'],
             ['name' => 'admin'],
             ['name' => 'donar'],
             ['name' => 'ticket_purchaser'],
+            ['name' => 'membership_subscriber'],
         ];
         Role::insert($roles);
     }

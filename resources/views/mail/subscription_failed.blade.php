@@ -1,0 +1,1 @@
+<h1>Subscription Failed</h1>

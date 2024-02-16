@@ -20,12 +20,16 @@ class UserController extends Controller
         return redirect()->route('login');
     }
 
-    public function getUserList()
+    public function getOrganizationAdminList()
     {
-        return $this->userHandler->userList();
+        try{
+            return $this->userHandler->adminList();
+        }catch(\Exception $e){
+            return response()->json(["status" => false , "msg" => "Something Went Wrong" , "error" => $e->getMessage() , "lineNo" => $e->getLine()]);
+        }
     }
 
-    public function addUser(Request $request)
+    public function addOrganizationAdmin(Request $request)
     {
         $validator = Validator::make($request->all() , [
             "first_name" => "required|string",
@@ -39,10 +43,10 @@ class UserController extends Controller
         }
 
         try{
-            $response = $this->userHandler->addNewUser($request);
+            $response = $this->userHandler->addNewAdmin($request);
             return response()->json($response);
         }catch(\Exception $e){
-            return response()->json(['status' => false , 'msg' => 'Something Went Wrong' , 'error' => $e->getMessage()]);
+            return response()->json(['status' => false , 'msg' => 'Something Went Wrong' , 'error' => $e->getMessage() , 'line' => $e->getLine()]);
         }
 
     }
@@ -88,5 +92,25 @@ class UserController extends Controller
             return response()->json(['status' => false , 'msg' => 'Something Went Wrong' , 'error' => $e->getMessage()]);
         
         }
+    }
+
+    public function invitationPasswordReset(Request $request)
+    {
+        return view('public.invitation-password-reset')->with(['id' => $request->id]);
+    }
+
+    public function setInvitationPassword(Request $request)
+    {
+        $request->validate([
+            'user_id' => 'required|string',
+            'password' => 'required|confirmed|min:6'
+        ]);
+
+        try{
+            return $this->userHandler->setInvitationUserPassword($request);
+        }catch(\Exception $e){
+            return redirect()->back()->with(['status' => false , 'msg' => 'Something Went Wrong ' , 'error' => $e->getMessage()]);
+        }
+
     }
 }

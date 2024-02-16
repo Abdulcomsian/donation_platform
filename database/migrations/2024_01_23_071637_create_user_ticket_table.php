@@ -19,7 +19,8 @@ return new class extends Migration
             $table->foreign('ticket_id')->references('id')->on('event_tickets');
             $table->integer('quantity');
             $table->string('stripe_id')->nullable();
-            $table->timestamps();
+            $table->timestamp('created_at')->default(now());
+            $table->timestamp('updated_at')->default(now());
             $table->softDeletes();
         });
     }
