@@ -2,7 +2,7 @@
 
 namespace App\Http\Handlers;
 
-use App\Models\{ User , OrganizationAdmin , MembershipPlan};
+use App\Models\{ User , OrganizationAdmin , MembershipPlan, OrganizationProfile};
 use Illuminate\Support\Facades\{ DB , Hash , Crypt};
 use Yajra\DataTables\Facades\DataTables;
 
@@ -184,6 +184,25 @@ class UserHandler{
         User::where('id' , $id)->update(['password' => $password]);
         \Toastr::success('Your password has been reset please verify' , 'Success' );
         return redirect()->route('login');
+    }
+
+    public function getOrganizationProfile()
+    {
+        $query = OrganizationProfile::query();
+
+        $query->when(auth()->user()->hasRole('owner') , function($query1){
+            $query1->where('user_id' , auth()->user()->id);
+        });
+
+        $query->when(auth()->user()->hasRole('fundraiser') || auth()->user()->hasRole('organization_admin') , function($query1){
+            $query1->whereHas('organizationAdmin' , function($query2){
+                $query2->where('user_id' , auth()->user()->id);
+            });
+        });
+
+        $organizationProfile = $query->with('user')->first();
+
+        return $organizationProfile;
     }
 
 

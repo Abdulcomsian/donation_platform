@@ -22,11 +22,12 @@
     <div class="header">
         <div class="left">
             <input type="file" class="d-none" name="file" id="file">
+            @if($organizationProfile && $organizationProfile->logo_link)
+                <img src="{{asset('assets/uploads/profile_image').'/'.$organizationProfile->logo_link}}" alt="">
+            @else
+            @if(auth()->user()->hasRole('owner'))
             <div class="upload" onclick="importFile(event)">
 
-                @if($userDetail->organizationProfile && $userDetail->organizationProfile->logo_link)
-                    <img src="{{asset('assets/uploads/profile_image').'/'.$userDetail->organizationProfile->logo_link}}" alt="">
-                @else
                     <div class="icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="7 7 35 35" fill="none">
                             <path d="M29.1176 21.3503L24.8061 17.1268L20.4946 21.3503" stroke="#949494" stroke-width="1.5"
@@ -38,10 +39,11 @@
                         </svg>
                     </div>
                     <div class="text">Upload <br /> Logo</div>
+                </div>
                 @endif
-            </div>
+            @endif
             <div class="heading">
-                <span class="welcome">Welcome, Esther!</span>
+                <span class="welcome">Welcome, {{auth()->user()->first_name}}!</span>
                 <span class="org-name">Organization Name</span>
             </div>
         </div>
@@ -235,7 +237,7 @@
                         <th>Campaign</th>
                         <th>Status</th>
                         <th>Amount</th>
-                        <th>Fee Recovered</th>
+                        {{-- <th>Fee Recovered</th> --}}
                         <th>Date & Time</th>
                     </tr>
                 </thead>
@@ -277,7 +279,7 @@
                             }
                         @endphp
                         <td class="amount">${{ceil($totalAmount)}}</td>
-                        <td class="fee-recoverd">${{ceil($feeAmount)}}</td>
+                        {{-- <td class="fee-recoverd">${{ceil($feeAmount)}}</td> --}}
                         @php
                             $date = \Carbon\Carbon::create($donation->created_at);
                         @endphp

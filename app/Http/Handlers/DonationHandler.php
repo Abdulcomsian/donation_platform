@@ -3,7 +3,7 @@
 namespace App\Http\Handlers;
 
 use App\Http\AppConst;
-use App\Models\{ Donation , Campaign , Country , User , PlatformPercentage , Address, PriceOption , Plan};
+use App\Models\{ Donation , Campaign , Country , User , PlatformPercentage , Address, PriceOption , Plan , OrganizationProfile};
 use App\Http\Handlers\{StripeHandler , MailChimpHandler};
 use Yajra\DataTables\Facades\DataTables;
 use App\Jobs\MailingJob;
@@ -367,11 +367,26 @@ class DonationHandler{
         $query->with('plan' , 'platformPercentage');
         
         $query->when(!auth()->user()->hasRole('admin') , function($query){
-            $query->whereHas('campaign' , function($query1){
-                $query1->whereHas('user' , function($query2){
-                    $query2->where('id' , auth()->user()->id);
+
+            $query->when(auth()->user()->hasRole('owner') , function($query){
+                $query->whereHas('campaign' , function($query1){
+                    $query1->whereHas('user' , function($query2){
+                        $query2->where('id' , auth()->user()->id);
+                    });
                 });
             });
+
+            $query->when(auth()->user()->hasRole('fundraiser') || auth()->user()->hasRole('fundraiser') , function($query1){
+                $organizationOwnerId = \Helper::getOrganizationOwnerId();
+
+                $query1->whereHas('campaign' , function($query2) use ($organizationOwnerId){
+                    $query2->whereHas('user' , function($query3) use ($organizationOwnerId){
+                        $query3->where('id' , $organizationOwnerId);
+                    });
+                });
+            });
+
+            
         });
 
         $query->when(isset($status) && !empty($status) , function($query1) use ($status){
