@@ -72,7 +72,7 @@
   margin-top: 2rem;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  /* gap: 1.5rem; */
 }
 .donate-now-card .card .card-top .form-container form .amount-item label {
   color: #000;
