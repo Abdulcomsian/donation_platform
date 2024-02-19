@@ -276,7 +276,8 @@ function changeActive(item1, item2) {
         let errors = null;
         let amount = plan = null; 
         let recurring = document.getElementById("recurring");
-        if(recurring.classList.contains("active")){
+        
+        if(recurring && recurring.classList.contains("active")){
             let activePlan = document.querySelector(".donation-amount-box.active");
             let frequency = document.querySelector(".frequency-select");
             activePlan === null ? errors = "Please select plan for recursive transaction" : plan = activePlan.querySelector(".donation-amount").dataset.planId;
