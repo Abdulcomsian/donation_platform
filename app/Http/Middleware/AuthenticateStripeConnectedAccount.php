@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use App\Models\OrganizationProfile;
 
 class AuthenticateStripeConnectedAccount
 {
@@ -15,7 +16,23 @@ class AuthenticateStripeConnectedAccount
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(auth()->user()->stripe_connected_id && auth()->user()->stripe_is_verified){
+
+        $query = OrganizationProfile::query();
+
+        $query->when(auth()->user()->hasRole('owner') , function($query1){
+            $query1->where('user_id' , auth()->user()->id);
+        });
+
+        $query->when(auth()->user()->hasRole('fundraiser') || auth()->user()->hasRole('organization_admin') , function($query1){
+            $query1->whereHas('organizationAdmin' , function($query2){
+                $query2->where('id' , auth()->user()->id);
+            });
+        });
+
+        $organizationProfile = $query->with('user')->first();
+
+        if(isset($organizationProfile) && $organizationProfile->user->stripe_connected_id && $organizationProfile->user->stripe_is_verified)
+        {
             return $next($request);
         }
 

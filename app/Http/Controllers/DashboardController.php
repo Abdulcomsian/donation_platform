@@ -34,6 +34,7 @@ class DashboardController extends Controller
         $userDetail = $this->userHandler->getUserDetail();
         $dashboardCampaigns  = $this->campaignHandler->getDashboardCampaigns(); 
         $latestDonations = $this->donationHandler->getlatestDonars();
+        $organizationProfile = $this->userHandler->getOrganizationProfile();
 
         return view('dashboard.index')->with([
                                               'dashboardCampaigns' => $dashboardCampaigns , 
@@ -44,7 +45,8 @@ class DashboardController extends Controller
                                               'membersCount' => $latestMemebersCount,
                                               'recurringDonor' => $recurringDonarCount,
                                               'userDetail' => $userDetail,
-                                              'purchaseTicketCount' => $purchaseTicketCount
+                                              'purchaseTicketCount' => $purchaseTicketCount,
+                                              'organizationProfile' => $organizationProfile
                                             ]);
     }
 
