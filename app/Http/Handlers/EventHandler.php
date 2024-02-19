@@ -17,7 +17,8 @@ class EventHandler{
         $event->date = $request->date;
         $event->time = $request->time;
         $event->venue = $request->venue;
-        $event->user_id = auth()->user()->id;
+        $event->user_id = auth()->user()->hasRole('admin') || auth()->user()->hasRole('owner') ? auth()->user()->id : \Helper::getOrganizationOwnerId();
+        $event->created_by = auth()->user()->id;
         $event->organizer = $request->organizer;
         $event->featured = $request->featured == "on" ? 1 : 0;
 
@@ -67,7 +68,6 @@ class EventHandler{
         $event->date = $request->date;
         $event->time = $request->time;
         $event->venue = $request->venue;
-        $event->user_id = auth()->user()->id;
         $event->organizer = $request->organizer;
         $event->featured = $request->featured == "on" ? 1 : 0;
         $event->save();
@@ -319,9 +319,19 @@ class EventHandler{
         $query = EventTicket::query();
 
         $query->when(!auth()->user()->hasRole('admin') , function($query1) {
-            $query1->whereHas('event' , function($query2){
-                $query2->where('user_id' , auth()->user()->id); 
+
+            $query1->when(auth()->user()->hasRole('fundraiser') || auth()->user()->hasRole('organization_admin') , function($query2){
+                $query2->whereHas('event' , function($query3){
+                    $query3->where('created_by' , auth()->user()->id); 
+                });
             });
+
+            $query1->when(auth()->user()->hasRole('owner'), function($query2){
+                $query2->whereHas('event' , function($query3){
+                    $query3->where('user_id' , auth()->user()->id); 
+                });
+            });
+
         });
 
         $eventTickets = $query->with('users')->get();

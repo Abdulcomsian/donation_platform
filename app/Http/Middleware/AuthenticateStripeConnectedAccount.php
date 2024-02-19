@@ -25,7 +25,7 @@ class AuthenticateStripeConnectedAccount
 
         $query->when(auth()->user()->hasRole('fundraiser') || auth()->user()->hasRole('organization_admin') , function($query1){
             $query1->whereHas('organizationAdmin' , function($query2){
-                $query2->where('id' , auth()->user()->id);
+                $query2->where('user_id' , auth()->user()->id);
             });
         });
 

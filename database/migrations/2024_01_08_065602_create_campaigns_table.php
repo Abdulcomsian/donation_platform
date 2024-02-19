@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('campaigns', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('created_by');
             $table->string('title');
             $table->string('excerpt');
             $table->longText('description');
@@ -25,6 +26,7 @@ return new class extends Migration
             $table->dateTime('date');
             $table->integer('status')->default(0);
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });

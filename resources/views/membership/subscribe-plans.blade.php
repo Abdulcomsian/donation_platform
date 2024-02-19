@@ -19,6 +19,7 @@
                   </div>
             </div>
         </div>
+        @if($userPlans->monthlyMembershipPlan->count() > 0)
         <div class="container">
             <div class="row">
                 <h1>Monthly Plan</h1>    
@@ -26,14 +27,17 @@
                 <div class="container">
                     <div class="row">
                         <div class="col d-flex justify-content-start">
-                            <input type="radio" name="plan" value="{{$plan->id}}" required>
-                            <p>{{$plan->name}}</p>
+                            <input class="mx-2" type="radio" name="plan" value="{{$plan->id}}" required>
+                            <p class="mx-2">{{$plan->name}}</p>
+                            <p class="mx-2">${{$plan->amount}}</p>
                         </div>
                     </div>
                 </div>
                 @endforeach
             </div>
         </div>
+        @endif
+        @if($userPlans->annuallyMembershipPlan->count() > 0 )
         <div class="container">
             <div class="row">
                 <h1>Annually Plan</h1>
@@ -41,14 +45,16 @@
                 <div class="container">
                     <div class="row">
                         <div class="col d-flex justify-content-start">
-                            <input type="radio" name="plan" value="{{$plan->id}}" required>
-                            <p>{{$plan->name}}</p>
+                            <input class="mx-2" type="radio" name="plan" value="{{$plan->id}}" required>
+                            <p class="mx-2" >{{$plan->name}}</p>
+                            <p class="mx-2" >{{$plan->amount}}</p>
                         </div>
                     </div>
                 </div>
                 @endforeach
             </div>
         </div>
+        @endif
 
         <div class="container">
             <div class="row">

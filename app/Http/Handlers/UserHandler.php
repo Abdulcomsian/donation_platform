@@ -36,9 +36,19 @@ class UserHandler{
                 
         $query->whereHas('donations' , function($query){
             $query->when(!auth()->user()->hasRole('admin') , function($query1){
-                $query1->whereHas('campaign' , function($query1){
-                    $query1->where('user_id' , auth()->user()->id);
+
+                $query1->when(auth()->user()->hasRole('fundraiser') || auth()->user()->hasRole('organization_admin'), function($query2){
+                    $query2->whereHas('campaign' , function($query2){
+                        $query2->where('created_by' , auth()->user()->id);
+                    });
                 });
+
+                $query1->when(auth()->user()->hasRole('owner'), function($query2){
+                    $query2->whereHas('campaign' , function($query2){
+                        $query2->where('user_id' , auth()->user()->id);
+                    });
+                });
+
             });
             $query->select('donar_id')
             ->groupBy('donar_id')
@@ -173,8 +183,17 @@ class UserHandler{
     public function getUserDetail()
     {
         $userId = auth()->user()->id;
-        $user = User::with('organizationProfile')->where('id' , $userId)->first();
-        return $user;
+        if(auth()->user()->hasRole('owner'))
+        {
+            $user = User::with('organizationProfile')->where('id' , $userId)->first();
+            return $user;
+        }else{
+            $user = OrganizationProfile::whereHas('organizationAdmin' , function($query) {
+                $query->where('user_id' , auth()->user()->id);
+            })->with('user')->first();
+
+            return $user;
+        }
     }
 
     public function setInvitationUserPassword($request)

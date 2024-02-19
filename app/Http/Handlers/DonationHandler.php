@@ -51,8 +51,21 @@ class DonationHandler{
             $query->where(DB::raw('Date(created_at)') , '<=' , $upperDate);
         });
 
+        $query->when(!auth()->user()->hasRole('admin') , function($query1){
 
-        $donations = $query->with('campaign' , 'donar' , 'price' , 'platformPercentage')->orderBy('id' , 'desc')->get();
+            $query1->whereHas('campaign' , function($query2){
+                $query2->when(auth()->user()->hasRole('owner') , function($query3){
+                    $query3->where('user_id' , auth()->user()->id);
+                });
+                
+                $query2->when(auth()->user()->hasRole('fundraiser') || auth()->user()->hasRole('organization_admin') , function($query3){
+                    $query3->where('created_by' , auth()->user()->id);
+                });
+            });
+
+        });
+
+        $donations = $query->with('campaign' , 'donar' , 'plan' , 'platformPercentage')->orderBy('id' , 'desc')->get();
         
         // $query->when(isset)
 
@@ -82,10 +95,10 @@ class DonationHandler{
                 }
               })
               ->addColumn('amount' , function($donation){
-                return $donation->price ? '$'.number_format($donation->price->amount , 2) : '$'.number_format($donation->amount , 2);
+                return $donation->plan ? '$'.number_format($donation->plan->amount , 2) : '$'.number_format($donation->amount , 2);
               })
               ->addColumn('fee_recovered' , function($donation){
-                return $donation->price ? '$'.number_format(($donation->price->amount - (($donation->platformPercentage->percentage /100 ) * $donation->price->amount)) , 2) : '$'.number_format(($donation->amount - (($donation->platformPercentage->percentage /100 ) * $donation->amount)) , 2);
+                return $donation->plan ? '$'.number_format(($donation->plan->amount - (($donation->platformPercentage->percentage /100 ) * $donation->plan->amount)) , 2) : '$'.number_format(($donation->amount - (($donation->platformPercentage->percentage /100 ) * $donation->amount)) , 2);
               })
               ->rawColumns(['donar' , 'campaign' , 'status' ,'amount' , 'fee_recovered'])
               ->make(true);
@@ -377,11 +390,11 @@ class DonationHandler{
             });
 
             $query->when(auth()->user()->hasRole('fundraiser') || auth()->user()->hasRole('fundraiser') , function($query1){
-                $organizationOwnerId = \Helper::getOrganizationOwnerId();
+               
 
-                $query1->whereHas('campaign' , function($query2) use ($organizationOwnerId){
-                    $query2->whereHas('user' , function($query3) use ($organizationOwnerId){
-                        $query3->where('id' , $organizationOwnerId);
+                $query1->whereHas('campaign' , function($query2) {
+                    $query2->whereHas('creator' , function($query3) {
+                        $query3->where('id' , auth()->user()->id );
                     });
                 });
             });
@@ -427,7 +440,25 @@ class DonationHandler{
     }
 
     public function getRecentDonars(){
-        $donations = Donation::with('donar' , 'price')->orderBy('id' , 'desc')->limit(10)->get();
+        $query = Donation::query();
+
+        $query->when(!auth()->user()->hasRole('admin') , function($query1){
+            $query1->when(auth()->user()->hasRole('owner') , function($query2){
+                $query2->whereHas('campaign' , function($query3){
+                    $query3->where('user_id' , auth()->user()->id);
+                });
+            });
+
+            $query1->when(auth()->user()->hasRole('owner') , function($query2){
+                $query2->whereHas('campaign' , function($query3){
+                    $query3->where('created_by' , auth()->user()->id);
+                });
+            });
+        });
+
+        $donations = $query->with('donar' , 'price')->orderBy('id' , 'desc')->limit(10)->get();
+
+        // $donations = Donation::with('donar' , 'price')->orderBy('id' , 'desc')->limit(10)->get();
         return $donations;
     }
 
@@ -435,11 +466,25 @@ class DonationHandler{
         $query = Donation::query();
 
         $query->when( !auth()->user()->hasRole('admin') , function($query){
-            $query->whereHas('campaign' ,function($query){
-                $query->whereHas('user' , function($query1){
-                    $query1->where('id' , auth()->user()->id);
+
+            $query->when(auth()->user()->hasRole('owner') , function($query){
+                $query->whereHas('campaign' ,function($query){
+                    $query->whereHas('user' , function($query1){
+                        $query1->where('id' , auth()->user()->id);
+                    });
                 });
             });
+
+
+            $query->when(auth()->user()->hasRole('fundraiser')  || auth()->user()->hasRole('organization_admin') , function($query){
+                $query->whereHas('campaign' ,function($query){
+                    $query->whereHas('creator' , function($query1){
+                        $query1->where('id' , auth()->user()->id);
+                    });
+                });
+            });
+
+            
         });
 
         $totalDonation = $query->count();
@@ -457,15 +502,24 @@ class DonationHandler{
         $query = Donation::query();
 
         $query->when( !auth()->user()->hasRole('admin') , function($query){
+
             $query->whereHas('campaign' , function($query){
-                $query->where('user_id' , auth()->user()->id);
+
+                $query->when(auth()->user()->hasRole('owner') , function($query1){
+                    $query1->where('user_id' , auth()->user()->id);
+                });
+
+                $query->when(auth()->user()->hasRole('fundraiser')  || auth()->user()->hasRole('organization_admin')  , function($query1){
+                    $query1->where('created_by' , auth()->user()->id);
+                });
+
             });
         });
 
         $donations =$query->with('campaign' , 'platformPercentage' , 'donar' , 'plan')
-                        ->orderBy('id' , 'desc')
-                        ->limit(10)
-                        ->get();
+                            ->orderBy('id' , 'desc')
+                            ->limit(10)
+                            ->get();
 
         return $donations;
     }

@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Handlers\CampaignHandler;
 use Illuminate\Http\Request;
-use App\Http\Handlers\DonationHandler;
+use App\Http\Handlers\{DonationHandler , CampaignHandler , MembershipHandler};
 use App\Models\Campaign;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -16,10 +15,12 @@ class DonationController extends Controller
 {
     protected $donationHandler;
     protected $campaignHandler;
+    protected $membershipHandler;
 
-    function __construct(DonationHandler $donationHandler , CampaignHandler $campaignHandler){
+    function __construct(DonationHandler $donationHandler , CampaignHandler $campaignHandler , MembershipHandler $membershipHandler){
         $this->donationHandler =  $donationHandler;
         $this->campaignHandler = $campaignHandler;
+        $this->membershipHandler = $membershipHandler;
     }
 
     public function donors()
@@ -33,8 +34,10 @@ class DonationController extends Controller
         $campaigns = $this->campaignHandler->getUserCampaigns();
 
         [$recievedAmount , $totalAmount , $failedAmount] = $this->donationHandler->getDonationStats();
+
+        $members = $this->membershipHandler->getSubscribeMembers();
     
-        return view('donations.index')->with(['recievedAmount' => $recievedAmount , 'totalAmount' => $totalAmount , 'failedAmount' => $failedAmount , 'campaigns' => $campaigns]);
+        return view('donations.index')->with(['recievedAmount' => $recievedAmount , 'totalAmount' => $totalAmount , 'failedAmount' => $failedAmount , 'campaigns' => $campaigns , 'members' => $members]);
     }
 
     public function getDonationList(Request $request)

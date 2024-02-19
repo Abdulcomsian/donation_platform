@@ -3,22 +3,20 @@
 namespace App\Http\Handlers;
 
 use App\Http\AppConst;
-use App\Models\{MembershipPlan, MembershipSubscriber, User};
+use App\Models\{MembershipPlan, MembershipSubscriber, User };
 use Stripe\{Stripe , Product , Price , StripeClient , SetupIntent};
 use Illuminate\Support\Facades\Crypt;
 use App\Jobs\MailingJob;
+
 class MembershipHandler{
 
     public function createMembershipPlan($request)
     {
         $plans = $request->plans;
         $type = $request->type;
-        // $type = $request->type;
-        // $amount = $request->amount;
-        // $name = $request->name;
-
-        //check number of current plans
-        $user = User::with('monthlyMembershipPlan' , 'annuallyMembershipPlan')->where('id' , auth()->user()->id)->first();
+        $userId = \Helper::getOrganizationOwnerId();
+        
+        $user = User::with('monthlyMembershipPlan' , 'annuallyMembershipPlan')->where('id' , $userId)->first();
 
         if($type == \AppConst::MONTHLY_PLAN && $user->monthlyMembershipPlan->count() == 3)
         {
@@ -56,7 +54,8 @@ class MembershipHandler{
                 'type' => $plan['type'],
                 'amount' => $plan['amount'],
                 'name' => $plan['name'],
-                'user_id' => auth()->user()->id,
+                'user_id' => $userId,
+                'created_by' => auth()->user()->id,
                 'plan_id' => $price->id
             ];
         }
@@ -173,5 +172,22 @@ class MembershipHandler{
         Stripe::setApiKey(env('STRIPE_SECRET'));
         $setupIntent = SetupIntent::create(['usage' => 'on_session'] , ['stripe_account' => $connectedAccountId]);
         return $setupIntent;
+    }
+
+    public function getSubscribeMembers()
+    {
+        
+        $query = MembershipSubscriber::query();
+        
+        $query->when(!auth()->user()->hasRole('admin') , function($query1){
+            $userId = \Helper::getOrganizationOwnerId();
+            $query1->whereHas('plan' , function($query2) use($userId){
+                $query2->where('user_id' , $userId);
+            });
+        });
+
+        $members = $query->with('user')->get();
+
+        return $members;
     }
 } 

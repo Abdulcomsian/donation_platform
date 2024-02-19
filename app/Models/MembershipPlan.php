@@ -13,7 +13,7 @@ class MembershipPlan extends Model
     
     protected $table = 'membership_plan';
     protected $primaryKey = 'id';
-    protected $fillable = ['user_id', 'name' , 'plan_id' , 'amount' ,'type'];
+    protected $fillable = ['user_id', 'created_by' , 'name' , 'plan_id' , 'amount' ,'type'];
 
     public function user()
     {

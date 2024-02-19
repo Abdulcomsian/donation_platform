@@ -27,8 +27,7 @@
                 <div class="status-select">
                     <select name="status" id="status" aria-placeholder="Status">
                         <option value="">Status</option>
-                        <option value="{{AppConst::DONATION_COMPLETED}}">{{ucfirst(AppConst::DONATION_COMPLETED)}}
-                        </option>
+                        <option value="{{AppConst::DONATION_COMPLETED}}">{{ucfirst(AppConst::DONATION_COMPLETED)}}</option>
                         <option value="{{AppConst::DONATION_FAILED}}">{{ucfirst(AppConst::DONATION_FAILED)}}</option>
                     </select>
                 </div>
@@ -43,6 +42,9 @@
                 <div class="membership-select">
                     <select name="membership" id="membership" aria-placeholder="membership">
                         <option value="">Membership</option>
+                        @foreach($members as $member)
+                            <option value="{{$member->user_id}}">{{$member->user->first_name.' '.$member->user->last_name}}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="date-select">
@@ -76,7 +78,7 @@
                         <div class="heading">
                             <div class="heading-content">Total Donations</div>
                             <div class="tag-green">
-                                <div class="icon">
+                                {{-- <div class="icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 11 11"
                                         fill="none">
                                         <g clip-path="url(#clip0_126_1772)">
@@ -91,10 +93,10 @@
                                             </clipPath>
                                         </defs>
                                     </svg>
-                                </div>
-                                <div class="text">
+                                </div> --}}
+                                {{-- <div class="text">
                                     10.0%
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
@@ -107,9 +109,9 @@
                     <div class="bottom">
                         <div class="duration">
                             <div class="month">This Month</div>
-                            <div class="view">
+                            {{-- <div class="view">
                                 <a href="">View All</a>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -120,7 +122,7 @@
                         <div class="heading">
                             <div class="heading-content">Rec. Donations</div>
                             <div class="tag-green">
-                                <div class="icon">
+                                {{-- <div class="icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 11 11"
                                         fill="none">
                                         <g clip-path="url(#clip0_126_1772)">
@@ -135,10 +137,10 @@
                                             </clipPath>
                                         </defs>
                                     </svg>
-                                </div>
-                                <div class="text">
+                                </div> --}}
+                                {{-- <div class="text">
                                     3.2%
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
@@ -151,9 +153,9 @@
                     <div class="bottom">
                         <div class="duration">
                             <div class="month">This Month</div>
-                            <div class="view">
+                            {{-- <div class="view">
                                 <a href="">View All</a>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -164,11 +166,11 @@
                         <div class="heading">
                             <div class="heading-content">Failed Donations</div>
                             <div class="tag-red">
-                                <div class="icon">
-                                </div>
-                                <div class="text">
+                                {{-- <div class="icon">
+                                </div> --}}
+                                {{-- <div class="text">
                                     3.0%
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
@@ -181,9 +183,9 @@
                     <div class="bottom">
                         <div class="duration">
                             <div class="month">This Month</div>
-                            <div class="view">
+                            {{-- <div class="view">
                                 <a href="">View All</a>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -199,91 +201,11 @@
                     <th>Campaign</th>
                     <th>Status</th>
                     <th>Amount</th>
-                    <th>Fee Recovered</th>
+                    {{-- <th>Fee Recovered</th> --}}
                 </tr>
             </thead>
             <tbody>
-                {{-- <tr>
-                    <td class="name">John Doe</td>
-                    <td class="campaign">Lorem Ipsum</td>
-                    <td class="status">
-                        <div class="complete">Complete</div>
-                    </td>
-                    <td class="amount">$100</td>
-                    <td class="fee-recoverd">$90</td>
-                </tr>
-                <tr>
-                    <td class="name">John Doe</td>
-                    <td class="campaign">Lorem Ipsum</td>
-                    <td class="status">
-                        <div class="complete">Complete</div>
-                    </td>
-                    <td class="amount">$100</td>
-                    <td class="fee-recoverd">$90</td>
-                </tr>
-                <tr>
-                    <td class="name">John Doe</td>
-                    <td class="campaign">Lorem Ipsum</td>
-                    <td class="status">
-                        <div class="pending">Pending</div>
-                    </td>
-                    <td class="amount">$100</td>
-                    <td class="fee-recoverd">$90</td>
-                </tr>
-                <tr>
-                    <td class="name">John Doe</td>
-                    <td class="campaign">Lorem Ipsum</td>
-                    <td class="status">
-                        <div class="processing">Processing</div>
-                    </td>
-                    <td class="amount">$100</td>
-                    <td class="fee-recoverd">$90</td>
-                </tr>
-                <tr>
-                    <td class="name">John Doe</td>
-                    <td class="campaign">Lorem Ipsum</td>
-                    <td class="status">
-                        <div class="complete">Complete</div>
-                    </td>
-                    <td class="amount">$100</td>
-                    <td class="fee-recoverd">$90</td>
-                </tr>
-                <tr>
-                    <td class="name">John Doe</td>
-                    <td class="campaign">Lorem Ipsum</td>
-                    <td class="status">
-                        <div class="complete">Complete</div>
-                    </td>
-                    <td class="amount">$100</td>
-                    <td class="fee-recoverd">$90</td>
-                </tr>
-                <tr>
-                    <td class="name">John Doe</td>
-                    <td class="campaign">Lorem Ipsum</td>
-                    <td class="status">
-                        <div class="pending">Pending</div>
-                    </td>
-                    <td class="amount">$100</td>
-                    <td class="fee-recoverd">$90</td>
-                </tr>
-                <tr>
-                    <td class="name">John Doe</td>
-                    <td class="campaign">Lorem Ipsum</td>
-                    <td class="status">
-                        <div class="complete">Complete</div>
-                    </td>
-                    <td class="amount">$100</td>
-                    <td class="fee-recoverd">$90</td>
-                </tr>
-                <tr>
-                    <td class="name">John Doe</td>
-                    <td class="campaign">Lorem Ipsum</td>
-                    <td class="status">
-                        <div class="failed">Failed</div>
-                    </td>
-                    <td class="amount">$100</td>
-                    <td class="fee-recoverd">$90</td>
-                </tr> --}}
+                
             </tbody>
         </table>
     </div>
@@ -360,7 +282,7 @@ function tableInformation(){
                     { data: 'campaign', name: 'campaign' },
                     { data: 'status', name: 'status' },
                     { data: 'amount', name: 'amount' },
-                    { data: 'fee_recovered', name: 'fee_recovered' },
+                    // { data: 'fee_recovered', name: 'fee_recovered' },
                 ];
     return [table , url , columns];
 }
@@ -430,12 +352,16 @@ function loadDashboardStats(){
 
 
 function toggleStats(){
-    document.querySelectorAll(".stats-numbers").forEach(item => {
+   document.querySelectorAll(".stats-numbers").forEach(item => {
       item.classList.contains("d-none") ? item.classList.remove("d-none") : item.classList.add("d-none") ;
    })
 
    document.querySelectorAll(".stats-loader").forEach(item => {
     item.classList.contains("d-none") ? item.classList.remove("d-none") : item.classList.add("d-none") ;
+   })
+
+   document.querySelectorAll(".month").forEach(month=>{
+    month.classList.add("d-none");
    })
 }
 

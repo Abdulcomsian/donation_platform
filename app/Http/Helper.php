@@ -13,11 +13,18 @@ class Helper{
 
     public static function getOrganizationOwnerId()
     {
-        $organizationProfile = OrganizationProfile::whereHas('organizationAdmin' , function($childQuery){
-                                    $childQuery->where('user_id' , auth()->user()->id);
-                                })->with('user')->first();
+        if(auth()->user()->hasRole('owner')){
+            $organizationProfile = OrganizationProfile::with('user')->where('user_id', auth()->user()->id)->first();
+            return $organizationProfile->user->id;
+        }else{
+            $organizationProfile = OrganizationProfile::whereHas('organizationAdmin' , function($childQuery){
+                                        $childQuery->where('user_id' , auth()->user()->id);
+                                    })->with('user')->first();
+            return $organizationProfile->user->id;
+        }
 
-        return $organizationProfile->user->id;
+
+       
     }
 
 }

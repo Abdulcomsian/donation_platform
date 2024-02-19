@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use App\Http\AppConst;
 use Illuminate\Database\Seeder;
-use App\Models\{User , Address , OrganizationProfile};
+use App\Models\{User , Address , OrganizationAdmin, OrganizationProfile};
 use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
@@ -88,6 +88,23 @@ class UserSeeder extends Seeder
             'addressable_type' => 'App\Models\User',
             'street' => 'stl567678'
         ]);
+
+        
+        $organizationProfile = OrganizationProfile::create([ 
+                                                                'user_id' => $user3->id  ,  
+                                                                'type' => 'non-profit' , 
+                                                                "name" => 'test organization',
+                                                                "description" => 'Lorem ipsum',
+                                                                "link" => 'http://lorem.com',
+                                                                "platform" => "google",
+                                                            ]);
+
+        $organizationAdmins = [
+            ['organization_id' => $organizationProfile->id , 'user_id' => $user->id],
+            ['organization_id' => $organizationProfile->id , 'user_id' => $user1->id],
+        ];
+
+        OrganizationAdmin::insert($organizationAdmins);
 
         
     }

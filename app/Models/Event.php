@@ -13,7 +13,7 @@ class Event extends Model
      
     protected $table = 'events';
     protected $primaryKey = 'id';
-    protected $fillable = [ 'country_id' , 'user_id' ,'category_id', 'frequency_id', 'title' ,'description', 'image' , 'date' , 'time', 'venue', 'organizer', 'featured'];
+    protected $fillable = [ 'country_id' , 'user_id' , 'created_by' , 'category_id', 'frequency_id', 'title' ,'description', 'image' , 'date' , 'time', 'venue', 'organizer', 'featured'];
 
 
     public function country(){
@@ -36,5 +36,8 @@ class Event extends Model
         return $this->belongsTo(User::class , 'user_id' , 'id');
     }
 
+    public function creator(){
+        return $this->belongsTo(User::class , 'created_by' , 'id');
+    }
 
 }

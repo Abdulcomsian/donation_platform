@@ -14,11 +14,13 @@ return new class extends Migration
         Schema::create('membership_plan', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('created_by');
             $table->string('name');
             $table->string('plan_id')->unique();
             $table->double('amount' , 8 , 2);
             $table->integer('type');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
             $table->timestamp('created_at')->default(now());
             $table->timestamp('updated_at')->default(now());
             $table->softDeletes();

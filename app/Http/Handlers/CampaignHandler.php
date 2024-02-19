@@ -12,7 +12,8 @@ class CampaignHandler{
         $campaign->excerpt = $request->excerpt;
         $campaign->description = $request->description;
         $campaign->recurring = $request->recurring;
-        $campaign->user_id = auth()->user()->id;
+        $campaign->user_id = auth()->user()->hasRole('owner') || auth()->user()->hasRole('admin') ? auth()->user()->id : \Helper::getOrganizationOwnerId();
+        $campaign->created_by = auth()->user()->id;
         $campaign->campaign_goal = isset($request->campaign_goal) ? $request->campaign_goal : 0;
         $campaign->status = $request->status;
     
@@ -110,7 +111,11 @@ class CampaignHandler{
         if(auth()->user()->hasRole('admin')){
             $campaigns = Campaign::with('donations.plan')->orderBy('id' , 'desc')->paginate(10);
         }else{
-            $campaigns = Campaign::with('donations.plan')->where('user_id' , auth()->user()->id)->orderBy('id' , 'desc')->paginate(10);
+            if(auth()->user()->hasRole('owner')){
+                $campaigns = Campaign::with('donations.plan')->where('user_id' , auth()->user()->id)->orderBy('id' , 'desc')->paginate(10);
+            }else{
+                $campaigns = Campaign::with('donations.plan')->where('created_by' , auth()->user()->id)->orderBy('id' , 'desc')->paginate(10);
+            }
         }
         return $campaigns;
     }
@@ -122,7 +127,20 @@ class CampaignHandler{
     }
 
     public function getUserCampaigns(){
-        return  auth()->user()->hasRole('admin') ? Campaign::orderBy('id' , 'desc')->get() : Campaign::where('user_id' , auth()->user()->id)->orderBy('id' , 'desc')->get();
+        if(auth()->user()->hasRole('admin'))
+        {
+            return Campaign::orderBy('id' , 'desc')->get();
+        }
+        else{
+            if(auth()->user()->hasRole('owner')){
+                return Campaign::where('user_id' , auth()->user()->id)->orderBy('id' , 'desc')->get();
+            }  else {
+                return Campaign::where('created_by' , auth()->user()->id)->orderBy('id' , 'desc')->get();
+            }
+        }
+        // return  auth()->user()->hasRole('admin') ? Campaign::orderBy('id' , 'desc')->get() : Campaign::where('user_id' , auth()->user()->id)->orderBy('id' , 'desc')->get();
+
+
     }
 
     public function getDashboardCampaigns()
@@ -130,7 +148,15 @@ class CampaignHandler{
         $query = Campaign::query();
         
         $query->when(!auth()->user()->hasRole('admin') , function($query1){
-            $query1->where('user_id' , auth()->user()->id);
+
+            $query1->when(auth()->user()->hasRole('fundraiser') || auth()->user()->hasRole('organization_admin') , function($query2){
+                $query2->where('created_by' , auth()->user()->id);
+            });
+
+            $query1->when(auth()->user()->hasRole('owner'), function($query2){
+                $query2->where('user_id' , auth()->user()->id);
+            });
+
         });
 
         $query->with('donations.price' , 'donations.platformPercentage');

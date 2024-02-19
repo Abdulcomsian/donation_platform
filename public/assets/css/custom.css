@@ -199,6 +199,32 @@
   font-weight: 700;
 }
 
+.theme-text{
+  color : #5BC17F;
+}
+
+.link-btn{
+  padding: 13px 16px;
+  text-decoration: none;
+  border-radius: 8px;
+  background-color: #5BC17F;
+  color: var(--White-Full, #FFF);
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  display: inline-block;
+  border: 1px solid #5BC17F;
+}
+
+.link-btn:hover{
+  color: #5BC17F;
+  background-color: white;
+  border: 1px solid #5BC17F;
+}
+
 .tab-data {
   padding: 0 30px;
 }

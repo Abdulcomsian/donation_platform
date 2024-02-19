@@ -23,7 +23,8 @@ class CampaignSeeder extends Seeder
             for($i =0 ; $i <= 20 ; $i++){
 
                 $campaign = [
-                    'user_id' => $faker->randomElement([1,4]),
+                    'user_id' => 4,
+                    'created_by' => $faker->randomElement([1,2]),
                     'title' => $faker->name,
                     'excerpt' => $faker->text(100),
                     'description' => $faker->text(200),

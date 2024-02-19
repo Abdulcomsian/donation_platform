@@ -66,14 +66,28 @@
                 </div>
 
 
-                @if(!auth()->user()->stripe_is_verified)
-                <div class="btn-container">
-                    <a href="{{route('stripe.hosted.onboarding')}}">Connect Stripe</a> 
-                </div>
-                @else
-                <div class="btn-container">
-                    <a href="{{route('remove.connected.stripe.account')}}">Disconnect Stripe</a>
-                </div>
+                @if(!auth()->user()->hasRole('admin'))
+
+                    @if(auth()->user()->hasRole('owner'))
+
+                        @if(!auth()->user()->stripe_is_verified)
+                        <div class="btn-container">
+                            <a href="{{route('stripe.hosted.onboarding')}}">Connect Stripe</a> 
+                        </div>
+                        @else
+                        <div class="btn-container">
+                            <a href="{{route('remove.connected.stripe.account')}}">Disconnect Stripe</a>
+                        </div>
+                        @endif
+
+                    @else
+                        @if($userDetail->user->stripe_is_verified)
+                            <p class="theme-text"><strong>Stripe Connected</strong></p>
+                        @else
+                            <p class="theme-text"><strong>No Stripe Connected</strong></p>
+                        @endif
+                    @endif
+
                 @endif
             </div>
 
