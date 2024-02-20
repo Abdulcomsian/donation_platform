@@ -10,6 +10,12 @@
   align-items: center;
   justify-content: space-between;
 }
+.left-img{
+  width: 100px;
+    border-radius: 5px;
+    height: 100%;
+    object-fit: cover;
+}
 .dashboard .header .left {
   display: flex;
   flex-direction: row;

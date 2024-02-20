@@ -23,7 +23,7 @@
         <div class="left">
             <input type="file" class="d-none" name="file" id="file">
             @if($organizationProfile && $organizationProfile->logo_link)
-                <img src="{{asset('assets/uploads/profile_image').'/'.$organizationProfile->logo_link}}" alt="">
+                <img src="{{asset('assets/uploads/profile_image').'/'.$organizationProfile->logo_link}}" class="left-img" alt="">
             @else
             @if(auth()->user()->hasRole('owner'))
             <div class="upload" onclick="importFile(event)">
