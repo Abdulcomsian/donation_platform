@@ -36,7 +36,13 @@ class AuthenticateStripeConnectedAccount
             return $next($request);
         }
 
-        \Toastr::error('Please Connect Your Stripe Account' , 'error');
-        return redirect()->back();
+        if($request->ajax())
+        {
+            return response()->json(['status' => false , 'msg' => 'Stripe Not Connected']);
+        }else{
+
+            \Toastr::error('Please Connect Your Stripe Account' , 'error');
+            return redirect()->back();
+        }
     }
 }

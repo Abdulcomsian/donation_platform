@@ -53,14 +53,14 @@
                 ...data
             },
             success : function(res){
+                if(loader){
+                    loader.classList.add("d-none");
+                }
                 if(res.status){
                     if(fn != null){
                             fn();
                         }
 
-                    if(loader){
-                        loader.classList.add("d-none");
-                    }
 
                     if(redirectUrl != null){
                         window.location.href = res.paramId ? redirectUrl+"/"+res.paramId : redirectUrl;

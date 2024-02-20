@@ -13,6 +13,8 @@ class AppConst{
     public const PENDING = 0; 
     public const ACTIVATED = 1;
     public const REJECTED = 2;
+    public const STRIPE_VERIFIED = 1;
+    public const STRIPE_INCOMPLETE_DETAIL = 2;
 
     //reference table campaings
     public const ACTIVE = 1;

@@ -55,7 +55,7 @@ Route::group(['middleware' => ['preventBackHistory', 'auth']], function () {
 
     Route::group(['prefix' => 'events'], function () {
         Route::get("/", [EventsController::class, 'getEventList'])->name('events');
-        Route::get("/create-event", [EventsController::class, 'getEventForm'])->name('event.create.form')->middleware(['authenticate.connected.account']);;
+        Route::get("/create-event", [EventsController::class, 'getEventForm'])->name('event.create.form')->middleware(['authenticate.connected.account']);
         Route::get('edit-event/{id}' , [EventsController::class , 'editEventForm'])->name('edit.event');
         Route::post("create-event" , [EventsController::class , 'createEvent'])->name('create.event');
         Route::post("edit-event" , [EventsController::class , 'editEvent'])->name('edit.event');
@@ -68,7 +68,7 @@ Route::group(['middleware' => ['preventBackHistory', 'auth']], function () {
     Route::group(['prefix' => 'membership'], function () {
         Route::get("/", [MembershipController::class, 'membership'])->name('membership');
         Route::post('delete-membership-plan' , [MembershipController::class , 'removeMembership'])->name('delete.membership');
-        Route::post('create-membership-plan' , [MembershipController::class , 'createMembershipPlan'])->name('create.membership');
+        Route::post('create-membership-plan' , [MembershipController::class , 'createMembershipPlan'])->name('create.membership')->middleware(['authenticate.connected.account']);
     });
 
     Route::group(['prefix' => 'settings'], function () {

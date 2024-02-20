@@ -75,9 +75,17 @@
                             <a href="{{route('stripe.hosted.onboarding')}}">Connect Stripe</a> 
                         </div>
                         @else
-                        <div class="btn-container">
-                            <a href="{{route('remove.connected.stripe.account')}}">Disconnect Stripe</a>
-                        </div>
+
+                        @if(auth()->user()->stripe_is_verified == \AppConst::STRIPE_VERIFIED)
+                            <div class="btn-container">
+                                <a href="{{route('remove.connected.stripe.account')}}">Disconnect Stripe</a>
+                            </div>
+                        @else
+                            <div class="btn-container">
+                                <a href="{{route('stripe.hosted.onboarding')}}">Incomplete Stripe Detail</a>
+                            </div>  
+                        @endif
+
                         @endif
 
                     @else

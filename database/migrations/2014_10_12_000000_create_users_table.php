@@ -22,7 +22,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
             $table->string('stripe_connected_id')->nullable();
-            $table->boolean('stripe_is_verified')->default(0);
+            $table->integer('stripe_is_verified')->default(0);
             $table->longText('profile_image')->nullable();
             $table->longText('logo')->nullable();
             $table->rememberToken();

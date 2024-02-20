@@ -62,12 +62,23 @@ class StripeController extends Controller
     
         // $account =   Account::create(['type' => 'express']);
 
-        $account =   Account::create(['type' => 'custom' , 
-                                        'capabilities' => [
-                                            'card_payments' => ['requested' => true],
-                                            'transfers' => ['requested' => true],
-                                        ]
-                                    ]);
+        $account = null;
+
+        if(!auth()->user()->stripe_connected_id)
+        {
+
+            $account =   Account::create(['type' => 'custom' , 
+                                            'capabilities' => [
+                                                'card_payments' => ['requested' => true],
+                                                'transfers' => ['requested' => true],
+                                            ]
+                                        ]);
+        }else{
+
+            $account = auth()->user()->stripe_connected_id;
+
+        }
+
     
         if($account){
             $user = User::where('id' , auth()->user()->id)->first();
@@ -95,18 +106,19 @@ class StripeController extends Controller
    public function handleConnectCallback(){
    
     $account = Account::retrieve(auth()->user()->stripe_connected_id);
-
     // dd($account , $account->payouts_enabled , $account->charges_enabled );
 
     // $account->payouts_enabled && $account->charges_enabled
+    $user = User::where('id' , auth()->user()->id)->first();
     if($account->charges_enabled){
-        $user = User::where('id' , auth()->user()->id)->first();
-        $user->stripe_is_verified = 1;
+        $user->stripe_is_verified = \AppConst::STRIPE_VERIFIED;
         $user->save();
         \Toastr::success('User Connected Successfully' , 'Success!');
         return redirect()->route('dashboard');
     }else{
-        \Toastr::error('Something Went Wrong' , 'Error!' );
+        $user->stripe_is_verified = \AppConst::STRIPE_INCOMPLETE_DETAIL;
+        $user->save();
+        \Toastr::error('Incomplete Stripe Detail' , 'Error!' );
         return redirect()->back();
     }
 
