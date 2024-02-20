@@ -86,10 +86,10 @@
             </thead>
             <tbody>
                 {{-- @dd($donars) --}}
-                @foreach($donars as $donation)
+                @foreach($donations as $donation)
                 <tr>
                     <td class="name">{{$donation->donar->first_name.' '.$donation->donar->last_name}}</td>
-                    <td class="amount">${{$donation->amount ? $donation->amount : $donation->price->amount}}</td>
+                    <td class="amount">${{$donation->amount ? $donation->amount : $donation->plan->amount}}</td>
                 </tr>
                 @endforeach
 
