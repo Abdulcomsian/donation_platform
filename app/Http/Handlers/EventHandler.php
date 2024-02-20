@@ -161,7 +161,12 @@ class EventHandler{
         if(auth()->user()->hasRole('admin')){
             $events = Event::with('ticket.users')->orderBy('id' , 'desc')->paginate(10);
         }else{
-            $events = Event::with('ticket.users')->where('user_id' , auth()->user()->id)->orderBy('id' , 'desc')->paginate(10);
+            if(auth()->user()->hasRole('owner')){
+                $events = Event::with('ticket.users')->where('user_id' , auth()->user()->id)->orderBy('id' , 'desc')->paginate(10);
+            }else{
+                $events = Event::with('ticket.users')->where('created_by' , auth()->user()->id)->orderBy('id' , 'desc')->paginate(10);
+            }
+
         }
         return $events;
     }
