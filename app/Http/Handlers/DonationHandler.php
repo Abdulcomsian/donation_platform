@@ -439,9 +439,12 @@ class DonationHandler{
         return [$recievedAmount , $totalAmount];
     }
 
-    public function getRecentDonars(){
+    public function getRecentDonars($request){
 
         $query = Donation::query();
+
+        $date = $request->date;
+        $plan = $request->plan;
 
         $query->when(!auth()->user()->hasRole('admin') , function($query1){
             $query1->when(auth()->user()->hasRole('owner') , function($query2){
@@ -457,9 +460,22 @@ class DonationHandler{
             });
         });
 
-        $donations = $query->with('donar' , 'price')->orderBy('id' , 'desc')->limit(10)->get();
+        $query->when(isset($date) && !is_null($date) && !empty($date), function($query1) use ($date){
+            $query1->where('created_at' ,  $date);
+        });
 
-        // $donations = Donation::with('donar' , 'price')->orderBy('id' , 'desc')->limit(10)->get();
+        $query->when(isset($plan) && !is_null($plan) && !empty($plan), function($query1)  use ($plan) {
+            $query1->whereHas('donar' , function($query2) use ($plan) {
+                $query2->whereHas('subscriptionPlans' , function($query3) use($plan) {
+                    $query3->where('membership_subscribers.id' , $plan);
+                });
+            });
+        });
+
+
+
+        $donations = $query->with('donar' , 'price')->orderBy('id' , 'desc')->paginate(5);
+
         return $donations;
     }
 

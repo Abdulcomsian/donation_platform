@@ -13,6 +13,16 @@
     href="https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
     rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('assets/css/donor.css') }}">
+<style>
+    button.search-btn {
+    height: 48px;
+    width: 61px;
+    border-radius: 8px;
+    border: 1px solid #DDDFE5;
+    color: #949494;
+}
+</style>
+
 @endsection
 
 @section('content')
@@ -26,7 +36,26 @@
             <div class="select-membership">
                 <select name="membership" id="membership">
                     <option value="">Select Membership</option>
+                    @if($monthlyPlans->count() > 0)
+                        <optgroup label="Monthly Plans">
+                            @foreach($monthlyPlans as $plan)
+                            <option value="{{$plan->id}}">{{ucfirst($plan->name)}}</option>
+                            @endforeach
+                        </optgroup>
+                    @endif
+                    @if($annuallyPlans->count() > 0)
+                        <optgroup label="Annually Plans">
+                            @foreach($annuallyPlans as $plan)
+                            <option value="{{$plan->id}}">{{ucfirst($plan->name)}}</option>
+                            @endforeach
+                        </optgroup>
+                    @endif
                 </select>
+            </div>
+            <div>
+                <button type="button" class="search-btn">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
             </div>
             <div class="btn-download">
                 <button type="button">
@@ -41,6 +70,7 @@
                     </svg>
                 </button>
             </div>
+            
             <div class="btn-add-csv">
                 <button type="button">Add CSV</button>
             </div>
@@ -62,8 +92,37 @@
                     <td class="amount">${{$donation->amount ? $donation->amount : $donation->price->amount}}</td>
                 </tr>
                 @endforeach
+
+                
+
+
             </tbody>
         </table>
     </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 d-flex justify-content-center paginate-navigation">
+                {!! $donars->links() !!}
+            </div>
+        </div>
+    </div>
+    
 </div>
+
+@endsection
+
+@section('script')
+
+<script>
+    document.querySelector(".search-btn").addEventListener("click" , function(e){
+        let date = document.getElementById('date').value;
+        let plan = document.getElementById('membership').value;
+
+        let url = '{{url("donations/donors")}}';
+        let currentUrl = `${url}?date=${date}&plan=${plan}`;
+        window.location.href = currentUrl;
+
+    })
+</script>
+
 @endsection

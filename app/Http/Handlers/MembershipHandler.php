@@ -69,8 +69,9 @@ class MembershipHandler{
 
     public function membershipPlanList()
     {
-        $monthlyPlans =  MembershipPlan::where('user_id' , auth()->user()->id)->where('type' , AppConst::MONTHLY_PLAN)->get();
-        $annuallyPlans = MembershipPlan::where('user_id' , auth()->user()->id)->where('type' , AppConst::ANNUALLY_PLAN)->get();
+        $userId = \Helper::getOrganizationOwnerId();
+        $monthlyPlans =  MembershipPlan::where('user_id' , $userId)->where('type' , AppConst::MONTHLY_PLAN)->get();
+        $annuallyPlans = MembershipPlan::where('user_id' , $userId)->where('type' , AppConst::ANNUALLY_PLAN)->get();
         return [$monthlyPlans , $annuallyPlans];
     }
 

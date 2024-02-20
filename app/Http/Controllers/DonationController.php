@@ -23,10 +23,12 @@ class DonationController extends Controller
         $this->membershipHandler = $membershipHandler;
     }
 
-    public function donors()
+    public function donors(Request $request)
     {
-        $donars = $this->donationHandler->getRecentDonars();
-        return view('donors.index')->with("donars" , $donars);
+
+        $donars = $this->donationHandler->getRecentDonars($request);
+        [$monthlyPlans , $annuallyPlans] = $this->membershipHandler->membershipPlanList();
+        return view('donors.index')->with(["donars" => $donars , 'monthlyPlans' => $monthlyPlans , 'annuallyPlans' => $annuallyPlans]);
     }
 
     public function donations()
