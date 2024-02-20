@@ -15,7 +15,7 @@ class MailchimpSeeder extends Seeder
      */
     public function run(): void
     {
-        ini_set('memory_limit', '44M');
+        // ini_set('memory_limit', '44M');
         // try{
         $mailchimp = new ApiClient();
         $user = User::where('email' , 'mnoumanb@gmail.com')->first();
