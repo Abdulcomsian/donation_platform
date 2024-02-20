@@ -102,7 +102,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12 d-flex justify-content-center paginate-navigation">
-                {!! $donars->links() !!}
+                {!! $donations->links() !!}
             </div>
         </div>
     </div>
