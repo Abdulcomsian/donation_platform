@@ -73,6 +73,12 @@ class StripeController extends Controller
                                                 'transfers' => ['requested' => true],
                                             ]
                                         ]);
+
+            $user = User::where('id' , auth()->user()->id)->first();
+            $user->stripe_connected_id = $account->id;
+            $user->save();
+            
+            $account = $account->id;
         }else{
 
             $account = auth()->user()->stripe_connected_id;
@@ -81,11 +87,9 @@ class StripeController extends Controller
 
     
         if($account){
-            $user = User::where('id' , auth()->user()->id)->first();
-            $user->stripe_connected_id = $account->id;
-            $user->save();
+            
             $accountLink = AccountLink::create([
-                    'account' => $account->id,
+                    'account' => $account,
                     'refresh_url' => route('stripe.hosted.onboarding'),
                     'return_url' => $redirectUrl, 
                     'type' => 'account_onboarding',
