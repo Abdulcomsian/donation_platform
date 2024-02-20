@@ -3,12 +3,13 @@
 namespace App\Http\Handlers;
 
 use App\Http\AppConst;
-use App\Models\{ Donation , Campaign , Country , User , PlatformPercentage , Address, PriceOption , Plan , OrganizationProfile};
-use App\Http\Handlers\{StripeHandler , MailChimpHandler};
+use App\Models\{ Donation , Campaign , Country , User , PlatformPercentage , Address,  Plan };
+use App\Http\Handlers\{StripeHandler , MailchimpHandler};
 use Yajra\DataTables\Facades\DataTables;
 use App\Jobs\MailingJob;
 use Illuminate\Support\Facades\DB;
 use Stripe\{Stripe , StripeClient , Customer , PaymentIntent};
+
 class DonationHandler{
 
     public function getCampaignDonation($campaignId)
@@ -106,7 +107,6 @@ class DonationHandler{
 
     public function createDonation($request)
     {
-        // dd($request->all());
         $campaignId = $request->campaign_id;
 
         $percentageId = PlatformPercentage::latestPercentage()->id;
@@ -314,7 +314,7 @@ class DonationHandler{
                                             })->first();
         
         if($campaignCreator->mailchimp){
-            $mailchimp = new MailChimpHandler($campaignCreator->mailchimp->api_key);
+            $mailchimp = new MailchimpHandler($campaignCreator->mailchimp->api_key);
             if(!$mailchimp->findSubscriber($campaignCreator->mailchimp->list_id , $email)){
                 $mailchimp->addSubscriber($campaignCreator->mailchimp->list_id , $email);
             }
