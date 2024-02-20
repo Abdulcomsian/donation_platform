@@ -474,7 +474,7 @@ class DonationHandler{
 
 
 
-        $donations = $query->with('donar' , 'price')->orderBy('id' , 'desc')->paginate(5);
+        $donations = $query->with('donar' , 'price')->orderBy('id' , 'desc')->paginate(10);
 
         return $donations;
     }
