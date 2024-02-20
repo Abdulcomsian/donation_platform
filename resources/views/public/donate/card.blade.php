@@ -363,7 +363,7 @@ function changeActive(item1, item2) {
                 title: "Oops...",
                 text: error.message,
             });
-            loader.classList.remove("d-none");
+            loader.classList.add("d-none");
             return;
         }else{
 
@@ -373,7 +373,7 @@ function changeActive(item1, item2) {
             form.append('amount' , amount);
             form.append('plan_id' , plan);
             form.append('payment_method' , setupIntent.payment_method);
-            addFormData(url , form , loader , null , submitBtn , null)
+            addFormData(url , form , loader , null , submitBtn , reloadPage)
 
         }
 
@@ -382,6 +382,11 @@ function changeActive(item1, item2) {
         
 
     })
+
+    function reloadPage()
+    {
+        location.reload();
+    }
 
 
     function checkRequired(field){
