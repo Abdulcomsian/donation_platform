@@ -440,6 +440,7 @@ class DonationHandler{
     }
 
     public function getRecentDonars(){
+
         $query = Donation::query();
 
         $query->when(!auth()->user()->hasRole('admin') , function($query1){
@@ -449,7 +450,7 @@ class DonationHandler{
                 });
             });
 
-            $query1->when(auth()->user()->hasRole('owner') , function($query2){
+            $query1->when(auth()->user()->hasRole('fundraiser') || auth()->user()->hasRole('organization_admin') , function($query2){
                 $query2->whereHas('campaign' , function($query3){
                     $query3->where('created_by' , auth()->user()->id);
                 });
