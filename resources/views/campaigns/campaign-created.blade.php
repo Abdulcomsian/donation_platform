@@ -60,7 +60,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="cancel" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="save">Save Changes</button>
+                    {{-- <button type="button" class="save">Save Changes</button> --}}
                 </div>
             </div>
         </div>
