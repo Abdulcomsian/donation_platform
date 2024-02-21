@@ -23,13 +23,7 @@
         @foreach($purchaseTicketsStats as $ticket)
         <div class="col-3">
             <label for=""><Strong>{{$ticket->name}}</Strong></label>
-            @php
-                $totalSold = 0; 
-                foreach($ticket->users as $user){
-                    $totalSold += $user->pivot->quantity;
-                }
-            @endphp
-            <p>{{$totalSold}}</p>
+            <p>{{$ticket->quantity}}</p>
         </div>
         @endforeach
     </div>
