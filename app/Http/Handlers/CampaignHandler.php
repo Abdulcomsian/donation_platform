@@ -88,7 +88,7 @@ class CampaignHandler{
         //deleting all the frequencies that are not in current frequency
         CampaignFrequency::where('campaign_id' , $request->campaign_id)->whereNotIn('type' , $frequencies)->delete();
 
-        $campaignFrequencies = CampaignFrequency::where('id' , $request->campaign_id)->get()->pluck('type')->toArray();
+        $campaignFrequencies = CampaignFrequency::where('campaign_id' , $request->campaign_id)->get()->pluck('type')->toArray();
 
         foreach($frequencies as $frequency){
             if(!in_array($frequency , $campaignFrequencies)){

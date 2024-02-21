@@ -63,7 +63,7 @@
                                 @endif
                             </div>
                         </div>
-    
+                 
                         @if($userPlans->count() > 0 && $campaign->recurring == 'required')
                         <div class="container-fluid recurring-box d-none">
                             <div class="row">
