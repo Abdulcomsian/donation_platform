@@ -32,10 +32,10 @@
                     </div>
                     <div class="form-control-country">
                         <label for="country">Country</label>
-                        <select name="country" id="country" required value="{{$user->country_id}}">
+                        <select name="country" id="country" required>
                             <option value="" selected disabled>Select Country</option>
                             @foreach($countries as $country)
-                            <option value="{{$country->id}}">{{$country->name}}</option>
+                            <option value="{{$country->id}}" @if($user->country_id == $country->id) selected @endif>{{$country->name}}</option>
                             @endforeach
                         </select>
                     </div>

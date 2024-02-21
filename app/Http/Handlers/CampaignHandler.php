@@ -107,16 +107,24 @@ class CampaignHandler{
     }
 
     public function getCampaignList(){
-        $campaigns = null;
+        $campaigns= null;
+
+        $query = Campaign::query();
+
+        $query->with(['donations' => function($query1){
+            $query1->where('status' , \AppConst::DONATION_COMPLETED)->with('plan');
+        }]);
+
         if(auth()->user()->hasRole('admin')){
-            $campaigns = Campaign::with('donations.plan')->orderBy('id' , 'desc')->paginate(10);
+            $campaigns = $query->orderBy('id' , 'desc')->paginate(10);
         }else{
             if(auth()->user()->hasRole('owner')){
-                $campaigns = Campaign::with('donations.plan')->where('user_id' , auth()->user()->id)->orderBy('id' , 'desc')->paginate(10);
+                $campaigns = $query->where('user_id' , auth()->user()->id)->orderBy('id' , 'desc')->paginate(10);
             }else{
-                $campaigns = Campaign::with('donations.plan')->where('created_by' , auth()->user()->id)->orderBy('id' , 'desc')->paginate(10);
+                $campaigns = $query->where('created_by' , auth()->user()->id)->orderBy('id' , 'desc')->paginate(10);
             }
         }
+        
         return $campaigns;
     }
 

@@ -3,7 +3,8 @@
 namespace App\Http\Handlers;
 use App\Models\{Event , Country , EventFrequency , EventCategory , EventTicket , User, UserTicket};
 use Illuminate\Support\Facades\DB;
-use Stripe\{ Stripe , SetupIntent , PaymentIntent , Transfer};
+use Stripe\{ Stripe , SetupIntent , Transfer};
+use Yajra\DataTables\DataTables;
 class EventHandler{
 
     public function createEvent($request)
@@ -350,6 +351,48 @@ class EventHandler{
         }
         
         return $eventTicketCount;
+
+    }
+
+    public function getPurchaseTicketList($request)
+    {
+        $eventTickets = EventTicket::with('users' , 'event')->where('event_id' , $request->eventId)->get();
+        
+        return $eventTickets;
+    }
+
+    public function eventPurchaseTicket($request)
+    {
+        $eventId = $request->eventId;
+
+        $purchaseTickets = UserTicket::with('user' , 'ticket')->whereHas('ticket' , function($query) use($eventId){
+            $query->where('event_id' , $eventId);
+        })->get();
+
+
+        return DataTables::of($purchaseTickets)
+              ->addIndexColumn()
+              ->addColumn('ticket_name' , function($ticket){
+                return $ticket->ticket->name;
+              })
+              
+              ->addColumn('user_name' , function($ticket){
+                return $ticket->user->first_name.' '.$ticket->user->last_name;
+              })
+              ->addColumn('email' , function($ticket){
+                return $ticket->user->email;
+              })
+              ->addColumn('quantity' , function($ticket){
+                return $ticket->quantity;
+              })
+              ->addColumn('amount' , function($ticket){
+                return $ticket->ticket->price > 0 ? '$'.number_format($ticket->ticket->price , 2) : 'free';
+              })
+              ->addColumn('total' , function($ticket){
+                return $ticket->ticket->price == 0 ? '$0' : '$'. number_format($ticket->quantity * $ticket->ticket->price , 2);   
+              })
+              ->rawColumns(['ticket_name' , 'user_name' , 'email' ,'quantity' , 'amount' , 'total'])
+              ->make(true);
 
     }
 

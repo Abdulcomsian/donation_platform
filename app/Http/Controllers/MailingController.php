@@ -89,12 +89,12 @@ class MailingController extends Controller
 
     public function eventRegistration()
     {
-        return view('mail.');
+        return view('mail.event_registration');
     }
 
     public function eventCanceled()
     {
-        return view('mail.event_registration');
+        return view('mail.event_canceled');
     }
 
     public function eventTicketRefund()

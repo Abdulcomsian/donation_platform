@@ -190,6 +190,7 @@
 .create-campaign .form-container .row .form-control .currency-input {
   position: relative;
   height: 65.932px;
+  margin-top:30px;
 }
 .create-campaign .form-container .row .form-control .currency-input span {
   position: absolute;

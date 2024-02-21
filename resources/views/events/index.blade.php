@@ -41,6 +41,7 @@
                                         <img src="{{ asset('assets/images/ellipsis-vertical-sharp.png') }}" alt="">
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                        <li><a class="dropdown-item" href="{{url('events/get-purchase-ticket-list' , $event->id)}}">View Purchase</a></li>
                                         <li><a class="dropdown-item" href="{{url('event-detail' , $event->id)}}">View</a></li>
                                         <li><a class="dropdown-item" href="{{url('events/edit-event' , $event->id)}}">Edit</a></li>
                                         <li><a class="dropdown-item" href="{{url('events/delete-event' , $event->id)}}">Delete</a></li>
@@ -88,7 +89,7 @@
                                     foreach($event->ticket as $ticket){
                                         if($ticket->users->count() > 0){
                                             foreach($ticket->users as $ticketPurchaser){
-                                                $soldTicketCount += $ticketPurchaser->quantity;
+                                                $soldTicketCount += $ticketPurchaser->pivot->quantity;
                                             }
                                         }
 

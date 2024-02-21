@@ -23,7 +23,8 @@
                         </div>
                         
                         <div class="amount-item">
-                            <label for="amount">Select or Enter Amount</label>
+                            <label for="amount">@if($campaign->recurring == 'required') Select or @endif Enter Amount</label>
+                            @if($campaign->recurring == 'required')
                             <div class="row static-amount">
                                 @foreach($userPlans as $plan)
                                 <div class="col-md-3 donation-amount-box">
@@ -31,6 +32,7 @@
                                 </div>
                                 @endforeach
                             </div>
+                            @endif
                             <div class="currency-input">
                                 <span>$</span>
                                 <input type="number" id="amount" step="0.01" inputmode="decimal" min="0.25"
@@ -62,12 +64,12 @@
                             </div>
                         </div>
     
-                        @if($userPlans->count() > 0)
+                        @if($userPlans->count() > 0 && $campaign->recurring == 'required')
                         <div class="container-fluid recurring-box d-none">
                             <div class="row">
                                     <div class="col-12 p-0 mt-4">
                                         <select name="frequency" class="form-select frequency-select">
-                                            <option value="" selected disabled>Select Frequency</option>
+                                            <option value="" selected >Select Frequency</option>
                                                 @foreach($campaign->frequencies as $frequency)
                                                     <option value="{{$frequency->type}}">{{ucfirst($frequency->type)}}</option>
                                                 @endforeach
@@ -197,9 +199,12 @@ function changeActive(item1, item2) {
         let amount = document.getElementById("amount");
         if(item1 === 'recurring'){
             document.querySelector('.recurring-box').classList.remove('d-none');
+            document.querySelector('.currency-input').classList.add('d-none');
             amount.setAttribute("readonly" , true);
         }else{
             document.querySelector('.recurring-box').classList.add('d-none');
+            document.querySelector("select[name='frequency']").selectedIndex = 0;
+            document.querySelector('.currency-input').classList.remove('d-none');
             amount.removeAttribute("readonly");
         } 
 
@@ -371,7 +376,9 @@ function changeActive(item1, item2) {
             let url = this.getAttribute('action');
             let submitBtn = this.querySelector(".donate.donate-btn");
             form.append('amount' , amount);
-            form.append('plan_id' , plan);
+            if(plan){
+                form.append('plan_id' , plan);
+            }
             form.append('payment_method' , setupIntent.payment_method);
             addFormData(url , form , loader , null , submitBtn , reloadPage)
 

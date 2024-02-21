@@ -63,6 +63,8 @@ Route::group(['middleware' => ['preventBackHistory', 'auth']], function () {
         Route::get('event-created/{eventId}' , [EventsController::class , 'eventCreated'])->name('event.created');
         Route::get('event-updated/{eventId}', [EventsController::class, 'eventUpdated'])->name('event.updated');
         Route::post('purchase-ticket' , [EventsController::class , 'purchaseEventTicket'])->name('purchase.ticket');
+        Route::get('get-purchase-ticket-list/{eventId}' , [EventsController::class , 'purchaseTicketList'])->name('ticket.list');
+        Route::post('get-purchase-ticket-list' , [EventsController::class , 'eventPurchaseTickets'])->name('event.purchased.ticket');
     });
 
     Route::group(['prefix' => 'membership'], function () {

@@ -177,4 +177,26 @@ class EventsController extends Controller
 
 
     }
+
+
+    public function purchaseTicketList(Request $request)
+    {
+        $purchaseTicketStats = $this->eventHandler->getPurchaseTicketList($request);
+
+        return view('events.purchase-ticket-list')->with(['purchaseTicketsStats' => $purchaseTicketStats , 'eventId' => $request->eventId]);
+    }
+
+    public function eventPurchaseTickets(Request $request)
+    {
+        $validator = Validator::make($request->all() , [
+            'eventId' => 'required|numeric',
+        ]);
+
+
+        if($validator->fails()){
+            return response()->json(['status' => false , 'msg' => 'Something Went Wrong' , 'error' => implode( ",", $validator->messages()->all())]);
+        }
+
+        return $this->eventHandler->eventPurchaseTicket($request);
+    }
 }

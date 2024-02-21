@@ -120,9 +120,10 @@ class DonationHandler{
         $connectedAccountId = $campaingDetail->user->stripe_connected_id;
         $user = $campaingDetail->user;
 
-        if(!isset($request->frequency))
+       
+        if(!isset($request->frequency) && is_null($request->plan_id))
         {
-
+            dd("here boss");
             $intent = $stripe->paymentIntents->create(
                                         [
                                             'amount' => $request->amount * 100,

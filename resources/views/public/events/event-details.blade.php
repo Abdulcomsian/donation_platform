@@ -123,7 +123,7 @@
                                         <input type="hidden" value="{{number_format($ticket->price)}}" id="ticket_price-{{$tot_ticket-1}}" />
                                     </div>
                                     <div class="ticket-count">
-                                    <input type="number" value="0" data-ticket-id="{{$ticket->id}}" data-ticket-amount="{{$ticket->price}}" min="1" max="{{$ticket->quantity - $ticket->users->count()}}" class="form-control" id="basiInput-{{$tot_ticket-1}}" onchange="calc_price()">
+                                    <input type="number" value="0" data-ticket-id="{{$ticket->id}}" data-ticket-amount="{{$ticket->price}}" min="1" max="{{$ticket->quantity - $ticket->users->count()}}" class="form-control ticket-quantity" id="basiInput-{{$tot_ticket-1}}" onchange="calc_price()">
                                 </div>
                                 </div>
                             @endif
@@ -314,6 +314,19 @@
     $(".progress-bar-tab.custom-nav li").click(function() {
         $(".progress-bar-tab.custom-nav li").removeClass("active");
     });
+
+
+    document.querySelectorAll(".ticket-quantity").forEach(field => {
+        field.addEventListener("keyup" , function(e){
+            let element = e.target;
+            let maxQuantity = element.getAttribute('max');
+            let value = element.value;
+            if(value > maxQuantity){
+                element.value = maxQuantity;
+            }
+        })
+    })
+
     function calc_price() {
         tot_iteration = $('input[id^="tot_iteration"]').val();
         var totalval = parseFloat(0);

@@ -90,7 +90,6 @@
                         <select name="recurring" id="">
                             <option value="" disabled selected>Set Recurring</option>
                             <option value="disable">Disable</option>
-                            <option value="optional">Optional</option>
                             <option value="required">Required</option>
                         </select>
                     </div>
