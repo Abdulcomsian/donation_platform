@@ -89,9 +89,9 @@
                         <label for="title">Recurring</label>
                         <select name="recurring" id="" value="{{$campaign->recurring}}">
                             <option value="" disabled >Select Recurring</option>
-                            <option value="disable">Disable</option>
-                            <option value="optional">Optional</option>
-                            <option value="required">Required</option>
+                            <option value="disable" @if($campaign->recurring == 'disable') selected @endif>Disable</option>
+                            {{-- <option value="optional" @if($campaign->recurring == 'optional') selected @endif>Optional</option> --}}
+                            <option value="required"  @if($campaign->recurring == 'required') selected @endif>Required</option>
                         </select>
                     </div>
                 </div>
@@ -118,20 +118,20 @@
                         <select name="fee_recovery" id="feeRecovery">
                             <option value="">Select Fee Recovery</option>
                             <option value="disable" @if($campaign->fee_recovery == "disable") selected @endif>Disable</option>
-                            <option value="optional" @if($campaign->fee_recovery == "optional") selected @endif>Optional</option>
+                            {{-- <option value="optional" @if($campaign->fee_recovery == "optional") selected @endif>Optional</option> --}}
                             <option value="required" @if($campaign->fee_recovery == "required" ) selected @endif>Required</option>
                         </select>
                     </div>
                 </div>
             </div>
             
-            <div class="row campaign-goal @if($campaign->campaign_goal == 0) d-none @endif">
+            {{-- <div class="row campaign-goal @if($campaign->campaign_goal == 0) d-none @endif">
                 <div class="col-md-5">
                     <div class="form-control">
                         <input type="datetime-local" id="date" name="date" value="{{$campaign->expiry_date}}">
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
             <div class="button-container">
                 <button class="btn submit" type="submit" class="save">Update <i class="fas fa-circle-notch fa-spin mx-2 d-none submit-loader"></i></button>

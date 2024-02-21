@@ -60,7 +60,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="cancel" data-bs-dismiss="modal">Close</button>
-                    {{-- <button type="button" class="save">Save Changes</button> --}}
+                    <button type="button" class="save">Copy</button>
                 </div>
             </div>
         </div>
@@ -82,6 +82,11 @@
     }
 
     replaceMarkUp();
+
+    document.querySelector(".save").addEventListener("click" , function(){
+        copyText();
+    })
+
     
     function copyText() {
       // Get the text to copy

@@ -55,7 +55,7 @@ class StripeController extends Controller
     }
 
     
-   public function stripeHostedOnboarding(){
+   public function stripeHostedOnboarding(Request $request){
     try{
 
         $redirectUrl  = route('stripe.connect.callback');
