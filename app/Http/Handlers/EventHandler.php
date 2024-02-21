@@ -356,7 +356,7 @@ class EventHandler{
 
     public function getPurchaseTicketList($request)
     {
-        $eventTickets = EventTicket::with( 'event')->where('event_id' , $request->eventId)->get();
+        $eventTickets = EventTicket::with('users' , 'event')->where('event_id' , $request->eventId)->get();
         
         return $eventTickets;
     }
