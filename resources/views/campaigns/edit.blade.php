@@ -106,14 +106,14 @@
                                 <input type="checkbox" class="campaign-goal-toggle" name="campaign_goal" id="switch" @if($campaign->campaign_goal) checked @endif value="1"/><label for="switch">Toggle</label>
                             </div>
                         </div>
-                        <div class="currency-input campaign-goal @if($campaign->campaign_goal == 0) d-none @endif"">
+                        <div class="currency-input campaign-goal @if($campaign->campaign_goal == 0) d-none @endif">
                             <span>$</span>
                             <input type="number" step="0.01" inputmode="decimal" name="amount" value="{{$campaign->amount}}" min="0" placeholder="0">
                         </div>
                     </div>
                 </div>
                 <div class="col-md-5">
-                    <div class="form-control campaign-goal @if($campaign->campaign_goal == 0) d-none @endif">
+                    <div class="form-control">
                         <label for="feeRecovery">Fee Recovery</label>
                         <select name="fee_recovery" id="feeRecovery">
                             <option value="">Select Fee Recovery</option>
@@ -125,10 +125,10 @@
                 </div>
             </div>
             
-            <div class="row">
+            <div class="row campaign-goal @if($campaign->campaign_goal == 0) d-none @endif">
                 <div class="col-md-5">
                     <div class="form-control">
-                        <input type="datetime-local" id="date" name="date" value="{{$campaign->date}}">
+                        <input type="datetime-local" id="date" name="date" value="{{$campaign->expiry_date}}">
                     </div>
                 </div>
             </div>

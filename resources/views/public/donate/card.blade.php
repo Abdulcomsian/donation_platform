@@ -51,7 +51,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                @if($userPlans->count() > 0)
+                                @if($userPlans->count() > 0 && $campaign->recurring == 'required' )
                                 <div class="col-md-6">
                                     <div class="type" id="recurring" onclick="changeActive('recurring', 'oneTime')">
                                         <div class="text">Recurring</div>
@@ -244,14 +244,31 @@ function changeActive(item1, item2) {
         if(e.keyCode >= 48 && e.keyCode <= 57){
             inactivePredefinedDonationBox();
         }
+
+        let activeAmountBox = document.querySelector(".donation-amount-box.active");
+        if(activeAmountBox){
+            activeAmountBox.classList.remove("d-none");
+        }
+
+        if(e.keyCode == 8)
+        {
+            document.querySelectorAll(".donation-amount-box").forEach(item => {
+                item.classList.remove("active");
+            })
+        }
     })
     
-
     function inactivePredefinedDonationBox(){
         document.querySelectorAll(".donation-amount-box").forEach(item => {
                 item.classList.remove("active");
             })
     }
+
+    document.querySelector("#amount").addEventListener('keydown' , function(e){
+        document.querySelectorAll(".donation-amount-box").forEach(item => {
+                item.classList.remove("active");
+            })
+    });
 
 
     document.querySelectorAll(".toggle-donation").forEach(btn=>{

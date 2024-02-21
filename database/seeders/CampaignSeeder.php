@@ -30,7 +30,7 @@ class CampaignSeeder extends Seeder
                     'description' => $faker->text(200),
                     'recurring'=> $faker->randomElement(['disable' , 'optional' , 'required']),
                     'image' => 'Screenshot_5.png',
-                    'date' => $faker->date()
+                    'fee_recovery'=> $faker->randomElement(['disable' , 'optional' , 'required']),
                 ];
 
                 $campaign_goal = rand(0,1);
@@ -38,8 +38,8 @@ class CampaignSeeder extends Seeder
                 if($campaign_goal){
                     $campaign2 = [
                         'campaign_goal' => $campaign_goal,
+                        'expiry_date' => $faker->date(),
                         'amount' => $faker->randomFloat(2, 10, 100),
-                        'fee_recovery' => $faker->randomElement(['disable' , 'optional' , 'required']),
                     ]; 
                     
                     $campaign = array_merge($campaign , $campaign2);
@@ -47,7 +47,7 @@ class CampaignSeeder extends Seeder
                     $campaign2 = [
                         'campaign_goal' => $campaign_goal,
                         'amount' => null,
-                        'fee_recovery' => null,
+                        'expiry_date' => null,
                     ]; 
                     
                     $campaign = array_merge($campaign , $campaign2);

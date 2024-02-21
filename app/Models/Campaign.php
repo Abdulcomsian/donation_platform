@@ -13,7 +13,7 @@ class Campaign extends Model
     
     protected $table = 'campaigns';
     protected $primaryKey = 'id';
-    protected $fillable = ['user_id', 'created_by' , 'title' , 'excerpt' , 'description' , 'image' , 'recurring' , 'campaign_goal' , 'amount' , 'fee_recovery' , 'date', 'image' , 'status'];
+    protected $fillable = ['user_id', 'created_by' , 'title' , 'excerpt' , 'description' , 'image' , 'recurring' , 'campaign_goal' , 'amount' , 'fee_recovery' , 'expiry_date', 'image' , 'status'];
 
     public function donations(){
         return $this->hasMany(Donation::class , 'campaign_id' , 'id');

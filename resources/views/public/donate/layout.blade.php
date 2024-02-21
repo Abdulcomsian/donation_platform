@@ -102,7 +102,11 @@
                         {{$campaign->description}}
                     </div>
                     <div class="icon">
+                        @if(is_null($campaign->image) || empty($campaign->image))
                         <img src="{{ asset('assets/images/26d0ba0efd3df0807e2e00c7265e76df.jpeg') }}" alt="">
+                        @else
+                        <img src="{{ asset('assets/uploads').'/'.$campaign->image }}" alt="">
+                        @endif
                     </div>
                 </div>
                 <div class="right">

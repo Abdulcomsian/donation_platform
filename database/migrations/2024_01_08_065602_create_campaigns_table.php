@@ -22,8 +22,8 @@ return new class extends Migration
             $table->enum('recurring' , ['disable' , 'optional' , 'required']);
             $table->boolean('campaign_goal');
             $table->double('amount' , 6 , 2)->nullable();
-            $table->enum('fee_recovery' , ['disable' , 'optional' , 'required'])->nullable();
-            $table->dateTime('date');
+            $table->enum('fee_recovery' , ['disable' , 'optional' , 'required']);
+            $table->dateTime('expiry_date')->nullable();
             $table->integer('status')->default(0);
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');

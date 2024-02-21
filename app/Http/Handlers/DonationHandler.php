@@ -123,7 +123,6 @@ class DonationHandler{
        
         if(!isset($request->frequency) && is_null($request->plan_id))
         {
-            dd("here boss");
             $intent = $stripe->paymentIntents->create(
                                         [
                                             'amount' => $request->amount * 100,

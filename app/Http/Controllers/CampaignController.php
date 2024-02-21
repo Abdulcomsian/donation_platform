@@ -59,8 +59,9 @@ class CampaignController extends Controller
                         'campaign_goal' => 'nullable|boolean',
                         'amount' => [Rule::requiredIf($request->campaign_goal == 1)],
                         'fee_recovery' => Rule::requiredIf($request->campaign_goal == 1),
-                        'date' => 'required|date',
-                        'status' => 'required|numeric'
+                        'date' => 'date|nullable',
+                        'status' => 'required|numeric',
+                        'fee_recovery' => 'required|string'
                     ]);
 
         if($validator->fails()){
@@ -88,8 +89,9 @@ class CampaignController extends Controller
             'campaign_goal' => 'nullable|boolean',
             'amount' => [Rule::requiredIf($request->campaign_goal == 1)],
             'fee_recovery' => Rule::requiredIf($request->campaign_goal == 1),
-            'date' => 'required|date',
-            'status' => 'required|numeric'
+            'date' => 'date|nullable',
+            'status' => 'required|numeric',
+            'fee_recovery' => 'required|string'
         ]);
 
         

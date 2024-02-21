@@ -113,7 +113,7 @@
                     </div>
                 </div>
                 <div class="col-md-5">
-                    <div class="form-control campaign-goal d-none">
+                    <div class="form-control ">
                         <label for="feeRecovery">Fee Recovery</label>
                         <select name="fee_recovery" id="feeRecovery">
                             <option value="">Select Fee Recovery</option>
@@ -125,13 +125,13 @@
                 </div>
             </div>
 
-            <div class="row">
+            {{-- <div class="row campaign-goal d-none">
                 <div class="col-md-5">
                     <div class="form-control">
                         <input type="date" id="date" name="date">
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
             <div class="button-container">
                 <button class="btn submit" type="submit" class="save">Save <i

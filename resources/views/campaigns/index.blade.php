@@ -59,7 +59,7 @@
                                     </svg>
                                 </div>
                                 @php
-                                $date = \Carbon\Carbon::createFromDate($campaign->date);
+                                $date = \Carbon\Carbon::createFromDate($campaign->created_at);
                                 $today = \Carbon\Carbon::now();
                                 $diffDays = $date->diffInDays($today);
                                 @endphp

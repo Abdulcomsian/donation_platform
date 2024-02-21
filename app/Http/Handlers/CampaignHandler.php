@@ -16,6 +16,7 @@ class CampaignHandler{
         $campaign->created_by = auth()->user()->id;
         $campaign->campaign_goal = isset($request->campaign_goal) ? $request->campaign_goal : 0;
         $campaign->status = $request->status;
+        $campaign->fee_recovery = $request->fee_recovery;
     
         $file = $request->file('file');
         $filename =  strtotime(now()).str_replace(" ", "-" ,$file->getClientOriginalName());
@@ -25,10 +26,10 @@ class CampaignHandler{
 
         if($request->campaign_goal){
             $campaign->amount = $request->amount;
-            $campaign->fee_recovery = $request->fee_recovery;
+            $campaign->expiry_date = $request->date;
+            
         }
 
-        $campaign->date = $request->date;
         $campaign->save();
 
         $frequencies = explode(",",$request->frequency);
@@ -61,6 +62,7 @@ class CampaignHandler{
         $campaign->recurring = $request->recurring;
         $campaign->campaign_goal = isset($request->campaign_goal) ? $request->campaign_goal : 0;
         $campaign->status = $request->status;
+        $campaign->fee_recovery = $request->fee_recovery;
 
         if($request->hasFile('file')){
             $file = $request->file('file');
@@ -71,14 +73,14 @@ class CampaignHandler{
 
 
         if($request->campaign_goal){
+            $campaign->expiry_date = $request->date;
             $campaign->amount = $request->amount;
-            $campaign->fee_recovery = $request->fee_recovery;
+            
         }else{
             $campaign->amount = null;
-            $campaign->fee_recovery = null;
+            $campaign->expiry_date = null;
         }
 
-        $campaign->date = $request->date;
         $campaign->save();
 
         $frequencies = explode(",",$request->frequency);
