@@ -133,7 +133,7 @@ Route::get('payment-successfull' , function(){
 });
 
 
-Route::domain('Hello.'.env('APP_URL'))->group(function(){
+Route::domain('hello.'.env('APP_URL'))->group(function(){
     Route::get('hi' , function(){
         dd('here');
     });
