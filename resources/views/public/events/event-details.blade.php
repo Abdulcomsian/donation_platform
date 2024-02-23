@@ -334,9 +334,10 @@
         var jsonArray = JSON.parse(arr);
         $(".tableBody tr").remove();
         for (i = 0; i < tot_iteration; i++) {
-            var hidden = $(`input[id^=basiInput` + '-' + i).val();
+            var qty =$(`input[id^=basiInput` + '-' + i).val();
             var int_val = $(`input[id^=ticket_price` + '-' + i).val();
             var ticket_name = $(`ticketname-{{$index}}` + '-' + i).text();
+            var hidden = parseInt(qty);
            
             if ($(`input[id^=basiInput` + '-' + i).val() === "" || hidden<=0) {
                 $(`input[id^=basiInput` + '-' + i).val(0);
@@ -444,6 +445,9 @@
                                 text: res.msg,
                                 icon: "success"
                             });
+
+                            window.location.href= "{{url('payment-successfull')}}"
+
                         }else{
                             Swal.fire({ 
                                 icon: "error", 

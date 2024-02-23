@@ -114,27 +114,20 @@ Route::post('subscribe-membership' , [MembershipController::class , 'subscribeMe
 
 
 //public links for mailing-template
-Route::get('donation-success' , [MailingController::class , 'donationSuccess']);
-Route::get('subscription-success' , [MailingController::class , 'subscriptionSuccess']);
-Route::get('subscription-failed' , [MailingController::class , 'subscriptionFailed']);
-Route::get('donation-refund' , [MailingController::class , 'donationRefund']);
-Route::get('donation-subscription-canceled' , [MailingController::class , 'donationSubscriptionCanceled']);
-Route::get('new-membership' , [MailingController::class , 'newMembership']);
-Route::get('membership-renewal' , [MailingController::class , 'membershipRenewalSuccess']);
-Route::get('membership-canceled' , [MailingController::class , 'membershipCanceled']);
-Route::get('membership-renewal-failed' , [MailingController::class , 'membershipRenewalFailed']);
-Route::get('membership-refund' , [MailingController::class , 'membershipRefund']);
-Route::get('event-registration' , [MailingController::class , 'eventRegistration']);
-Route::get('event-canceled' , [MailingController::class , 'eventCanceled']);
-Route::get('event-ticket-refund' , [MailingController::class , 'eventTicketRefund']);  
+// Route::get('donation-success' , [MailingController::class , 'donationSuccess']);
+// Route::get('subscription-success' , [MailingController::class , 'subscriptionSuccess']);
+// Route::get('subscription-failed' , [MailingController::class , 'subscriptionFailed']);
+// Route::get('donation-refund' , [MailingController::class , 'donationRefund']);
+// Route::get('donation-subscription-canceled' , [MailingController::class , 'donationSubscriptionCanceled']);
+// Route::get('new-membership' , [MailingController::class , 'newMembership']);
+// Route::get('membership-renewal' , [MailingController::class , 'membershipRenewalSuccess']);
+// Route::get('membership-canceled' , [MailingController::class , 'membershipCanceled']);
+// Route::get('membership-renewal-failed' , [MailingController::class , 'membershipRenewalFailed']);
+// Route::get('membership-refund' , [MailingController::class , 'membershipRefund']);
+// Route::get('event-registration' , [MailingController::class , 'eventRegistration']);
+// Route::get('event-canceled' , [MailingController::class , 'eventCanceled']);
+// Route::get('event-ticket-refund' , [MailingController::class , 'eventTicketRefund']);  
 
 Route::get('payment-successfull' , function(){
     return view('public.success');
-});
-
-
-Route::domain('hello.'.env('APP_URL'))->group(function(){
-    Route::get('hi' , function(){
-        dd('here');
-    });
 });

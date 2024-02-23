@@ -35,7 +35,7 @@
         <div class="action-container">
             <button class="copy" onclick="copyText()"><img src="{{ asset('assets/images/copy-outline.png') }}" alt="">
                 Copy Link</button>
-            <a class="view" href="{{url('donate-now' , $campaignId)}}"><img src="{{ asset('assets/images/eye-outline.png') }}" alt=""> View Page</a>
+            <a class="view" target="_blank" href="{{url('donate-now' , $campaignId)}}"><img src="{{ asset('assets/images/eye-outline.png') }}" alt=""> View Page</a>
         </div>
     </div>
 

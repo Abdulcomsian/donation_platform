@@ -397,7 +397,7 @@ function changeActive(item1, item2) {
                 form.append('plan_id' , plan);
             }
             form.append('payment_method' , setupIntent.payment_method);
-            addFormData(url , form , loader , null , submitBtn , reloadPage)
+            addFormData(url , form , loader , null , submitBtn , paymentSuccessFull)
 
         }
 
@@ -407,9 +407,9 @@ function changeActive(item1, item2) {
 
     })
 
-    function reloadPage()
+    function paymentSuccessFull()
     {
-        location.reload();
+        window.location.href = '{{url("payment-successfull")}}'; 
     }
 
 

@@ -23,7 +23,7 @@
     <div class="header">
         <div class="heading">Campaigns</div>
         <div class="create-campaign">
-            <a href="{{ route('campaign.create.form') }}">Create Campaign</a>
+            <a href="{{ route('campaign.create.form') }}" target="_blank" >Create Campaign</a>
         </div>
     </div>
 

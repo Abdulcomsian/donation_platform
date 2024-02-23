@@ -86,10 +86,11 @@ class DonationController extends Controller
             'country' => 'required|numeric',
             'city' => 'required|numeric',
             'frequency' => 'nullable|string',
-            'price_option' => 'required_if:frequency,!=,null',
+            'price_option' => 'required_if:frequency,==,|string',
             'amount' => 'required_if:frequency,==,null',
             'street' => 'required|string'
         ]);
+
 
 
         if($validator->fails()){

@@ -21,7 +21,7 @@
     <div class="header">
         <div class="heading">Events</div>
         <div class="create-campaign">
-            <a href="{{ route('event.create.form') }}">Create New Events</a>
+            <a href="{{ route('event.create.form') }}" target="_blank">Create New Events</a>
         </div>
     </div>
 
