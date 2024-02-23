@@ -127,3 +127,14 @@ Route::get('membership-refund' , [MailingController::class , 'membershipRefund']
 Route::get('event-registration' , [MailingController::class , 'eventRegistration']);
 Route::get('event-canceled' , [MailingController::class , 'eventCanceled']);
 Route::get('event-ticket-refund' , [MailingController::class , 'eventTicketRefund']);  
+
+Route::get('payment-successfull' , function(){
+    return view('public.success');
+});
+
+
+Route::domain('Hello.'.env('APP_URL'))->group(function(){
+    Route::get('hi' , function(){
+        dd('here');
+    });
+});
