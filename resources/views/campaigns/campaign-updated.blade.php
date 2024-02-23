@@ -35,14 +35,15 @@
         <div class="action-container">
             <button class="copy" onclick="copyText()"><img src="{{ asset('assets/images/copy-outline.png') }}" alt="">
                 Copy Link</button>
-            <a class="view" href="{{url('donate-now' , $campaignId)}}"><img src="{{ asset('assets/images/eye-outline.png') }}" alt=""> View Page</a>
+            <a class="view" target="_blank" href="{{url('donate-now' , $campaignId)}}"><img src="{{ asset('assets/images/eye-outline.png') }}" alt=""> View Page</a>
+            <a class="edit text-dark" href="{{url('campaigns/edit-campaign' , $campaignId)}}"" style="font-weight: 600;text-decoration:none;"><img style="margin-top: -3px;" src="{{ asset('assets/images/bxs_edit.png') }}" alt="">Edit</a>
         </div>
     </div>
 
-    <div class="share-actions">
+    <!-- <div class="share-actions">
         <a class="edit" href="{{url('campaigns/edit-campaign' , $campaignId)}}""><img src="{{ asset('assets/images/bxs_edit.png') }}" alt="">Edit</a>
-        <a class="share" href=""><img src="{{ asset('assets/images/share-social-outline.png') }}" alt="">Share</a>
-    </div>
+        <a class="share" href="#"><img src="{{ asset('assets/images/share-social-outline.png') }}" alt="">Share</a>
+    </div> -->
 </div>
 
 <script>
