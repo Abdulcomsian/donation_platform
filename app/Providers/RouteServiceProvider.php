@@ -28,9 +28,9 @@ class RouteServiceProvider extends ServiceProvider
             return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
         });
 
-        Route::domain('check.test1.accrualdev.com')->group(base_path('routes/subdomain.php'));
-
+        
         $this->routes(function () {
+            Route::domain('check.test1.accrualdev.com')->group(base_path('routes/subdomain.php'));
             Route::middleware('api')
                 ->prefix('api')
                 ->group(base_path('routes/api.php'));
