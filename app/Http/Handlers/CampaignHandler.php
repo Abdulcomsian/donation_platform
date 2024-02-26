@@ -109,6 +109,7 @@ class CampaignHandler{
     }
 
     public function getCampaignList(){
+
         $campaigns= null;
 
         $query = Campaign::query();
@@ -173,6 +174,15 @@ class CampaignHandler{
 
         $campaigns = $query->orderBy('id' , 'desc')->limit(2)->get();
         // $campaigns  = Campaign::with('donations.price' , 'donations.platformPercentage')->where('user_id' , auth()->user()->id)->orderBy('id' , 'desc')->limit(2)->get();
+        return $campaigns;
+    }
+
+    public function getOrganizationCampaigns($request)
+    {
+        $id = \Crypt::decrypt($request->id);
+    
+        $campaigns  = Campaign::where('user_id' , $id)->orderBy('created_at' , 'desc')->paginate(10);
+
         return $campaigns;
     }
 

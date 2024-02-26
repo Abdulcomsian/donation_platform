@@ -131,3 +131,10 @@ Route::post('subscribe-membership' , [MembershipController::class , 'subscribeMe
 Route::get('payment-successfull' , function(){
     return view('public.success');
 });
+
+
+//public subdomain routes
+Route::get('event-list/{id}' , [EventsController::class , 'getOrganizationEvents']);
+Route::get('campaign-list/{id}' , [CampaignController::class , 'getOrganizationCampaigns']);
+Route::get('membership-plans/{id}' , [MembershipController::class , 'getOrganizationMembershipPlans']);
+

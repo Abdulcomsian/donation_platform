@@ -1,17 +1,17 @@
-@extends('public.events.layout.list-main')
+@extends('public.main')
 
 @section('content')
-
 <div class="content-pane">
+
     <div class="header">
         <div class="container">
             <div class="heading">
                 Events
             </div>
-            {{-- <div class="filters">
+            <div class="filters">
                 <div class="form-container">
                     <form>
-                        <div class="form-control">
+                        {{-- <div class="form-control">
                             <select name="category" id="category">
                                 <option value="">Category</option>
                                 @foreach($eventCategories as $category)
@@ -39,7 +39,7 @@
                             <button type="button" class="search-button">
                                 <i class="fas fa-search"></i>
                             </button>
-                        </div>
+                        </div> --}}
                         <div class="form-control">
                             <button type="button" class="list-button active">
                                 <i class="fas fa-list"></i>
@@ -53,14 +53,14 @@
                         </div>
                     </form>
                 </div>
-            </div> --}}
+            </div>
         </div>
     </div>
 
     <div class="events-list">
         <div class="container">
             <div class="events-container">
-                @foreach($filteredEvents as $event)
+                @foreach($events as $event)
                 <a class="event-item list" href="">
                     <div class="card">
                         <div class="start">
@@ -114,7 +114,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 d-flex justify-content-center paginate-navigation">
-                    {!! $filteredEvents->links() !!}
+                    {!! $events->links() !!}
                 </div>
             </div>
         </div>
@@ -122,6 +122,8 @@
 </div>
 
 @endsection
+
+@section('script')
 @section('script')
 <script>
     document.querySelector(".grid-button").addEventListener("click" , function(event){
@@ -148,39 +150,5 @@
             item.classList.remove("has-grid");
         })
     })
-
-    $(document).ready(function(){
-        $("#category").select2()
-        $("#organizer").select2()
-        $("#venue").select2()
-    })
-
-    
-    document.querySelector(".search-button").addEventListener("click" , function(e){
-    
-        let category = document.getElementById("category").value;
-        let venue = document.getElementById("venue").value;
-        let organizer = document.getElementById("organizer").value;
-        let filterFields = {
-                        category : category,
-                        venue : venue,
-                        organizer : organizer
-                    }
-        let url = '{{Request::url()}}';
-        
-        let params = ''
-        for(let key in filterFields){
-            if(filterFields[key].trim().length != 0){
-                params.length == 0 ? params += `?${key}=${filterFields[key]}` : params += `&${key}=${filterFields[key]}`
-            }
-        }
-
-
-        window.location.href = url+=params;
-    
-
-    });
-
-
 </script>
 @endsection

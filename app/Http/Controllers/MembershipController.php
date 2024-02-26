@@ -3,15 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Handlers\MembershipHandler;
+use App\Http\Handlers\{MembershipHandler , UserHandler};
 use Illuminate\Support\Facades\{Validator};
 class MembershipController extends Controller
 {
     protected $membershipHandler;
+    protected $userHandler;
 
-    function __construct(MembershipHandler $membershipHandler)
+    function __construct(MembershipHandler $membershipHandler , UserHandler $userHandler)
     {
         $this->membershipHandler = $membershipHandler;
+        $this->userHandler = $userHandler;
     }
 
     public function membership()
@@ -102,5 +104,16 @@ class MembershipController extends Controller
         }catch(\Exception $e) {
             return response()->json(['status' => false , 'msg' => 'Something Went Wrong' , 'error' => $e->getMessage()]);
         }
+    }
+
+
+    public function getOrganizationMembershipPlans(Request $request)
+    {
+        $userPlans = $this->membershipHandler->getOrganizationPlans($request);
+
+        $user = $this->userHandler->organizationProfile($request);
+
+        return view('public.membership.membership-list')->with([ 'userPlans' => $userPlans , 'user' => $user ]);
+    
     }
 }

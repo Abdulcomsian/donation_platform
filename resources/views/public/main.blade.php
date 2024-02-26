@@ -46,6 +46,7 @@
 
     </style>
 
+    @yield('style')
 
 </head>
 
@@ -53,13 +54,28 @@
     <div class="main">
         <div class="topbar-container">
             <div class="topbar">
-                <div class="container">
+                <div class="container d-flex justify-content-between">
                     <div class="logo">
-                        <img src="{{ asset('assets/images/Group 2.png') }}" alt="">
+                        <img src="{{$user->organizationProfile->logo_link ? asset('assets/uploads').'/'.$user->organizationProfile->logo_link : asset('assets/images/Group 2.png') }}" alt="">
                     </div>
+                    <ul class="navbar-nav mr-auto d-flex justify-content-between">
+                        <li class="nav-item @if(Request::is('campaign-list*')) active @endif">
+                          <a class="nav-link" href="{{url('campaign-list' , \Crypt::encrypt($user->id))}}">Campaigns <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item @if(Request::is('event-list*')) active @endif">
+                          <a class="nav-link" href="{{url('event-list' , \Crypt::encrypt($user->id))}}">Events</a>
+                        </li>
+                        <li class="nav-item @if(Request::is('membership-plans*')) active @endif">
+                            <a class="nav-link" href="{{url('membership-plans' , \Crypt::encrypt($user->id))}}">Membership</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
+
+        
+
+
         <div class="main-content">
             @yield('content')
         </div>

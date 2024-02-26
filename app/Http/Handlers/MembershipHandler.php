@@ -191,4 +191,14 @@ class MembershipHandler{
 
         return $members;
     }
+
+    public function getOrganizationPlans($request)
+    {
+        $id = Crypt::decrypt($request->id);
+
+        $user = User::with('monthlyMembershipPlan' , 'annuallyMembershipPlan')->where('id' , $id)->first();
+
+        return $user;
+        
+    }
 } 

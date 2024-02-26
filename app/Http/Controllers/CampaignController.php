@@ -5,17 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
-use App\Http\Handlers\CampaignHandler;
+use App\Http\Handlers\{CampaignHandler , UserHandler};
 use App\Models\{Campaign};
 
 class CampaignController extends Controller
 {
     protected $campaignHandler;
+    protected $userHandler;
 
-    function __construct(CampaignHandler $campaignHandler)
+    function __construct(CampaignHandler $campaignHandler , UserHandler $userHandler)
     {
         $this->campaignHandler = $campaignHandler;
-        
+        $this->userHandler = $userHandler;
     }
 
     public function campaign(){
@@ -123,6 +124,17 @@ class CampaignController extends Controller
             \Toastr::error($e->getMessage() , 'Error!' );
             return redirect()->back();
         }
+
+    }
+
+    public function getOrganizationCampaigns(Request $request)
+    {
+
+        $campaigns = $this->campaignHandler->getOrganizationCampaigns($request);
+
+        $user = $this->userHandler->organizationProfile($request);
+
+        return view('public.campaigns.campaign-list')->with(['campaigns' => $campaigns , 'user' => $user]);
 
     }
 

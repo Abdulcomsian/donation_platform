@@ -396,4 +396,13 @@ class EventHandler{
 
     }
 
+    public function getOrganizationEvents($request)
+    {
+        $id = \Crypt::decrypt($request->id);
+        
+        $events = Event::where('user_id' , $id)->orderby('created_at' , 'desc')->paginate(10);
+
+        return $events;
+    }
+
 }

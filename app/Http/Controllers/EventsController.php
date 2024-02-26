@@ -3,18 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Handlers\EventHandler;
+use App\Http\Handlers\{EventHandler , UserHandler};
 use Illuminate\Support\Facades\Validator;
 
 
 class EventsController extends Controller
 {
     protected $eventHandler;
+    protected $userHandler;
 
-    function __construct(EventHandler $eventHandler)
+    function __construct(EventHandler $eventHandler , UserHandler $userHandler)
     {
-        // dd("hi mana how are yo");
         $this->eventHandler = $eventHandler;
+        $this->userHandler = $userHandler;
     }
 
     public function getEventList()
@@ -199,4 +200,16 @@ class EventsController extends Controller
 
         return $this->eventHandler->eventPurchaseTicket($request);
     }
+
+    public function getOrganizationEvents(Request $request)
+    {
+
+        $events = $this->eventHandler->getOrganizationEvents($request);
+
+        $user = $this->userHandler->organizationProfile($request);
+
+        return view('public.events.event-list')->with(['events' => $events , 'user' => $user]);
+
+    }
+
 }

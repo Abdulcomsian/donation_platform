@@ -224,6 +224,16 @@ class UserHandler{
         return $organizationProfile;
     }
 
+    public function organizationProfile($request)
+    {
+        $id = \Crypt::decrypt($request->id);
+
+        $user = User::with('organizationProfile')->where('id' , $id)->first();
+
+        return $user;
+
+    }
+
 
 
 
