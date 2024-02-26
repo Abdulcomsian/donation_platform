@@ -129,12 +129,13 @@ class CampaignController extends Controller
 
     public function getOrganizationCampaigns(Request $request)
     {
+        $organizationName = $request->organizationName;
 
         $campaigns = $this->campaignHandler->getOrganizationCampaigns($request);
 
         $user = $this->userHandler->organizationProfile($request);
 
-        return view('public.campaigns.campaign-list')->with(['campaigns' => $campaigns , 'user' => $user]);
+        return view('public.campaigns.campaign-list')->with(['campaigns' => $campaigns , 'user' => $user , 'organizationName' => $organizationName]);
 
     }
 

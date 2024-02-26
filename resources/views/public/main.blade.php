@@ -81,19 +81,20 @@
     <div class="navbar-collapse d-none" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item @if(Request::is('event-list*')) active @endif">
-            <a class="nav-link" href="{{url('event-list' , \Crypt::encrypt($user->id))}}">Events</a>
+            
+            <a class="nav-link" href="{{\Helper::generateSubdomainEncryptedUrl($organizationName , 'event-list' , $user->id)}}">Events</a>
         </li>
         <li class="nav-item @if(Request::is('campaign-list*')) active @endif">
-            <a class="nav-link" href="{{url('campaign-list' , \Crypt::encrypt($user->id))}}">Campaigns <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="{{\Helper::generateSubdomainEncryptedUrl($organizationName , 'campaign-list' , $user->id)}}">Campaigns </a>
         </li>
         <li class="nav-item @if(Request::is('membership-plans*')) active @endif">
-            <a class="nav-link" href="{{url('membership-plans' , \Crypt::encrypt($user->id))}}">Membership</a>
+            <a class="nav-link" href="{{\Helper::generateSubdomainEncryptedUrl($organizationName , 'membership-plans' , $user->id)}}">Membership</a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
-        
+{{-- <span class="sr-only">(current)</span> --}}
         
 
 

@@ -203,12 +203,13 @@ class EventsController extends Controller
 
     public function getOrganizationEvents(Request $request)
     {
+        $organizationName = $request->organizationName;
 
         $events = $this->eventHandler->getOrganizationEvents($request);
 
         $user = $this->userHandler->organizationProfile($request);
 
-        return view('public.events.event-list')->with(['events' => $events , 'user' => $user]);
+        return view('public.events.event-list')->with(['events' => $events , 'user' => $user, 'organizationName' => $organizationName]);
 
     }
 

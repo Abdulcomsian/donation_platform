@@ -109,13 +109,21 @@ class MembershipController extends Controller
 
     public function getOrganizationMembershipPlans(Request $request)
     {
+        $organizationName = $request->organizationName;
+
         $userPlans = $this->membershipHandler->getOrganizationPlans($request);
 
         $user = $this->userHandler->organizationProfile($request);
 
         $setupIntent = $this->membershipHandler->createSetupIntent($userPlans->stripe_connected_id);
 
-        return view('public.membership.membership-list')->with([ 'userPlans' => $userPlans , 'user' => $user , 'clientSecret' => $setupIntent->client_secret , 'connectedId' => $userPlans->stripe_connected_id]);
+        return view('public.membership.membership-list')->with([ 
+                                                                 'userPlans' => $userPlans , 
+                                                                 'user' => $user , 
+                                                                 'clientSecret' => $setupIntent->client_secret , 
+                                                                 'connectedId' => $userPlans->stripe_connected_id,
+                                                                 'organizationName' => $organizationName
+                                                                ]);
     
     }
 }

@@ -23,8 +23,21 @@ class Helper{
             return $organizationProfile->user->id;
         }
 
+    }
 
-       
+    public static function generateSubdomainEncryptedUrl($organizationName, $link , $id = null){
+        return isset($id) ? 
+                            'https://'.$organizationName.'.'.env('LIVE_URL').'/'.$link.'/'. \Crypt::encrypt($id) 
+                          :
+                            'https://'.$organizationName.'.'.env('LIVE_URL').'/'.$link;
+
+    }
+
+    public static function generateSubdomainUrl($organizationName, $link , $id = null){
+        return isset($id) ? 
+                            'https://'.$organizationName.'.'.env('LIVE_URL').'/'.$link.'/'.$id 
+                          :
+                            'https://'.$organizationName.'.'.env('LIVE_URL').'/'.$link;
     }
 
 }
