@@ -61,7 +61,7 @@
         <div class="container">
             <div class="events-container">
                 @foreach($events as $event)
-                <a class="event-item list" href="">
+                <a class="event-item list" href="{{url('event-detail' , $event->id)}}">
                     <div class="card">
                         <div class="start">
                             <div class="icon">
@@ -77,6 +77,7 @@
                         </div>
                         <div class="mid">
                             <div class="title">{{$event->title}}</div>
+                            {{-- <div class="event-name"><a href="{{url('event-detail' , $event->id)}}">{{$event->title}}</a></div> --}}
                             <div class="description">
                                 {{$event->description}}
                             </div>
@@ -123,7 +124,7 @@
 
 @endsection
 
-@section('script')
+
 @section('script')
 <script>
     document.querySelector(".grid-button").addEventListener("click" , function(event){

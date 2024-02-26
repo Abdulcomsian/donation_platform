@@ -152,7 +152,7 @@
   justify-content: flex-start;
   gap: 10px;
 }
-.main .main-content .content-pane .events-list .container .events-container .event-item .card .mid .title {
+.main .main-content .content-pane .events-list .container .events-container .event-item .card .mid .title{
   color: #0D161A;
   font-family: Poppins;
   font-size: 20px;
