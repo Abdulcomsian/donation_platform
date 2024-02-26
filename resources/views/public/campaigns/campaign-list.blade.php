@@ -107,7 +107,7 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-12 d-flex justify-content-center paginate-navigation">
+                <div class="col-12 mb-4 d-flex justify-content-center paginate-navigation">
                     {!! $campaigns->links() !!}
                 </div>
             </div>
