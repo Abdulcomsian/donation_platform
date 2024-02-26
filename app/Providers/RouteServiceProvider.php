@@ -30,7 +30,7 @@ class RouteServiceProvider extends ServiceProvider
 
         
         $this->routes(function () {
-            Route::domain('check.test1.accrualdev.com')->group(base_path('routes/subdomain.php'));
+            Route::domain('check.accrualdev.com')->group(base_path('routes/subdomain.php'));
             Route::middleware('api')
                 ->prefix('api')
                 ->group(base_path('routes/api.php'));
