@@ -16,6 +16,11 @@
 @endsection
 
 @section('content')
+<style>
+    .campaigns{
+        overflow: unset;
+    }
+</style>
 <div class="content-pane">
 
 
