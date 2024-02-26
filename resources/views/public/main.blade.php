@@ -52,7 +52,7 @@
 
 <body>
     <div class="main">
-        <div class="topbar-container">
+        <!-- <div class="topbar-container">
             <div class="topbar">
                 <div class="container d-flex justify-content-between">
                     <div class="logo">
@@ -71,8 +71,31 @@
                     </ul>
                 </div>
             </div>
-        </div>
-
+        </div> -->
+        <nav class="navbar navbar-expand-lg bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                <img src="{{$user->organizationProfile->logo_link ? asset('assets/uploads').'/'.$user->organizationProfile->logo_link : asset('assets/images/Group 2.png') }}" alt="">
+                            
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item @if(Request::is('campaign-list*')) active @endif">
+                        <a class="nav-link" href="{{url('campaign-list' , \Crypt::encrypt($user->id))}}">Campaigns <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item @if(Request::is('event-list*')) active @endif">
+                        <a class="nav-link" href="{{url('event-list' , \Crypt::encrypt($user->id))}}">Events</a>
+                    </li>
+                    <li class="nav-item @if(Request::is('membership-plans*')) active @endif">
+                        <a class="nav-link" href="{{url('membership-plans' , \Crypt::encrypt($user->id))}}">Membership</a>
+                    </li>
+                </ul>
+                </div>
+            </div>
+        </nav>
         
 
 
