@@ -68,42 +68,23 @@
 
 <body>
     <div class="main">
-        <!-- <div class="topbar-container">
-            <div class="topbar">
-                <div class="container d-flex justify-content-between">
-                    <div class="logo">
-                        <img src="{{$user->organizationProfile->logo_link ? asset('assets/uploads').'/'.$user->organizationProfile->logo_link : asset('assets/images/Group 2.png') }}" alt="">
-                    </div>
-                    <ul class="navbar-nav mr-auto d-flex justify-content-between">
-                        <li class="nav-item @if(Request::is('campaign-list*')) active @endif">
-                          <a class="nav-link" href="{{url('campaign-list' , \Crypt::encrypt($user->id))}}">Campaigns <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item @if(Request::is('event-list*')) active @endif">
-                          <a class="nav-link" href="{{url('event-list' , \Crypt::encrypt($user->id))}}">Events</a>
-                        </li>
-                        <li class="nav-item @if(Request::is('membership-plans*')) active @endif">
-                            <a class="nav-link" href="{{url('membership-plans' , \Crypt::encrypt($user->id))}}">Membership</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div> -->
+        
         <nav class="navbar navbar-expand-lg bg-light">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">
     <img src="{{$user->organizationProfile->logo_link ? asset('assets/uploads').'/'.$user->organizationProfile->logo_link : asset('assets/images/Group 2.png') }}" alt="">
                    
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button"  aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
+    <div class="navbar-collapse d-none" id="navbarNav">
       <ul class="navbar-nav">
-      <li class="nav-item @if(Request::is('campaign-list*')) active @endif">
-            <a class="nav-link" href="{{url('campaign-list' , \Crypt::encrypt($user->id))}}">Campaigns <span class="sr-only">(current)</span></a>
-        </li>
         <li class="nav-item @if(Request::is('event-list*')) active @endif">
             <a class="nav-link" href="{{url('event-list' , \Crypt::encrypt($user->id))}}">Events</a>
+        </li>
+        <li class="nav-item @if(Request::is('campaign-list*')) active @endif">
+            <a class="nav-link" href="{{url('campaign-list' , \Crypt::encrypt($user->id))}}">Campaigns <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item @if(Request::is('membership-plans*')) active @endif">
             <a class="nav-link" href="{{url('membership-plans' , \Crypt::encrypt($user->id))}}">Membership</a>
@@ -131,6 +112,17 @@
     </script>
     <script src="{{asset('assets/package/select2/select2.full.min.js')}}"></script>
     <script src="{{asset('common-script')}}"></script>
+    <script>
+        document.querySelector(".navbar-toggler").addEventListener("click" , function(e){
+            let collpaseBar = document.querySelector("#navbarNav");
+            if(collpaseBar.classList.contains("d-none")){
+                collpaseBar.classList.remove("d-none");
+            }else{
+                collpaseBar.classList.add("d-none")
+            }
+                
+        })
+    </script>
     @yield('script')
 
 </body>
