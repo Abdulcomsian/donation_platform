@@ -54,6 +54,8 @@
       -ms-flex-direction: row;
           flex-direction: row;
   gap: 1rem;
+  flex-wrap: wrap;
+    justify-content: space-around;
 }
 
 .main .main-content .content-pane .events-list .container .events-container.has-grid .event-item .card {

@@ -88,6 +88,7 @@
 }
 .main .main-content .content-pane .events-list .container .events-container .event-item {
   text-decoration: none;
+  width: 32%;
 }
 .main .main-content .content-pane .events-list .container .events-container .event-item .card {
   margin-top: 1rem;

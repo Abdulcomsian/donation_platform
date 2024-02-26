@@ -18,52 +18,20 @@
 @section('content')
 <div class="content-pane">
 
-    <div class="header">
-        <div class="container">
-            <div class="heading">
-                Campaigns
-            </div>
-            <div class="filters">
-                <div class="form-container">
-                    <form>
-                        <div class="form-control">
-                            <button type="button" class="list-button active">
-                                <i class="fas fa-list"></i>
-                            </button>
-                        </div>
 
-                        <div class="form-control">
-                            <button type="button" class="grid-button">
-                                <i class="fas fa-th-large"></i>
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="events-list">
+    <div class="events-list campaigns">
         <div class="container">
-            <div class="events-container">
+            <h3 class="campaign-title-h3">
+            Campaigns
+            </h3>
+            <div class="events-container data-cards">
+                <div class="row">
                 @foreach($campaigns as $campaign)
                 <div class="col-md-4">
-                    <div class="card">
+                    <div class="card card-camp">
                         <div class="top">
                             <div class="heading">
                                 <div class="text"><a href="{{url('donate-now' , $campaign->id)}}">{{$campaign->title}}</a></div>
-                                <div class="menu">
-                                    <div class="dropdown">
-                                        <button type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <img src="{{ asset('assets/images/ellipsis-vertical-sharp.png') }}" alt="">
-                                        </button>
-                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                            <li><a class="dropdown-item" href="{{url('donate-now' , $campaign->id)}}" target="_blank">View</a></li>
-                                            <li><a class="dropdown-item" href="{{url('campaigns/edit-campaign' , $campaign->id)}}">Edit</a></li>
-                                            <li><a class="dropdown-item" href="{{url('campaigns/delete-campaign' , $campaign->id)}}">Delete</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
                             </div>
                             <div class="info">
                                 <div class="days-ago">
@@ -127,6 +95,7 @@
                 </div>
 
                 @endforeach
+                </div>
 
                 
             </div>
@@ -146,30 +115,30 @@
 @section('script')
 @section('script')
 <script>
-    document.querySelector(".grid-button").addEventListener("click" , function(event){
-        this.classList.add("active");
-        document.querySelector(".list-button").classList.remove("active");
-        document.querySelectorAll(".event-item").forEach(item => {
-            item.classList.add("grid");
-            item.classList.remove("list");
-        })
-        document.querySelectorAll(".events-container").forEach(item => {
-            item.classList.add("has-grid");
-        })
+    // document.querySelector(".grid-button").addEventListener("click" , function(event){
+    //     this.classList.add("active");
+    //     document.querySelector(".list-button").classList.remove("active");
+    //     document.querySelectorAll(".event-item").forEach(item => {
+    //         item.classList.add("grid");
+    //         item.classList.remove("list");
+    //     })
+    //     document.querySelectorAll(".events-container").forEach(item => {
+    //         item.classList.add("has-grid");
+    //     })
 
-    })
+    // })
 
-    document.querySelector(".list-button").addEventListener("click" , function(event){
-        this.classList.add("active");
-        document.querySelector(".grid-button").classList.remove("active");
-        document.querySelectorAll(".event-item").forEach(item => {
-            item.classList.add("list");
-            item.classList.remove("grid");
-        })
-        document.querySelectorAll(".events-container").forEach(item => {
-            item.classList.remove("has-grid");
-        })
-    })
+    // document.querySelector(".list-button").addEventListener("click" , function(event){
+    //     this.classList.add("active");
+    //     document.querySelector(".grid-button").classList.remove("active");
+    //     document.querySelectorAll(".event-item").forEach(item => {
+    //         item.classList.add("list");
+    //         item.classList.remove("grid");
+    //     })
+    //     document.querySelectorAll(".events-container").forEach(item => {
+    //         item.classList.remove("has-grid");
+    //     })
+    // })
 </script>
 @endsection
 
