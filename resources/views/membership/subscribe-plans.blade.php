@@ -128,6 +128,7 @@
 @endsection
 
 @section('script')
+@include('common-script')
 <script src="https://js.stripe.com/v3/"></script>
 <script>
     $(document).ready(function(){
@@ -161,7 +162,12 @@
         let loader = this.querySelector(".loader")
 
         loader.classList.remove("d-none");
-        const { setupIntent, error} = await stripe.confirmCardSetup( '{{$clientSecret}}' , {
+
+        let clientSecret = await getSetupIntent("{{$connectedId}}").then(data =>{
+            return data;
+        })
+
+        const { setupIntent, error} = await stripe.confirmCardSetup( clientSecret , {
                                                                         payment_method : {
                                                                             card : card,
                                                                         }

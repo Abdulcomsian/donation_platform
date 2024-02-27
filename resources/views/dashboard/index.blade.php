@@ -44,7 +44,7 @@
             @endif
             <div class="heading">
                 <span class="welcome">Welcome, {{auth()->user()->first_name}}!</span>
-                <span class="org-name">{{$organizationProfile->name ?? ''}} @if($organizationProfile) <a href="{{\Helper::generateSubdomainEncryptedUrl($organizationProfile->name , 'event-list', $organizationProfile->user_id)}}" class="link-btn">Link<i class="fa-solid fa-arrow-up-right-from-square mx-2"></i></a> @endif</span>
+                <span class="org-name">{{$organizationProfile->name ?? ''}} @if($organizationProfile) <a href="{{\Helper::generateSubdomainEncryptedUrl($organizationProfile->name , 'event-list', $organizationProfile->user_id)}}" class="link-btn">Share<i class="fa-solid fa-arrow-up-right-from-square mx-2"></i></a> @endif</span>
             </div>
         </div>
         <div class="right">

@@ -41,7 +41,7 @@ class EventHandler{
             $newTicket->description = $ticket->description;
             $newTicket->quantity = $ticket->quantity;
             $newTicket->is_free = $ticket->isFree;
-            $newTicket->price = $ticket->amount;
+            $newTicket->price = $ticket->isFree ? 0 : $ticket->amount;
 
             $ticketNameArray = explode(" " , $ticket->name);
             $prefixArray = [];
@@ -175,7 +175,7 @@ class EventHandler{
 
     public function eventDetail($request)
     {
-        $event = Event::with('country' , 'category' , 'frequency' , 'ticket.users')->where('id' , $request->id)->first();
+        $event = Event::with('user','country' , 'category' , 'frequency' , 'ticket.users')->where('id' , $request->id)->first();
         return $event;
     }
 

@@ -78,8 +78,8 @@ class MembershipController extends Controller
     public function getMembershipList(Request $request)
     {
         $userPlans = $this->membershipHandler->getMembershipPlanList($request);
-        $setupIntent = $this->membershipHandler->createSetupIntent($userPlans->stripe_connected_id);
-        return view('membership.subscribe-plans')->with(['userPlans' => $userPlans , 'clientSecret' => $setupIntent->client_secret , 'connectedId' => $userPlans->stripe_connected_id ]);
+        // $setupIntent = $this->membershipHandler->createSetupIntent($userPlans->stripe_connected_id);
+        return view('membership.subscribe-plans')->with(['userPlans' => $userPlans  , 'connectedId' => $userPlans->stripe_connected_id ]);
     }
 
     public function subscribeMembership(Request $request)

@@ -65,10 +65,10 @@ class DonationController extends Controller
             $campaignId = $request->campaign_id;
             [$campaign , $countries , $userPlans] = $this->donationHandler->getCampaignDonation($campaignId);
             $connectedId  = $this->donationHandler->getConnectedId($campaignId);
-            Stripe::setApiKey(env('STRIPE_SECRET'));
+            // Stripe::setApiKey(env('STRIPE_SECRET'));
             // $account = Account::retrieve('acct_1OironBUcsb6xhsC');
-            $setupIntent = SetupIntent::create(['usage' => 'on_session'] , ['stripe_account' => $connectedId]);
-            return view('public.donate.card')->with(['campaign' => $campaign , 'countries' => $countries , 'clientSecret' => $setupIntent->client_secret ,'userPlans' => $userPlans , 'connectedId' => $connectedId]);
+            // $setupIntent = SetupIntent::create(['usage' => 'on_session'] , ['stripe_account' => $connectedId]);
+            return view('public.donate.card')->with(['campaign' => $campaign , 'countries' => $countries , 'userPlans' => $userPlans , 'connectedId' => $connectedId]);
             
         }catch(\Exception $e){
             return redirect()->back();

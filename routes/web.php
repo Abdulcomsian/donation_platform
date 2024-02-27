@@ -110,6 +110,7 @@ Route::get('invite-link/{id}' , [UserController::class , 'invitationPasswordRese
 Route::post('set-invitation-password' , [UserController::class , 'setInvitationPassword'])->name('set.invitation.password');
 Route::get('membership-list/{id}' , [MembershipController::class , 'getMembershipList'])->name('get.membership.list');
 Route::post('subscribe-membership' , [MembershipController::class , 'subscribeMembership'])->name('subscribe.membership');
+Route::post('create-setup-intent' , [StripeController::class , 'createSetupIntent'])->name('setup.intent');
 
 
 

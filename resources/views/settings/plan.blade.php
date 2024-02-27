@@ -44,14 +44,14 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Create Plan</h1>
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Add Plan</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
             <form  method="post" action="{{route('create.plan')}}" id="create-plan-form">
                 <input type="text" class="form-control" name="name" placeholder="name">
                 <input type="number" class="form-control" name="amount" placeholder="amount" max="999" min="1" required>
-                <button type="submit" class="plan-btn btn btn-success">Create <i class="fas fa-circle-notch fa-spin mx-2 d-none plan-loader"></i></button>
+                <button type="submit" class="plan-btn btn theme-btn">Create <i class="fas fa-circle-notch fa-spin mx-2 d-none plan-loader"></i></button>
              </form>
         </div>
         <div class="modal-footer">
@@ -64,7 +64,7 @@
 
 
   <div class="data-table">
-  <button type="button" class="btn btn-primary btn-table-create" data-bs-toggle="modal" data-bs-target="#create-plan-modal">
+  <button type="button" class="btn theme-btn btn-table-create" data-bs-toggle="modal" data-bs-target="#create-plan-modal">
     Create
   </button>
     <table id="plan-table" class="table table-bordered">
@@ -108,6 +108,7 @@ $(document).on("click" , ".delete-plan-btn" , function(e){
 
 function togglePlanModal(){
     $("#create-plan-modal").modal("toggle")
+    document.querySelector("#create-plan-form").reset();
     loadPlanTable();
 }
 

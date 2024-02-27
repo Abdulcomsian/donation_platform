@@ -261,6 +261,8 @@
   </div>
 </div>
 
+@include('common-script')
+
 <script>
     $(".second-previous").click(function() {
         $("#tab22").removeClass("active show");
@@ -365,7 +367,7 @@
     });
 
     $(document).ready(function(){
-        var stripe = Stripe('{{env("STRIPE_KEY")}}')
+        var stripe = Stripe('{{env("STRIPE_KEY")}}'  , { 'stripeAccount' : '{{$connectedId}}'})
         var card = null;
 
         createCardElements()
@@ -422,7 +424,11 @@
                 _token : "{{csrf_token()}}"
             }
 
-            const { setupIntent, error} = await stripe.confirmCardSetup( '{{$clientSecret}}' , {
+            let clientSecret = await getSetupIntent("{{$connectedId}}").then(data =>{
+                return data;
+            })
+
+            const { setupIntent, error} = await stripe.confirmCardSetup( clientSecret , {
                                                                         payment_method : {
                                                                             card : card,
                                                                         }

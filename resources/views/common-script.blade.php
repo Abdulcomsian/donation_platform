@@ -123,4 +123,31 @@
             } 
         });
     }
+
+    async function getSetupIntent(connectedId)
+    {
+        let clientSecret = null;
+
+        await $.ajax({
+                    type : 'Post',
+                    url : "{{route('setup.intent')}}",
+                    data : {
+                        _token : "{{csrf_token()}}",
+                        connectedId : connectedId
+                    },
+                    success:function(res){
+                        if(res.status){
+                            clientSecret = res.clientSecret
+                        }else{
+                            Swal.fire({
+                                icon: "error",
+                                title: res.error,
+                                text: res.msg,
+                            });
+                        }
+                    }
+                })
+
+        return clientSecret;
+    }
 </script>

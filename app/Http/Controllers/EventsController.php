@@ -55,9 +55,10 @@ class EventsController extends Controller
     {
         $event = $this->eventHandler->eventDetail($request);
         $countries = $this->eventHandler->getCountries();
-        $setupIntent = $this->eventHandler->getStripeSetupIntent();
+        $connectedId = $event->user->stripe_connected_id;
+        // $setupIntent = $this->eventHandler->getStripeSetupIntent();
         
-        return view('public.events.event-details')->with(['event' => $event , 'countries' => $countries , 'clientSecret' => $setupIntent->client_secret]);
+        return view('public.events.event-details')->with(['event' => $event , 'countries' => $countries, 'connectedId' => $connectedId]);
     }
 
     public function createEvent(Request $request){

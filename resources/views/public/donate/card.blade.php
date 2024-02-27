@@ -25,7 +25,7 @@
                         <div class="amount-item">
                             <label for="amount">@if($campaign->recurring == 'required') Select or @endif Enter Amount</label>
                             @if($campaign->recurring == 'required')
-                            <div class="row static-amount">
+                            <div class="row static-amount my-3">
                                 @foreach($userPlans as $plan)
                                 <div class="col-md-3 donation-amount-box">
                                     <div class="item donation-amount" data-donation-amount="{{$plan->amount}}" data-plan-id="{{$plan->id}}">{{$plan->amount}}</div>
@@ -372,7 +372,11 @@ function changeActive(item1, item2) {
                 return;
         }
 
-        const { setupIntent, error} = await stripe.confirmCardSetup( '{{$clientSecret}}' , {
+        let clientSecret = await getSetupIntent("{{$connectedId}}").then((data)=>{
+            return data
+        })
+
+        const { setupIntent, error} = await stripe.confirmCardSetup( clientSecret , {
                                                                         payment_method : {
                                                                             card : card,
                                                                         }
@@ -416,6 +420,8 @@ function changeActive(item1, item2) {
     function checkRequired(field){
        return validator.isEmpty(field)
     }
+
+    
 
 
     

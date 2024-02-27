@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Stripe\{ Stripe , AccountLink , OAuth , Account };
+use Stripe\{ Stripe , AccountLink , Account , SetupIntent };
 use Stripe\Exception\CardException;
 use App\Models\User;
+use Illuminate\Support\Facades\Validator;
+
 class StripeController extends Controller
 {
     function __construct()
@@ -137,6 +139,22 @@ class StripeController extends Controller
         $user->save();
         \Toastr::success('Connected Account Removed Successfully' , 'Success!');
         return redirect()->route('dashboard');
+   }
+
+   public function createSetupIntent(Request $request)
+   {    
+        $validator = Validator::make($request->all() , [
+            'connectedId' => 'string|required'
+        ]);
+
+        if($validator->fails()){
+            return response()->json(['status' => false , 'msg' => 'Something Went Wrong' , 'error' => implode( ",", $validator->messages()->all())]);
+        }
+
+        $setupIntent = SetupIntent::create(['usage' => 'on_session'] , ['stripe_account' =>  $request->connectedId]);
+
+
+        return response()->json(['status' => true , 'clientSecret' => $setupIntent->client_secret]);
    }
 
 }
