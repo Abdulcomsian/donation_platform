@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\{ Donation , PriceOption , CampaignFrequency, User };
+use App\Models\{ Donation , CampaignFrequency, User };
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Campaign extends Model
@@ -17,10 +17,6 @@ class Campaign extends Model
 
     public function donations(){
         return $this->hasMany(Donation::class , 'campaign_id' , 'id');
-    }
-
-    public function priceOptions(){
-        return $this->belongsToMany(PriceOption::class , 'campaign_price_options' , 'campaign_id' , 'price_option_id');
     }
 
     public function frequencies(){

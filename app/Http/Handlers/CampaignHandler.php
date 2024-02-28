@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Handlers;
-use App\Models\{Campaign , CampaignFrequency , CampaignPriceOption , PriceOption , Donation , Plan} ;
+use App\Models\{Campaign , CampaignFrequency , Donation } ;
 
 class CampaignHandler{
 
@@ -41,14 +41,7 @@ class CampaignHandler{
            $campaignfrequency->save();
         }
 
-        // $priceOptions = PriceOption::select('id')->get()->pluck('id')->toArray();
-        // // $priceOptions = Plan::orderBy('id' , 'asc')->pluck('amount')->toArray();
-        // $priceOptionsList= [];
-        // foreach($priceOptions as $option){
-        //     $priceOptionsList[] = ['campaign_id' => $campaign->id , 'price_option_id' => $option];
-        // }   
-
-        // CampaignPriceOption::insert($priceOptionsList);
+     
 
         return ['status' => true , 'msg' => 'Campaign Created Successfully' , 'paramId' => $campaign->id];
     }

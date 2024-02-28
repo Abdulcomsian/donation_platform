@@ -1,8 +1,8 @@
 <?php 
 
 namespace App\Http\Handlers;
-use App\Models\{ Plan , PlanInterval , User};
-use Stripe\{Plan as StripePlan , Stripe , Product , Price};
+use App\Models\{ Plan , PlanInterval };
+use Stripe\{ Stripe , Product , Price};
 use Yajra\DataTables\DataTables;
 
 
@@ -27,62 +27,13 @@ class PlanHandler{
         }
     
         
-        $plan = Plan::create([
+        Plan::create([
             'name' => $name,
             'amount' => $amount,
             'user_id' => auth()->user()->id
         ]);
 
-
-        $intervals = ['month' , 'quarter' , 'year' ];
-
-        Stripe::setApiKey(env('STRIPE_SECRET'));
-
-        $planIntervals = [];
-
-        foreach($intervals as $interval)
-        {
-            $planName = $interval == 'quarter' ?  'Plan '.$amount.' quarter' :  'Plan '.$amount.' '.ucfirst($interval);
-
-            $user =  User::where('id' , auth()->user()->id)->first();
-
-
-            $product = Product::create( 
-                    ['name' => $planName],
-                    ['stripe_account' => auth()->user()->stripe_connected_id]
-                );
-
-            $price = Price::create([
-                'product' => $product->id,
-                'unit_amount' => $amount * 100,
-                'currency' => 'usd',
-                'recurring' => [
-                    'interval' => 'month',
-                    'interval_count' => $interval == 'quarter' ? 3 : null
-                ]
-                ], ['stripe_account' => auth()->user()->stripe_connected_id]);
-
-
-//             $stripePlan =  StripePlan::create([
-//                                 'amount' => $amount * 100, 
-//                                 'interval' => $interval == 'quarter' ? 'month' : $interval,
-//                                 'interval_count' => $interval == 'quarter' ? 3 : null,
-//                                 'product' => [
-//                                     'name' => $planName, 
-//                                 ],
-//                                 'currency' => 'usd',
-//                             ], ['stripe_account' => auth()->user()->stripe_connected_id]);
-// dd($stripePlan);
-
-            $planIntervals[] = ['plan_id' => $plan->id , 'stripe_plan_id' => $price->id , 'interval' => $interval ];
-        }
-
-        PlanInterval::insert($planIntervals);
-
-
         return ['status' => true , 'msg' => 'Plan Created Successfully'];
-        
-
     }
 
     public function getPlanList()

@@ -51,6 +51,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                
                                 @if($userPlans->count() > 0 && $campaign->recurring == 'required' )
                                 <div class="col-md-6">
                                     <div class="type" id="recurring" onclick="changeActive('recurring', 'oneTime')">

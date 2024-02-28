@@ -46,12 +46,24 @@ class AppConst{
     public const EVENT_REGISTRATION = 10;
     public const EVENT_CANCELED = 11;
     public const EVENT_TICKET_REFUND = 12;
+    public const DONATION_REJECTED = 13;
 
 
 
     //reference table membership_plan
     public const MONTHLY_PLAN = 1;
     public const ANNUALLY_PLAN = 2;
+
+    //reference table PlanSubscriber
+    //column:interval
+    public const MONTHLY_INTERVAL='monthly';
+    public const QUARTERLY_INTERVAL='quarterly';
+    public const ANNUALLY_INTERVAL='annually';
+    //column:status
+    public const ACTIVE_PLAN=1;
+    public const RESUME_PLAN=2;
+    public const CANCEL_PLAN=3;
+
 
     
 }

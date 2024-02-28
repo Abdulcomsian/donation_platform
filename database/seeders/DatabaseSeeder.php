@@ -8,7 +8,6 @@ use Illuminate\Database\Seeder;
 use Database\Seeders\{CampaignSeeder, 
                         CountrySeeder, 
                         UserSeeder, 
-                        PriceOptionSeeder, 
                         RolesSeeder, 
                         MailchimpSeeder,
                         EventCategorySeeder,
@@ -25,7 +24,6 @@ class DatabaseSeeder extends Seeder
         $this->call(CountrySeeder::class);
         $this->call(UserSeeder::class);
         $this->call(MailchimpSeeder::class);
-        $this->call(PriceOptionSeeder::class);
         $this->call(CampaignSeeder::class);
         $this->call(PlatformPercentageSeeder::class);
         $this->call(EventCategorySeeder::class);

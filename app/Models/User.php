@@ -99,6 +99,16 @@ class User extends Authenticatable
         return $this->hasMany(Event::class , 'user_id' , 'id');
     }
 
+    public function plans()
+    {
+        return $this->belongsToMany(Plan::class , 'plan_subscribers' , 'subscriber_id' , 'plan_id' )->withPivot('interval' , 'expiry_date' , 'status');
+    }
+
+    public function customer()
+    {
+        return $this->hasMany(User::class , 'subscriber_id' , 'id' );
+    }
+
     public function annuallyMembershipPlan()
     {
         return $this->hasMany(MembershipPlan::class , 'user_id' , 'id')->where('type' , AppConst::ANNUALLY_PLAN);

@@ -25,7 +25,6 @@ return new class extends Migration
             $table->foreign('percentage_id')->references('id')->on('platform_percentage')->onDelete('cascade');
             $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');
             $table->foreign('donar_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('price_option_id')->references('id')->on('price_options')->onDelete('cascade');
             $table->foreign('plan_id')->references('id')->on('plans')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();

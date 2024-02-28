@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('plan_intervals', function (Blueprint $table) {
+        Schema::create('user_subscribers', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('plan_id');
-            $table->string('interval');
-            $table->string('stripe_plan_id');
-            $table->foreign('plan_id')->references('id')->on('plans')->onDelete('cascade');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('subscriber_id');
+            $table->string('customer_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('subscriber_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamp('created_at')->default(now());
             $table->timestamp('updated_at')->default(now());
             $table->softDeletes();
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('plan_intervals');
+        Schema::dropIfExists('user_subscribers');
     }
 };

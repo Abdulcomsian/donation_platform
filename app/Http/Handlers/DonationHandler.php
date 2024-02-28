@@ -3,10 +3,11 @@
 namespace App\Http\Handlers;
 
 use App\Http\AppConst;
-use App\Models\{ Donation , Campaign , Country , User , PlatformPercentage , Address,  Plan };
+use App\Models\{ Donation , Campaign , Country , User , PlatformPercentage , Address,  Plan, PlanSubscriber, UserSubscriber};
 use App\Http\Handlers\{StripeHandler , MailchimpHandler};
 use Yajra\DataTables\Facades\DataTables;
 use App\Jobs\MailingJob;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Stripe\{Stripe , StripeClient , Customer , PaymentIntent};
 
@@ -114,7 +115,7 @@ class DonationHandler{
         //set percentage when split payment has been discussed
         // Stripe::setApiKey(env('STRIPE_SECRET'));
         $stripe = new StripeClient(env('STRIPE_SECRET'));
-        $plan = isset($request->frequency) ? Plan::with('user' , 'monthlyInterval' , 'quarterlyInterval' , 'yearlyInterval')->where('id' , $request->plan_id)->first() : null;
+        $plan = isset($request->frequency) ? Plan::with('user')->where('id' , $request->plan_id)->first() : null;
         // $amount = isset($request->frequency) ? Plan::where('id' , $request->plan_id)->first()->amount : $request->amount;
         $campaingDetail = Campaign::with('user')->where('id' , $campaignId)->first();
         $connectedAccountId = $campaingDetail->user->stripe_connected_id;
@@ -154,13 +155,17 @@ class DonationHandler{
 
 
         }else{
-        
             try{
                 
                 $donarId = $this->createDonar($request);
 
                 $options = ['stripe_account' => $connectedAccountId];
-                $subscription = null;
+
+                $findCustomer = $stripe->customers->search([
+                    'query' => "email:'$request->email'",
+                ], $options);
+
+                
                     
 
                 // Set the Stripe API key to the connected account's secret key
@@ -170,84 +175,141 @@ class DonationHandler{
                 //     [ 'stripe_account' => $connectedAccountId,]
                 // );
 
-                $customer = $stripe->customers->create(
-                    [ 'email' => $request->email, 'description' => 'donation connected account customer'],
-                    $options
-                );
+                $customer = null;
+                if(count($findCustomer->data) == 0)
+                {
+                    $customer = $stripe->customers->create(
+                        [ 'email' => $request->email, 'description' => 'donation connected account customer'],
+                        $options
+                    );
+                }else{
+                    $customer = $findCustomer->data[0];
+                }
+
+                //adding payment
+                $paymentIntent = $stripe->paymentIntents->create([
+                                                            'amount' => $plan->amount * 100,
+                                                            'currency' => 'usd',
+                                                            'automatic_payment_methods' => ['enabled' => true],
+                                                        ] , $options );
+
+                if($paymentIntent->id){
+                    //creating donar
+                    $donarId = $this->createDonar($request);
+    
+                    //created donar as user subscriber
+                    $subscriber = UserSubscriber::where('user_id' , $user->id)->where('subscriber_id' , $donarId)->first();
+                    
+                    if(!$subscriber){
+                        $subscriber = UserSubscriber::create([
+                            'user_id' => $user->id,
+                            'subscriber_id' => $donarId,
+                            'customer_id' => $customer->id
+                        ]);
+                    }
+                    
+                    
+                    $subscriptionPlan = new PlanSubscriber;
+                    $subscriptionPlan->plan_id = $request->plan_id;
+                    $subscriptionPlan->subscriber_id = $donarId;
+                    $subscriptionPlan->subscription_id = $subscriber->id;
+                    $currentDate = Carbon::now();
+
+                    switch($request->frequency){
+                        case \AppConst::MONTHLY_INTERVAL:
+                            $subscriptionPlan->interval = \AppConst::MONTHLY_INTERVAL;
+                            $expiryDate = $currentDate->addMonth();
+                            $subscriptionPlan->expiry_date = $expiryDate;
+                        break;
+                        case \AppConst::QUARTERLY_INTERVAL:
+                            $subscriptionPlan->interval = \AppConst::QUARTERLY_INTERVAL;
+                            $expiryDate = $currentDate->addMonth(3);
+                            $subscriptionPlan->expiry_date = $expiryDate;
+                        break;
+                        case \AppConst::ANNUALLY_INTERVAL:
+                            $subscriptionPlan->interval = \AppConst::ANNUALLY_INTERVAL;
+                            $expiryDate = $currentDate->addYear(1);
+                            $subscriptionPlan->expiry_date = $expiryDate;
+                        break;
+                    }
+                    $subscriptionPlan->status = \AppConst::ACTIVE_PLAN;
+                    $subscriptionPlan->campaign_id = $campaignId;
+                    $subscriptionPlan->save();
+
+                    if($subscriptionPlan->save()){
+
+                        $donation = new Donation;
+                        $donation->campaign_id = $campaignId;
+                        $donation->plan_id = $request->plan_id;
+                        $donation->status = "completed";
+                        $donation->percentage_id = $percentageId;
+                        $donation->donar_id = $donarId; 
+                        $donation->payment_id = $paymentIntent->id;
+                        $donation->save();
+    
+                        
+    
+                        $this->addDonarOnMailchimpList($campaignId , $request->email);
+                        dispatch(new MailingJob(\AppConst::SUBSCRIPTION_SUCCESS , $request->email , $user->id));
+                        // \Helper::sendMail(\AppConst::SUBSCRIPTION_SUCCESS , $request->email);
+                        return ['status' => true , 'msg' => 'Subscription Added Successfully'];
+                    }else{
+                        return ['status' => true , 'msg' => 'Something Went Wrong' , 'error' => 'While Creating Subscription'];
+                    }
+
+                }
+
 
                 // $stripe = new StripeClient(env('STRIPE_SECRET'));
 
                 
     
-                $stripe->paymentMethods->attach(
-                                            $request->payment_method,
-                                            ['customer' => $customer->id],
-                                            $options
-                                        );
+            //     $stripe->paymentMethods->attach(
+            //                                 $request->payment_method,
+            //                                 ['customer' => $customer->id],
+            //                                 $options
+            //                             );
 
-                $stripeCustomer = $stripe->customers->update(
-                                            $customer->id , 
-                                            ['invoice_settings' => 
-                                                ["default_payment_method" =>  $request->payment_method],
-                                            ],  
-                                            $options
-                                        );
+            //     $stripeCustomer = $stripe->customers->update(
+            //                                 $customer->id , 
+            //                                 ['invoice_settings' => 
+            //                                     ["default_payment_method" =>  $request->payment_method],
+            //                                 ],  
+            //                                 $options
+            //                             );
 
-
+            //    $subscription = null; 
+            //     switch($request->frequency){
+            //         case 'monthly':
+            //             $subscription = $stripe->subscriptions->create(
+            //                 [
+            //                   'customer' => $stripeCustomer->id,
+            //                   'items' => [['price' => $plan->monthlyInterval->stripe_plan_id]],
+            //                 ],
+            //                 $options
+            //               );
+            //         break;
+            //         case 'quarterly':
+            //             $subscription = $stripe->subscriptions->create(
+            //                 [
+            //                   'customer' => $stripeCustomer->id,
+            //                   'items' => [['price' => $plan->quarterlyInterval->stripe_plan_id]],
+            //                 ],
+            //                 $options
+            //               );
+            //         break;
+            //         case 'annually':
+            //             $subscription = $stripe->subscriptions->create(
+            //                 [
+            //                   'customer' => $stripeCustomer->id,
+            //                   'items' => [['price' => $plan->yearlyInterval->stripe_plan_id]],
+            //                 ],
+            //                 $options
+            //               );
+            //         break;
+            //     }
                 
                 
-
-               $subscription = null; 
-                switch($request->frequency){
-                    case 'monthly':
-                        $subscription = $stripe->subscriptions->create(
-                            [
-                              'customer' => $stripeCustomer->id,
-                              'items' => [['price' => $plan->monthlyInterval->stripe_plan_id]],
-                            ],
-                            $options
-                          );
-                    break;
-                    case 'quarterly':
-                        $subscription = $stripe->subscriptions->create(
-                            [
-                              'customer' => $stripeCustomer->id,
-                              'items' => [['price' => $plan->quarterlyInterval->stripe_plan_id]],
-                            ],
-                            $options
-                          );
-                    break;
-                    case 'annually':
-                        $subscription = $stripe->subscriptions->create(
-                            [
-                              'customer' => $stripeCustomer->id,
-                              'items' => [['price' => $plan->yearlyInterval->stripe_plan_id]],
-                            ],
-                            $options
-                          );
-                    break;
-                }
-                
-                if($subscription){
-
-                    $donation = new Donation;
-                    $donation->campaign_id = $campaignId;
-                    $donation->plan_id = $request->plan_id;
-                    $donation->status = "completed";
-                    $donation->percentage_id = $percentageId;
-                    $donarId = $this->createDonar($request);
-                    $donation->donar_id = $donarId; 
-                    $donation->payment_id = $subscription->id;
-                    $donation->save();
-
-
-                    $this->addDonarOnMailchimpList($campaignId , $request->email);
-                    dispatch(new MailingJob(\AppConst::SUBSCRIPTION_SUCCESS , $request->email , $user->id));
-                    // \Helper::sendMail(\AppConst::SUBSCRIPTION_SUCCESS , $request->email);
-                    return ['status' => true , 'msg' => 'Subscription Added Successfully'];
-                }else{
-                    return ['status' => true , 'msg' => 'Something Went Wrong' , 'error' => 'While Creating Subscription'];
-                }
             }
             catch(\Exception $e){
                 
@@ -265,43 +327,6 @@ class DonationHandler{
 
 
         }
-
-
-        // if($transfer->id){
-            
-        //     $donation = new Donation;
-        //     $donation->campaign_id = $campaignId;
-        //     isset($request->frequency) ? $donation->price_option_id = $request->price_option : $donation->amount = $request->amount;
-        //     $donation->status = "completed";
-        //     $donation->percentage_id = $percentageId;
-        //     $donarId = $this->createDonar($request);
-        //     $donation->donar_id = $donarId; 
-        //     $donation->transfer_id = $transfer->id;
-        //     $donation->save();
-    
-        //     $campaignCreator = User::with('mailchimp')->whereHas('campaigns' , function($query) use ($campaignId){
-        //                                         $query->where('id' , $campaignId);
-        //                                 })->first();
-    
-        //     if($campaignCreator->mailchimp){
-        //         $mailchimp = new MailChimpHandler($campaignCreator->mailchimp->api_key);
-        //         if(!$mailchimp->findSubscriber($campaignCreator->mailchimp->list_id , $request->email)){
-        //             $mailchimp->addSubscriber($campaignCreator->mailchimp->list_id , $request->email);
-        //         }
-        //     }
-
-
-           
-    
-        //     if($donarId){
-        //         return ['status' => true , 'msg' => 'Donation added successfully'];
-        //     }else{
-        //         return ['status' => false , 'error' => 'Something Went Wrong' , 'msg' => 'Something went wrong while adding donation'];
-        //     }
-
-        // }else{
-        //     return ['status' => false  , 'error' => 'Something Went Wrong' ,  'msg' => 'Something went wrong while adding donation'];
-        // }
 
 
         

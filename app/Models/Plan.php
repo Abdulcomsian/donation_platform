@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\{User , PlanInterval};
+use App\Models\{ User };
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Plan extends Model
@@ -19,24 +19,9 @@ class Plan extends Model
         return  $this->belongsTo(User::class , 'user_id' , 'id');
     }
 
-    public function planInterval()
+    public function subscribers()
     {
-        return $this->hasMany(PlanInterval::class , 'plan_id' , 'id');
-    }
-
-    public function monthlyInterval()
-    {
-        return $this->hasOne(PlanInterval::class , 'plan_id' , 'id')->where('interval' , 'month');
-    }
-
-    public function quarterlyInterval()
-    {
-        return $this->hasOne(PlanInterval::class , 'plan_id' , 'id')->where('interval' , 'quarter');
-    }
-
-    public function yearlyInterval()
-    {
-        return $this->hasOne(PlanInterval::class , 'plan_id' , 'id')->where('interval' , 'year');
+        return $this->belongsToMany(User::class , 'plan_subscribers' , 'plan_id' , 'subscriber_id' )->withPivot('interval' , 'expiry_date' , 'status');
     }
 
 
