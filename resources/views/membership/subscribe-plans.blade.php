@@ -131,8 +131,8 @@
 @include('common-script')
 <script src="https://js.stripe.com/v3/"></script>
 <script>
+    $(".pay-data").hide();
     $(document).ready(function(){
-            $(".pay-data").hide();
         $(".btn-next").click(function(){
             $(".input-data").hide();
             $(".pay-data").show();

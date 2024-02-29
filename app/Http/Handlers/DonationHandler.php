@@ -120,21 +120,43 @@ class DonationHandler{
         $campaingDetail = Campaign::with('user')->where('id' , $campaignId)->first();
         $connectedAccountId = $campaingDetail->user->stripe_connected_id;
         $user = $campaingDetail->user;
-
+        $options = ['stripe_account' => $connectedAccountId];
        
         if(!isset($request->frequency) && is_null($request->plan_id))
         {
-            $intent = $stripe->paymentIntents->create(
-                                        [
-                                            'amount' => $request->amount * 100,
-                                            'currency' => 'usd',
-                                            'automatic_payment_methods' => ['enabled' => true],
-                                        ],
-                                        ['stripe_account' => $connectedAccountId]
-                                    );
+            // $intent = $stripe->paymentIntents->create(
+            //                             [
+            //                                 'amount' => $request->amount * 100,
+            //                                 'currency' => 'usd',
+            //                                 'automatic_payment_methods' => ['enabled' => true],
+            //                             ],
+            //                             ['stripe_account' => $connectedAccountId]
+            //                         );
+            $customer = $this->getCustomerDetail( $request , $stripe , $options);
+
+            $stripe->paymentMethods->attach(
+                $request->payment_method,
+                ['customer' => $customer->id],
+                $options
+            );
+
+            
+            //adding payment
+            $paymentIntent = $stripe->paymentIntents->create([
+                                    'amount' => $request->amount * 100,
+                                    'currency' => 'usd',
+                                    'payment_method' => $request->payment_method,
+                                    'customer' => $customer->id,
+                                    'confirm' => true,
+                                    'description' => 'Plan payment',
+                                    'automatic_payment_methods' => [
+                                    'enabled' => true,
+                                    'allow_redirects' => 'never',
+                                    ],
+                                ], $options);
 
 
-            if($intent->id){
+            if($paymentIntent->id){
                 $donation = new Donation;
                 $donation->campaign_id = $campaignId;
                 $donation->amount = $request->amount;
@@ -142,7 +164,7 @@ class DonationHandler{
                 $donation->percentage_id = $percentageId;
                 $donarId = $this->createDonar($request);
                 $donation->donar_id = $donarId; 
-                $donation->payment_id = $intent->id;
+                $donation->payment_id = $paymentIntent->id;
                 $donation->save();
                 $this->addDonarOnMailchimpList($campaignId , $request->email);
                 dispatch(new MailingJob(\AppConst::DONATION_SUCCESS , $request->email , $user->id));
@@ -159,39 +181,30 @@ class DonationHandler{
                 
                 $donarId = $this->createDonar($request);
 
-                $options = ['stripe_account' => $connectedAccountId];
-
-                $findCustomer = $stripe->customers->search([
-                    'query' => "email:'$request->email'",
-                ], $options);
+                $customer = $this->getCustomerDetail( $request ,$stripe , $options);
 
                 
-                    
+                $stripe->paymentMethods->attach(
+                    $request->payment_method,
+                    ['customer' => $customer->id],
+                    $options
+                );
 
-                // Set the Stripe API key to the connected account's secret key
-
-                // $customer = Customer::create(
-                //     [ 'email' => $request->email, 'description' => 'donation connected account customer'], 
-                //     [ 'stripe_account' => $connectedAccountId,]
-                // );
-
-                $customer = null;
-                if(count($findCustomer->data) == 0)
-                {
-                    $customer = $stripe->customers->create(
-                        [ 'email' => $request->email, 'description' => 'donation connected account customer'],
-                        $options
-                    );
-                }else{
-                    $customer = $findCustomer->data[0];
-                }
-
+                
                 //adding payment
                 $paymentIntent = $stripe->paymentIntents->create([
-                                                            'amount' => $plan->amount * 100,
-                                                            'currency' => 'usd',
-                                                            'automatic_payment_methods' => ['enabled' => true],
-                                                        ] , $options );
+                                        'amount' => $plan->amount * 100,
+                                        'currency' => 'usd',
+                                        'payment_method' => $request->payment_method,
+                                        'customer' => $customer->id,
+                                        'confirm' => true,
+                                        'description' => 'Plan payment',
+                                        'automatic_payment_methods' => [
+                                        'enabled' => true,
+                                        'allow_redirects' => 'never',
+                                        ],
+                                    ], $options);
+               
 
                 if($paymentIntent->id){
                     //creating donar
@@ -330,6 +343,28 @@ class DonationHandler{
 
 
         
+    }
+
+    public function getCustomerDetail($request , $stripe , $options)
+    {
+        $findCustomer = $stripe->customers->search([
+            'query' => "email:'$request->email'",
+        ], $options);
+        
+
+        $customer = null;
+        if(count($findCustomer->data) == 0)
+        {
+            $customer = $stripe->customers->create(
+                [ 'email' => $request->email, 'description' => 'donation connected account customer'],
+                $options
+            );
+
+        }else{
+            $customer = $findCustomer->data[0];
+        }
+
+        return $customer;
     }
 
     public function addDonarOnMailchimpList( $campaignId , $email) 
@@ -564,6 +599,84 @@ class DonationHandler{
                             ->get();
 
         return $donations;
+    }
+
+    public function testCron()
+    {
+        $currentDate = Carbon::now()->format('Y-m-d');
+        $plans = PlanSubscriber::with('subscription' ,'subscriber' ,'plan.user' , 'campaign.user')
+                                    ->where(DB::raw("Date(expiry_date)") , '<=' , $currentDate )
+                                    ->where('status' , \AppConst::ACTIVE_PLAN)
+                                    ->get();
+
+        
+        $stripe = new StripeClient(env('STRIPE_SECRET'));
+        $platformPercentage = PlatformPercentage::first();
+        foreach($plans as $plan){
+            $selectedPlan = $plan->plan;
+            $connectedId = $selectedPlan->user->stripe_connected_id;
+            $option = ['stripe_account' => $connectedId];
+
+            try{
+                $previousPayment = $stripe->customers->allPaymentMethods($plan->subscription->customer_id, [] , $option);
+
+                $chargeDetail = $stripe->paymentIntents->create([
+                                        'amount' => $selectedPlan->amount * 100,
+                                        'currency' => 'usd',
+                                        'payment_method' => $previousPayment->data[0]->id,
+                                        'customer' => $plan->subscription->customer_id,
+                                        'confirm' => true,
+                                        'description' => 'Plan payment',
+                                        'automatic_payment_methods' => [
+                                            'enabled' => true,
+                                            'allow_redirects' => 'never',
+                                        ],
+                                    ], $option);
+
+
+    
+                $donation = new Donation;
+                $donation->percentage_id = $platformPercentage->id;
+                $donation->plan_id = $selectedPlan->id;
+                $donation->campaign_id = $plan->campaign_id;
+                $donation->donar_id = $plan->subscriber_id;
+                $donation->status = \AppConst::DONATION_COMPLETED;
+                $donation->payment_id = $chargeDetail->id;
+                if($donation->save())
+                {
+                    $planDetail = PlanSubscriber::where('id' , $plan->id)->first();
+                    $planInterval = $planDetail->interval;
+                    $currentDate = \Carbon\Carbon::now();
+                    switch($planInterval){
+                        case(\AppConst::MONTHLY_INTERVAL):
+                            $planDetail->interval = $currentDate->addMonth()->format('Y-m-d');
+                        break;
+                        case(\AppConst::QUARTERLY_INTERVAL):
+                            $planDetail->interval = $currentDate->addMonth(3)->format('Y-m-d');
+                        break;
+                        case(\AppConst::ANNUALLY_INTERVAL):
+                            $planDetail->interval = $currentDate->addYear(3)->format('Y-m-d');
+                        break;
+                    }
+
+                    $planDetail->save();
+
+                    dispatch(new MailingJob(\AppConst::DONATION_SUCCESS , $plan->subscriber->email , $plan->campaign->user->id));
+
+                }
+
+            }catch(\Exception $e){
+                $donation = new Donation;
+                $donation->percentage_id = $platformPercentage->id;
+                $donation->plan_id = $selectedPlan->id;
+                $donation->campaign_id = $plan->campaign_id;
+                $donation->donar_id = $plan->subscriber_id;
+                $donation->status = \AppConst::DONATION_FAILED;
+                $donation->save();
+                dispatch(new MailingJob(\AppConst::DONATION_REJECTED , $plan->subscriber->email , $plan->campaign->user->id));
+            }
+        }
+
     }
 
 

@@ -111,6 +111,7 @@ Route::post('set-invitation-password' , [UserController::class , 'setInvitationP
 Route::get('membership-list/{id}' , [MembershipController::class , 'getMembershipList'])->name('get.membership.list');
 Route::post('subscribe-membership' , [MembershipController::class , 'subscribeMembership'])->name('subscribe.membership');
 Route::post('create-setup-intent' , [StripeController::class , 'createSetupIntent'])->name('setup.intent');
+Route::get('cron-test' , [DonationController::class ,'testCron']);
 
 
 

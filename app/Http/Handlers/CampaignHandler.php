@@ -163,7 +163,7 @@ class CampaignHandler{
 
         });
 
-        $query->with('donations.price' , 'donations.platformPercentage');
+        $query->with('donations' , 'donations.platformPercentage');
 
         $campaigns = $query->orderBy('id' , 'desc')->limit(2)->get();
         // $campaigns  = Campaign::with('donations.price' , 'donations.platformPercentage')->where('user_id' , auth()->user()->id)->orderBy('id' , 'desc')->limit(2)->get();

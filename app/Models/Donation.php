@@ -27,7 +27,6 @@ class Donation extends Model
         return $this->belongsTo(User::class , 'donar_id' , 'id');
     }
 
-
     public function plan(){
         return $this->belongsTo(Plan::class , 'plan_id' , 'id');
     }
