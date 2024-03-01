@@ -15,9 +15,12 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('member_id');
             $table->unsignedBigInteger('plan_id');
-            $table->string('subscription_id');
+            $table->unsignedBigInteger('subscription_id');
+            $table->date('expiry_date');
+            $table->integer('status');
             $table->foreign('member_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('plan_id')->references('id')->on('membership_plan')->onDelete('cascade');
+            $table->foreign('subscription_id')->references('id')->on('user_subscribers')->onDelete('cascade');
             $table->timestamp('created_at')->default(now());
             $table->timestamp('updated_at')->default(now());
             $table->softDeletes();

@@ -187,8 +187,10 @@
             
             let url = this.getAttribute('action');
             let submitBtn = this.querySelector(".submit-btn");
+            let redirectUrl = '{{url("success-membership")}}';
             form.append('payment_method' , setupIntent.payment_method);
-            addFormData(url , form , loader , null , submitBtn , null)
+
+            addFormData(url , form , loader , redirectUrl , submitBtn , null)
 
         }
 

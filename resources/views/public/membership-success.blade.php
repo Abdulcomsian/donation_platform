@@ -106,9 +106,9 @@ a{
     <div class="payment-success">
     
         <div class="body">
-          <h2 class="title">Payment Successful</h2>
+          <h2 class="title">Membership Added Successfully</h2>
           <img class="main-img" src="{{asset('assets/images/payment-transfered.jpg')}}" alt="">
-          <p>Your payment was successful!</p>
+          <p>Your membership created successful!</p>
           <a href="{{ url()->previous() }}" class="btn redirect-btn">Go Back</a>      
         </div>
       </div>

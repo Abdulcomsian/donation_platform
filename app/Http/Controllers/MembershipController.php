@@ -126,4 +126,16 @@ class MembershipController extends Controller
                                                                 ]);
     
     }
+
+    public function succesfullySubscribeMembership()
+    {
+        return view('public.membership-success');
+    }
+
+    public function testCronMembership()
+    {
+        $this->membershipHandler->testCron();
+    }
+
+
 }

@@ -156,7 +156,7 @@ class DonationController extends Controller
 
     }
 
-    public function testCron()
+    public function testCronDonation()
     {
         $this->donationHandler->testCron();
     }

@@ -54,7 +54,7 @@ class AppConst{
     public const MONTHLY_PLAN = 1;
     public const ANNUALLY_PLAN = 2;
 
-    //reference table PlanSubscriber
+    //reference tables PlanSubscriber, MembershipSubscriber
     //column:interval
     public const MONTHLY_INTERVAL='monthly';
     public const QUARTERLY_INTERVAL='quarterly';

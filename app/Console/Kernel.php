@@ -4,12 +4,13 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use App\Console\Commands\PlanSubscription;
+use App\Console\Commands\{PlanSubscription, MembershipSubscription};
 
 class Kernel extends ConsoleKernel
 {
     protected $commands = [
-        PlanSubscription::class
+        PlanSubscription::class,
+        MembershipSubscription::class,
     ];
 
     /**
@@ -18,6 +19,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         $schedule->command('cron:plan-subscription')->everyMinute();
+        $schedule->command('cron:membership-subscription')->everyMinute();
+        
         // $schedule->command('cron:plan-subscription')->dailyAt('24:00');
         // $schedule->command('inspire')->hourly();
     }
