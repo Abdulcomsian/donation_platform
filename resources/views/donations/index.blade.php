@@ -43,7 +43,7 @@
                     <select name="membership" id="membership" aria-placeholder="membership">
                         <option value="">Membership</option>
                         @foreach($members as $member)
-                            <option value="{{$member->user_id}}">{{$member->user->first_name.' '.$member->user->last_name}}</option>
+                            <option value="{{$member->user_id}}">{{$member->member->first_name.' '.$member->member->last_name}}</option>
                         @endforeach
                     </select>
                 </div>

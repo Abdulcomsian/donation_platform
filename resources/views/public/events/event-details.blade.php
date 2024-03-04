@@ -123,7 +123,7 @@
                                         <input type="hidden" value="{{number_format($ticket->price)}}" id="ticket_price-{{$tot_ticket-1}}" />
                                     </div>
                                     <div class="ticket-count">
-                                    <input type="number" value="0" data-ticket-id="{{$ticket->id}}" data-ticket-amount="{{$ticket->price}}" min="1" max="{{$ticket->quantity - $ticket->users->count()}}" class="form-control ticket-quantity" id="basiInput-{{$tot_ticket-1}}" onchange="calc_price()">
+                                    <input type="number" value="0" data-ticket-id="{{$ticket->id}}" data-ticket-amount="{{$ticket->price}}" min="1" max="{{$ticket->quantity - $purchasedTickets}}" class="form-control ticket-quantity" id="basiInput-{{$tot_ticket-1}}" onchange="calc_price(event.target)">
                                 </div>
                                 </div>
                             @endif
@@ -319,17 +319,23 @@
 
 
     document.querySelectorAll(".ticket-quantity").forEach(field => {
-        field.addEventListener("keyup" , function(e){
+        field.addEventListener("keydown" , function(e){
             let element = e.target;
             let maxQuantity = element.getAttribute('max');
             let value = element.value;
-            if(value > maxQuantity){
-                element.value = maxQuantity;
+            if(e.keyCode >= 48 && e.keyCode <= 57)
+            {
+                let changedValue = parseInt(value.toString()+e.key.toString());
+                if(changedValue > maxQuantity) {
+                    e.preventDefault()
+                } 
+                 
             }
         })
     })
 
-    function calc_price() {
+
+    function calc_price(element) {
         tot_iteration = $('input[id^="tot_iteration"]').val();
         var totalval = parseFloat(0);
         var arr = $("#array_name").val();

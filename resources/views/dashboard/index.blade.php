@@ -78,7 +78,8 @@
 
                         @if(auth()->user()->stripe_is_verified == \AppConst::STRIPE_VERIFIED)
                             <div class="btn-container">
-                                <a href="{{route('remove.connected.stripe.account')}}">Disconnect Stripe</a>
+                                <h3 class="theme-text"><strong>Stripe Connected</strong></h3>
+                                {{-- <a href="{{route('remove.connected.stripe.account')}}">Disconnect Stripe</a> --}}
                             </div>
                         @else
                             <div class="btn-container">

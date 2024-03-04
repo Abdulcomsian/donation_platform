@@ -274,7 +274,7 @@ class MembershipHandler{
             });
         });
 
-        $members = $query->with('user')->get();
+        $members = $query->with('member')->get();
 
         return $members;
     }

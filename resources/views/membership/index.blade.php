@@ -19,7 +19,7 @@
 <div class="membership">
     <div class="header">
         <div class="heading">
-            Membership  @if($monthlyPlans->count() || $annuallyPlans->count())  <a href="{{url('membership-list' , Crypt::encrypt(auth()->user()->id) )}}" class="link-btn">Link<i class="fa-solid fa-arrow-up-right-from-square mx-2"></i></a> @endif
+            Membership  @if($monthlyPlans->count() || $annuallyPlans->count())  <a target="_blank" href="{{url('membership-list' , Crypt::encrypt(auth()->user()->id) )}}" class="link-btn" >Link<i class="fa-solid fa-arrow-up-right-from-square mx-2"></i></a> @endif
         </div>
         <div class="description">
             <div class="row">
