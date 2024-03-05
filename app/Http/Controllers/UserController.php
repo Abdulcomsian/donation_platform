@@ -35,7 +35,7 @@ class UserController extends Controller
             "first_name" => "required|string",
             "last_name" => "required|string",
             "role" => "required|numeric",
-            "email" => "required|unique:users,email"
+            "email" => "required"
         ]);
 
         if($validator->fails()){

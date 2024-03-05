@@ -139,8 +139,8 @@ class UserHandler{
         $role = $request->role;
 
 
-        $user = User::where('email' , $request->email)->first();
-
+        $user = User::withTrashed()->where('email' , $request->email)->first();
+    
         if(!$user){
             $user  = new User;
             $user->first_name = $firstName;
@@ -148,11 +148,11 @@ class UserHandler{
             $user->email = $email;
             $user->activation_status = \AppConst::PENDING;
         } else if( $user && !is_null($user->deleted_at)){
-            $user  = new User;
             $user->first_name = $firstName;
             $user->last_name = $lastName;
             $user->email = $email;
             $user->activation_status = \AppConst::PENDING;
+            $user->deleted_at = null;
             $user->roles()->detach();
         } else{
             return ['status' => false , 'msg' => 'Email Already Taken'];
@@ -217,7 +217,7 @@ class UserHandler{
     {
         $id = Crypt::decrypt($request->user_id);
         $password = Hash::make($request->password);
-        User::where('id' , $id)->update(['password' => $password]);
+        User::where('id' , $id)->update(['password' => $password , 'activation_status' => \AppConst::ACTIVE]);
         \Toastr::success('Your password has been reset please verify' , 'Success' );
         return redirect()->route('login');
     }
