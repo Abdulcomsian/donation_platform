@@ -416,6 +416,7 @@
         confirmationUpdate(data , url , [ confirmationHeader , confirmationTextBtn] , null , loadPage )
     })
 
+    
     function loadPage()
     {
         location.reload();
