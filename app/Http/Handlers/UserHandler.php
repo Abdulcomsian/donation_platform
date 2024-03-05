@@ -137,11 +137,28 @@ class UserHandler{
         $lastName = $request->last_name;
         $email = $request->email;
         $role = $request->role;
-        $user  = new User;
-        $user->first_name = $firstName;
-        $user->last_name = $lastName;
-        $user->email = $email;
-        $user->activation_status = \AppConst::PENDING;
+
+
+        $user = User::where('email' , $request->email)->first();
+
+        if(!$user){
+            $user  = new User;
+            $user->first_name = $firstName;
+            $user->last_name = $lastName;
+            $user->email = $email;
+            $user->activation_status = \AppConst::PENDING;
+        } else if( $user && !is_null($user->deleted_at)){
+            $user  = new User;
+            $user->first_name = $firstName;
+            $user->last_name = $lastName;
+            $user->email = $email;
+            $user->activation_status = \AppConst::PENDING;
+            $user->roles()->detach();
+        } else{
+            return ['status' => false , 'msg' => 'Email Already Taken'];
+        }
+
+
 
         $organizationOwner = User::with('organizationProfile')->where('id' , auth()->user()->id)->first();
 
