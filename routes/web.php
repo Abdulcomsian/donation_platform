@@ -25,6 +25,7 @@ Route::get('/', [App\Http\Controllers\Auth\LoginController::class, 'showLoginFor
 Route::group(['middleware' => ['preventBackHistory', 'auth']], function () {
     Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
     Route::post('/upload-organization-logo' , [DashboardController::class , 'uploadLogo'])->name('upload.logo');
+    Route::post('/delete-logo' , [DashboardController::class , 'deleteLogo'])->name('delete.logo');
     Route::get('/logout-user', [UserController::class, 'logoutUser'])->name('logout.user');
     
     Route::group(['prefix' => 'donations'] , function(){

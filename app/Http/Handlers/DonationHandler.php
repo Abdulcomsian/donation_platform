@@ -612,6 +612,7 @@ class DonationHandler{
         
         $stripe = new StripeClient(env('STRIPE_SECRET'));
         $platformPercentage = PlatformPercentage::first();
+        
         foreach($plans as $plan){
             $selectedPlan = $plan->plan;
             $connectedId = $selectedPlan->user->stripe_connected_id;
@@ -649,13 +650,13 @@ class DonationHandler{
                     $currentDate = \Carbon\Carbon::now();
                     switch($planInterval){
                         case(\AppConst::MONTHLY_INTERVAL):
-                            $planDetail->interval = $currentDate->addMonth()->format('Y-m-d');
+                            $planDetail->expiry_date = $currentDate->addMonth(1)->format('Y-m-d');
                         break;
                         case(\AppConst::QUARTERLY_INTERVAL):
-                            $planDetail->interval = $currentDate->addMonth(3)->format('Y-m-d');
+                            $planDetail->expiry_date = $currentDate->addMonth(3)->format('Y-m-d');
                         break;
                         case(\AppConst::ANNUALLY_INTERVAL):
-                            $planDetail->interval = $currentDate->addYear(3)->format('Y-m-d');
+                            $planDetail->expiry_date = $currentDate->addYear(3)->format('Y-m-d');
                         break;
                     }
 
@@ -666,6 +667,7 @@ class DonationHandler{
                 }
 
             }catch(\Exception $e){
+                dd($e);
                 $donation = new Donation;
                 $donation->percentage_id = $platformPercentage->id;
                 $donation->plan_id = $selectedPlan->id;

@@ -103,4 +103,16 @@ class SettingHandler{
             return ['status' => false , 'msg' => 'Something Went Wrong' , 'error' => 'Please Add A File'];
         }
     }
+
+    public function deleteOrganizationLogo(){
+        $organizationProfile = OrganizationProfile::where('user_id' , auth()->user()->id)->first();
+        if(file_exists(public_path('assets/uploads/profile_image/').$organizationProfile->logo_link))
+        {
+            unlink(public_path('assets/uploads/profile_image/').$organizationProfile->logo_link);
+        }
+        $organizationProfile->logo_link = null;
+        $organizationProfile->save();
+        return ['status' => true , 'msg' => 'Organization logo deleted successfully'];
+    }
+    
 }

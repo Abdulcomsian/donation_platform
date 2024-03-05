@@ -31,7 +31,7 @@
         <div class="text">Donors</div>
         <form class="filters">
             <div class="input-date">
-                <input type="date" id="date" name="date" placeholder="Date">
+                <input type="date" id="date" name="date" placeholder="Date" value="{{$filteredDate}}">
             </div>
             <div class="select-membership">
                 <select name="membership" id="membership">
@@ -39,14 +39,14 @@
                     @if($monthlyPlans->count() > 0)
                         <optgroup label="Monthly Plans">
                             @foreach($monthlyPlans as $plan)
-                            <option value="{{$plan->id}}">{{ucfirst($plan->name)}}</option>
+                            <option value="{{$plan->id}}" @if($filteredPlan && $filteredPlan == $plan->id) selected @endif>{{ucfirst($plan->name)}}</option>
                             @endforeach
                         </optgroup>
                     @endif
                     @if($annuallyPlans->count() > 0)
                         <optgroup label="Annually Plans">
                             @foreach($annuallyPlans as $plan)
-                            <option value="{{$plan->id}}">{{ucfirst($plan->name)}}</option>
+                            <option value="{{$plan->id}}" @if($filteredPlan && $filteredPlan == $plan->id) selected @endif>{{ucfirst($plan->name)}}</option>
                             @endforeach
                         </optgroup>
                     @endif

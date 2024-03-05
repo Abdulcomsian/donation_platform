@@ -8,7 +8,8 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Stripe\StripeClient;
 use App\Models\{Donation , PlatformPercentage};
-use App\Mail\EventMail;
+use App\Jobs\MailingJob;
+// use App\Mail\EventMail;
 
 class PlanSubscription extends Command
 {
@@ -31,7 +32,6 @@ class PlanSubscription extends Command
      */
     public function handle()
     {
-        
         $currentDate = Carbon::now()->format('Y-m-d');
         $plans = PlanSubscriber::with('subscription' ,'subscriber' ,'plan.user' , 'campaign.user')
                                     ->where(DB::raw("Date(expiry_date)") , '<=' , $currentDate )
@@ -41,6 +41,7 @@ class PlanSubscription extends Command
         
         $stripe = new StripeClient(env('STRIPE_SECRET'));
         $platformPercentage = PlatformPercentage::first();
+        
         foreach($plans as $plan){
             $selectedPlan = $plan->plan;
             $connectedId = $selectedPlan->user->stripe_connected_id;
@@ -78,13 +79,13 @@ class PlanSubscription extends Command
                     $currentDate = \Carbon\Carbon::now();
                     switch($planInterval){
                         case(\AppConst::MONTHLY_INTERVAL):
-                            $planDetail->interval = $currentDate->addMonth()->format('Y-m-d');
+                            $planDetail->expiry_date = $currentDate->addMonth(1)->format('Y-m-d');
                         break;
                         case(\AppConst::QUARTERLY_INTERVAL):
-                            $planDetail->interval = $currentDate->addMonth(3)->format('Y-m-d');
+                            $planDetail->expiry_date = $currentDate->addMonth(3)->format('Y-m-d');
                         break;
                         case(\AppConst::ANNUALLY_INTERVAL):
-                            $planDetail->interval = $currentDate->addYear(3)->format('Y-m-d');
+                            $planDetail->expiry_date = $currentDate->addYear(1)->format('Y-m-d');
                         break;
                     }
 

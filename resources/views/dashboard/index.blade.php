@@ -10,6 +10,55 @@
     href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
     rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('assets/css/dashboard.css') }}">
+<style>
+    .organization-logo{
+        position: relative;
+    }
+    .logo-icon{
+        display: flex
+        justify-content: space-between;
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        display: none;
+      
+    }
+
+    .logo-icon i{
+        padding: 5px 5px;
+    }
+
+    .logo-icon i:hover{
+        cursor: pointer;
+    }
+
+    .organization-logo:hover{
+        .logo-icon{
+            display: block;
+        }
+    }
+
+    .logo-icon:hover{
+        transition: 0.3s ease-in-out;
+    }
+
+    .fa-trash{
+        color: red;
+    }
+    .fa-trash:hover{
+        border-radius: 4px;
+        background: rgb(226, 145, 145);
+    }
+
+    .fa-pen{
+        color: #FA7F08;
+    }
+    .fa-pen:hover{
+        border-radius: 4px;
+        background: #f3cea9
+    }
+
+</style>
 @endsection
 
 @section('content')
@@ -23,7 +72,15 @@
         <div class="left">
             <input type="file" class="d-none" name="file" id="file">
             @if($organizationProfile && $organizationProfile->logo_link)
-                <img src="{{asset('assets/uploads/profile_image').'/'.$organizationProfile->logo_link}}" class="left-img" alt="">
+                <div class="organization-logo">
+                    @if(auth()->user()->hasRole('owner'))
+                    <div class="logo-icon">
+                        <i class="fa-solid fa-pen" onclick="importFile(event)"></i>
+                        <i class="fa-solid fa-trash delete-logo"></i>
+                    </div>
+                    @endif
+                    <img src="{{asset('assets/uploads/profile_image').'/'.$organizationProfile->logo_link}}" class="left-img" alt="">
+                </div>
             @else
             @if(auth()->user()->hasRole('owner'))
             <div class="upload" onclick="importFile(event)">
@@ -339,7 +396,7 @@
                             text: res.msg,
                             icon: "success"
                         });
-                    loacation.reload();
+                    loadPage();
                 }else{
                     Swal.fire({
                         icon: "error",
@@ -350,6 +407,19 @@
             }
         })
     })
+
+    $(document).on("click" , ".delete-logo" , function(e){
+        let data = {};
+        let url = '{{route("delete.logo")}}';
+        let confirmationHeader = "Are you sure you want to delete logo";
+        let confirmationTextBtn = "Delete";
+        confirmationUpdate(data , url , [ confirmationHeader , confirmationTextBtn] , null , loadPage )
+    })
+
+    function loadPage()
+    {
+        location.reload();
+    }
 
     
 
